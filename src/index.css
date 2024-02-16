@@ -1,0 +1,33 @@
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Roboto:wght@400;700&family=Varela+Round&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif; /* Use Roboto as the main font */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optionally set Varela Round for headings if you wish */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Varela Round', sans-serif;
+}
+
+/* Apply Gamja Flower to elements with a class 'gamja-flower' */
+.gamja-flower {
+  font-family: 'Gamja Flower', cursive;
+}
+
+code {
+  font-family: 'Roboto', monospace; /* Roboto can also be used for code, but keep monospace as a fallback */
+}
+
+.navbar-item a {
+  padding: 0.5rem 1rem; /* Adds padding to the links */
+  font-family: 'Playfair Display', serif; /* Apply the Playfair Display font */
+  font-size: 1.1rem; /* Increase the font size */
+  font-weight: 700; /* Make the font bold */
+  font-style: italic; /* Make the font italic */
+  text-decoration: none; /* Removes the underline */
+  color: inherit; /* Keeps the text color consistent */
+}

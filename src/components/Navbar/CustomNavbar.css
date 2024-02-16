@@ -1,0 +1,77 @@
+/* src/components/CustomNavbar.css */
+.custom-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 10px 20px; /* Adds padding around the entire navbar */
+  margin: 0 auto; /* Centers the navbar */
+  max-width: 100%; /* Adjust the maximum width of the navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+  /* ... other styles ... */
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem; /* Adds padding to the left and right */
+  max-width: 1200px; /* Or your preferred max width */
+  margin: auto; /* Centers the navbar content */
+}
+
+.navbar-section {
+  display: flex;
+  justify-content: center; /* Centers the items in the section */
+  align-items: center;
+  flex: 7; /* Increases the flex factor to allow these sections to grow */
+}
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+  flex: 1; /* Keeps the logo section from growing as much as the other sections */
+}
+
+/* Additional styling to remove bullets and add spacing */
+.navbar-item {
+  list-style-type: none; /* Removes bullets */
+  padding: 0.5rem 1rem; /* Adds padding to the links */
+  font-family: 'Roboto', sans-serif; /* Apply the Roboto font */
+  font-size: 1.1rem; /* Increase the font size */
+  font-weight: 700; /* Make the font bold */
+  font-style: italic; /* Make the font italic */
+  text-decoration: none; /* Removes the underline */
+  color: inherit; /* Keeps the text color consistent */
+  transition: transform 0.3s ease; /* Smooth transition for transform changes */
+}
+
+.custom-navbar .navbar-content .navbar-section .navbar-item a {
+  padding: 0.5rem 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-style: italic;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, font-size 0.3s ease;
+}
+
+.custom-navbar .navbar-content .navbar-section .navbar-item a:hover,
+.custom-navbar .navbar-content .navbar-section .navbar-item a:focus {
+  transform: scale(1.1);
+  outline: none; /* Removes focus outline */
+  font-size: 1.3rem; /* Slightly increase font size on hover for visibility */
+}
+
+/* Optionally, reset the outline on focus to improve accessibility */
+.custom-navbar .navbar-content .navbar-section .navbar-item a:focus {
+  outline: 9px solid transparent; /* Invisible but maintains layout */
+}
+.navbar-item:last-child {
+  margin-right: 0; /* No margin for the last item */
+}
+
+.navbar-item a {
+  padding: 0.5rem 1rem; /* Adds padding to the links */
+}
