@@ -1,5 +1,6 @@
 // src/components/BadgesContainer/BadgesContainer.js
 import React from 'react';
+import './BadgesContainer.css';
 import Badge from '../Badge/Badge';
 
 const badgesData = [

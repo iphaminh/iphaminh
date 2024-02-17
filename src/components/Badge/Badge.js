@@ -1,6 +1,7 @@
 // src/components/Badge/Badge.js
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Badge.css'; // Import the specific CSS for the Badge component
 
 const Badge = ({ imageSrc, altText, link }) => {
   return (

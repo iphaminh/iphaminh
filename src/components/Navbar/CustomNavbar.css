@@ -75,3 +75,8 @@
 .navbar-item a {
   padding: 0.5rem 1rem; /* Adds padding to the links */
 }
+
+/* Adjust the video to leave some space for the badges */
+.video-background {
+  height: 90vh; /* This will make the video take up 90% of the viewport height */
+}

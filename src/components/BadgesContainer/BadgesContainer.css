@@ -1,0 +1,14 @@
+/* src/components/BadgesContainer/BadgesContainer.css */
+.badges-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Adjust the space between badges */
+    padding: 1rem;
+    /* If the badges need to be visible above the video background: */
+    position: absolute;
+    top: 100%; /* Adjust this value as needed to place the container below the video */
+    left: 0;
+    right: 0;
+    z-index: 10; /* Ensure it's above the video but below the navbar */
+  }
+  

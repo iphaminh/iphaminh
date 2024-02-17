@@ -6,7 +6,8 @@ import CustomNavbar from './components/Navbar/Navbar';
 function App() {
   return (
     <div className="App">
-      <CustomNavbar />  {/* Use your Navbar component */}
+      <CustomNavbar /> 
+      <LandingPage />  {/* Use your Navbar component */}
     </div>
   );
 }

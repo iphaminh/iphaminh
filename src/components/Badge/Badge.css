@@ -1,0 +1,8 @@
+/* src/components/Badge/Badge.css */
+.badge img {
+    display: block;
+    max-width: 100px; /* Adjust based on your design */
+    height: auto;
+    /* Any additional styles for the badge */
+  }
+  
