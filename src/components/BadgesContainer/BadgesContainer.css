@@ -1,14 +1,16 @@
 /* src/components/BadgesContainer/BadgesContainer.css */
 .badges-container {
     display: flex;
-    justify-content: center;
-    gap: 1rem; /* Adjust the space between badges */
-    padding: 1rem;
-    /* If the badges need to be visible above the video background: */
+    justify-content: center; /* Aligns badges to the center */
+    gap: 2rem; /* Adjust the gap as needed to control the spacing between badges */
+    align-items: center;
     position: absolute;
     top: 100%; /* Adjust this value as needed to place the container below the video */
-    left: 0;
-    right: 0;
-    z-index: 10; /* Ensure it's above the video but below the navbar */
+    width: 100%;
+    max-width: 1200px; /* Set a max-width to prevent the container from becoming too wide */
+    left: 50%; /* Combine with transform to center the container */
+    transform: translateX(-50%); /* Centers the container */
+    padding: 1rem;
+    z-index: 10;
   }
   

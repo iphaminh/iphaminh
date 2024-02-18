@@ -18,6 +18,7 @@ const badgesData = [
     imageSrc: '/assets/badges_image/best-wedding-videographer.png',
     altText: 'Best Wedding Videographer',
     link: '#',
+    className: 'bear-badge' // Add a unique class
   },
   {
     imageSrc: '/assets/badges_image/top-wedding-videographer.png',

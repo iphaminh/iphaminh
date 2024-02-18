@@ -1,8 +1,14 @@
 /* src/components/Badge/Badge.css */
 .badge img {
     display: block;
-    max-width: 100px; /* Adjust based on your design */
-    height: auto;
-    /* Any additional styles for the badge */
+    width: 120px; /* Adjust based on your design for a larger size */
+    height: auto; /* Maintain the aspect ratio */
+    object-fit: contain; /* Ensures the image is scaled correctly within the dimensions */
+    margin: 0 auto; /* Center each badge within its flex item */
   }
   
+  /* src/components/Badge/Badge.css */
+  .badge img.bear-badge {
+    width: 170px; /* This should be the width you want for the bear badge */
+    height: auto; /* This will keep the aspect ratio intact */
+  }
