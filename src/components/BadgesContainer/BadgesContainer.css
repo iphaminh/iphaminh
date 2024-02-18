@@ -1,15 +1,19 @@
 /* src/components/BadgesContainer/BadgesContainer.css */
+:root {
+    --video-height: 500px; /* Adjust to the height of your video element */
+  }
+  
+
 .badges-container {
     display: flex;
     justify-content: center; /* Aligns badges to the center */
     gap: 2rem; /* Adjust the gap as needed to control the spacing between badges */
     align-items: center;
-    position: absolute;
-    top: 100%; /* Adjust this value as needed to place the container below the video */
+    margin-top: var(--video-height); /* Use a CSS variable or a fixed value to push the container below the video */
     width: 100%;
     max-width: 1200px; /* Set a max-width to prevent the container from becoming too wide */
-    left: 50%; /* Combine with transform to center the container */
-    transform: translateX(-50%); /* Centers the container */
+    margin-left: auto; /* Centers the container */
+    margin-right: auto; /* Centers the container */
     padding: 1rem;
     z-index: 10;
   }

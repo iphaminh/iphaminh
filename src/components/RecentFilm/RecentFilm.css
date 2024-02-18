@@ -1,0 +1,70 @@
+/* src/components/RecentFilm/RecentFilm.css */
+.recent-film-container {
+    background-color: black;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .recent-film-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .title-underline {
+    width: 100px;
+    margin: 0 auto;
+    border: 1px solid white;
+  }
+  
+  .film-thumbnails {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .film-thumbnail {
+    position: relative;
+    width: calc(33.333% - 2rem); /* Adjust based on container size */
+    cursor: pointer;
+  }
+  
+  .film-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px; /* Adds rounded corners to the images */
+  }
+  
+  .film-thumbnail .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2); /* Adds the overlay */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Ensures the overlay also has rounded corners */
+  }
+  
+  .film-thumbnail:hover .overlay {
+    opacity: 1;
+  }
+  
+  .film-title,
+  .film-subtitle {
+    text-align: center;
+    margin: 0.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .film-thumbnail:hover .film-title,
+  .film-thumbnail:hover .film-subtitle {
+    color: gray;
+  }
+  
