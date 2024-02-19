@@ -13,7 +13,7 @@
 
 .film-line {
   width: 60px; /* Adjust the line width */
-  height: 4px; /* Adjust the line thickness */
+  height: 1px; /* Adjust the line thickness */
   background-color: white; /* Line color */
   margin: 0 auto 2rem; /* Center the line and add space below */
 }
