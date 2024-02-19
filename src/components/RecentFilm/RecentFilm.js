@@ -34,11 +34,11 @@ const RecentFilm = () => {
           <div className="film-thumbnail" key={index}>
             <a href={film.vimeoLink} target="_blank" rel="noopener noreferrer">
               <img src={film.imageSrc} alt={film.title} />
-              <div className="film-caption">
-                <h3>{film.title}</h3>
-                <p>{film.description}</p>
-              </div>
             </a>
+            <div className="film-caption">
+              <h3>{film.title}</h3>
+              <p>{film.description}</p>
+            </div>
           </div>
         ))}
       </div>

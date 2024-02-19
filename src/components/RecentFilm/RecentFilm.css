@@ -1,70 +1,63 @@
 /* src/components/RecentFilm/RecentFilm.css */
 .recent-film-container {
-    background-color: black;
-    color: white;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .recent-film-title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .title-underline {
-    width: 100px;
-    margin: 0 auto;
-    border: 1px solid white;
-  }
-  
-  .film-thumbnails {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .film-thumbnail {
-    position: relative;
-    width: calc(33.333% - 2rem); /* Adjust based on container size */
-    cursor: pointer;
-  }
-  
-  .film-thumbnail img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px; /* Adds rounded corners to the images */
-  }
-  
-  .film-thumbnail .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.2); /* Adds the overlay */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px; /* Ensures the overlay also has rounded corners */
-  }
-  
-  .film-thumbnail:hover .overlay {
-    opacity: 1;
-  }
-  
-  .film-title,
-  .film-subtitle {
-    text-align: center;
-    margin: 0.5rem;
-    transition: color 0.3s ease;
-  }
-  
-  .film-thumbnail:hover .film-title,
-  .film-thumbnail:hover .film-subtitle {
-    color: gray;
-  }
-  
+  text-align: center;
+  color: white; /* Set the text color to white */
+  background-color: black; /* Set the background to black */
+  padding: 2rem 0; /* Add some padding */
+}
+
+.recent-film-header {
+  font-size: 3rem; /* Adjust the font size as needed */
+  margin-bottom: 0.5rem; /* Space between the header and the line */
+}
+
+.film-line {
+  width: 60px; /* Adjust the line width */
+  height: 4px; /* Adjust the line thickness */
+  background-color: white; /* Line color */
+  margin: 0 auto 2rem; /* Center the line and add space below */
+}
+
+.film-thumbnails {
+  display: flex;
+  justify-content: center; /* Center the thumbnails */
+  gap: 3rem; /* Adjust the gap between thumbnails */
+}
+
+.film-thumbnail {
+  position: relative; /* Needed for absolute positioning of the caption */
+  width: 300px; /* Adjust the thumbnail width */
+}
+
+/* src/components/RecentFilm/RecentFilm.css */
+.film-thumbnail {
+  position: relative; /* Needed for absolute positioning of the caption */
+  width: 250px; /* Adjust the thumbnail width */
+  margin-bottom: 1rem; /* Space for the caption */
+}
+
+.film-thumbnail img {
+  width: 100%;
+  border-radius: 1px; /* Rounded corners for the thumbnails */
+  margin-bottom: 0.5rem; /* Space between image and caption */
+}
+
+.film-caption {
+  color: white;
+  text-align: center; /* Centers the text */
+  /* Remove background-color and padding if caption is below the image */
+}
+
+.film-caption h3, .film-caption p {
+  margin: 0; /* Removes margin from h3 and p elements */
+}
+
+/* Hover effects */
+.film-thumbnail:hover img {
+  opacity: 0.8; /* Dim the image on hover */
+}
+
+.film-thumbnail:hover .film-caption h3,
+.film-thumbnail:hover .film-caption p {
+  color: grey; /* Change text color on hover */
+}
