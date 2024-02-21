@@ -8,7 +8,8 @@
 
 .recent-film-header {
   font-size: 3rem; /* Adjust the font size as needed */
-  margin-bottom: 0.5rem; /* Space between the header and the line */
+  margin-bottom: 0.1rem; /* Space between the header and the line */
+  font-family: 'Metal', serif;
 }
 
 .film-line {
@@ -50,6 +51,8 @@
 
 .film-caption h3, .film-caption p {
   margin: 0; /* Removes margin from h3 and p elements */
+  font-family: 'Metal', serif;
+  font-size: 20px;
 }
 
 /* Hover effects */
