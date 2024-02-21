@@ -1,0 +1,43 @@
+/* AboutMe.css */
+.aboutMeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .aboutMeContent {
+    max-width: 50%;
+    margin-left: 65px;
+    font-family: 'Metal', serif;
+    font-size: 25px;
+  }
+  
+  .aboutMeContent h2 {
+    color: #222;
+    margin-bottom: 15px;
+    font-family: 'Metal', serif;
+  }
+  
+  .aboutMeContent p {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .aboutMeImage {
+    max-width: 35%;
+    text-align: right;
+    margin-right: 55px;
+  }
+  
+  .aboutMeImage img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 2px;
+  }
+  
