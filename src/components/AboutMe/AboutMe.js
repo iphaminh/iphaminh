@@ -5,7 +5,7 @@ const AboutMe = () => {
   return (
     <div className="aboutMeContainer">
       <div className="aboutMeContent">
-        <h2>I'm MINH!</h2>
+        <h2>I 'm MINH!</h2>
         <p>
           Passionate about capturing life's moments, I specialize in turning
           visions into cinematic stories. Away from the camera, I'm exploring
