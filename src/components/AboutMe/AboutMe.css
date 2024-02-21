@@ -1,6 +1,7 @@
 /* AboutMe.css */
 .aboutMeContainer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
@@ -8,20 +9,21 @@
     margin: 20px 0;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
   }
   
   .aboutMeContent {
-    max-width: 50%;
+    flex: 1;
     margin-left: 65px;
     font-family: 'Metal', serif;
-    font-size: 25px;
+    margin-right: 65px;
+    font-size: calc(16px + 0.5vw); /* scales with viewport width */
   }
   
   .aboutMeContent h2 {
     color: #222;
     margin-bottom: 15px;
     font-family: 'Metal', serif;
+    font-size: calc(20px + 0.6vw); /* scales with viewport width */
   }
   
   .aboutMeContent p {
@@ -30,14 +32,60 @@
   }
   
   .aboutMeImage {
-    max-width: 35%;
+    flex: 1;
     text-align: right;
     margin-right: 55px;
   }
   
   .aboutMeImage img {
-    max-width: 80%;
+    width: 80%;
     height: auto;
     border-radius: 2px;
   }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .aboutMeContent, .aboutMeImage {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+    }
+  
+    .aboutMeContent {
+      font-size: calc(14px + 0.5vw); /* smaller base size for smaller viewport */
+    }
+    
+    .aboutMeContent h2 {
+      font-size: calc(18px + 0.5vw); /* smaller base size for smaller viewport */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .aboutMeContainer {
+        flex-direction: column;
+        }
+        
+        .aboutMeContent, .aboutMeImage {
+        max-width: none;
+        margin: 0 auto; /* centers the content */
+        }
+        
+        .aboutMeContent h2 {
+        font-size: calc(18px + 1vw); /* slightly larger size for very small viewports */
+        }
+        
+        .aboutMeContent p {
+        font-size: calc(14px + 1vw); /* slightly larger size for very small viewports */
+        }
+        
+        .aboutMeImage img {
+        max-width: 100%; /* make sure image is not larger than the container */
+        }
+        /* Larger screens */
+ @media (min-width: 1200px) {
+    .aboutMeImage img {
+      max-width: 30%; /* or any percentage that looks good on large screens */
+    }
+  }
+}
   
