@@ -1,0 +1,12 @@
+.showcase-image-container {
+    width: 100%;
+    margin: 0;
+    overflow: hidden; /* Ensures the image does not exceed the container's width */
+  }
+  
+  .showcase-image-container img {
+    width: 100%;
+    height: auto;
+    display: block; /* Removes bottom space/margin under the image */
+  }
+  
