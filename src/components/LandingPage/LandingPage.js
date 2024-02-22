@@ -4,6 +4,7 @@ import BadgesContainer from '../BadgesContainer/BadgesContainer';
 import RecentFilm from '../RecentFilm/RecentFilm';
 import AboutMe from '../AboutMe/AboutMe'; // Import the AboutMe component
 import ShowcaseImage from '../ShowcaseImage/ShowcaseImage'; // Import the new component
+import FooterShowcase from '../FooterShowcase/FooterShowcase';
 
 const LandingPage = () => {
   return (
@@ -13,6 +14,7 @@ const LandingPage = () => {
       <RecentFilm />
       <AboutMe />
       <ShowcaseImage />
+      <FooterShowcase />
        {/* Include the AboutMe component here */}
       {/* Any other content you want to include on the landing page */}
     </div>

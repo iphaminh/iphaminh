@@ -1,0 +1,118 @@
+/* src/components/FooterShowcase/FooterShowcase.css */
+.footer-showcase-container {
+    font-family: 'Metal', serif;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000; /* Adjust the color to match your footer background */
+    color: #fff; /* Adjust text color as needed */
+  }
+  
+  .detail-section {
+    flex: 1;
+    /* Add styles for the detail section */
+  }
+
+  .detail-section h3  {
+    font-family: 'Metal', serif;
+  }
+  
+  .logo-section {
+    /* Center the logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .navigation-section {
+    display: flex;
+    justify-content: space-evenly; /* This will space out the children evenly */
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .navigate-heading {
+    margin-right: 20px; /* Space between the Navigate heading and the link columns */
+  }
+  
+  .navigate-heading h3 {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    margin-bottom: 20px; /* Space at the bottom of the Navigate heading */
+    font-family: 'Metal', serif;
+
+  }
+  
+  .navbar-column {
+    font-family: 'Metal', serif;
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+    align-items: flex-start;
+  }
+  
+  .navigation-link {
+    color: #fff; /* White text color for visibility on black background */
+    text-decoration: none; /* Removes underline from links */
+    font-size: 18px; /* Adjust the font size as needed */
+    margin-bottom: 10px; /* Space between links */
+  }
+  
+  .vertical-line {
+    background-color: #fff; /* White line color */
+    width: 1px;
+    height: 100%;
+    margin: 0 20px; /* Spacing around the vertical line */
+  }
+  
+  /* Add a media query for smaller screens if needed */
+  @media (max-width: 768px) {
+    .navbar-column {
+      display: none;
+    }
+  
+    .nav-toggle {
+      display: block; /* Show toggle button on small screens */
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    
+    /* Show navigation columns when isNavVisible is true */
+    .navbar-column.show {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    /* Hide the 'Navigate' header on small screens */
+    .navigate-heading.hide {
+      display: none;
+    }
+  }
+  
+  /* This media query is for larger screens */
+  @media (min-width: 769px) {
+    /* Hide the toggle button on large screens */
+    .nav-toggle {
+      display: none;
+    }
+  
+    /* Show navigation columns on large screens */
+    .navbar-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .hide {
+    display: none;
+  }
+  
