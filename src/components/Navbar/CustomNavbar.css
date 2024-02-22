@@ -7,7 +7,7 @@
   padding: 10px 20px; /* Adds padding around the entire navbar */
   margin: 0 auto; /* Centers the navbar */
   max-width: 100%; /* Adjust the maximum width of the navbar */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+  background-color: rgba(255, 255, 255, 0.7); /* Set navbar background to white with 10% opacity */
   /* ... other styles ... */
 }
 
@@ -74,6 +74,7 @@
 
 .navbar-item a {
   padding: 0.5rem 1rem; /* Adds padding to the links */
+  
 }
 
 /* Adjust the video to leave some space for the badges */
