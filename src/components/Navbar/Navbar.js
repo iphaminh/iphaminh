@@ -15,7 +15,7 @@ const CustomNavbar = () => {
       <NavbarContent className="navbar-content">
         <div className="navbar-section">
           <NavbarItem className="navbar-item">
-            <Link href="#">Hwewewome</Link>
+            <Link href="#">Home</Link>
           </NavbarItem>
           <NavbarItem className="navbar-item">
             <Link href="#">Cine</Link>
