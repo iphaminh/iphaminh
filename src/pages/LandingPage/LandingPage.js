@@ -1,10 +1,10 @@
-// src/components/LandingPage/LandingPage.js
+// src/pages/LandingPage/LandingPage.js
 import React from 'react';
-import BadgesContainer from '../BadgesContainer/BadgesContainer';
-import RecentFilm from '../RecentFilm/RecentFilm';
-import AboutMe from '../AboutMe/AboutMe'; // Import the AboutMe component
-import ShowcaseImage from '../ShowcaseImage/ShowcaseImage'; // Import the new component
-import FooterShowcase from '../FooterShowcase/FooterShowcase';
+import BadgesContainer from '../../components/BadgesContainer/BadgesContainer';
+import RecentFilm from '../../components/RecentFilm/RecentFilm';
+import AboutMe from '../../components/AboutMe/AboutMe';
+import ShowcaseImage from '../../components/ShowcaseImage/ShowcaseImage';
+import FooterShowcase from '../../components/FooterShowcase/FooterShowcase'; // Import the FooterShowcase component
 
 const LandingPage = () => {
   return (
