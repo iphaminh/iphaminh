@@ -81,3 +81,35 @@
 .video-background {
   height: 90vh; /* This will make the video take up 90% of the viewport height */
 }
+
+.hamburger-menu {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px; /* Adjust the width as needed */
+  height: 25px; /* Adjust the height as needed */
+  padding: 23px 0 23px 0;
+  
+}
+
+.bar {
+  height: 3px; /* Adjust the thickness of the bar */
+  width: 100%;
+  background-color: #333; /* Adjust the color as needed */
+  border-radius: 200px;
+}
+
+@media (max-width: 768px) {
+  .custom-navbar .navbar-content {
+    flex-direction: column;
+  }
+  
+  .custom-navbar .navbar-section {
+    display: contents; /* Hide or adjust navbar items for mobile */
+  }
+  .logo-section {
+    display: none;
+}
+
+}
