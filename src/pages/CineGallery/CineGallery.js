@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel CSS
+import Navbar from './Navbar'; // Adjust the import path to your Navbar component
+import Footer from './Footer'; // Adjust the import path to your Footer component
+import './CineGallery.css';
 
 // Make sure you have installed axios and react-modal packages
 
