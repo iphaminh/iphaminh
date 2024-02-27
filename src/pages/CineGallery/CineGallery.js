@@ -3,11 +3,10 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel CSS
-import Navbar from './Navbar'; // Adjust the import path to your Navbar component
-import Footer from './Footer'; // Adjust the import path to your Footer component
-import './CineGallery.css';
+import FooterShowcase from '../../components/FooterShowcase/FooterShowcase'; // Update the path as needed
+import './CineGallery.css'; // Make sure this CSS file exists for styling
 
-// Make sure you have installed axios and react-modal packages
+Modal.setAppElement('#root'); // Important for accessibility
 
 const CineGallery = () => {
   const [videos, setVideos] = useState([]);
@@ -23,9 +22,13 @@ const CineGallery = () => {
         },
       };
 
-      // Replace 'user123456' with your actual Vimeo user ID
-      const response = await axios.get('https://api.vimeo.com/users/3990217/videos', options);
-      setVideos(response.data.data);
+      try {
+        // Here you fetch videos from your specific Vimeo folder
+        const response = await axios.get(`https://api.vimeo.com/users/3990217/albums/11002496/videos`, options);
+        setVideos(response.data.data);
+      } catch (error) {
+        console.error('Error fetching videos', error);
+      }
     };
 
     fetchVideos();
@@ -37,30 +40,51 @@ const CineGallery = () => {
   };
 
   return (
-    <div>
-      {videos.map((video) => (
-        <img
-          key={video.uri}
-          src={video.pictures.sizes[0].link}
-          alt={video.name}
-          onClick={() => openModal(video)}
-        />
-      ))}
-
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+    <>
+      <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+        {/* Make sure these image paths are correct */}
+        <div>
+          <img src="/assets/gallery/GA Wedding Video.png" alt="GA Wedding Video" />
+        </div>
+        <div>
+          <img src="/assets/gallery/Ar Wedding Video.png" alt="Ar Wedding Video" />
+        </div>
+        <div>
+          <img src="/assets/gallery/NorthWest Arkansas Wedding Videographer.png" alt="NorthWest Arkansas Wedding Videographer" />
+        </div>
+        <div>
+          <img src="/assets/gallery/NorthWest Arkansas Wedding Videography.png" alt="NorthWest Arkansas Wedding Videography" />
+        </div>
+        {/* Add more slides as needed */}
+      </Carousel>
+      <div className="cine-gallery-container">
+        {videos.map((video) => (
+          <div key={video.uri} className="video-thumbnail" onClick={() => openModal(video)}>
+            <img src={video.pictures.sizes[3].link} alt={video.name} />
+          </div>
+        ))}
+      </div>
+      <Modal 
+        isOpen={modalIsOpen} 
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Video Modal"
+        className="video-modal"
+        overlayClassName="video-modal-overlay"
+      >
         {selectedVideo && (
           <iframe
             title={selectedVideo.name}
             src={`https://player.vimeo.com/video/${selectedVideo.uri.split('/').pop()}`}
             width="640"
             height="360"
-            frameborder="0"
+            frameBorder="0"
             allow="autoplay; fullscreen"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         )}
       </Modal>
-    </div>
+      <FooterShowcase />
+    </>
   );
 };
 

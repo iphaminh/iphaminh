@@ -1,0 +1,63 @@
+/* CineGallery.css */
+
+/* General styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Your Font', sans-serif; /* Replace with your preferred font */
+  }
+  
+  /* Carousel styles */
+  .carousel .slide {
+    text-align: center;
+    background: none; /* No background to let your images be the main focus */
+  }
+  
+  .carousel img {
+    width: 100%; /* Make images responsive */
+    max-height: 600px; /* Adjust the max height as needed */
+    object-fit: cover; /* This will cover the area without stretching images */
+  }
+  
+  /* Gallery styles */
+  .cine-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates a three-column layout */
+    gap: 10px; /* Adjust the space between images */
+    padding: 20px; /* Padding around the gallery */
+  }
+  
+  .cine-gallery-container img {
+    width: 100%;
+    cursor: pointer; /* Changes cursor to indicate clickable items */
+    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .cine-gallery-container img:hover {
+    transform: scale(1.05); /* Slightly scale up images on hover */
+  }
+  
+  /* Modal styles */
+  .Modal {
+    /* Style your modal here */
+  }
+  
+  /* Navbar and Footer styles */
+  /* Import or write your Navbar and Footer styles here */
+  
+  /* You might want to make your Navbar and Footer have a fixed or sticky position */
+  .navbar, .footer {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    /* Adjust grid for smaller screens */
+    .cine-gallery-container {
+      grid-template-columns: repeat(1, 1fr); /* Single column layout for mobile */
+    }
+  }
+  
