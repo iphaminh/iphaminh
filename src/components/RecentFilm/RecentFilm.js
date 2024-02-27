@@ -8,7 +8,7 @@ const RecentFilm = () => {
     {
       title: 'Romance at the Bluff',
       description: 'inspired by Bieber\'s choice',
-      imageSrc: '/assets/recent_film/wedding-photographer-in-Arkansas.png',
+      imageSrc: '/assets/recent_film/wedding-photographer-in-arkansas.png',
       vimeoLink: 'https://vimeo.com/608232970'
     },
     {
