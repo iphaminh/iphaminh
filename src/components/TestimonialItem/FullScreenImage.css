@@ -1,0 +1,14 @@
+/* FullScreenImage.css */
+.full-screen-image-container {
+    width: 100%;
+    display: flex; /* This ensures that the container is flex-box */
+    justify-content: center; /* This centers the image horizontally */
+    align-items: center; /* This centers the image vertically */
+    overflow: hidden; /* This prevents scrollbars if the image is too big */
+  }
+  
+  .full-screen-image {
+    max-width: 100%; /* This ensures the image is not wider than the screen */
+    height: auto; /* This maintains the aspect ratio of the image */
+  }
+  
