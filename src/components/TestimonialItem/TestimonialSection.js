@@ -1,7 +1,6 @@
 // src/components/TestimonialSection/TestimonialSection.js
 import React from 'react';
 import TestimonialItem from '../TestimonialItem/TestimonialItem';
-import './TestimonialSection.css'; // Create a CSS file for styling this component
 
 const TestimonialSection = () => {
   // This array should eventually be replaced with data fetched from a server or a static data file

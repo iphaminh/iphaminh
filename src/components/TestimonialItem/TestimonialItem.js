@@ -1,6 +1,5 @@
 // src/components/TestimonialItem/TestimonialItem.js
 import React from 'react';
-import './TestimonialItem.css'; // Create a CSS file for styling this component
 
 const TestimonialItem = ({ image, text }) => {
   return (
