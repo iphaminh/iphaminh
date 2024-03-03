@@ -13,16 +13,16 @@
   display: flex;
   align-items: center;
   margin-bottom: 40px;
-  margin-right: 90px; /* Adjust this value as needed */
+  margin-right: 10px; /* Adjust this value as needed */
   gap: 3px !important;  /* Space between the image and text */
 }
 
 /* Styles for the testimonial images */
 .testimonial-item img {
-  width: 360px; /* Adjust this value to set a fixed width */
+  width: 480px; /* Adjust this value to set a fixed width */
   height: auto; /* Maintain aspect ratio */
   border-radius: 3px; /* Optional: rounds the corners of the image */
-  margin-left: 20px; /* Add space between text and image */
+  margin-left: -30px; /* Add space between text and image */
 
 }
 
@@ -36,7 +36,7 @@
   background-color: #f8f8f8;
   padding: 10px;
   border-radius: 1px;
-  margin-left: 20px; /* Add space between text and image */
+  margin-left: -30px; /* Add space between text and image */
   flex: 1; /* Allows text block to fill the remaining space */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-size: 22px;
