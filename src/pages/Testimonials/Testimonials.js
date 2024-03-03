@@ -3,7 +3,7 @@ import React from 'react';
 import FullScreenImage from '../../components/TestimonialItem/FullScreenImage'; // Adjust the import path as necessary
 import TestimonialSection from '../../components/TestimonialItem/TestimonialSection';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
-import './Testimonials.css'; // 
+import './Testimonials.css'; // Adjust the path as necessary
 
 const Testimonials = () => {
   return (

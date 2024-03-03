@@ -1,6 +1,7 @@
 // src/components/TestimonialSection/TestimonialSection.js
 import React from 'react';
 import TestimonialItem from '../TestimonialItem/TestimonialItem';
+import '../../pages/Testimonials/Testimonials.css';
 
 const TestimonialSection = () => {
   // This array should eventually be replaced with data fetched from a server or a static data file
@@ -11,7 +12,7 @@ const TestimonialSection = () => {
     },
     {
       image: '/assets/testimonials/arkansas-wedding-cake-photography-phaminh.png',
-      text: 'Your talent in creating a heartfelt narrative of our special day is beyond words. We are thrilled with the memories you’ve captured.',
+      text: 'Minh!!!!!!!!!!!!!!!!! We cried enough in Jamaica and now you about to make us cry again. Just know that Hollywood aint got nothing on You, in fact, Hollywood needs to snatch you up. You are ANOINTED beyond your years. Do Yah Thang Man I DO',
     },
     {
       image: '/assets/testimonials/georgia-bridal-photoshoot-phaminh.png',
@@ -27,7 +28,7 @@ const TestimonialSection = () => {
     },
     {
       image: '/assets/testimonials/georgia-wedding-vows-videography-phaminh.png',
-      text: 'You managed to capture every significant moment, especially our vows, with such detail. We can’t thank you enough.',
+      text: 'Thank you from the depths of our hearts for the incredible talent you shared on our wedding day. Watching the footage, we felt the emotions of our vows and the joy of our celebration as vividly as on the day itself. It is clear you put your heart into your work, giving us a treasure that is deeply personal and immensely valuable. Your dedication to preserving our special day has blessed us with the ability to relive these moments, keeping the feelings alive and cherished. Thank you for being an integral part of our journey.',
     },
     {
       image: '/assets/testimonials/phaminh-arkansas-wedding-videography.png',
@@ -60,7 +61,12 @@ const TestimonialSection = () => {
   return (
     <div className="testimonial-section">
       {testimonials.map((testimonial, index) => (
-        <TestimonialItem key={index} image={testimonial.image} text={testimonial.text} />
+        <TestimonialItem 
+          key={index} 
+          image={testimonial.image} 
+          text={testimonial.text} 
+          isReversed={index % 2 !== 0} // Pass true if index is odd, false if even
+        />
       ))}
     </div>
   );

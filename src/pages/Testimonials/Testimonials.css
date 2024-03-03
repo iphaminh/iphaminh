@@ -1,87 +1,86 @@
-.testimonial-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px; /* Space between items */
-}
-  
-.testimonial-image {
-  width: 150px !important;
-  height: 150px !important;
-}
+@import url('https://fonts.googleapis.com/css2?family=Farsan&display=swap');
 
-
-  
-.testimonial-text {
-    font-size: 1rem; /* Adjust as needed */
-}
-/* FullScreenImage.css */
-.full-screen-image-container {
-    width: 100%;
-    display: flex; /* This ensures that the container is flex-box */
-    justify-content: center; /* This centers the image horizontally */
-    align-items: center; /* This centers the image vertically */
-    overflow: hidden; /* This prevents scrollbars if the image is too big */
-}
-  
-.full-screen-image {
-    max-width: 100%; /* This ensures the image is not wider than the screen */
-    height: auto; /* This maintains the aspect ratio of the image */
-}
 /* General Styles for the Testimonials Section */
 .testimonial-section {
-    max-width: 1200px; /* Or your desired max width */
-    margin: auto; /* Centers the section */
-    padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  font-family: 'Farsan', cursive; /* Applying the Farsan font globally to the section */
 }
 
-/* Grid Styles for the Testimonials */
-.testimonial-section .testimonial-item {
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Adjust ratios as needed, e.g., 1fr 2fr for a smaller image and larger text area */
-    gap: 50px; /* Space between items */
-    align-items: center; /* Centers items vertically */
-    margin-bottom: 40px; /* Space between testimonial rows */
-  }
-  
+/* Styles for each testimonial item */
+.testimonial-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  margin-right: 90px; /* Adjust this value as needed */
+  gap: 3px !important;  /* Space between the image and text */
+}
 
-/* Testimonial Image Styles */
-.testimonial-section .testimonial-item .testimonial-image {
-    width: 20%; /* Adjust this to your desired width, e.g., 50% for half the width */ /* Maintain aspect ratio */
-    border-radius: 10px; /* Optional: rounds the corners of the image */
-    display: block; /* To prevent inline default space below images */
-    margin: 0 auto; /* This will center the image if it's smaller than the full width */
-  }
+/* Styles for the testimonial images */
+.testimonial-item img {
+  width: 360px; /* Adjust this value to set a fixed width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 3px; /* Optional: rounds the corners of the image */
+  margin-left: 20px; /* Add space between text and image */
 
-/* Testimonial Text Styles */
-.testimonial-section .testimonial-item .testimonial-text {
-    font-size: 1rem; /* Adjust the font size as needed */
-    line-height: 1.6; /* Adjust the line height for readability */
-    color: #333; /* Adjust the text color as needed */
+}
+
+/* Modifier class to reverse the order */
+.testimonial-item-reverse {
+  flex-direction: row-reverse;
+}
+
+/* Styling for the text */
+.testimonial-item p {
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 1px;
+  margin-left: 20px; /* Add space between text and image */
+  flex: 1; /* Allows text block to fill the remaining space */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-size: 22px;
 }
 
 /* Fullscreen Image Styles */
 .full-screen-image-container {
-    width: 100%;
-    margin-bottom: 40px; /* Space between the fullscreen image and testimonials */
+  width: 100%;
+  margin-bottom: 40px;
 }
 
 .full-screen-image {
-    width: 100%;
-    object-fit: cover; /* Ensures the image covers the area without stretching */
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .testimonial-section .testimonial-item {
-        grid-template-columns: 1fr; /* Stack image and text on small screens */
-    }
+  .testimonial-item {
+    flex-direction: column; /* Stack image and text on small screens */
+    margin-left: 0; /* Reset margin on small screens */
+  }
 
-    .testimonial-section .testimonial-item .testimonial-image {
-        max-width: 300px; /* Adjust image size on small screens */
-        margin: auto; /* Center the image */
-    }
+  .testimonial-item img {
+    width: 100%; /* Full width images on small screens */
+    max-width: 300px; /* Limiting the maximum width */
+    margin-bottom: 20px; /* Add space below the image */
+    
+  }
 
-    .testimonial-section .testimonial-item .testimonial-text {
-        text-align: center; /* Center the text on small screens */
-    }
+  .testimonial-item p {
+    text-align: center;
+    margin: 0; /* Reset margins on small screens */
+  }
+}
+
+/* Additional media query for larger screens to adjust layout */
+@media (min-width: 1024px) {
+  .testimonial-item {
+    justify-content: space-between; /* Add space between image and text on larger screens */
+  }
+
+  .testimonial-item p {
+    max-width: 600px; /* Limit the maximum width of the text block */
+  }
 }
