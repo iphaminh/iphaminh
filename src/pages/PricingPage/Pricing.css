@@ -1,5 +1,5 @@
 /* Import the Montserrat font with the weights you need */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Crimson+Text:wght@400;700&display=swap');
 
 /* Apply Montserrat throughout the application */
 body, .font-montserrat {
@@ -11,9 +11,13 @@ h1, h2 {
   font-family: 'Montserrat', sans-serif;
 }
 
+p {
+  font-family: 'Crimson Text', serif;
+}
+
 /* Specific font-weight for headings */
 h1 {
-  font-weight: 700; /* Bold for the main heading */
+  font-weight: 400; /* Bold for the main heading */
 }
 
 h2 {
@@ -23,13 +27,16 @@ h2 {
 }
 
 /* Style adjustments for the package descriptions and prices */
-.package-description, .package-price {
+.package-description {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 400; /* Regular for the description */
+  font-weight: 100; /* Regular for the description */
 }
 
 .package-price {
-  font-weight: 700; /* Bold for the price */
+  font-weight: 400; /* Bold for the price */
+  letter-spacing: 2px; /* Add space between letters */
+  text-transform: uppercase; /* Make the text uppercase */
+  font-size: small;
 }
 
 /* Responsive image wrapper */
