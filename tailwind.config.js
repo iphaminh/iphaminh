@@ -1,9 +1,18 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+    // paths to your files
+  ],
   theme: {
-    extend: {},
+    extend: {
+      // your extended theme configurations
+    },
+    fontFamily: {
+      arimo: ['Arimo', 'sans-serif'],
+      crimson: ['Crimson Text', 'serif'],
+      montserrat: ['Montserrat', 'sans-serif'],
+    },
   },
-  plugins: [],
+  plugins: [
+    // your plugins
+  ],
 }
-
