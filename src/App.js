@@ -5,6 +5,7 @@ import CineGallery from './pages/CineGallery/CineGallery';
 import CustomNavbar from './components/Navbar/Navbar';
 import Testimonials from './pages/Testimonials/Testimonials';
 import Pricing from './pages/PricingPage/Pricing';
+import Contact from './pages/Contact/Contact';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/cine" element={<CineGallery />} />
         <Route path="/testimonial" element={<Testimonials />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
         {/* Define other routes as needed */}
       </Routes>
     </>

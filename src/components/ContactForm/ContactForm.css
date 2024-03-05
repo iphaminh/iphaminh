@@ -1,0 +1,96 @@
+/* ContactForm.css */
+
+/* ContactForm.css */
+
+.contact-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="date"],
+.contact-form select,
+.contact-form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Fixes the issue of padding adding to the width */
+}
+
+.contact-form input[type="submit"] {
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* Style for dropdown/select input */
+.contact-form select {
+  -webkit-appearance: none; /* Remove default style on Webkit browsers */
+  -moz-appearance: none;    /* Remove default style on Mozilla browsers */
+  appearance: none;         /* Remove default style to apply custom styles */
+  background: url('/public/assets/images/arrow-icon.svg') no-repeat right;
+  background-size: 12px; /* Adjust size of the icon */
+}
+
+/* Placeholder color */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #aaa; /* Light text for placeholders */
+}
+
+/* Adjust focus styles */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-bottom-color: #666; /* Darker border for focus */
+}
+
+.contact-form .input-group-text {
+  background-color: #eee;
+  border-right: 2px solid #ccc;
+  padding: 10px; /* match the padding of the input */
+  margin-bottom: -2px; /* adjust this value if there is a vertical misalignment */
+  display: flex;
+  align-items: center; /* centers the content vertically */
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-group .currency-symbol {
+  position: absolute;
+  left: 10px; /* or however far from the left you want it */
+  pointer-events: none; /* allows click events to pass through to the input */
+}
+
+
+.contact-form input[type="text"]::placeholder {
+  /* Adjust font-style if needed */
+  font-style: italic; 
+  color: #aaa; 
+  display: flex;
+  align-items: center; /* centers the content vertically */
+}
+
+
+
