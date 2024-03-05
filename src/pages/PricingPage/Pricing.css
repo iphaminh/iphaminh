@@ -1,42 +1,165 @@
-/* Import the Montserrat font with the weights you need */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Crimson+Text:wght@400;700&display=swap');
+/* Import the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&display=swap');
 
-/* Apply Montserrat throughout the application */
-body, .font-montserrat {
+/* General body styles */
+body {
   font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: #333; /* Adjust the color to match your design */
 }
 
-/* Specific targeting of headings to ensure Montserrat application */
-h1, h2 {
+/* Hero section styles */
+.hero-title {
+  font-size: 48px; /* Adjust the size to match your design */
+  font-weight: 300;
+  margin-bottom: 32px;
+  text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
+
 }
 
-p {
+.hero-text {
+  font-size: 13px; /* Adjust the size to match your design */
   font-family: 'Crimson Text', serif;
+  margin-bottom: 48px; /* Add space below the paragraph */
+  padding: 2px 99px 11px 99px;
+  letter-spacing: 2px; /* Add space between letters */
 }
 
-/* Specific font-weight for headings */
-h1 {
-  font-weight: 400; /* Bold for the main heading */
-}
-
-h2 {
-  font-weight: 400; /* Regular for subheadings */
-  text-transform: uppercase; /* Make the text uppercase */
-  letter-spacing: 0.05em; /* Adjust letter spacing for uppercase */
-}
-
-/* Style adjustments for the package descriptions and prices */
-.package-description {
+/* Packages section */
+.package-title {
+  font-size: 24px; /* Adjust the size to match your design */
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 16px;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 100; /* Regular for the description */
+
+}
+
+.package-description {
+  font-family: 'Crimson Text', serif;
+  font-size: 18px; /* Adjust the size to match your design */
+  margin-bottom: 16px;
 }
 
 .package-price {
-  font-weight: 400; /* Bold for the price */
-  letter-spacing: 2px; /* Add space between letters */
-  text-transform: uppercase; /* Make the text uppercase */
-  font-size: small;
+  font-weight: 200;
+  letter-spacing: 4px; /* Add space between letters */
+  margin-bottom: 32px; /* Add space below the price */
+  text-transform: uppercase;
+  padding-top: 21px;
+  font-size: 11px;
+  
+}
+
+/* Adjust the padding and margins as needed for alignment */
+.container {
+  padding: 0 15px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* Flexbox layout for packages */
+.packages {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 48px; /* Adjust as needed for spacing */
+}
+
+.package {
+  flex-basis: calc(33.333% - 30px); /* Adjust the spacing between packages */
+  text-align: center;
+}
+
+.call-to-action-section {
+  position: relative;
+  text-align: center;
+  overflow: hidden; /* Ensure the image doesn't exceed the container */
+
+}
+
+.call-to-action-section img {
+  width: 100%;
+  height: 500px;
+  display: block;
+  object-fit: cover; /* This will cover the area without stretching */
+
+}
+
+.cta-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff; /* or any color that suits the design */
+  z-index: 2; /* Ensure the text appears above the overlay */
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Gray overlay with transparency */
+.call-to-action-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(105, 105, 105, 0.5); /* Adjust the color and opacity */
+  z-index: 1; /* Sit between the image and the content */
+}
+
+.cta-heading {
+  font-size: 3rem; /* adjust the size as needed */
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-family: 'Crimson Text', serif;
+  font-weight: 200;
+  /* Add any other styles for the heading */
+}
+
+.cta-text {
+  font-size: 1.5rem; /* adjust the size as needed */
+  margin-bottom: 3rem;
+  font-size: 17px;
+  /* Add any other styles for the text */
+}
+
+.cta-button {
+  background-color: #000000; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Crimson Text', serif;
+  /* Add any other styles for the button */
+  /* Add :hover state if needed */
+}
+
+/* Make sure to add responsive design considerations using media queries */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .packages {
+    flex-direction: column;
+  }
+
+  .package {
+    flex-basis: 100%;
+    margin-bottom: 30px; /* Space between stacked packages on mobile */
+  }
 }
 
 /* Responsive image wrapper */

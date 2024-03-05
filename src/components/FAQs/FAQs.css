@@ -1,0 +1,39 @@
+/* src/components/FAQs/FAQs.css */
+
+.faqs-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 9rem; /* Adjust the padding as needed */
+  }
+  
+
+  
+  
+  .faqs-column {
+    flex: 1;
+    padding: 0 90px; /* Adjust the padding as needed */
+  }
+  
+  .faqs-divider {
+    width: 1px;
+    background-color: #000; /* or any color you prefer */
+    margin: 0 20px; /* Adjust the margin as needed */
+  }
+  
+  .faq-item + .faq-item {
+    margin-top: 20px; /* Adjust the spacing between FAQ items */
+  }
+  
+  .faq-question {
+    font-weight: 100;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px; /* Adjust the space between question and answer */
+  }
+  
+  .faq-answer {
+    font-weight: normal;
+    font-family: 'Crimson Text', serif;
+    line-height: 1.5; /* Adjust the line height for better readability */
+    margin-bottom: 30px; /* Adjust the space between question and answer */
+
+  }
