@@ -1,0 +1,41 @@
+/* InstagramFeed.css */
+
+.instagram-feed {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .instagram-thumbnail {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .thumbnail-image {
+    width: 200px; /* Adjust to your preference */
+    height: 200px; /* Adjust to your preference */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .instagram-thumbnail:hover .hover-overlay {
+    opacity: 1;
+  }
+  
+  .play-button {
+    width: 50px; /* Adjust to your preference */
+    height: 50px; /* Adjust to your preference */
+  }
+  
