@@ -8,6 +8,9 @@ const InstagramFeed = () => {
     { src: '/assets/pricing/phaminh-arkansas-bridal-entrance-cinematography.png', link: 'https://www.instagram.com/p/Co1FEBcsMXP/' },
     { src: '/assets/pricing/phaminh-romantic-sunset-vows-georgia-wedding.png', link: 'https://www.instagram.com/p/Co8sugoDoV0/' },
     { src: '/assets/pricing/wedding-party-fun-arkansas-phaminh.png', link: 'https://www.instagram.com/p/CxN_Jr0A9zC/' },
+    { src: '/assets/pricing/arkansas-rustic-wedding-photography-phaminh.png', link: 'https://www.instagram.com/p/CIAGhozDMNx/' },
+    { src: '/assets/pricing/phaminh-georgia-outdoor-wedding-ceremony-videography.png', link: 'https://www.instagram.com/p/Co7875JphXt/' },
+    { src: '/assets/pricing/phaminh-georgia-wedding-toast-moments.png', link: 'https://www.instagram.com/p/Co4xkZOJ2Wi/' },
   ];
   const playButton = '/assets//pricing/phaminh-arkansas-wedding-rings-closeup.png';
 

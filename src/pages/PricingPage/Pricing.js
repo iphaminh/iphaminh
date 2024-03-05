@@ -3,6 +3,7 @@ import React from 'react';
 import './Pricing.css'; // Make sure the path to your CSS file is correct
 import FAQs from '../../components/FAQs/FAQs';
 import InstagramFeed from '../../components/InstagramFeed/InstagramFeed';
+import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 
 export default function Pricing() {
   return (
@@ -57,7 +58,7 @@ DOWN THE AISLE ON YOUR WEDDING DAY OR THE FIRST TIME SEEING YOUR LOVED ONE COMIN
 
       <FAQs />
       <InstagramFeed />
-
+      <FooterShowcase />
       </div>
     
   );

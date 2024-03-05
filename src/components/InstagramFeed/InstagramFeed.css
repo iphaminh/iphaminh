@@ -2,19 +2,29 @@
 
 .instagram-feed {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; /* Space items evenly */
+    align-items: center;
+    flex-wrap: wrap; /* Wrap items */
+    margin: 0 -0.9px; /* Negative margin to counteract the gap on edges */
   }
   
   .instagram-thumbnail {
     position: relative;
-    display: inline-block;
+    padding: 1px; /* Padding to maintain the gap between thumbnails */
+    overflow: hidden; /* Ensure the zoomed image doesn't exceed the thumbnail area */
   }
   
   .thumbnail-image {
-    width: 200px; /* Adjust to your preference */
-    height: 200px; /* Adjust to your preference */
+    width: 210px; /* This will make each image take the full width of its container */
+    height: 200px; /* Adjust height automatically to maintain aspect ratio */
     background-size: cover;
     background-position: center;
+    aspect-ratio: 16 / 9; /* Adjust based on the aspect ratio of your images */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for zoom and opacity */
+  }
+  
+  .instagram-thumbnail:hover .thumbnail-image {
+    transform: scale(1.1); /* Scale the image up to create a zoom effect */
   }
   
   .hover-overlay {
@@ -26,16 +36,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
     transition: opacity 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.2); /* White background overlay with 20% opacity */
   }
   
   .instagram-thumbnail:hover .hover-overlay {
-    opacity: 1;
+    opacity: 0.8; /* Lower opacity when hovered */
   }
   
   .play-button {
-    width: 50px; /* Adjust to your preference */
-    height: 50px; /* Adjust to your preference */
+    width: 64px; /* Adjust to your preference */
+    height: 64px; /* Adjust to your preference */
+    filter: invert(100%); /* Invert color to white */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+  }
+  
+  .instagram-thumbnail:hover .play-button {
+    opacity: 0.8; /* Lower opacity of the play button when hovered */
   }
   
