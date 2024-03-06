@@ -29,12 +29,17 @@ const ContactForm = () => {
         <option value="other">Other</option>
       </select>
 
-      <label htmlFor="budget">Estimated Budget</label>
-      <div class="input-group">
-  <span class="currency-symbol">$</span>
-  <input type="text" id="budget" name="budget" placeholder="5,500" />
-</div>
-
+      <div className="input-group relative">
+  <span className="absolute left-0 pl-2 flex items-center pointer-events-none">
+    <span className="currency-symbol">$</span>
+  </span>
+  <input
+  type="text"
+  id="budget"
+  name="budget"
+  placeholder="2,700"
+  className="w-full border-2 border-gray-300 p-2 pl-8 rounded-md placeholder-gray-900"/>
+        </div>
 
       <label htmlFor="find_us">How'd you find us?</label>
       <input type="text" id="find_us" name="find_us" />

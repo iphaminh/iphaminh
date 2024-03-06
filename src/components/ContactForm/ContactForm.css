@@ -29,14 +29,16 @@
 }
 
 .contact-form input[type="submit"] {
-  background-color: #333;
+  background-color: #8b6541;
   color: white;
   border: none;
   cursor: pointer;
+  padding: 20px;
+  border-radius: 30px; /* This creates the rounded edges */
 }
 
 .contact-form input[type="submit"]:hover {
-  background-color: #555;
+  background-color: #555555;
 }
 
 /* Style for dropdown/select input */
@@ -46,12 +48,15 @@
   appearance: none;         /* Remove default style to apply custom styles */
   background: url('/public/assets/images/arrow-icon.svg') no-repeat right;
   background-size: 12px; /* Adjust size of the icon */
+  
 }
 
 /* Placeholder color */
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #aaa; /* Light text for placeholders */
+  color: #d0cfcf; /* Light text for placeholders */
+  font-size: 15px;
+  font-style: italic;
 }
 
 /* Adjust focus styles */
@@ -73,24 +78,26 @@
 
 .input-group {
   position: relative;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 5px; /* Adjust if necessary */
+  padding-left: 0.5rem; /* Tailwind's pl-2 class equivalent */
   display: flex;
   align-items: center;
+  pointer-events: none;
+  top: 14%;
+  color: #aaa;
 }
 
-.input-group .currency-symbol {
-  position: absolute;
-  left: 10px; /* or however far from the left you want it */
-  pointer-events: none; /* allows click events to pass through to the input */
+.input-group input[type="text"] {
+  padding-left: 25px; /* Tailwind's pl-8 class equivalent */
+  padding-top: 11.6px;
+  /* Add other styling properties as needed */
 }
 
 
-.contact-form input[type="text"]::placeholder {
-  /* Adjust font-style if needed */
-  font-style: italic; 
-  color: #aaa; 
-  display: flex;
-  align-items: center; /* centers the content vertically */
-}
 
 
 
