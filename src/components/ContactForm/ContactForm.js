@@ -4,6 +4,7 @@ import './ContactForm.css';
 
 const ContactForm = () => {
   return (
+    
     <form action="https://formspree.io/f/xnqezqow" method="POST" className="contact-form">
       <label htmlFor="email">Email</label>
       <input type="email" id="email" name="email" required />
