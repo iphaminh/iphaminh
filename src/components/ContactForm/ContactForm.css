@@ -33,12 +33,16 @@
   color: white;
   border: none;
   cursor: pointer;
-  padding: 20px;
+  padding: 7px;
   border-radius: 30px; /* This creates the rounded edges */
+  font-family: 'Metal', serif;
+  font-size: 19px;
+
 }
 
 .contact-form input[type="submit"]:hover {
   background-color: #555555;
+  
 }
 
 /* Style for dropdown/select input */

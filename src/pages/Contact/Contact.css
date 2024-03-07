@@ -33,11 +33,6 @@
   color: #4a5568; /* This is a TailwindCSS class color */
 }
 
-/* Specific styling for the footer container */
-.contact-footer {
-  justify-content: space-around; /* Space around items */
-}
-
 .text-3xl.font-bold.text-center.mb-4 {
   font-family: 'Metal', serif;
   letter-spacing: 4px;
@@ -56,9 +51,28 @@ p {
   text-transform: uppercase;
 }
 
-.contact-footer.flex.justify-between.items-center.border-t-2.py-4.mt-12 Ơ
-  
-
+.contact-footer.flex.justify-between.items-center.border-t-2.py-4.mt-12 {
+  font-family:'Courier New', Courier, monospace;
+  padding-bottom: 42px;
+}
 /* If you find that your NavBar is affected after including this CSS, 
 it could be due to class name conflicts. Make sure that your NavBar 
 does not use these same class names without intending to apply these styles. */
+
+.contact-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.contact-footer span {
+  /* Adjust margin around phone number and email to bring them closer to the center line */
+  margin: 0 11rem; /* Reduce the 8px value to bring items closer */
+}
+
+.contact-footer .border-r-2 {
+  height: 1.5rem;
+  border-right: 2px solid #ccc;
+  margin: 0 8px; /* Adjust this value as well */
+}

@@ -18,9 +18,9 @@ const Contact = () => {
         <ContactForm />
 
     <div className="contact-footer flex justify-between items-center border-t-2 py-4 mt-12">
-      <span className="text-gray-700">870.270.8837</span>
-      <div className="border-r-2 h-6"></div>
-      <span className="text-gray-700">PHAMINH@OUTLOOK.COM</span>
+      <span className="text-gray-700 mr-1">870.270.8837</span>
+      <div className="border-r-2 h-6 mx-1"></div>
+      <span className="text-gray-700 ml-1">PHAMINH@OUTLOOK.COM</span>
     </div>
   </div>
   <FooterShowcase />
