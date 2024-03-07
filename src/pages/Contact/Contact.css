@@ -38,6 +38,27 @@
   justify-content: space-around; /* Space around items */
 }
 
+.text-3xl.font-bold.text-center.mb-4 {
+  font-family: 'Metal', serif;
+  letter-spacing: 4px;
+  font-weight: 300;
+  font-size: 47px;
+}
+
+/* General styling for all h1 elements, you can add this in your global CSS file */
+p {
+  font-family: 'Metal', serif;
+  letter-spacing: 1.2px;
+}
+
+.text-lg.text-center.mb-12 {
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.contact-footer.flex.justify-between.items-center.border-t-2.py-4.mt-12 Ơ
+  
+
 /* If you find that your NavBar is affected after including this CSS, 
 it could be due to class name conflicts. Make sure that your NavBar 
 does not use these same class names without intending to apply these styles. */

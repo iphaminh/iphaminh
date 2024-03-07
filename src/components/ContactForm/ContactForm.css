@@ -1,7 +1,5 @@
 /* ContactForm.css */
 
-/* ContactForm.css */
-
 .contact-form {
   max-width: 500px;
   margin: 0 auto;
@@ -12,7 +10,9 @@
   display: block;
   margin-bottom: 5px;
   color: #333;
-  font-weight: bold;
+  font-weight: 600;
+  font-family: 'Metal', serif;
+  font-size: 18px;
 }
 
 .contact-form input[type="text"],
