@@ -77,3 +77,17 @@ does not use these same class names without intending to apply these styles. */
   border-right: 2px solid #ccc;
   margin: 0 8px; /* Adjust this value as well */
 }
+
+/* Adjust the banner image for medium screens, e.g., tablets */
+@media (max-width: 768px) {
+  .banner-image {
+    background-position: center calc(60% - offsetY * 1.05); /* Adjust as needed */
+  }
+}
+
+/* Adjust the banner image for small screens, e.g., phones */
+@media (max-width: 480px) {
+  .banner-image {
+    background-position: center calc(40% - offsetY * 1.05); /* Adjust as needed */
+  }
+}
