@@ -50,17 +50,34 @@ body, html {
     background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
   }
   
-  .video-modal {
-    /* Ensure the modal has a defined max-width and max-height, and allow it to scroll if content is larger */
-    max-width: 80%;
-    max-height: 80%;
-    overflow-y: auto;
-    background-color: #fff; /* Adjust background color as needed */
-    padding: 20px; /* Adjust padding as needed */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
-    border-radius: 10px; /* Optional: Rounds the corners of the modal */
+/* Apply to modal for responsive fullscreen appearance */
+.video-modal {
+  position: fixed; /* Fixed position to cover the screen */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the modal */
+  width: 80%; /* Percentage of screen width */
+  max-width: 900px; /* Maximum width */
+  aspect-ratio: 16 / 9; /* Maintain a 16:9 aspect ratio */
+  overflow: hidden; /* Hide scrollbars */
+}
+
+/* Ensure the iframe takes up the whole modal and maintains aspect ratio */
+.video-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+  
+  .video-modal-overlay {
+    z-index: 1000; /* Ensure this number is higher than the carousel's z-index */
+    /* other styles */
   }
   
+  .video-modal {
+    z-index: 1001; /* Ensure this is higher than the overlay's z-index */
+    /* other styles */
+  }
   
   
   /* Navbar and Footer styles */
@@ -79,6 +96,18 @@ body, html {
     /* Adjust grid for smaller screens */
     .cine-gallery-container {
       grid-template-columns: repeat(1, 1fr); /* Single column layout for mobile */
+    }
+  }
+  /* This will apply styles for devices with a screen width of up to 480 pixels (typical for phones in portrait mode) */
+  @media (max-width: 480px) {
+    .video-modal {
+      width: 90%; /* Take up a majority of the screen width */
+      height: auto; /* Height is automatic to maintain aspect ratio */
+    }
+    
+    .video-modal iframe {
+      width: 100%; /* iframe takes up the full width of its container */
+      height: auto; /* Height is automatic, it will be determined by the aspect ratio of the iframe content */
     }
   }
   

@@ -55,11 +55,18 @@ const CineGallery = () => {
   }, []);
 
   const openModal = (videoUrl) => {
-    // If videoUrl is a direct Vimeo link, convert it to an embed URL.
-    const embedUrl = videoUrl.replace('vimeo.com/', 'player.vimeo.com/video/');
+    // Check if videoUrl already contains the embed path
+    let embedUrl = videoUrl.includes('player.vimeo.com/video/')
+      ? videoUrl
+      : videoUrl.replace('vimeo.com/', 'player.vimeo.com/video/');
+  
+    // Append proper parameters for autoplay and fullscreen if not already present
+    embedUrl += embedUrl.includes('?') ? '&autoplay=1&mute=0' : '?autoplay=1&mute=0';
+  
     setSelectedVideoUrl(embedUrl);
     setModalIsOpen(true);
   };
+  
   
   
 
