@@ -24,11 +24,8 @@ const Contact = () => {
           backgroundImage: `url(${bannerImageURL})`,
           backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
-<<<<<<< HEAD
-          backgroundPosition: `center ${500 - offsetY * 0.1}%`, // Adjust the 0.1 to control the speed
-=======
+
           backgroundPosition: `center ${300 - offsetY * 0.1}%`, // Adjust the 0.1 to control the speed
->>>>>>> eb3197e185921f7de7a274ca96f9ce5d1513deba
           height: '400px', // Adjust the height as needed
           width: '100%',
         }}
