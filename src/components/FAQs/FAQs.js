@@ -21,7 +21,7 @@ const FAQs = () => {
     },
 
     {
-      question: 'CAN I CHOOSE MY MUSIC?',
+      question: '• CAN I CHOOSE MY MUSIC?',
       answer: 'I typically select music that complements your film is mood, ensuring all tracks are properly licensed from reputable sources like Artlist, Musicbed, or Audio Jungle. Licensing is crucial to avoid legal issues and content takedowns. Artlist tracks are included at no extra cost due to my annual subscription. If you prefer to pick your own song from Musicbed or Audio Jungle, note that it will incur an additional fee of $25-50 per song. Please express your preference for selecting music before signing the contract, and feel free to discuss any questions during the booking process.',
     },
 

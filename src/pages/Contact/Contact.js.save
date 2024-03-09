@@ -1,4 +1,7 @@
-// src/pages/Contact/Contact.js
+git add src/pages/Contact/Contact.js
+
+// 
+src/pages/Contact/Contact.js
 import React, { useState, useEffect } from 'react';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
@@ -59,3 +62,8 @@ const Contact = () => {
 };
 
 export default Contact;
+git add src/pages/Contact/Contact.js
+
+X
+
+
