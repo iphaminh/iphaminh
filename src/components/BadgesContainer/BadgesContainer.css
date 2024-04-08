@@ -1,9 +1,20 @@
 /* src/components/BadgesContainer/BadgesContainer.css */
-:root {
-    --video-height: 500px; /* Adjust to the height of your video element */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.badge-appear {
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
   .badges-container {
     display: flex;
     justify-content: center; /* Aligns badges to the center */
@@ -15,5 +26,6 @@
     margin-left: auto; /* Centers the container */
     margin-right: auto; /* Centers the container */
     padding: 1rem;
-    z-index: 10; /* Ensure this is above the video z-index */
+    z-index: 10;
+    transition: gap 1.3s ease-out; /* Smooth transition for the gap changes */
 }

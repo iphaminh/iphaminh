@@ -9,3 +9,24 @@
     z-index: -1; /* Make sure there's nothing with a lower z-index that covers the video */
   }
   
+  .mute-button {
+    position: fixed; /* or absolute */
+    right: 10px;
+    top: 10px;
+    z-index: 1100; /* Above everything else */
+    /* Add additional styling as desired */
+  }
+  
+  .sound-icon {
+    position: absolute;
+    right: 60px; /* Adjust the right position as needed */
+    top: 180px; /* Adjust the top position as needed */
+    z-index: 1100;
+    cursor: pointer;
+    width: 35px;
+    height: auto;
+    filter: invert(100%); /* This inverts the colors */
+    opacity: 80%;
+  }
+  
+  
