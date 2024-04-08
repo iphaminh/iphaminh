@@ -1,0 +1,11 @@
+/* This will apply styles directly to the video element with the 'background-video' ID */
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; /* Make sure there's nothing with a lower z-index that covers the video */
+  }
+  

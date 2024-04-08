@@ -5,18 +5,24 @@ import RecentFilm from '../../components/RecentFilm/RecentFilm';
 import AboutMe from '../../components/AboutMe/AboutMe';
 import ShowcaseImage from '../../components/ShowcaseImage/ShowcaseImage';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase'; // Import the FooterShowcase component
+import './LandingPage.css'; // Assuming your CSS is in LandingPage.css
+
+
 
 const LandingPage = () => {
   return (
     <div className="landing-page-container">
-      {/* Other content like Navbar, video background, etc., goes here */}
+      {/* This will place the video right under the navbar */}
+      <video autoPlay muted loop playsInline id="background-video">
+  <source src="/assets/highlight_film/Phaminh.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
       <BadgesContainer />
       <RecentFilm />
       <AboutMe />
       <ShowcaseImage />
       <FooterShowcase />
-       {/* Include the AboutMe component here */}
-      {/* Any other content you want to include on the landing page */}
+      {/* ... other content */}
     </div>
   );
 };

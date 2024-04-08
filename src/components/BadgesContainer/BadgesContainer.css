@@ -4,17 +4,16 @@
   }
   
 
-.badges-container {
+  .badges-container {
     display: flex;
     justify-content: center; /* Aligns badges to the center */
     gap: 2rem; /* Adjust the gap as needed to control the spacing between badges */
     align-items: center;
-    margin-top: var(--video-height); /* Use a CSS variable or a fixed value to push the container below the video */
+    margin-top: calc(100vh - 115px);  /* This will push the badges to below the viewport height */
     width: 100%;
     max-width: 1200px; /* Set a max-width to prevent the container from becoming too wide */
     margin-left: auto; /* Centers the container */
     margin-right: auto; /* Centers the container */
     padding: 1rem;
-    z-index: 10;
-  }
-  
+    z-index: 10; /* Ensure this is above the video z-index */
+}
