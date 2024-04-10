@@ -1,0 +1,48 @@
+.wedding-gallery {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    -moz-column-gap: 10px;
+    -webkit-column-gap: 10px;
+    column-gap: 10px;
+    padding: 20px;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  .wedding-photo {
+    break-inside: avoid;
+    margin-bottom: 10px;
+  }
+  
+  .wedding-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Assign class to the elements based on the image size and desired span */
+  /* Large landscape photos */
+  .wedding-photo.large-landscape {
+    grid-column-end: span 2; /* Spans two columns */
+    grid-row-end: span 1; /* Takes up 1 row height */
+  }
+  
+  /* Large portrait photos */
+  .wedding-photo.large-portrait {
+    grid-column-end: span 1; /* Takes up 1 column */
+    grid-row-end: span 2; /* Spans two rows */
+  }
+  
+  /* Full width photos */
+  .wedding-photo.full-width {
+    grid-column-end: span 4; /* Takes up all 4 columns */
+    grid-row-end: span 1; /* Takes up 1 row height */
+  }
+  
+  /* Tall photos that need to cover two rows */
+  .wedding-photo.tall {
+    grid-row-end: span 2; /* Spans two rows */
+  }
+  
+  
