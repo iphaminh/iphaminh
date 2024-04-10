@@ -2,7 +2,8 @@
 .foto-container {
   display: flex;
   flex-direction: row;
-  height: 100vh; /* Ensure the container fills the entire height of the viewport */
+  height: calc(100vh - 110px); /* Subtract the navbar's height */
+  overflow: hidden; /* Prevent scrolling */
 }
 
 .foto-categories {
@@ -14,6 +15,9 @@
   padding: 20px;
   /* background-color: #efefef; Sidebar background color */
   height: 100vh; /* Full height of the viewport */
+  box-sizing: border-box; /* Makes sure padding is included in the height */
+  overflow: hidden; /* Prevent scrolling */
+
 }
 
 .foto-categories a {
@@ -34,9 +38,11 @@
     display: flex;
     flex-direction: row; /* Align icons horizontally */
     justify-content: center; /* Center the icons horizontally */
-    align-items: center; /* Align icons vertically */
-    margin-top: 20px; /* Add a top margin if needed */
-    padding-bottom: 20px; /* Add padding to the bottom */
+    /* align-items: center; /* Align icons vertically */
+    /* margin-top: 20px; Add a top margin if needed */
+    padding-bottom: 80%; /* Add padding to the bottom  */
+    align-items: flex-end; /* Align icons at the bottom */
+    height: 100%; /* Take up remaining height */
 }
 
 .social-icons a {
@@ -44,14 +50,14 @@
 }
 
 .social-icons img {
-    opacity: 95%;
+    opacity: 85%;
     width: 30px; /* Adjust icon size */
     height: 33px; /* Adjust icon size to maintain aspect ratio */
-    margin: 2px -10px; /* Spacing between icons */
+    margin: 2px -30px; /* Spacing between icons */
 }
 
 .foto-gallery {
   flex: 1; /* Gallery takes up the remaining space */
-  padding: 20px;
-  overflow-y: auto; /* Allows for scrolling within the gallery */
+  overflow-y: auto; /* Allows for scrolling within the gallery if necessary */
+  
 }
