@@ -17,8 +17,8 @@ const Gallery = ({ images, basePath }) => {
             }
     
             return (
-              <div key={index} className={className}>
-                <img src={`/assets/foto/wedding/${image}`} alt={`Wedding ${index}`} />
+                <div key={index} className={className}>
+                <img src={`${basePath}/${image}`} alt={`Gallery item ${index}`} />
               </div>
             );
           })}
