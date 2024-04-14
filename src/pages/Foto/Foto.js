@@ -11,7 +11,7 @@ const Foto = () => {
     <Link to="/foto/wedding">Wedding</Link>
     <Link to="/foto/engagement">Engagement</Link>
     <Link to="/foto/portrait">Portrait</Link>
-    <Link to="/foto/family">Family</Link>
+    {/* <Link to="/foto/family">Family</Link> */}
     <Link to="/foto/real-estate">Real Estate</Link>
   </div>
 

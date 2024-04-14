@@ -1,5 +1,5 @@
-// pages/Engagement.js
-import React, { useState, useEffect } from 'react';
+// pages/Portrait.js
+import React from 'react';
 import Gallery from '../../components/Foto/Gallery'; 
 
   const images = [
@@ -11,7 +11,6 @@ import Gallery from '../../components/Foto/Gallery';
     'phaminh-portrait-photo-12.jpg',
     'phaminh-portrait-photo-13.jpg',
     'phaminh-portrait-photo-14.jpg',
-    'phaminh-portrait-photo-24.jpg',
     'phaminh-portrait-photo-27.jpg',
     'phaminh-portrait-photo-29.jpg',
     'phaminh-portrait-photo-16.jpg',
