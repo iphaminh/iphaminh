@@ -5,28 +5,28 @@ import Badge from '../Badge/Badge';
 
 const badgesData = [
   {
-    imageSrc: '/assets/badges_image/arkansas-wedding-videographer.png',
+    imageSrc: '/assets/badges_image/arkansas-wedding-videographer.webp',
     altText: 'Arkansas Wedding Videographer',
     link: '#',
   },
   {
-    imageSrc: '/assets/badges_image/atlanta-wedding-videographer.png',
+    imageSrc: '/assets/badges_image/atlanta-wedding-videographer.webp',
     altText: 'Atlanta Wedding Videographer',
     link: '#',
   },
   {
-    imageSrc: '/assets/badges_image/best-wedding-videographer.png',
+    imageSrc: '/assets/badges_image/best-wedding-videographer.webp',
     altText: 'Best Wedding Videographer',
     link: '#',
     className: 'bear-badge' // Add a unique class
   },
   {
-    imageSrc: '/assets/badges_image/top-wedding-videographer.png',
+    imageSrc: '/assets/badges_image/top-wedding-videographer.webp',
     altText: 'Top Wedding Videographer',
     link: '#',
   },
   {
-    imageSrc: '/assets/badges_image/videographer-near-me.png',
+    imageSrc: '/assets/badges_image/videographer-near-me.webp',
     altText: 'Videographer Near Me',
     link: '#',
   },

@@ -14,7 +14,7 @@ const Contact = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const bannerImageURL = process.env.PUBLIC_URL + '/assets/images/georgia-wedding-highlights-phaminh-cinematography.png';
+  const bannerImageURL = process.env.PUBLIC_URL + '/assets/images/georgia-wedding-highlights-phaminh-cinematography.webp';
 
   return (
     <div>
