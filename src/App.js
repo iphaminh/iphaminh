@@ -10,6 +10,7 @@ import Contact from './pages/Contact/Contact';
 import Foto from './pages/Foto/Foto'; // Import your Foto component
 import Wedding from './pages/Foto/Wedding'; // Import your Wedding component
 import Engagement from './pages/Foto/Engagement'; // Import your Engagement component
+import Portrait from './pages/Foto/Portrait';
 // Import other categories as needed...
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route index element={<Wedding />} />
           <Route path="wedding" element={<Wedding />} />
           <Route path="engagement" element={<Engagement />} />
+          <Route path="portrait" element={<Portrait />} />
           {/* Define other categories here */}
         </Route>
         {/* Define other routes as needed */}
