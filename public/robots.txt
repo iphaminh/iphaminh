@@ -1,3 +1,5 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Specify the location of your XML sitemap for search engines
+Sitemap: https://phaminh.com/sitemap.xml
