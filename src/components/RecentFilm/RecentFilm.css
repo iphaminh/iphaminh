@@ -23,17 +23,13 @@
   display: flex;
   justify-content: center; /* Center the thumbnails */
   gap: 3rem; /* Adjust the gap between thumbnails */
-}
-
-.film-thumbnail {
-  position: relative; /* Needed for absolute positioning of the caption */
-  width: 300px; /* Adjust the thumbnail width */
+  flex-wrap: wrap; /* Allow thumbnails to wrap on smaller screens */
 }
 
 /* src/components/RecentFilm/RecentFilm.css */
 .film-thumbnail {
   position: relative; /* Needed for absolute positioning of the caption */
-  width: 250px; /* Adjust the thumbnail width */
+  width: 320px; /* Adjust the thumbnail width */
   margin-bottom: 1rem; /* Space for the caption */
 }
 
@@ -63,4 +59,18 @@
 .film-thumbnail:hover .film-caption h3,
 .film-thumbnail:hover .film-caption p {
   color: grey; /* Change text color on hover */
+}
+
+/* Stack thumbnails vertically on small screens */
+@media (max-width: 768px) {
+  .film-thumbnails {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .film-thumbnail {
+    width: 100%;
+    max-width: 480px; /* Allow larger thumbnails on mobile */
+  }
 }

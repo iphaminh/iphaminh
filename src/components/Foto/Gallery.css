@@ -44,5 +44,19 @@
   .wedding-photo.tall {
     grid-row-end: span 2; /* Spans two rows */
   }
-  
+
+  /* Responsive column adjustments */
+  @media (max-width: 1024px) {
+    .wedding-gallery {
+      column-count: 3;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wedding-gallery {
+      column-count: 2;
+      column-gap: 5px;
+    }
+  }
+
   

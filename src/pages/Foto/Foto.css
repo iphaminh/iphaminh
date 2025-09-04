@@ -59,5 +59,39 @@
 .foto-gallery {
   flex: 1; /* Gallery takes up the remaining space */
   overflow-y: auto; /* Allows for scrolling within the gallery if necessary */
-  
+
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 768px) {
+  .foto-container {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .foto-categories {
+    flex: none;
+    width: 100%;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    height: auto;
+  }
+
+  .foto-categories > div:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .social-icons {
+    justify-content: center;
+    padding-bottom: 0;
+    margin-top: 10px;
+    align-items: center;
+    height: auto;
+  }
 }
