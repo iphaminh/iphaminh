@@ -59,5 +59,24 @@
 .foto-gallery {
   flex: 1; /* Gallery takes up the remaining space */
   overflow-y: auto; /* Allows for scrolling within the gallery if necessary */
-  
+
+}
+
+@media (max-width: 768px) {
+  .foto-container {
+    flex-direction: column;
+  }
+
+  .foto-categories {
+    width: 100%;
+    flex-direction: row;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .foto-categories a {
+    display: inline-block;
+    margin: 0 1rem;
+  }
 }
