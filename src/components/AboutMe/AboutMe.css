@@ -8,112 +8,114 @@
     padding: 30px;
     margin: 0px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .aboutMeContent {
+}
+
+.aboutMeContent {
     flex: 1;
     margin-left: 65px;
     font-family: 'Metal', serif;
     margin-right: 65px;
     font-size: calc(16px + 0.5vw); /* scales with viewport width */
-  }
-  
-  .aboutMeContent h2 {
+}
+
+.aboutMeContent h2 {
     color: #222;
     margin-bottom: 15px;
     font-family: 'Metal', serif;
     font-size: calc(20px + 0.6vw); /* scales with viewport width */
-  }
-  
-  .aboutMeContent p {
+}
+
+.aboutMeContent p {
     color: #555;
     line-height: 1.6;
-  }
-  
-  .aboutMeImage {
+}
+
+.aboutMeImage {
     flex: 1;
     text-align: right;
     margin-right: 55px;
-  }
-  
-  .aboutMeImage img {
+}
+
+.aboutMeImage img {
     width: 75%;
     height: auto;
     border-radius: 2px;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .aboutMeContent, .aboutMeImage {
-      margin-left: 0;
-      margin-right: 0;
-      max-width: 100%;
-    }
-  
-    .aboutMeContent {
-      font-size: calc(14px + 0.5vw); /* smaller base size for smaller viewport */
-    }
-    
-    .aboutMeContent h2 {
-      font-size: calc(18px + 0.5vw); /* smaller base size for smaller viewport */
-    }
-  }
-  
-  @keyframes slide-in {
-    from {
-      transform: translateX(-90px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .slide-in {
-    animation: slide-in 1.5s forwards;
-  }
-  
-  .fade-in {
-    animation: fade-in 2.5s forwards;
-  }
+}
 
-  
-  @media (max-width: 480px) {
+/* Responsive styles */
+@media (max-width: 768px) {
+    .aboutMeContent,
+    .aboutMeImage {
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
+    }
+
+    .aboutMeContent {
+        font-size: calc(14px + 0.5vw); /* smaller base size for smaller viewport */
+    }
+
+    .aboutMeContent h2 {
+        font-size: calc(18px + 0.5vw); /* smaller base size for smaller viewport */
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(-90px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slide-in 1.5s forwards;
+}
+
+.fade-in {
+    animation: fade-in 2.5s forwards;
+}
+
+@media (max-width: 480px) {
     .aboutMeContainer {
         flex-direction: column;
-        }
-        
-        .aboutMeContent, .aboutMeImage {
+    }
+
+    .aboutMeContent,
+    .aboutMeImage {
         max-width: none;
         margin: 0 auto; /* centers the content */
-        }
-        
-        .aboutMeContent h2 {
-        font-size: calc(18px + 1vw); /* slightly larger size for very small viewports */
-        }
-        
-        .aboutMeContent p {
-        font-size: calc(14px + 1vw); /* slightly larger size for very small viewports */
-        }
-        
-        .aboutMeImage img {
-        max-width: 100%; /* make sure image is not larger than the container */
-        }
-        /* Larger screens */
- @media (min-width: 1200px) {
-    .aboutMeImage img {
-      max-width: 30%; /* or any percentage that looks good on large screens */
     }
-  }
+
+    .aboutMeContent h2 {
+        font-size: calc(18px + 1vw); /* slightly larger size for very small viewports */
+    }
+
+    .aboutMeContent p {
+        font-size: calc(14px + 1vw); /* slightly larger size for very small viewports */
+    }
+
+    .aboutMeImage img {
+        max-width: 100%; /* make sure image is not larger than the container */
+    }
 }
-  
+
+/* Larger screens */
+@media (min-width: 1200px) {
+    .aboutMeImage img {
+        max-width: 30%; /* or any percentage that looks good on large screens */
+    }
+}
+
