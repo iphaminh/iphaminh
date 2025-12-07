@@ -62,21 +62,46 @@
 
 }
 
+.foto-gallery img {
+  max-width: 100%;   /* Makes images responsive */
+  height: auto;      /* Keeps aspect ratio */
+  display: block;    /* Removes weird spacing issues */
+  margin: 0 auto;    /* Center images */
+}
+
 @media (max-width: 768px) {
   .foto-container {
     flex-direction: column;
+    height: auto;
   }
 
-  .foto-categories {
-    width: 100%;
-    flex-direction: row;
-    flex: 0 0 auto;
+.foto-categories {
+  order: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  margin: -40px auto -60px auto; /* 🔥 top 10px brings closer to hamburger */
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+
+  .foto-gallery {
+    order: 1;
+    margin-top: 5px;
+  }
+
+  .social-icons {
+    order: 2;
+    display: flex;
     justify-content: center;
-    align-items: center;
-  }
-
-  .foto-categories a {
-    display: inline-block;
-    margin: 0 1rem;
+    gap: 20px;        /* spacing between icons */
+    margin: 20px auto;
+    padding: 0;
+    height: auto;     /* reset desktop height */
+    padding-bottom: 0; /* reset desktop padding */
+    align-items: center; /* reset vertical alignment */
   }
 }

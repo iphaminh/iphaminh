@@ -84,7 +84,7 @@
   justify-content: space-around;
   width: 30px; /* Adjust the width as needed */
   height: 25px; /* Adjust the height as needed */
-  padding: 23px 0 23px 0;
+  padding: 0;
   
 }
 
@@ -96,15 +96,7 @@
 }
 
 @media (max-width: 768px) {
-  .custom-navbar .navbar-content {
-    flex-direction: column;
+  .hamburger-menu {
+    margin-top: 20px;   /* adjust this number as needed */
   }
-  
-  .custom-navbar .navbar-section {
-    display: contents; /* Hide or adjust navbar items for mobile */
-  }
-  .logo-section {
-    display: none;
-}
-
 }
