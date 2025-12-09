@@ -9,7 +9,7 @@ import { useWindowSize } from "../../hooks/useWindowSize";
 const CustomNavbar = () => {
   const { width } = useWindowSize();
   const [isMenuVisible, setIsMenuVisible] = useState(false); // Added state to manage mobile menu visibility
-  const isMobile = width < 768; // Example breakpoint for mobile devices
+  const isMobile = width < 1024; // Use tablet+mobile for hamburger menu
 
   return (
     <Navbar isBordered variant="sticky" className="custom-navbar">

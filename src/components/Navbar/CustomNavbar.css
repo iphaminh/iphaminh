@@ -95,8 +95,30 @@
   border-radius: 200px;
 }
 
-@media (max-width: 768px) {
-  .hamburger-menu {
-    margin-top: 20px;   /* adjust this number as needed */
+@media (max-width: 1024px) {
+  .navbar-content.mobile {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  .navbar-content.mobile .logo-section {
+    order: 2;
+    margin: 0.5rem 0;
+  }
+
+  .navbar-content.mobile .navbar-section {
+    flex: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0.25rem 0;
+  }
+
+  .navbar-content.mobile .navbar-section .navbar-item {
+    padding: 0.25rem 0.5rem;
   }
 }
