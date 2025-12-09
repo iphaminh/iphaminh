@@ -1,32 +1,70 @@
 /* This will apply styles directly to the video element with the 'background-video' ID */
 #background-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1; /* Make sure there's nothing with a lower z-index that covers the video */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.mute-button {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 1100;
+}
+
+.sound-icon {
+  position: absolute;
+  right: 60px;
+  top: 180px;
+  z-index: 1100;
+  cursor: pointer;
+  width: 35px;
+  height: auto;
+  filter: invert(100%);
+  opacity: 80%;
+}
+
+/* Base hero video (desktop & mobile) */
+.hero-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Fade the bottom of the video into white so badges blend */
+.hero-video-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #ffffff);
+  pointer-events: none;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* MOBILE / TABLET: don't let the video be TOO tall */
+@media (max-width: 768px) {
+  .hero-video-wrapper {
+    height: 70vh;
+    border-radius: 0;
   }
-  
-  .mute-button {
-    position: fixed; /* or absolute */
-    right: 10px;
-    top: 10px;
-    z-index: 1100; /* Above everything else */
-    /* Add additional styling as desired */
+
+  .hero-video {
+    height: 100%;
+    object-position: center 25%;
   }
-  
-  .sound-icon {
-    position: absolute;
-    right: 60px; /* Adjust the right position as needed */
-    top: 180px; /* Adjust the top position as needed */
-    z-index: 1100;
-    cursor: pointer;
-    width: 35px;
-    height: auto;
-    filter: invert(100%); /* This inverts the colors */
-    opacity: 80%;
-  }
-  
-  
+}
