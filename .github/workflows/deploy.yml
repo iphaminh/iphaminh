@@ -32,9 +32,12 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          # This is your local build output:
-          local-dir: build
-          # This is the folder on Hostinger where the site lives:
+          
+          # FIXED: must end with "/"
+          local-dir: build/
+
+          # Hostinger public_html directory
           server-dir: /domains/phaminh.com/public_html/
-          # Optional but nice:
+
+          # Wipes old files (optional but recommended)
           dangerous-clean-slate: true
