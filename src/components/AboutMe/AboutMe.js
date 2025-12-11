@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './AboutMe.css';
 
 const AboutMe = () => {
@@ -6,11 +6,11 @@ const AboutMe = () => {
   const [isAnimated, setIsAnimated] = useState(false);
   const aboutMeRef = useRef();
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (aboutMeRef.current) {
       const top = aboutMeRef.current.getBoundingClientRect().top;
       const onScreen = top < window.innerHeight && top > 0;
-      
+
       // Set the section as visible only if it hasn't been animated yet
       if (onScreen && !isAnimated) {
         setIsVisible(true);
@@ -23,7 +23,7 @@ const AboutMe = () => {
         setIsAnimated(false); // Allow animation to trigger again
       }
     }
-  };
+  }, [isAnimated]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -31,8 +31,7 @@ const AboutMe = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isAnimated]); // Dependency array includes isAnimated to re-add event listener
-
+  }, [handleScroll]);
 
   return (
     <div className="aboutMeContainer" ref={aboutMeRef}>
@@ -46,7 +45,10 @@ const AboutMe = () => {
         </p>
       </div>
       <div className={`aboutMeImage ${isVisible ? 'fade-in' : ''}`}>
-        <img src="/assets/images/phaminh-cinematography.png" alt="Cinematographer MINH in natural setting" />
+        <img
+          src="/assets/images/phaminh-cinematography.png"
+          alt="Cinematographer MINH in natural setting"
+        />
       </div>
     </div>
   );
