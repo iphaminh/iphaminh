@@ -1,6 +1,5 @@
 /* Contact.css - Adjust the classes specifically for the contact page footer */
 
-
 .flex {
   display: flex;
 }
@@ -41,7 +40,7 @@
   font-size: 47px;
 }
 
-/* General styling for all h1 elements, you can add this in your global CSS file */
+/* General styling for all p elements */
 p {
   font-family: 'Metal', serif;
   letter-spacing: 1.2px;
@@ -53,13 +52,11 @@ p {
 }
 
 .contact-footer.flex.justify-between.items-center.border-t-2.py-4.mt-12 {
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   padding-bottom: 42px;
 }
-/* If you find that your NavBar is affected after including this CSS, 
-it could be due to class name conflicts. Make sure that your NavBar 
-does not use these same class names without intending to apply these styles. */
 
+/* Contact footer layout */
 .contact-footer {
   display: flex;
   justify-content: center;
@@ -69,25 +66,27 @@ does not use these same class names without intending to apply these styles. */
 
 .contact-footer span {
   /* Adjust margin around phone number and email to bring them closer to the center line */
-  margin: 0 11rem; /* Reduce the 8px value to bring items closer */
+  margin: 0 11rem;
 }
 
 .contact-footer .border-r-2 {
   height: 1.5rem;
   border-right: 2px solid #ccc;
-  margin: 0 8px; /* Adjust this value as well */
+  margin: 0 8px;
 }
 
 /* Adjust the banner image for medium screens, e.g., tablets */
 @media (max-width: 768px) {
   .banner-image {
-    background-position: center calc(60% - offsetY * 1.05); /* Adjust as needed */
+    /* Removed JS-style offsetY - use a simple percentage instead */
+    background-position: center 60%;
   }
 }
 
 /* Adjust the banner image for small screens, e.g., phones */
 @media (max-width: 480px) {
   .banner-image {
-    background-position: center calc(40% - offsetY * 1.05); /* Adjust as needed */
+    /* Removed JS-style offsetY - use a simple percentage instead */
+    background-position: center 40%;
   }
 }
