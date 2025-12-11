@@ -4,10 +4,15 @@ import './Pricing.css'; // Make sure the path to your CSS file is correct
 import FAQs from '../../components/FAQs/FAQs';
 import InstagramFeed from '../../components/InstagramFeed/InstagramFeed';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
+import SEO from '../../components/SEO/SEO';
 
 export default function Pricing() {
   return (
  <div className="container mx-auto px-4">
+   <SEO
+     title="Wedding Videography Pricing | Bay Area & Arkansas | Phaminh Cinematography"
+     description="Explore cinematic wedding videography packages for couples in the Bay Area and Arkansas. Elopements, weddings, and first‑look films tailored to your story."
+   />
    {/* Hero section with headline */}
    <section className="text-center py-12">
         <div className="responsive-img-wrapper">

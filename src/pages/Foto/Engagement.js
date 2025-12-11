@@ -1,6 +1,7 @@
 // pages/Engagement.js
 import React from 'react';
 import Gallery from '../../components/Foto/Gallery'; 
+import SEO from '../../components/SEO/SEO';
 
   const images = [
     'phaminh-engagement-photo-2.jpg',
@@ -41,7 +42,15 @@ function shuffleArray(array) {
     const shuffledImages = [...images];
     shuffleArray(shuffledImages);
   
-    return <Gallery images={shuffledImages} basePath="/assets/foto/engagement" />;
+    return (
+      <>
+        <SEO
+          title="Engagement Photography | Bay Area & Arkansas | Phaminh Cinematography"
+          description="Engagement photography featuring candid, cinematic, and romantic imagery captured across the San Francisco Bay Area and Arkansas."
+        />
+        <Gallery images={shuffledImages} basePath="/assets/foto/engagement" />
+      </>
+    );
   };
   
   export default Engagement;

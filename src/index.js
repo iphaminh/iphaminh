@@ -1,16 +1,16 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'; // Import createRoot
-import { BrowserRouter as Router } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import './index.css';
 
-const container = document.getElementById('root'); // Get the root container
-const root = createRoot(container); // Create a root
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render( // Use the root to render your app
-  <React.StrictMode>
-    <Router>
+root.render(
+  <BrowserRouter>
+    <HelmetProvider>
       <App />
-    </Router>
-  </React.StrictMode>
+    </HelmetProvider>
+  </BrowserRouter>
 );

@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel CSS
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
+import SEO from '../../components/SEO/SEO';
 import './CineGallery.css';
 
 Modal.setAppElement('#root'); // Important for accessibility
@@ -72,6 +73,10 @@ const CineGallery = () => {
 
   return (
     <>
+      <SEO
+        title="Wedding Films | Bay Area & Arkansas Wedding Videographer | Phaminh Cinematography"
+        description="Watch cinematic wedding highlight films from California and Arkansas weddings. Emotional storytelling, modern editing, and real moments captured beautifully on film."
+      />
     <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
   {carouselVideos.map((video, index) => (
     <div key={index} onClick={() => openModal(video.videoUrl)}>

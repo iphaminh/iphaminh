@@ -1,6 +1,7 @@
 // pages/Portrait.js
 import React from 'react';
 import Gallery from '../../components/Foto/Gallery'; 
+import SEO from '../../components/SEO/SEO';
 
   const images = [
     'phaminh-portrait-photo-4.jpg',
@@ -46,7 +47,15 @@ import Gallery from '../../components/Foto/Gallery';
   ];
 
   const Portrait = () => {
-    return <Gallery images={images} basePath="/assets/foto/portrait" />;
+    return (
+      <>
+        <SEO
+          title="Portrait Photography | Bay Area & Arkansas | Phaminh Cinematography"
+          description="Portrait and lifestyle photography sessions including branding, editorial, and creative portraits captured in the San Francisco Bay Area and Arkansas."
+        />
+        <Gallery images={images} basePath="/assets/foto/portrait" />
+      </>
+    );
   };
 
   

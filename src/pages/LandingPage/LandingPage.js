@@ -5,6 +5,7 @@ import RecentFilm from '../../components/RecentFilm/RecentFilm';
 import AboutMe from '../../components/AboutMe/AboutMe';
 import ShowcaseImage from '../../components/ShowcaseImage/ShowcaseImage';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase'; // Import the FooterShowcase component
+import SEO from '../../components/SEO/SEO';
 import './LandingPage.css'; // Assuming your CSS is in LandingPage.css
 
 const LandingPage = () => {
@@ -21,6 +22,10 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page-container">
+      <SEO
+        title="Bay Area & Arkansas Wedding Videographer | Cinematic Wedding Films by Phaminh"
+        description="Emotional, cinematic wedding videography for couples in the San Francisco Bay Area and Arkansas. Story‑driven films capturing priceless, authentic moments."
+      />
       <video
         autoPlay
         loop

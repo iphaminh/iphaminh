@@ -1,6 +1,7 @@
 // pages/Portrait.js
 import React from 'react';
 import Gallery from '../../components/Foto/Gallery'; 
+import SEO from '../../components/SEO/SEO';
 
   const images = [
     'phaminh-realestate-photo-4.jpg',
@@ -46,7 +47,15 @@ import Gallery from '../../components/Foto/Gallery';
   ];
 
   const RealEstate = () => {
-    return <Gallery images={images} basePath="/assets/foto/realestate" />;
+    return (
+      <>
+        <SEO
+          title="Real Estate Photography | Bay Area & Arkansas | Phaminh Cinematography"
+          description="Real estate listing photography showcasing interiors, exteriors, and architectural compositions for agents and homeowners across the Bay Area and Arkansas."
+        />
+        <Gallery images={images} basePath="/assets/foto/realestate" />
+      </>
+    );
   };
 
   

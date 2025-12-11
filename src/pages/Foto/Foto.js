@@ -1,10 +1,15 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
+import SEO from '../../components/SEO/SEO';
 import './Foto.css';
 
 const Foto = () => {
   return (
     <div className="foto-container">
+      <SEO
+        title="Wedding Photography Portfolio | Bay Area & Arkansas | Phaminh Cinematography"
+        description="Browse wedding, engagement, portrait, and real estate photography from Phaminh. Serving the San Francisco Bay Area and Arkansas with cinematic visual storytelling."
+      />
       {/* Category Links */}
       <div className="foto-categories">
         <Link to="/foto/wedding">Wedding</Link>

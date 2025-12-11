@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
+import SEO from '../../components/SEO/SEO';
 import './Contact.css';
 
 const Contact = () => {
@@ -18,6 +19,10 @@ const Contact = () => {
 
   return (
     <div>
+      <SEO
+        title="Contact Phaminh Cinematography | Bay Area & Arkansas Wedding Videographer"
+        description="Inquire about cinematic wedding videography packages in the San Francisco Bay Area and Arkansas. Share your wedding details and let's create a film that feels like your story."
+      />
       {/* Parallax banner image */}
       <div
         style={{

@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Specify the location of your XML sitemap for search engines
-Sitemap: https://phaminh.com/sitemap.xml
+Sitemap: https://www.phaminh.com/sitemap.xml
