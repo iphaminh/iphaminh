@@ -1,0 +1,40 @@
+name: Deploy to Hostinger via FTP
+
+on:
+  push:
+    branches:
+      - main   # run on every push to main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Deploy build folder to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          # This is your local build output:
+          local-dir: build
+          # This is the folder on Hostinger where the site lives:
+          server-dir: /domains/phaminh.com/public_html/
+          # Optional but nice:
+          dangerous-clean-slate: true
