@@ -1,121 +1,168 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Modal from 'react-modal';
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel CSS
-import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
-import SEO from '../../components/SEO/SEO';
-import './CineGallery.css';
+// src/pages/CineGallery/CineGallery.js
+import React, { useState } from "react";
+import Modal from "react-modal";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-Modal.setAppElement('#root'); // Important for accessibility
+import FooterShowcase from "../../components/FooterShowcase/FooterShowcase";
+import SEO from "../../components/SEO/SEO";
+import "./CineGallery.css";
 
+Modal.setAppElement("#root"); // Important for accessibility
 
-const CineGallery = () => {
-  const [videos, setVideos] = useState([]);
+const FALLBACK_THUMB = "/assets/seo/phaminh-wedding-cover.jpg";
+
+function extractVimeoId(urlOrId) {
+  const str = String(urlOrId || "").trim();
+  const match = str.match(/(\d+)(?:\D*$)/);
+  return match ? match[1] : "";
+}
+
+function vimeoThumb(urlOrId) {
+  const id = extractVimeoId(urlOrId);
+  if (!id) return FALLBACK_THUMB;
+
+  // No Vimeo API/token fetching: thumbnail derived from Vimeo ID.
+  return `https://vumbnail.com/${id}.jpg`;
+}
+
+// Top hero carousel videos (DO NOT CHANGE)
+const carouselVideos = [
+  {
+    img: "/assets/gallery/GA Wedding Video.png",
+    videoUrl: "https://vimeo.com/735641625",
+  },
+  {
+    img: "/assets/gallery/Ar Wedding Video.png",
+    videoUrl: "https://vimeo.com/751499247",
+  },
+  {
+    img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.png",
+    videoUrl: "https://vimeo.com/739310663",
+  },
+  {
+    img: "/assets/gallery/NorthWest Arkansas Wedding Videography.png",
+    videoUrl: "https://vimeo.com/506883833",
+  },
+];
+
+// Grid gallery videos (below the carousel)
+const gridVideos = [
+  { videoUrl: "https://vimeo.com/1145842678", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/608232970", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/1145833331", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/1145837841", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/1145835171", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/1145843833", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/735641625", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/889737378", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/1145842030", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/579239863", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/738121759", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/907939938", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/770458916", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/739312203", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/763166896", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/889342561", title: "Wedding Film" },
+  { videoUrl: "https://vimeo.com/889359140", title: "Wedding Film" },
+];
+
+export default function CineGallery() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
-
-  const carouselVideos = [
-    { img: "/assets/gallery/GA Wedding Video.png", videoUrl: "https://vimeo.com/735641625" },
-    { img: "/assets/gallery/Ar Wedding Video.png", videoUrl: "https://vimeo.com/751499247" },
-    { img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.png", videoUrl: "https://vimeo.com/739310663" },
-    { img: "/assets/gallery/NorthWest Arkansas Wedding Videography.png", videoUrl: "https://vimeo.com/506883833" },
-  ];
-
-  useEffect(() => {
-    const fetchVideos = async () => {
-        const accessToken = process.env.REACT_APP_VIMEO_ACCESS_TOKEN;
-        const options = {
-          headers: { Authorization: `bearer ${accessToken}` },
-        };
-        let allVideos = [];
-        let currentPage = 1;
-        const perPage = 50; // Adjust based on your needs, up to the max allowed by Vimeo
-        let totalPages = 1; // Placeholder, will be updated based on response
-      
-        try {
-          // Initial fetch to get the first page and total page count
-          let response = await axios.get(`https://api.vimeo.com/users/3990217/albums/11002496/videos?page=${currentPage}&per_page=${perPage}`, options);
-          allVideos = response.data.data;
-          const totalItems = response.data.total; // Total number of videos
-          totalPages = Math.ceil(totalItems / perPage);
-      
-          // Fetch remaining pages if more than one page
-          for (currentPage = 2; currentPage <= totalPages; currentPage++) {
-            response = await axios.get(`https://api.vimeo.com/users/3990217/albums/11002496/videos?page=${currentPage}&per_page=${perPage}`, options);
-            allVideos = [...allVideos, ...response.data.data]; // Combine results
-          }
-        } catch (error) {
-          console.error('Error fetching videos', error);
-        }
-      
-        setVideos(allVideos); // Update state with all fetched videos
-      };
-
-    fetchVideos();
-  }, []);
+  const [selectedVideoUrl, setSelectedVideoUrl] = useState("");
 
   const openModal = (videoUrl) => {
-    // Check if videoUrl already contains the embed path
-    let embedUrl = videoUrl.includes('player.vimeo.com/video/')
-      ? videoUrl
-      : videoUrl.replace('vimeo.com/', 'player.vimeo.com/video/');
-  
-    // Append proper parameters for autoplay and fullscreen if not already present
-    embedUrl += embedUrl.includes('?') ? '&autoplay=1&mute=0' : '?autoplay=1&mute=0';
-  
+    const id = extractVimeoId(videoUrl);
+    if (!id) return;
+
+    // Clicked by user -> autoplay allowed; sound may still depend on browser settings.
+    const embedUrl =
+      `https://player.vimeo.com/video/${id}` +
+      `?autoplay=1&muted=0&title=0&byline=0&portrait=0&dnt=1`;
+
     setSelectedVideoUrl(embedUrl);
     setModalIsOpen(true);
   };
-  
-  
-  
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedVideoUrl("");
+  };
+
+  const onKeyOpen = (e, url) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openModal(url);
+    }
+  };
 
   return (
     <>
       <SEO
-        title="Wedding Films | Bay Area & Arkansas Wedding Videographer | Phaminh Cinematography"
-        description="Watch cinematic wedding highlight films from California and Arkansas weddings. Emotional storytelling, modern editing, and real moments captured beautifully on film."
+        title="Bay Area Wedding Films | California Wedding Videographer | Phaminh Cinematography"
+        description="Watch cinematic wedding highlight films from the California Bay Area. Emotional storytelling, modern editing, and real moments captured beautifully on film."
       />
-    <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
-  {carouselVideos.map((video, index) => (
-    <div key={index} onClick={() => openModal(video.videoUrl)}>
-      <img src={video.img} alt={`Carousel Video ${index + 1}`} />
-    </div>
-  ))}
-</Carousel>
 
+      {/* Hero carousel */}
+      <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+        {carouselVideos.map((video, index) => (
+          <div
+            key={index}
+            className="carousel-slide-click"
+            onClick={() => openModal(video.videoUrl)}
+            onKeyDown={(e) => onKeyOpen(e, video.videoUrl)}
+            role="button"
+            tabIndex={0}
+          >
+            <img src={video.img} alt={`Carousel Video ${index + 1}`} />
+          </div>
+        ))}
+      </Carousel>
 
+      {/* Grid gallery */}
       <div className="cine-gallery-container">
-        {videos.map((video) => (
-          <div key={video.uri} className="video-thumbnail" onClick={() => openModal(`https://player.vimeo.com/video/${video.uri.split('/').pop()}`)}>
-            <img src={video.pictures.sizes[3].link} alt={video.name} />
+        {gridVideos.map((video, index) => (
+          <div
+            key={index}
+            className="video-thumbnail"
+            onClick={() => openModal(video.videoUrl)}
+            onKeyDown={(e) => onKeyOpen(e, video.videoUrl)}
+            role="button"
+            tabIndex={0}
+            title={video.title}
+          >
+            <img
+              src={vimeoThumb(video.videoUrl)}
+              alt={video.title}
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.src = FALLBACK_THUMB;
+              }}
+            />
           </div>
         ))}
       </div>
-      <Modal 
-  isOpen={modalIsOpen} 
-  onRequestClose={() => setModalIsOpen(false)}
-  contentLabel="Video Modal"
-  className="video-modal" // This should match your CSS class for modal styling
-  overlayClassName="video-modal-overlay" // This should match your CSS class for the overlay styling
->
-  {selectedVideoUrl && (
-    <iframe
-      title="Selected Video"
-      src={selectedVideoUrl}
-      width="640"
-      height="360"
-      frameBorder="0"
-      allow="autoplay; fullscreen"
-      allowFullScreen
-    ></iframe>
-  )}
-</Modal>
+
+      {/* Modal */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Video Modal"
+        className="video-modal"
+        overlayClassName="video-modal-overlay"
+      >
+        {selectedVideoUrl && (
+          <iframe
+            title="Selected Video"
+            src={selectedVideoUrl}
+            frameBorder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          />
+        )}
+      </Modal>
 
       <FooterShowcase />
     </>
   );
-};
-
-export default CineGallery;
+}

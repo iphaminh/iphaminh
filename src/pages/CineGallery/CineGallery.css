@@ -1,113 +1,81 @@
-/* CineGallery.css */
+/* src/pages/CineGallery/CineGallery.css */
 
-/* General styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Your Font', sans-serif; /* Replace with your preferred font */
-  }
-  
-  /* Carousel styles */
-  .carousel .slide {
-    text-align: center;
-    background: none; /* No background to let your images be the main focus */
-  }
-  
-  .carousel img {
-    width: 100%; /* Make images responsive */
-    max-height: 600px; /* Adjust the max height as needed */
-    object-fit: cover; /* This will cover the area without stretching images */
-  }
-  
-  /* Gallery styles */
-  .cine-gallery-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates a three-column layout */
-    gap: 10px; /* Adjust the space between images */
-    padding: 20px; /* Padding around the gallery */
-  }
-  
-  .cine-gallery-container img {
-    width: 100%;
-    cursor: pointer; /* Changes cursor to indicate clickable items */
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  .cine-gallery-container img:hover {
-    transform: scale(1.05); /* Slightly scale up images on hover */
-  }
-  
-  /* Modal styles */
-  .video-modal-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
-  }
-  
-/* Apply to modal for responsive fullscreen appearance */
-.video-modal {
-  position: fixed; /* Fixed position to cover the screen */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the modal */
-  width: 80%; /* Percentage of screen width */
-  max-width: 900px; /* Maximum width */
-  aspect-ratio: 16 / 9; /* Maintain a 16:9 aspect ratio */
-  overflow: hidden; /* Hide scrollbars */
+/* Carousel */
+.carousel .slide {
+  background: none;
 }
 
-/* Ensure the iframe takes up the whole modal and maintains aspect ratio */
+.carousel img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.carousel-slide-click {
+  cursor: pointer;
+}
+
+/* Grid gallery */
+.cine-gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 20px;
+}
+
+.video-thumbnail {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.video-thumbnail img:hover {
+  transform: scale(1.03);
+}
+
+/* Modal */
+.video-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.video-modal {
+  position: relative;
+  width: min(900px, 92vw);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 1001;
+}
+
 .video-modal iframe {
   width: 100%;
   height: 100%;
-  border: none;
+  border: 0;
 }
-  
-  .video-modal-overlay {
-    z-index: 1000; /* Ensure this number is higher than the carousel's z-index */
-    /* other styles */
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cine-gallery-container {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .video-modal {
-    z-index: 1001; /* Ensure this is higher than the overlay's z-index */
-    /* other styles */
+}
+
+@media (max-width: 600px) {
+  .cine-gallery-container {
+    grid-template-columns: 1fr;
   }
-  
-  
-  /* Navbar and Footer styles */
-  /* Import or write your Navbar and Footer styles here */
-  
-  /* You might want to make your Navbar and Footer have a fixed or sticky position */
-  .navbar, .footer {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    width: 100%;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    /* Adjust grid for smaller screens */
-    .cine-gallery-container {
-      grid-template-columns: repeat(1, 1fr); /* Single column layout for mobile */
-    }
-  }
-  /* This will apply styles for devices with a screen width of up to 480 pixels (typical for phones in portrait mode) */
-  @media (max-width: 480px) {
-    .video-modal {
-      width: 90%; /* Take up a majority of the screen width */
-      height: auto; /* Height is automatic to maintain aspect ratio */
-    }
-    
-    .video-modal iframe {
-      width: 100%; /* iframe takes up the full width of its container */
-      height: auto; /* Height is automatic, it will be determined by the aspect ratio of the iframe content */
-    }
-  }
-  
+}
