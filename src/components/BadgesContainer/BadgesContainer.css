@@ -28,7 +28,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: calc(91.5vh - 1rem); /* spacing under hero video */
+  margin-top: calc(101.5vh - 1rem); /* spacing under hero video */
   width: 100%;
   max-width: 1200px;
   margin-left: auto;
