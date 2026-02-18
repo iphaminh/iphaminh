@@ -1,3 +1,14 @@
+.landing-page-container {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.landing-page-content {
+  position: relative;
+  z-index: 2;
+}
+
 /* This will apply styles directly to the video element with the 'background-video' ID */
 #background-video {
   position: absolute;
@@ -6,7 +17,7 @@
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  z-index: -1;
+  z-index: 0;
 }
 
 .mute-button {
@@ -20,7 +31,7 @@
   position: absolute;
   right: 60px;
   top: 180px;
-  z-index: 1100;
+  z-index: 3;
   cursor: pointer;
   width: 35px;
   height: auto;

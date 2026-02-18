@@ -27,39 +27,42 @@ const LandingPage = () => {
         description="Emotional, cinematic wedding videography for couples in the San Francisco Bay Area and Arkansas. Story-driven films capturing priceless, authentic moments."
       />
 
- <video
-  id="background-video"
-  className="background-video"
-  ref={videoRef}
-  autoPlay
-  loop
-  playsInline
-  muted={isMuted}
-  poster="/assets/seo/phaminh-wedding-cover.jpg"
->
-  <source
-    src="/assets/highlight_film/Phaminh-web.mp4"
-    type="video/mp4"
-  />
-  Your browser does not support the video tag.
-</video>
+      <video
+        id="background-video"
+        className="background-video"
+        ref={videoRef}
+        autoPlay
+        loop
+        playsInline
+        muted={isMuted}
+        preload="metadata"
+        poster={`${process.env.PUBLIC_URL}/assets/seo/phaminh-wedding-cover.jpg`}
+      >
+        <source
+          src={`${process.env.PUBLIC_URL}/assets/highlight_film/Phaminh-web.mp4`}
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
 
       <img
         onClick={toggleMute}
         src={
           isMuted
-            ? "/assets/highlight_film/noaudio.png"
-            : "/assets/highlight_film/audio.png"
+            ? `${process.env.PUBLIC_URL}/assets/highlight_film/noaudio.png`
+            : `${process.env.PUBLIC_URL}/assets/highlight_film/audio.png`
         }
         alt="Toggle Sound"
         className="sound-icon"
       />
 
-      <BadgesContainer />
-      <RecentFilm />
-      <AboutMe />
-      <ShowcaseImage />
-      <FooterShowcase />
+      <div className="landing-page-content">
+        <BadgesContainer />
+        <RecentFilm />
+        <AboutMe />
+        <ShowcaseImage />
+        <FooterShowcase />
+      </div>
     </div>
   );
 };
