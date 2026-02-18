@@ -28,22 +28,24 @@ const LandingPage = () => {
       />
 
       <video
-        id="background-video"
-        className="background-video"
-        ref={videoRef}
-        autoPlay
-        loop
-        playsInline
-        muted={isMuted}
-        preload="metadata"
-        poster={`${process.env.PUBLIC_URL}/assets/seo/phaminh-wedding-cover.jpg`}
-      >
-        <source
-          src={`${process.env.PUBLIC_URL}/assets/highlight_film/Phaminh-web.mp4`}
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
+  id="background-video"
+  className="background-video"
+  ref={videoRef}
+  autoPlay
+  loop
+  playsInline
+  muted
+  preload="auto"
+  poster="/assets/seo/phaminh-wedding-cover.jpg"
+  onCanPlay={() => {
+    // Some browsers need an explicit play() even with autoplay
+    const v = videoRef.current;
+    if (v && v.paused) v.play().catch(() => {});
+  }}
+>
+  <source src="/assets/highlight_film/Phaminh-web.mp4?v=2" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
       <img
         onClick={toggleMute}
