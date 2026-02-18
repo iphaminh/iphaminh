@@ -27,23 +27,22 @@ const LandingPage = () => {
         description="Emotional, cinematic wedding videography for couples in the San Francisco Bay Area and Arkansas. Story-driven films capturing priceless, authentic moments."
       />
 
-      <video
+     <video
   id="background-video"
   className="background-video"
   ref={videoRef}
   autoPlay
   loop
   playsInline
-  muted
+  muted={isMuted}
   preload="auto"
   poster="/assets/seo/phaminh-wedding-cover.jpg"
   onCanPlay={() => {
-    // Some browsers need an explicit play() even with autoplay
     const v = videoRef.current;
     if (v && v.paused) v.play().catch(() => {});
   }}
 >
-  <source src="/assets/highlight_film/Phaminh-web.mp4?v=2" type="video/mp4" />
+  <source src="/assets/highlight_film/Phaminh-web-v2.mp4?v=2" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 
