@@ -1,5 +1,5 @@
 // src/pages/LandingPage/LandingPage.js
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import BadgesContainer from '../../components/BadgesContainer/BadgesContainer';
 import RecentFilm from '../../components/RecentFilm/RecentFilm';
 import AboutMe from '../../components/AboutMe/AboutMe';
@@ -14,11 +14,16 @@ const LandingPage = () => {
 
   const toggleMute = () => {
     if (!videoRef.current) return;
-
-    const currentlyMuted = videoRef.current.muted;
-    videoRef.current.muted = !currentlyMuted;
-    setIsMuted(!currentlyMuted);
+    const next = !isMuted;
+    videoRef.current.muted = next;
+    setIsMuted(next);
   };
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   return (
     <div className="landing-page-container">
@@ -37,6 +42,8 @@ const LandingPage = () => {
   muted={isMuted}
   preload="auto"
   poster="/assets/seo/phaminh-wedding-cover.jpg"
+  controls={false}
+  disablePictureInPicture
   onCanPlay={() => {
     const v = videoRef.current;
     if (v && v.paused) v.play().catch(() => {});
