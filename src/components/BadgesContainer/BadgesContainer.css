@@ -51,13 +51,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-top: calc(95vh - 1rem);
+    margin-top: calc(102vh - 1rem);
     max-width: 320px;
     padding: 1.5rem 0;
   }
 
   .badges-container img {
     width: 135px;
+  }
+}
+
+/* ultra-narrow phones (e.g., iPhone SE): override the 600px rules */
+@media (max-width: 380px) {
+  .badges-container {
+    /* override the huge vh-based spacing on tiny screens */
+    margin-top: 2.25rem;
+    max-width: 100%;
+    padding: 1rem 0;
+    gap: 1.25rem;
+  }
+
+  .badges-container img {
+    width: 120px;
   }
 }
 
@@ -70,7 +85,7 @@
     justify-content: center;
     align-items: center;
     justify-items: center;
-    margin-top: calc(95.3vh - 1rem);
+    margin-top: calc(101.3vh - 1rem);
     max-width: 600px;
     padding: 1.2rem 0;
   }
