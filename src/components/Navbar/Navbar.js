@@ -49,10 +49,10 @@ const CustomNavbar = () => {
                 <Link to="/pricing" onClick={closeMenu}>Pricing</Link>
               </NavbarItem>
               <NavbarItem className="navbar-item">
-                <Link to="/contact" onClick={closeMenu}>Contact</Link>
+                <Link to="/blog" onClick={closeMenu}>Blog</Link>
               </NavbarItem>
               <NavbarItem className="navbar-item">
-                <Link to="/testimonials" onClick={closeMenu}>Testimonials</Link>
+                <Link to="/contact" onClick={closeMenu}>Contact</Link>
               </NavbarItem>
             </div>
           </>

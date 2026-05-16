@@ -1,0 +1,165 @@
+/* BlogPost.css */
+
+.blog-post-page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+.blog-post-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.blog-post-back:hover { color: #333; }
+
+.blog-post-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.blog-post-category {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 0.75rem;
+}
+
+.blog-post-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #111;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.blog-post-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.82rem;
+  color: #aaa;
+}
+
+.blog-post-body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+.blog-post-body p {
+  margin-bottom: 1.25rem;
+}
+
+.blog-post-section {
+  margin-bottom: 2.5rem;
+}
+
+.blog-post-section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.blog-post-body strong {
+  color: #222;
+  font-weight: 700;
+}
+
+.blog-faq-section {
+  margin: 3rem 0;
+  padding: 2.5rem;
+  background: #fafafa;
+  border-radius: 4px;
+}
+
+.blog-faq-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1.5rem;
+}
+
+.blog-faq-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.blog-faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.blog-faq-question {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.blog-faq-answer {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.blog-post-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #eee;
+}
+
+.blog-post-cta {
+  padding: 0.7rem 2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.blog-post-cta-primary {
+  background: #333;
+  color: #fff;
+}
+
+.blog-post-cta-primary:hover { background: #111; }
+
+.blog-post-cta-secondary {
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.blog-post-cta-secondary:hover { border-color: #333; }
+
+.blog-post-not-found {
+  text-align: center;
+  padding: 6rem 2rem;
+  font-family: 'Playfair Display', serif;
+}
+
+@media (max-width: 600px) {
+  .blog-post-page { padding: 1.5rem 1rem 3rem; }
+  .blog-faq-section { padding: 1.5rem; }
+}

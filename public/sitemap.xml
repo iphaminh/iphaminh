@@ -65,6 +65,64 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Blog index -->
+  <url>
+    <loc>https://www.phaminh.com/blog</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog posts -->
+  <url>
+    <loc>https://www.phaminh.com/blog/wedding-videography-cost-bay-area</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/wedding-videography-cost-northwest-arkansas</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/how-to-choose-a-wedding-videographer</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/best-wedding-venues-northwest-arkansas</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/cinematic-vs-documentary-wedding-video</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/do-you-need-a-wedding-videographer</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/best-outdoor-wedding-venues-bay-area</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/blog/what-is-a-wedding-highlight-film</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Individual film pages -->
   <url>
     <loc>https://www.phaminh.com/cine/golden-hour-arkansas-wedding-film</loc>

@@ -13,6 +13,8 @@ import Engagement from './pages/Foto/Engagement';
 import Portrait from './pages/Foto/Portrait';
 import NotFound from './pages/NotFound/NotFound';
 import FilmPage from './pages/FilmPage/FilmPage';
+import Blog from './pages/Blog/Blog';
+import BlogPost from './pages/Blog/BlogPost';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
@@ -39,6 +41,9 @@ function App() {
           <Route path="couples" element={<Navigate to="/foto/engagement" replace />} />
           <Route path="portraits" element={<Navigate to="/foto/portrait" replace />} />
         </Route>
+
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
