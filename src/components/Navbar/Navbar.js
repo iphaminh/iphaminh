@@ -10,28 +10,35 @@ const CustomNavbar = () => {
   const { width } = useWindowSize();
   const [isMenuVisible, setIsMenuVisible] = useState(false); // Added state to manage mobile menu visibility
   const isMobile = width < 1024; // Use tablet+mobile for hamburger menu
+  const closeMenu = () => setIsMenuVisible(false);
 
   return (
     <Navbar isBordered variant="sticky" className="custom-navbar">
       <NavbarContent className={`navbar-content ${isMobile ? 'mobile' : ''}`}>
         {isMobile && (
-         <div className="hamburger-menu" onClick={() => setIsMenuVisible(!isMenuVisible)}>
-         <div className="bar"></div>
-         <div className="bar"></div>
-         <div className="bar"></div>
-       </div>       
+          <button
+            type="button"
+            className="hamburger-menu"
+            aria-label={isMenuVisible ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuVisible}
+            onClick={() => setIsMenuVisible(!isMenuVisible)}
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
         )}
         {(!isMobile || isMenuVisible) && (
           <>
              <div className="navbar-section">
               <NavbarItem className="navbar-item">
-                <Link to="/">Home</Link>
+                <Link to="/" onClick={closeMenu}>Home</Link>
               </NavbarItem>
               <NavbarItem className="navbar-item">
-                <Link to="/cine">Cine</Link>
+                <Link to="/cine" onClick={closeMenu}>Cine</Link>
               </NavbarItem>
               <NavbarItem className="navbar-item">
-                <Link to="/foto">Foto</Link>
+                <Link to="/foto" onClick={closeMenu}>Foto</Link>
               </NavbarItem>
             </div>
             <div className="logo-section">
@@ -39,13 +46,13 @@ const CustomNavbar = () => {
             </div>
             <div className="navbar-section">
               <NavbarItem className="navbar-item">
-                <Link to="/pricing">Pricing</Link>
+                <Link to="/pricing" onClick={closeMenu}>Pricing</Link>
               </NavbarItem>
               <NavbarItem className="navbar-item">
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact" onClick={closeMenu}>Contact</Link>
               </NavbarItem>
               <NavbarItem className="navbar-item">
-                <Link to="/testimonial">Testimonial</Link>
+                <Link to="/testimonials" onClick={closeMenu}>Testimonials</Link>
               </NavbarItem>
             </div>
           </>

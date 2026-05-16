@@ -1,78 +1,74 @@
-/* Contact.css - Adjust the classes specifically for the contact page footer */
-
-.flex {
-  display: flex;
+.contact-page-content {
+  background: #fff;
+  color: #2f2f2f;
+  padding: 3rem 1.5rem 0;
 }
 
-.justify-center {
-  justify-content: center; /* This will center the flex items */
+.contact-page-inner {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-.items-center {
-  align-items: center; /* This will align items vertically */
-}
-
-.py-4 {
-  padding-top: 1rem; /* 16px */
-  padding-bottom: 1rem; /* 16px */
-}
-
-.mt-12 {
-  margin-top: 1rem; /* 48px */
-}
-
-.border-r-2 {
-  border-right: 2px solid #ccc; /* Add your color */
-}
-
-.h-6 {
-  height: 1.5rem; /* 24px */
-}
-
-.text-gray-700 {
-  color: #4a5568; /* This is a TailwindCSS class color */
-}
-
-.text-3xl.font-bold.text-center.mb-4 {
+.contact-page-title {
   font-family: 'Metal', serif;
   letter-spacing: 4px;
   font-weight: 300;
   font-size: 47px;
+  margin: 0 0 1.5rem;
+  text-align: center;
 }
 
-/* General styling for all p elements */
-p {
+.contact-page-intro {
+  color: #3f3f3f;
   font-family: 'Metal', serif;
-  letter-spacing: 1.2px;
-}
-
-.text-lg.text-center.mb-12 {
   font-size: 17px;
+  letter-spacing: 1.2px;
+  line-height: 1.7;
+  margin: 0 0 3rem;
+  text-align: center;
   text-transform: uppercase;
 }
 
-.contact-footer.flex.justify-between.items-center.border-t-2.py-4.mt-12 {
-  font-family: 'Courier New', Courier, monospace;
-  padding-bottom: 42px;
-}
-
-/* Contact footer layout */
 .contact-footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 1rem;
+  gap: 2rem;
+  border-top: 2px solid #e3e3e3;
+  color: #4a5568;
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 3rem;
+  padding: 1.25rem 0 2.75rem;
+  text-align: center;
 }
 
-.contact-footer span {
-  /* Adjust margin around phone number and email to bring them closer to the center line */
-  margin: 0 11rem;
-}
-
-.contact-footer .border-r-2 {
+.contact-footer-divider {
   height: 1.5rem;
   border-right: 2px solid #ccc;
-  margin: 0 8px;
+}
+
+@media (max-width: 640px) {
+  .contact-page-content {
+    padding: 2rem 1rem 0;
+  }
+
+  .contact-page-title {
+    font-size: 36px;
+    letter-spacing: 3px;
+  }
+
+  .contact-page-intro {
+    font-size: 14px;
+  }
+
+  .contact-footer {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-footer-divider {
+    display: none;
+  }
 }
 
 /* Adjust the banner image for medium screens, e.g., tablets */

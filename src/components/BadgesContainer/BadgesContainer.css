@@ -19,45 +19,50 @@
   animation-fill-mode: both;
 }
 
-/* ========= DESKTOP DEFAULT (≥ 1025px) ========= */
-/* 3 badges on top row, 2 centered underneath */
-/* tablet & desktop: one row of 5 badges */
+/* Full-width white band — sits exactly below the hero video */
+.badges-section {
+  background: white;
+  width: 100%;
+  margin-top: calc(91.5vh - 1rem);
+  padding: 0.5rem 0;
+}
+
+/* Inner centered row of badges */
 .badges-container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: calc(101.5vh - 1rem); /* spacing under hero video */
   width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
-  z-index: 10;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 /* badge size on desktop + medium tablet */
 .badges-container img {
-  width: 150px;
+  width: 140px;
   height: auto;
 }
 
 /* phones: stack in a column */
-/* phones: stack in a column */
 @media (max-width: 600px) {
+  .badges-section {
+    margin-top: calc(95vh - 1rem);
+  }
+
   .badges-container {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    margin-top: calc(102vh - 1rem);
     max-width: 320px;
     padding: 1.5rem 0;
   }
 
   .badges-container img {
-    width: 135px;
+    width: 130px;
   }
 }
 
@@ -78,6 +83,10 @@
 
 /* tablets: 3 badges on top row, 2 centered underneath */
 @media (min-width: 601px) and (max-width: 1024px) {
+  .badges-section {
+    margin-top: calc(95vh - 1rem);
+  }
+
   .badges-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, auto));
@@ -85,7 +94,6 @@
     justify-content: center;
     align-items: center;
     justify-items: center;
-    margin-top: calc(101.3vh - 1rem);
     max-width: 600px;
     padding: 1.2rem 0;
   }

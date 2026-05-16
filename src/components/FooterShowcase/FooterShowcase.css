@@ -36,6 +36,41 @@
   .navigate-heading {
     margin-right: 20px; /* Space between the Navigate heading and the link columns */
   }
+
+  .footer-showcase-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .footer-showcase-container a,
+  .footer-showcase-container a:link,
+  .footer-showcase-container a:visited,
+  .footer-showcase-container a:hover,
+  .footer-showcase-container a:active {
+    color: #fff !important;
+    text-decoration: none;
+  }
+
+  .footer-showcase-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-showcase-links a svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .footer-showcase-links a:hover {
+    opacity: 0.85;
+  }
   
   .navigate-heading h3 {
     writing-mode: vertical-rl;

@@ -43,22 +43,19 @@ const BadgesContainer = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Calculate the gap based on scroll position
   const calculateGap = () => {
-    const initialGap = 100; // The starting gap when at the top of the page, before scrolling.
-    const minGap = 40; // The minimum gap you want when fully scrolled down.
-  
-    // We subtract from the initial gap based on scroll to close the gap as we scroll down.
-    const gap = Math.max(initialGap - scrollY / 10, minGap);
-  
-    return gap;
+    const initialGap = 55;
+    const minGap = 24;
+    return Math.max(initialGap - scrollY / 12, minGap);
   };
 
   return (
-    <div className="badges-container" style={{ gap: `${calculateGap()}px` }}> 
-      {badgesData.map((badge, index) => (
-        <Badge key={index} {...badge} />
-      ))}
+    <div className="badges-section">
+      <div className="badges-container" style={{ gap: `${calculateGap()}px` }}>
+        {badgesData.map((badge, index) => (
+          <Badge key={index} {...badge} />
+        ))}
+      </div>
     </div>
   );
 };

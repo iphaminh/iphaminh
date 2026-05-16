@@ -20,8 +20,8 @@ const Contact = () => {
   return (
     <div>
       <SEO
-        title="Contact Phaminh Cinematography | Bay Area & Arkansas Wedding Videographer"
-        description="Inquire about cinematic wedding videography packages in the San Francisco Bay Area and Arkansas. Share your wedding details and let's create a film that feels like your story."
+        title="Book Your Wedding Videographer | San Francisco Bay Area & NW Arkansas | Phaminh"
+        description="Inquire with Minh Pham for wedding videography in San Francisco, Oakland, Napa, Sonoma, Fayetteville AR, Bentonville AR, Rogers AR, Little Rock AR, and destination weddings."
       />
       {/* Parallax banner image */}
       <div
@@ -37,21 +37,27 @@ const Contact = () => {
       ></div>
       
       {/* Rest of the content */}
-      <div className="bg-white p-6 md:p-12">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl font-bold text-center mb-4 ">LET’S START HERE</h1>
-          <p className="text-lg text-center mb-12">
+      <div className="contact-page-content">
+        <div className="contact-page-inner">
+          <h1 className="contact-page-title">LET’S START HERE</h1>
+          <p className="contact-page-intro">
             Please fill out the contact form below to get more detailed
-            <br />
             information about the offered Wedding Collections and services.
+          </p>
+          <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.85rem', color: '#888', textAlign: 'center', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+            Serving San Francisco · Oakland · Napa · Sonoma · San Jose · East Bay &amp; all of Northern California
+            <br />
+            Fayetteville · Bentonville · Rogers · Springdale · Little Rock · Hot Springs &amp; all of Arkansas
+            <br />
+            Available for destination weddings worldwide.
           </p>
           
           <ContactForm />
           
-          <div className="contact-footer flex justify-between items-center border-t-2 py-4 mt-12">
-            <span className="text-gray-700 mr-1">870.270.8837</span>
-            <div className="border-r-2 h-6 mx-1"></div>
-            <span className="text-gray-700 ml-1">PHAMINH@OUTLOOK.COM</span>
+          <div className="contact-footer">
+            <span>870.270.8837</span>
+            <div className="contact-footer-divider"></div>
+            <span>PHAMINH@OUTLOOK.COM</span>
           </div>
         </div>
         <FooterShowcase />

@@ -7,16 +7,14 @@ const Foto = () => {
   return (
     <div className="foto-container">
       <SEO
-        title="Wedding Photography Portfolio | Bay Area & Arkansas | Phaminh Cinematography"
-        description="Browse wedding, engagement, portrait, and real estate photography from Phaminh. Serving the San Francisco Bay Area and Arkansas with cinematic visual storytelling."
+        title="Wedding Photography | San Francisco Bay Area & Northwest Arkansas | Phaminh"
+        description="Wedding, engagement, and portrait photography serving San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR. Cinematic, candid, and timeless."
       />
       {/* Category Links */}
       <div className="foto-categories">
         <Link to="/foto/wedding">Wedding</Link>
         <Link to="/foto/engagement">Engagement</Link>
         <Link to="/foto/portrait">Portrait</Link>
-        {/* <Link to="/foto/family">Family</Link> */}
-        <Link to="/foto/real-estate">Real Estate</Link>
       </div>
 
       {/* Gallery */}

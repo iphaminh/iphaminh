@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import './AboutMe.css';
 
 const AboutMe = () => {
@@ -38,16 +39,25 @@ const AboutMe = () => {
       <div className={`aboutMeContent ${isVisible ? 'slide-in' : ''}`}>
         <h2>I'm MINH!</h2>
         <p>
-          Passionate about capturing life's moments, I specialize in turning
-          visions into cinematic stories. Away from the camera, I'm exploring
-          nature or engaging with the latest tech. My goal: to uniquely narrate
-          your love story through my lens.
+          I'm Minh Pham, a wedding videographer and photographer based between
+          the San Francisco Bay Area and Arkansas. I serve couples in San
+          Francisco, Oakland, Napa, Sonoma, and all of Northern California —
+          as well as Fayetteville, Bentonville, Rogers, Little Rock, and
+          throughout the Natural State. I create cinematic wedding films with a
+          calm, story-first approach, so your day feels natural while the
+          memories are preserved with intention.
+        </p>
+        <p style={{ marginTop: '1.2rem', fontSize: '0.95em' }}>
+          <Link to="/cine" style={{ color: '#555', marginRight: '1.5rem' }}>Watch my films →</Link>
+          <Link to="/foto" style={{ color: '#555', marginRight: '1.5rem' }}>See photography →</Link>
+          <Link to="/contact" style={{ color: '#555' }}>Get in touch →</Link>
         </p>
       </div>
       <div className={`aboutMeImage ${isVisible ? 'fade-in' : ''}`}>
         <img
           src="/assets/images/phaminh-cinematography.png"
-          alt="Cinematographer MINH in natural setting"
+          alt="Minh Pham, Bay Area and Arkansas wedding videographer"
+          loading="lazy"
         />
       </div>
     </div>

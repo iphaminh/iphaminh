@@ -1,5 +1,6 @@
 // src/pages/PricingPage/Pricing.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Pricing.css'; // Make sure the path to your CSS file is correct
 import FAQs from '../../components/FAQs/FAQs';
 import InstagramFeed from '../../components/InstagramFeed/InstagramFeed';
@@ -10,13 +11,13 @@ export default function Pricing() {
   return (
  <div className="container mx-auto px-4">
    <SEO
-     title="Wedding Videography Pricing | Bay Area & Arkansas | Phaminh Cinematography"
-     description="Explore cinematic wedding videography packages for couples in the Bay Area and Arkansas. Elopements, weddings, and first‑look films tailored to your story."
+     title="Wedding Videography Pricing | San Francisco Bay Area & Northwest Arkansas | Phaminh"
+     description="Wedding videography packages for San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and destination couples. Films start at $2,700. Elopements from $2,500."
    />
    {/* Hero section with headline */}
    <section className="text-center py-12">
         <div className="responsive-img-wrapper">
-          <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.png" alt="Elegant Wedding Table Setting" />
+          <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.png" alt="Elegant wedding table setting filmed by Phaminh Cinematography" />
         </div>
         <h1 className="hero-title">
             Preserving Life's Priceless Moments <br /> Through The Art Of Film
@@ -53,11 +54,11 @@ DOWN THE AISLE ON YOUR WEDDING DAY OR THE FIRST TIME SEEING YOUR LOVED ONE COMIN
         </div>
          {/* New Section Below Packages */}
       <section className="call-to-action-section">
-        <img src="/assets/pricing/georgia-wedding-couple-portraits-phaminh.png" alt="Georgia Wedding Couple" className="w-full" />
+        <img src="/assets/pricing/georgia-wedding-couple-portraits-phaminh.png" alt="Wedding couple portraits by Phaminh Cinematography" className="w-full" />
         <div className="cta-content">
           <h2 className="cta-heading">LET'S DO THIS THING!</h2>
           <p className="cta-text">INQUIRE ABOUT YOUR WEDDING DATE</p>
-          <button className="cta-button">GET IN TOUCH</button>
+          <Link className="cta-button" to="/contact">GET IN TOUCH</Link>
         </div>
       </section>
 

@@ -18,7 +18,14 @@ const Gallery = ({ images, basePath }) => {
     
             return (
                 <div key={index} className={className}>
-                <img src={`${basePath}/${image}`} alt={`Gallery item ${index}`} />
+                <img
+                  src={`${basePath}/${image}`}
+                  alt={image
+                    .replace(/\.[^.]+$/, '')
+                    .replace(/-/g, ' ')
+                    .replace(/\b\w/g, (char) => char.toUpperCase())}
+                  loading="lazy"
+                />
               </div>
             );
           })}

@@ -10,8 +10,8 @@ const Testimonials = () => {
   return (
     <>
       <SEO
-        title="Wedding Testimonials | Real Couples • Real Stories | Phaminh Cinematography"
-        description="Read testimonials from real wedding couples who trusted Phaminh Cinematography. Heartfelt experiences from California and Arkansas brides and grooms."
+        title="Wedding Videographer Reviews | Bay Area, NW Arkansas & Georgia Couples | Phaminh"
+        description="Real reviews from couples in San Francisco, Fayetteville AR, Bentonville AR, Little Rock AR, and Georgia who trusted Phaminh Cinematography for their wedding films and photos."
       />
 
       <FullScreenImage

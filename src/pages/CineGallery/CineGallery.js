@@ -1,14 +1,16 @@
 // src/pages/CineGallery/CineGallery.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import FooterShowcase from "../../components/FooterShowcase/FooterShowcase";
 import SEO from "../../components/SEO/SEO";
+import { films } from "../../data/films";
 import "./CineGallery.css";
 
-Modal.setAppElement("#root"); // Important for accessibility
+Modal.setAppElement("#root");
 
 const FALLBACK_THUMB = "/assets/seo/phaminh-wedding-cover.jpg";
 
@@ -18,68 +20,28 @@ function extractVimeoId(urlOrId) {
   return match ? match[1] : "";
 }
 
-function vimeoThumb(urlOrId) {
-  const id = extractVimeoId(urlOrId);
-  if (!id) return FALLBACK_THUMB;
-
-  // No Vimeo API/token fetching: thumbnail derived from Vimeo ID.
-  return `https://vumbnail.com/${id}.jpg`;
+function vimeoThumb(vimeoId) {
+  if (!vimeoId) return FALLBACK_THUMB;
+  return `https://vumbnail.com/${vimeoId}.jpg`;
 }
 
-// Top hero carousel videos (DO NOT CHANGE)
+// Hero carousel — opens a modal on click for immersive preview
 const carouselVideos = [
-  {
-    img: "/assets/gallery/GA Wedding Video.png",
-    videoUrl: "https://vimeo.com/735641625",
-  },
-  {
-    img: "/assets/gallery/Ar Wedding Video.png",
-    videoUrl: "https://vimeo.com/751499247",
-  },
-  {
-    img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.png",
-    videoUrl: "https://vimeo.com/739310663",
-  },
-  {
-    img: "/assets/gallery/NorthWest Arkansas Wedding Videography.png",
-    videoUrl: "https://vimeo.com/506883833",
-  },
-];
-
-// Grid gallery videos (below the carousel)
-const gridVideos = [
-  { videoUrl: "https://vimeo.com/1145842678", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/608232970", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/1145833331", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/1145837841", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/1145835171", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/1145843833", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/735641625", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/889737378", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/1145842030", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/579239863", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/738121759", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/907939938", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/770458916", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/739312203", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/763166896", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/889342561", title: "Wedding Film" },
-  { videoUrl: "https://vimeo.com/889359140", title: "Wedding Film" },
+  { img: "/assets/gallery/GA Wedding Video.png", vimeoId: "735641625", label: "Georgia Wedding Film" },
+  { img: "/assets/gallery/Ar Wedding Video.png", vimeoId: "751499247", label: "Arkansas Wedding Film" },
+  { img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.png", vimeoId: "739310663", label: "Northwest Arkansas Wedding Videographer" },
+  { img: "/assets/gallery/NorthWest Arkansas Wedding Videography.png", vimeoId: "506883833", label: "Northwest Arkansas Wedding Videography" },
 ];
 
 export default function CineGallery() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedVideoUrl, setSelectedVideoUrl] = useState("");
 
-  const openModal = (videoUrl) => {
-    const id = extractVimeoId(videoUrl);
-    if (!id) return;
-
-    // Clicked by user -> autoplay allowed; sound may still depend on browser settings.
+  const openModal = (vimeoId) => {
+    if (!vimeoId) return;
     const embedUrl =
-      `https://player.vimeo.com/video/${id}` +
+      `https://player.vimeo.com/video/${vimeoId}` +
       `?autoplay=1&muted=0&title=0&byline=0&portrait=0&dnt=1`;
-
     setSelectedVideoUrl(embedUrl);
     setModalIsOpen(true);
   };
@@ -89,71 +51,83 @@ export default function CineGallery() {
     setSelectedVideoUrl("");
   };
 
-  const onKeyOpen = (e, url) => {
+  const onKeyOpen = (e, vimeoId) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openModal(url);
+      openModal(vimeoId);
     }
   };
 
   return (
     <>
       <SEO
-        title="Bay Area Wedding Films | California Wedding Videographer | Phaminh Cinematography"
-        description="Watch cinematic wedding highlight films from the California Bay Area. Emotional storytelling, modern editing, and real moments captured beautifully on film."
+        title="Cinematic Wedding Films | San Francisco Bay Area & NW Arkansas Videographer | Phaminh"
+        description="Watch wedding films by Minh Pham — serving San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR. Emotional, story-driven films for real couples."
       />
 
-      {/* Hero carousel */}
+      {/* Hero carousel — click to preview in modal */}
       <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
         {carouselVideos.map((video, index) => (
           <div
             key={index}
             className="carousel-slide-click"
-            onClick={() => openModal(video.videoUrl)}
-            onKeyDown={(e) => onKeyOpen(e, video.videoUrl)}
+            onClick={() => openModal(video.vimeoId)}
+            onKeyDown={(e) => onKeyOpen(e, video.vimeoId)}
             role="button"
             tabIndex={0}
+            aria-label={`Play ${video.label}`}
           >
-            <img src={video.img} alt={`Carousel Video ${index + 1}`} />
+            <img src={video.img} alt={video.label} />
           </div>
         ))}
       </Carousel>
 
-      {/* Grid gallery */}
+      {/* Intro content — visible to users and search engines */}
+      <section className="cine-intro">
+        <h1 className="cine-intro-heading">Wedding Films</h1>
+        <p className="cine-intro-text">
+          We create cinematic wedding films for couples across the San Francisco
+          Bay Area, Northern California, and Northwest Arkansas. Each film is
+          crafted with a calm, story-first approach — capturing real emotion,
+          natural light, and the moments that matter most.{" "}
+          <Link to="/contact">Book your wedding film</Link> or{" "}
+          <Link to="/pricing">view pricing</Link>.
+        </p>
+      </section>
+
+      {/* Film grid — each thumbnail links to its own indexable page */}
       <div className="cine-gallery-container">
-        {gridVideos.map((video, index) => (
-          <div
-            key={index}
+        {films.map((film) => (
+          <Link
+            key={film.slug}
+            to={`/cine/${film.slug}`}
             className="video-thumbnail"
-            onClick={() => openModal(video.videoUrl)}
-            onKeyDown={(e) => onKeyOpen(e, video.videoUrl)}
-            role="button"
-            tabIndex={0}
-            title={video.title}
+            aria-label={`Watch ${film.title} — ${film.location} wedding film`}
           >
             <img
-              src={vimeoThumb(video.videoUrl)}
-              alt={video.title}
+              src={vimeoThumb(film.vimeoId)}
+              alt={`${film.title} — ${film.location} wedding film by Phaminh Cinematography`}
               loading="lazy"
               onError={(e) => {
                 e.currentTarget.src = FALLBACK_THUMB;
               }}
             />
-          </div>
+            <div className="video-thumbnail-label">{film.title}</div>
+          </Link>
         ))}
       </div>
 
-      {/* Modal */}
+      {/* Carousel preview modal */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Video Modal"
+        contentLabel="Wedding Film Preview"
         className="video-modal"
         overlayClassName="video-modal-overlay"
       >
         {selectedVideoUrl && (
           <iframe
-            title="Selected Video"
+            title="Wedding Film Preview"
             src={selectedVideoUrl}
             frameBorder="0"
             allow="autoplay; fullscreen; picture-in-picture"

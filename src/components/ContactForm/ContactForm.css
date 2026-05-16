@@ -9,7 +9,7 @@
 .contact-form label {
   display: block;
   margin-bottom: 5px;
-  color: #333;
+  color: #2f2f2f;
   font-weight: 600;
   font-family: 'Metal', serif;
   font-size: 18px;
@@ -26,6 +26,14 @@
   border: 2px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box; /* Fixes the issue of padding adding to the width */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="date"],
+.contact-form select {
+  background-color: #fff;
+  color: #222;
 }
 
 .contact-form input[type="submit"] {
@@ -47,12 +55,7 @@
 
 /* Style for dropdown/select input */
 .contact-form select {
-  -webkit-appearance: none; /* Remove default style on Webkit browsers */
-  -moz-appearance: none;    /* Remove default style on Mozilla browsers */
-  appearance: none;         /* Remove default style to apply custom styles */
-  background: url('/public/assets/images/arrow-icon.svg') no-repeat right;
-  background-size: 12px; /* Adjust size of the icon */
-  
+  background-color: #fff;
 }
 
 /* Placeholder color */
@@ -96,12 +99,33 @@
 }
 
 .input-group input[type="text"] {
-  padding-left: 25px; /* Tailwind's pl-8 class equivalent */
+  padding-left: 25px;
   padding-top: 11.6px;
-  /* Add other styling properties as needed */
 }
 
+.contact-form-feedback {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+}
 
+.contact-form-success {
+  color: #4a7c59;
+}
+
+.contact-form-error {
+  color: #c0392b;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.contact-form input[type="submit"]:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
 
 
 

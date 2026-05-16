@@ -1,6 +1,7 @@
 // pages/Portrait.js
 import React from 'react';
-import Gallery from '../../components/Foto/Gallery'; 
+import { Link } from 'react-router-dom';
+import Gallery from '../../components/Foto/Gallery';
 import SEO from '../../components/SEO/SEO';
 
   const images = [
@@ -50,9 +51,13 @@ import SEO from '../../components/SEO/SEO';
     return (
       <>
         <SEO
-          title="Portrait Photography | Bay Area & Arkansas | Phaminh Cinematography"
-          description="Portrait and lifestyle photography sessions including branding, editorial, and creative portraits captured in the San Francisco Bay Area and Arkansas."
+          title="Portrait Photography | San Francisco Bay Area & Northwest Arkansas | Phaminh"
+          description="Portrait and lifestyle sessions in San Francisco, Oakland, Fayetteville AR, Bentonville AR, and Rogers AR — editorial, creative, and authentically you."
         />
+        <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
+          Portrait and lifestyle sessions for individuals, couples, and brands — editorial, creative, and authentically you.{' '}
+          <Link to="/contact" style={{ color: '#333' }}>Book a session</Link> or <Link to="/pricing" style={{ color: '#333' }}>view packages</Link>.
+        </p>
         <Gallery images={images} basePath="/assets/foto/portrait" />
       </>
     );

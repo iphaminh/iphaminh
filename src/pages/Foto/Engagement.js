@@ -1,6 +1,7 @@
 // pages/Engagement.js
 import React from 'react';
-import Gallery from '../../components/Foto/Gallery'; 
+import { Link } from 'react-router-dom';
+import Gallery from '../../components/Foto/Gallery';
 import SEO from '../../components/SEO/SEO';
 
   const images = [
@@ -38,16 +39,19 @@ function shuffleArray(array) {
   }
   
   const Engagement = () => {
-    // Create a copy of the images array and shuffle it
     const shuffledImages = [...images];
     shuffleArray(shuffledImages);
-  
+
     return (
       <>
         <SEO
-          title="Engagement Photography | Bay Area & Arkansas | Phaminh Cinematography"
-          description="Engagement photography featuring candid, cinematic, and romantic imagery captured across the San Francisco Bay Area and Arkansas."
+          title="Engagement Photography | San Francisco Bay Area & NW Arkansas | Phaminh"
+          description="Engagement sessions in San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR — candid, romantic, and uniquely yours."
         />
+        <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
+          Romantic engagement sessions across the Bay Area and Arkansas — relaxed, candid, and full of real connection.{' '}
+          <Link to="/contact" style={{ color: '#333' }}>Book a session</Link> or <Link to="/pricing" style={{ color: '#333' }}>view packages</Link>.
+        </p>
         <Gallery images={shuffledImages} basePath="/assets/foto/engagement" />
       </>
     );

@@ -5,7 +5,7 @@ const TestimonialItem = ({ image, text, isReversed }) => {
     const itemClass = isReversed ? "testimonial-item testimonial-item-reverse" : "testimonial-item";
     return (
       <div className={itemClass}>
-        <img src={image} alt="Client testimonial" />
+        <img src={image} alt="Client testimonial" loading="lazy" />
         <p>{text}</p>
       </div>
     );

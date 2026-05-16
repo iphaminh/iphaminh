@@ -1,5 +1,6 @@
 // pages/Wedding.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Gallery from '../../components/Foto/Gallery';
 import SEO from '../../components/SEO/SEO';
 
@@ -34,9 +35,13 @@ const Wedding = () => {
   return (
     <>
       <SEO
-        title="Wedding Photography | Bay Area & Arkansas | Phaminh Cinematography"
-        description="Wedding photography showcasing emotional, cinematic, and timeless images captured across the San Francisco Bay Area and Arkansas."
+        title="Wedding Photography | San Francisco, Napa, Fayetteville AR & Bentonville AR | Phaminh"
+        description="Wedding photography portfolio from Minh Pham — serving the San Francisco Bay Area, Wine Country, Fayetteville AR, Bentonville AR, Rogers AR, and Little Rock AR."
       />
+      <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
+        Timeless wedding photographs from the Bay Area and Arkansas — candid, cinematic, and crafted to last a lifetime.{' '}
+        <Link to="/contact" style={{ color: '#333' }}>Book a session</Link> or <Link to="/pricing" style={{ color: '#333' }}>view packages</Link>.
+      </p>
       <Gallery images={images} basePath="/assets/foto/wedding" />
     </>
   );
