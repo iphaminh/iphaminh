@@ -45,7 +45,7 @@ const FooterShowcase = () => {
 
         <div className="footer-showcase-links">
           <a
-            href="https://www.instagram.com/phaminh.cinematography"
+            href="https://www.instagram.com/phaminh/"
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"

@@ -163,7 +163,7 @@ const SEO = ({
       'Cinematic wedding films',
     ],
     sameAs: [
-      'https://www.instagram.com/phaminh.cinematography',
+      'https://www.instagram.com/phaminh/',
       'https://www.facebook.com/lPhaminh',
       'https://www.youtube.com/@phaminh',
       'https://www.tiktok.com/@phaminh.cinematography',
