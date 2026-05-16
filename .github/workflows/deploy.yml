@@ -19,12 +19,14 @@ jobs:
           node-version: '20'
 
       - name: Build project
+        env:
+          CI: false
         run: |
           npm install
           npm run build
 
       - name: Upload to Hostinger FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
