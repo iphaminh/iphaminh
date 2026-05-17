@@ -50,7 +50,7 @@ const LandingPage = () => {
           if (v && v.paused) v.play().catch(() => {});
         }}
       >
-        <source src="/assets/highlight_film/Phaminh-web-v2.mp4?v=2" type="video/mp4" />
+        <source src="/assets/highlight_film/Phaminh-web.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
