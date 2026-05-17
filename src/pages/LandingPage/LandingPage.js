@@ -51,6 +51,7 @@ const LandingPage = () => {
         }}
       >
         <source src="/assets/highlight_film/Phaminh-web.mp4" type="video/mp4" />
+        <track kind="captions" srcLang="en" label="English captions" default />
         Your browser does not support the video tag.
       </video>
 

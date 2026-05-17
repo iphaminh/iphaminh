@@ -1,64 +1,67 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
-import PhotonLogo from "../PhotonLogo";
-import "./CustomNavbar.css";
-import { useWindowSize } from "../../hooks/useWindowSize";
-
+import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import PhotonLogo from '../PhotonLogo';
+import './CustomNavbar.css';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 const CustomNavbar = () => {
   const { width } = useWindowSize();
-  const [isMenuVisible, setIsMenuVisible] = useState(false); // Added state to manage mobile menu visibility
-  const isMobile = width < 1024; // Use tablet+mobile for hamburger menu
-  const closeMenu = () => setIsMenuVisible(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = width < 1024;
+  const close = () => setIsMenuOpen(false);
 
   return (
-    <Navbar isBordered variant="sticky" className="custom-navbar">
-      <NavbarContent className={`navbar-content ${isMobile ? 'mobile' : ''}`}>
+    <header className="custom-navbar">
+      <nav className={`navbar-content ${isMobile && isMenuOpen ? 'mobile' : ''}`} aria-label="Main navigation">
         {isMobile && (
           <button
             type="button"
             className="hamburger-menu"
-            aria-label={isMenuVisible ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={isMenuVisible}
-            onClick={() => setIsMenuVisible(!isMenuVisible)}
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
+            <span className="bar" />
+            <span className="bar" />
+            <span className="bar" />
           </button>
         )}
-        {(!isMobile || isMenuVisible) && (
+
+        {(!isMobile || isMenuOpen) && (
           <>
-             <div className="navbar-section">
-              <NavbarItem className="navbar-item">
-                <Link to="/" onClick={closeMenu}>Home</Link>
-              </NavbarItem>
-              <NavbarItem className="navbar-item">
-                <Link to="/cine" onClick={closeMenu}>Cine</Link>
-              </NavbarItem>
-              <NavbarItem className="navbar-item">
-                <Link to="/foto" onClick={closeMenu}>Foto</Link>
-              </NavbarItem>
-            </div>
+            <ul className="navbar-section" role="list">
+              <li className="navbar-item">
+                <NavLink to="/" onClick={close}>Home</NavLink>
+              </li>
+              <li className="navbar-item">
+                <NavLink to="/cine" onClick={close}>Cine</NavLink>
+              </li>
+              <li className="navbar-item">
+                <NavLink to="/foto" onClick={close}>Foto</NavLink>
+              </li>
+            </ul>
+
             <div className="logo-section">
-              <PhotonLogo />
+              <Link to="/" onClick={close} aria-label="Phaminh Cinematography home">
+                <PhotonLogo />
+              </Link>
             </div>
-            <div className="navbar-section">
-              <NavbarItem className="navbar-item">
-                <Link to="/pricing" onClick={closeMenu}>Pricing</Link>
-              </NavbarItem>
-              <NavbarItem className="navbar-item">
-                <Link to="/blog" onClick={closeMenu}>Blog</Link>
-              </NavbarItem>
-              <NavbarItem className="navbar-item">
-                <Link to="/contact" onClick={closeMenu}>Contact</Link>
-              </NavbarItem>
-            </div>
+
+            <ul className="navbar-section" role="list">
+              <li className="navbar-item">
+                <NavLink to="/pricing" onClick={close}>Pricing</NavLink>
+              </li>
+              <li className="navbar-item">
+                <NavLink to="/blog" onClick={close}>Blog</NavLink>
+              </li>
+              <li className="navbar-item">
+                <NavLink to="/contact" onClick={close}>Contact</NavLink>
+              </li>
+            </ul>
           </>
         )}
-      </NavbarContent>
-    </Navbar>
+      </nav>
+    </header>
   );
 };
 
