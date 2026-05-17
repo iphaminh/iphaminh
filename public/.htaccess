@@ -1,9 +1,15 @@
 RewriteEngine On
 RewriteBase /
 
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Force www (non-www → www)
 RewriteCond %{HTTP_HOST} ^phaminh\.com$ [NC]
 RewriteRule ^ https://www.phaminh.com%{REQUEST_URI} [R=301,L]
 
+# React Router — serve index.html for all non-file routes
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
