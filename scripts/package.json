@@ -1,0 +1,9 @@
+{
+  "name": "phaminh-seo-automation",
+  "version": "1.0.0",
+  "description": "Vimeo + Claude SEO automation for phaminh.com",
+  "main": "seo-automation.js",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.54.0"
+  }
+}

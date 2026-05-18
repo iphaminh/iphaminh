@@ -1,0 +1,47 @@
+name: Phaminh SEO Automation
+
+on:
+  workflow_dispatch:
+    inputs:
+      vimeo_url:
+        description: 'Vimeo video URL (e.g. https://vimeo.com/1234567890)'
+        required: true
+        type: string
+
+jobs:
+  seo-automation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install script dependencies
+        run: cd scripts && npm install
+
+      - name: Run SEO automation
+        id: seo
+        env:
+          VIMEO_URL: ${{ github.event.inputs.vimeo_url }}
+          VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/seo-automation.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "seo-bot@phaminh.com"
+          git config user.name "Phaminh SEO Bot"
+          git add src/data/films.js public/sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No changes — film may already exist in films.js"
+          else
+            git commit -m "Add new film: ${{ steps.seo.outputs.film_title }}"
+            git push
+          fi
