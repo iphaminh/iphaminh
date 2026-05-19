@@ -42,8 +42,7 @@ function notionRequest(method, apiPath, body = null) {
  */
 async function logVideoToNotion({ videoTitle, vimeoUrl, status = "Processed" }) {
   if (!NOTION_API_KEY || !NOTION_DATABASE_ID) {
-    console.error("Missing NOTION_API_KEY or NOTION_DATABASE_ID");
-    process.exit(1);
+    throw new Error("Missing NOTION_API_KEY or NOTION_DATABASE_ID — skipping Notion log");
   }
 
   const today = new Date().toISOString().split("T")[0];

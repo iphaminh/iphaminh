@@ -72,6 +72,8 @@ jobs:
           VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
           VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: node scripts/vimeo-seo.js
 
       - name: Refresh vimeo-videos.json from Vimeo API
