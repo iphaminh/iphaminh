@@ -1,5 +1,6 @@
 require("dotenv").config();
 const https = require("https");
+const { logVideoToNotion } = require("./notion-log");
 
 const VIMEO_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
@@ -65,13 +66,28 @@ function claudeRequest(prompt) {
   });
 }
 
-async function getLatestVideos() {
-  console.log("Fetching latest Vimeo videos...");
-  const data = await vimeoRequest(
-    "GET",
-    `/users/${VIMEO_USER_ID}/videos?per_page=5&sort=date&direction=desc&fields=uri,name,description,tags`
-  );
-  return data.data || [];
+// Fetch every video for the account with full pagination
+async function getAllVideos() {
+  const videos = [];
+  let nextPage = `/users/${VIMEO_USER_ID}/videos?per_page=100&sort=date&direction=desc&fields=uri,name,description,tags`;
+
+  while (nextPage) {
+    console.log(`Fetching page: ${nextPage}`);
+    const data = await vimeoRequest("GET", nextPage);
+    if (!data.data) {
+      console.error("Unexpected Vimeo response:", JSON.stringify(data).slice(0, 200));
+      break;
+    }
+    videos.push(...data.data);
+    nextPage = data.paging && data.paging.next ? data.paging.next : null;
+  }
+
+  return videos;
+}
+
+// Videos whose title already contains " | " are already in SEO format — skip them
+function needsSEO(video) {
+  return !String(video.name || "").includes(" | ");
 }
 
 async function generateSEO(video) {
@@ -145,9 +161,14 @@ async function main() {
     const video = await vimeoRequest("GET", `/videos/${videoIdArg}?fields=uri,name,description,tags`);
     videos = [video];
   } else {
-    videos = await getLatestVideos();
-    console.log(`Found ${videos.length} recent videos`);
+    videos = await getAllVideos();
+    const total = videos.length;
+    videos = videos.filter(needsSEO);
+    console.log(`Found ${total} total videos — ${videos.length} need SEO (${total - videos.length} already done)`);
   }
+
+  let successCount = 0;
+  let failCount = 0;
 
   for (const video of videos) {
     try {
@@ -161,12 +182,27 @@ async function main() {
 
       await updateVimeoVideo(video.uri, seo);
       console.log(`✅ Updated: ${video.name}`);
+      successCount++;
+
+      // Log to Notion
+      try {
+        const videoId = video.uri.replace("/videos/", "");
+        await logVideoToNotion({
+          videoTitle: seo.title || video.name,
+          vimeoUrl: `https://vimeo.com/${videoId}`,
+          status: "Processed",
+        });
+        console.log(`📋 Logged to Notion`);
+      } catch (notionErr) {
+        console.warn(`⚠️  Notion log failed: ${notionErr.message}`);
+      }
     } catch (err) {
       console.error(`❌ Failed for ${video.name}:`, err.message);
+      failCount++;
     }
   }
 
-  console.log("\n=== Done ===");
+  console.log(`\n=== Done — ${successCount} updated, ${failCount} failed ===`);
 }
 
 main();
