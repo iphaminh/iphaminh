@@ -67,6 +67,23 @@ jobs:
       - name: Install dependencies
         run: npm ci && cd scripts && npm install
 
+      - name: Verify environment
+        env:
+          VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
+          VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: |
+          echo "VIMEO_ACCESS_TOKEN set: ${{ secrets.VIMEO_ACCESS_TOKEN != '' }}"
+          echo "VIMEO_USER_ID set: ${{ secrets.VIMEO_USER_ID != '' }}"
+          echo "ANTHROPIC_API_KEY set: ${{ secrets.ANTHROPIC_API_KEY != '' }}"
+          echo "NOTION_API_KEY set: ${{ secrets.NOTION_API_KEY != '' }}"
+          echo "NOTION_DATABASE_ID set: ${{ secrets.NOTION_DATABASE_ID != '' }}"
+          echo "Node version: $(node --version)"
+          echo "Scripts node_modules dotenv exists: $(test -d scripts/node_modules/dotenv && echo yes || echo NO)"
+          node -e "require('./scripts/vimeo-seo.js') && console.log('syntax ok')" 2>&1 || echo "syntax/require error above"
+
       - name: Bulk update Vimeo SEO (titles, descriptions, tags)
         env:
           VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
