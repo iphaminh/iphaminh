@@ -1,5 +1,5 @@
 /* index.css */
-@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Roboto:wght@400;700&family=Varela+Round&display=swap');
+/* Fonts are loaded once via public/index.html — do not @import here */
 
 body {
   margin: 0;
