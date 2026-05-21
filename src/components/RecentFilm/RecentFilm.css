@@ -1,40 +1,43 @@
 /* src/components/RecentFilm/RecentFilm.css */
 .recent-film-container {
   text-align: center;
-  color: white; /* Set the text color to white */
-  background-color: black; /* Set the background to black */
-  padding: 2rem 0; /* Add some padding */
+  color: white;
+  background-color: black;
+  padding: 0.75rem 0 1.5rem; /* tighter top padding so header sits closer to the banner edge */
 }
 
 .recent-film-header {
-  font-size: 3rem; /* Adjust the font size as needed */
-  margin-bottom: 0.1rem; /* Space between the header and the line */
+  font-size: 2.6rem;
+  margin: 0 0 0.4rem;
   font-family: 'Metal', serif;
 }
 
 .film-line {
-  width: 60px; /* Adjust the line width */
-  height: 1px; /* Adjust the line thickness */
-  background-color: white; /* Line color */
-  margin: 0 auto 2rem; /* Center the line and add space below */
+  width: 60px;
+  height: 1px;
+  background-color: white;
+  margin: 0 auto 1.25rem; /* tighter spacing below the line */
 }
 
 .film-thumbnails {
   display: flex;
-  justify-content: center; /* Center the thumbnails */
-  gap: 3rem; /* Adjust the gap between thumbnails */
-  flex-wrap: wrap; /* Allow thumbnails to wrap on smaller screens */
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 .film-thumbnail {
-  position: relative; /* Needed for absolute positioning of the caption */
-  width: 250px; /* Adjust the thumbnail width */
-  margin-bottom: 1rem; /* Space for the caption */
+  position: relative;
+  width: 220px; /* smaller thumbnail on desktop (was 250) */
+  margin-bottom: 0.5rem;
 }
 
 .film-thumbnail img {
   width: 100%;
-  border-radius: 1px; /* Rounded corners for the thumbnails */
-  margin-bottom: 0.5rem; /* Space between image and caption */
+  aspect-ratio: 1 / 1; /* force a square frame regardless of source dimensions */
+  object-fit: cover;  /* fill the square without distortion */
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 .film-caption {
@@ -61,14 +64,27 @@
 
 /* Stack thumbnails vertically on small screens */
 @media (max-width: 768px) {
+  .recent-film-container {
+    padding: 0.5rem 0 1.25rem; /* even tighter on mobile */
+  }
+
+  .recent-film-header {
+    font-size: 2.1rem;
+  }
+
   .film-thumbnails {
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .film-thumbnail {
     width: 100%;
-    max-width: 320px; /* Prevent excessively wide thumbnails */
+    max-width: 220px; /* smaller on mobile (was 320) */
+  }
+
+  .film-caption h3,
+  .film-caption p {
+    font-size: 16px;
   }
 }
