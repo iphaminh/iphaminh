@@ -33,7 +33,7 @@ const RecentFilm = () => {
         {filmData.map((film, index) => (
           <div className="film-thumbnail" key={index}>
             <a href={film.vimeoLink} target="_blank" rel="noopener noreferrer">
-              <img src={film.imageSrc} alt={film.title} loading="lazy" />
+              <img src={film.imageSrc} alt={film.title} width="400" height="500" loading="lazy" />
             </a>
             <div className="film-caption">
               <h3>{film.title}</h3>

@@ -6,7 +6,14 @@ import './Badge.css'; // Import the specific CSS for the Badge component
 const Badge = ({ imageSrc, altText, link, className }) => {
   return (
     <a href={link} target="_blank" rel="noopener noreferrer" className="badge">
-      <img src={imageSrc} alt={altText} loading="lazy" className={`h-auto max-w-full ${className}`} />
+      <img
+        src={imageSrc}
+        alt={altText}
+        width="420"
+        height="420"
+        loading="lazy"
+        className={`h-auto max-w-full ${className || ''}`}
+      />
     </a>
   );
 };

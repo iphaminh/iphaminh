@@ -42,6 +42,7 @@ const LandingPage = () => {
         playsInline
         muted={isMuted}
         preload="auto"
+        fetchpriority="high"
         poster="/assets/seo/phaminh-wedding-cover.jpg"
         controls={false}
         disablePictureInPicture
@@ -62,7 +63,9 @@ const LandingPage = () => {
             ? `${process.env.PUBLIC_URL}/assets/highlight_film/noaudio.png`
             : `${process.env.PUBLIC_URL}/assets/highlight_film/audio.png`
         }
-        alt="Toggle Sound"
+        alt={isMuted ? 'Unmute video' : 'Mute video'}
+        width="64"
+        height="64"
         className="sound-icon"
       />
 
@@ -83,14 +86,14 @@ const LandingPage = () => {
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 700, letterSpacing: '0.08em', color: '#333', marginBottom: '1rem', textTransform: 'uppercase' }}>
             Serving Couples Across
           </h2>
-          <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', color: '#666', lineHeight: 2, maxWidth: 700, margin: '0 auto' }}>
+          <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', color: '#444', lineHeight: 2, maxWidth: 700, margin: '0 auto' }}>
             <strong>Bay Area:</strong> San Francisco · Oakland · San Jose · Berkeley · Napa · Sonoma · Marin · Palo Alto · Walnut Creek · Fremont · Sacramento
             <br />
             <strong>Northwest Arkansas:</strong> Fayetteville · Bentonville · Rogers · Springdale · Siloam Springs · Bella Vista · Eureka Springs
             <br />
             <strong>Central Arkansas:</strong> Little Rock · Conway · Hot Springs · Fort Smith · Jonesboro
             <br />
-            <em style={{ fontSize: '0.85rem', color: '#999' }}>Available for destination weddings worldwide.</em>
+            <em style={{ fontSize: '0.85rem', color: '#555' }}>Available for destination weddings worldwide.</em>
           </p>
         </section>
 

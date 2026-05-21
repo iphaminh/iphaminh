@@ -57,6 +57,8 @@ const AboutMe = () => {
         <img
           src="/assets/images/phaminh-cinematography.png"
           alt="Minh Pham, Bay Area and Arkansas wedding videographer"
+          width="600"
+          height="594"
           loading="lazy"
         />
       </div>
