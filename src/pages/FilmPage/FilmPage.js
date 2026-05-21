@@ -1,10 +1,13 @@
 // src/pages/FilmPage/FilmPage.js
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO/SEO';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import { films } from '../../data/films';
 import './FilmPage.css';
+
+const SITE_URL = 'https://www.phaminh.com';
 
 export default function FilmPage() {
   const { slug } = useParams();
@@ -13,6 +16,10 @@ export default function FilmPage() {
   if (!film) {
     return (
       <div className="film-page-not-found">
+        <Helmet>
+          <meta name="robots" content="noindex" />
+          <title>Film not found | Phaminh Cinematography</title>
+        </Helmet>
         <h1>Film not found</h1>
         <p>
           <Link to="/cine">← Back to all films</Link>
@@ -26,14 +33,39 @@ export default function FilmPage() {
     `?title=0&byline=0&portrait=0&dnt=1`;
 
   const pageTitle = `${film.title} | ${film.location} Wedding Film | Phaminh Cinematography`;
+  const thumbnail = `https://vumbnail.com/${film.vimeoId}.jpg`;
+
+  // VideoObject JSON-LD for rich results in Google video search
+  const videoLd = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: film.title,
+    description: film.description,
+    thumbnailUrl: [thumbnail],
+    uploadDate: '2024-01-01',
+    contentUrl: `https://vimeo.com/${film.vimeoId}`,
+    embedUrl: `https://player.vimeo.com/video/${film.vimeoId}`,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Phaminh Cinematography',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/assets/images/logo.png`,
+      },
+    },
+  };
 
   return (
     <>
       <SEO
         title={pageTitle}
         description={film.description}
-        canonical={`https://www.phaminh.com/cine/${film.slug}`}
-      />
+        canonical={`${SITE_URL}/cine/${film.slug}`}
+        image={thumbnail}
+        type="video.other"
+      >
+        <script type="application/ld+json">{JSON.stringify(videoLd)}</script>
+      </SEO>
 
       <div className="film-page">
         <Link to="/cine" className="film-page-back">← All Wedding Films</Link>
