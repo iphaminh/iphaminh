@@ -7,8 +7,8 @@ const ShowcaseImage = () => {
       <img
         src="/assets/images/weddingvideographer-near-me.webp"
         alt="Bay Area and Arkansas wedding videographer near me"
-        width="1200"
-        height="673"
+        width="1600"
+        height="899"
         loading="lazy"
       />
     </div>
