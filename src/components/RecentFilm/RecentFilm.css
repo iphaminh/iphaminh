@@ -31,13 +31,33 @@
   margin-bottom: 0.5rem;
 }
 
-.film-thumbnail img {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* force a square frame regardless of source dimensions */
-  object-fit: cover;  /* fill the square without distortion */
-  border-radius: 2px;
-  margin-bottom: 0.5rem;
+/* Bulletproof 1:1 square wrapper using the padding-bottom trick
+   (works in every browser, no dependency on aspect-ratio support) */
+.film-thumbnail-link {
   display: block;
+  text-decoration: none;
+}
+.film-thumbnail-square {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding-bottom: 100%; /* 1:1 aspect ratio */
+  overflow: hidden;
+  border-radius: 2px;
+  background: #111;
+  margin-bottom: 0.5rem;
+}
+.film-thumbnail-square img {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+.film-thumbnail img {
+  margin-bottom: 0.5rem;
 }
 
 .film-caption {
