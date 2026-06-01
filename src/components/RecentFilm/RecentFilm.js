@@ -8,19 +8,19 @@ const RecentFilm = () => {
     {
       title: 'Romance at the Bluff',
       description: 'Arkansas wedding film inspired by Bieber\'s choice',
-      imageSrc: '/assets/recent_film/wedding-photographer-in-arkansas.png',
+      imageSrc: '/assets/recent_film/wedding-photographer-in-arkansas.webp',
       vimeoLink: 'https://vimeo.com/608232970'
     },
     {
       title: 'Estate elegance',
       description: 'Cinematic estate wedding film',
-      imageSrc: '/assets/recent_film/arkansas-wedding-videography.png',
+      imageSrc: '/assets/recent_film/arkansas-wedding-videography.webp',
       vimeoLink: 'https://vimeo.com/770458916'
     },
     {
       title: 'Rustic romance',
       description: 'Rustic Arkansas barn wedding film',
-      imageSrc: '/assets/recent_film/arkansas-wedding-videographer.png',
+      imageSrc: '/assets/recent_film/arkansas-wedding-videographer.webp',
       vimeoLink: 'https://vimeo.com/889737378'
     }
   ];
@@ -33,7 +33,7 @@ const RecentFilm = () => {
         {filmData.map((film, index) => (
           <div className="film-thumbnail" key={index}>
             <a href={film.vimeoLink} target="_blank" rel="noopener noreferrer">
-              <img src={film.imageSrc} alt={film.title} width="300" height="300" loading="lazy" />
+              <img src={film.imageSrc} alt={film.title} width="500" height="500" loading="lazy" />
             </a>
             <div className="film-caption">
               <h3>{film.title}</h3>
