@@ -12,6 +12,7 @@ const ROOT = path.join(__dirname, '..');
 const BUILD_DIR = path.join(ROOT, 'build');
 const FILMS_PATH = path.join(ROOT, 'src', 'data', 'films.js');
 const BLOG_PATH = path.join(ROOT, 'src', 'data', 'blogPosts.js');
+const LOCATIONS_PATH = path.join(ROOT, 'src', 'data', 'locations.json');
 
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
@@ -168,8 +169,9 @@ function generateAll() {
   const template = loadTemplate();
   const films = parseFilms();
   const posts = parseBlogPosts();
+  const locations = JSON.parse(fs.readFileSync(LOCATIONS_PATH, 'utf8'));
 
-  console.log(`\nPrerendering: ${films.length} films, ${posts.length} blog posts, plus static routes\n`);
+  console.log(`\nPrerendering: ${films.length} films, ${posts.length} blog posts, ${locations.length} location pages, plus static routes\n`);
 
   // ─── Static routes ─────────────────────────────────────────────────────────
   const staticRoutes = [
@@ -393,13 +395,78 @@ function generateAll() {
     writePage(`/blog/${post.slug}`, rewritePage(template, { headBlock, noscriptHtml }));
   }
 
+  // ─── Location landing pages ────────────────────────────────────────────────
+  {
+    const hubUrl = `${SITE_URL}/wedding-videographer`;
+    const hubHead = buildHead({
+      title: 'Wedding Videographer Service Areas | Northern California & Arkansas | Phaminh',
+      description: 'Cinematic wedding films across Northern California — Napa Valley, Sonoma, San Francisco, Silicon Valley, Carmel, Tahoe — and Arkansas: NWA, Eureka Springs, Hot Springs, Little Rock.',
+      canonical: hubUrl,
+      ogImage: DEFAULT_IMAGE,
+      ogType: 'website',
+    });
+    const hubNoscript = buildNoscript(`
+      <h1>Wedding Videographer Service Areas — Northern California & Arkansas</h1>
+      <p>Minh Pham films weddings across Northern California and Arkansas:</p>
+      <ul>
+        ${locations.map(l => `<li><a href="/wedding-videographer/${l.slug}">${escapeHtml(l.h1)}</a> — ${escapeHtml(l.region)}</li>`).join('')}
+      </ul>
+      <p><a href="/contact">Check your date</a> · <a href="/pricing">View packages</a></p>
+    `);
+    writePage('/wedding-videographer', rewritePage(template, { headBlock: hubHead, noscriptHtml: hubNoscript }));
+  }
+
+  for (const loc of locations) {
+    const url = `${SITE_URL}/wedding-videographer/${loc.slug}`;
+
+    const faqLd = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: loc.faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    };
+
+    const headBlock = buildHead({
+      title: loc.metaTitle,
+      description: loc.metaDescription,
+      canonical: url,
+      ogImage: DEFAULT_IMAGE,
+      ogType: 'website',
+      jsonLd: faqLd,
+    });
+
+    const noscriptHtml = buildNoscript(`
+      <p><a href="/wedding-videographer">← All service areas</a></p>
+      <h1>${escapeHtml(loc.h1)}</h1>
+      ${loc.intro.map(p => `<p>${escapeHtml(p)}</p>`).join('')}
+      <h2>${escapeHtml(loc.venuesTitle)}</h2>
+      <ul>
+        ${loc.venues.map(v => `<li><strong>${escapeHtml(v.name)}</strong> — ${escapeHtml(v.note)}</li>`).join('')}
+      </ul>
+      <h2>Filming in ${escapeHtml(loc.shortName)}</h2>
+      <p>${escapeHtml(loc.why)}</p>
+      <h2>${escapeHtml(loc.shortName)} Wedding Videography FAQs</h2>
+      ${loc.faqs.map(f => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`).join('')}
+      <p>Also serving: ${(loc.nearby || []).map(s => {
+        const n = locations.find(l => l.slug === s);
+        return n ? `<a href="/wedding-videographer/${n.slug}">${escapeHtml(n.name)}</a>` : '';
+      }).filter(Boolean).join(' · ')}</p>
+      <p><a href="/contact">Check your date</a> · <a href="/pricing">View packages</a> · <a href="/cine">Watch wedding films</a></p>
+    `);
+
+    writePage(`/wedding-videographer/${loc.slug}`, rewritePage(template, { headBlock, noscriptHtml }));
+  }
+
   // ─── Regenerate sitemap.xml with current lastmod ───────────────────────────
-  writeSitemap({ films, posts });
+  writeSitemap({ films, posts, locations });
 
   console.log(`\n✅ Prerender complete: ${staticRoutes.length} static + ${films.length} films + ${posts.length} posts\n`);
 }
 
-function writeSitemap({ films, posts }) {
+function writeSitemap({ films, posts, locations }) {
   const today = new Date().toISOString().split('T')[0];
 
   const urls = [
@@ -413,6 +480,8 @@ function writeSitemap({ films, posts }) {
     { loc: `${SITE_URL}/testimonials`, priority: '0.6', changefreq: 'monthly' },
     { loc: `${SITE_URL}/contact`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${SITE_URL}/blog`, priority: '0.8', changefreq: 'weekly' },
+    { loc: `${SITE_URL}/wedding-videographer`, priority: '0.9', changefreq: 'monthly' },
+    ...locations.map(l => ({ loc: `${SITE_URL}/wedding-videographer/${l.slug}`, priority: '0.9', changefreq: 'monthly' })),
     ...posts.map(p => ({ loc: `${SITE_URL}/blog/${p.slug}`, priority: '0.7', changefreq: 'monthly', lastmod: p.date })),
     ...films.map(f => ({ loc: `${SITE_URL}/cine/${f.slug}`, priority: '0.6', changefreq: 'yearly' })),
   ];

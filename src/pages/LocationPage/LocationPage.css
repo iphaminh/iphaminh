@@ -1,0 +1,247 @@
+/* LocationPage.css */
+
+.location-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.location-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.location-region {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a08339;
+  margin-bottom: 0.6rem;
+}
+
+.location-page h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.location-page h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 1rem;
+}
+
+.location-page section {
+  margin-bottom: 2.75rem;
+}
+
+.location-intro-p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #444;
+  margin: 0 auto 1.1rem;
+  max-width: 720px;
+}
+
+.location-venues ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-venues li {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.location-venues li strong {
+  color: #111;
+}
+
+.location-why p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #444;
+  margin: 0;
+}
+
+.location-films-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.location-film-card {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.92rem;
+}
+
+.location-film-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.location-film-card:hover span {
+  color: #a08339;
+}
+
+.location-films-more {
+  margin-top: 1.25rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.location-films-more a {
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 2px;
+}
+
+.location-films-more a:hover {
+  color: #a08339;
+  border-color: #a08339;
+}
+
+.location-faqs details {
+  border-bottom: 1px solid #eee;
+  padding: 0.9rem 0;
+}
+
+.location-faqs summary {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111;
+  cursor: pointer;
+}
+
+.location-faqs details p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin: 0.75rem 0 0;
+}
+
+.location-nearby p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #444;
+}
+
+.location-nearby a {
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1px;
+}
+
+.location-nearby a:hover {
+  color: #a08339;
+  border-color: #a08339;
+}
+
+.location-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.location-cta {
+  padding: 0.65rem 1.8rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.location-cta-primary {
+  background: #333;
+  color: #fff;
+}
+
+.location-cta-primary:hover {
+  background: #a08339;
+}
+
+.location-cta-secondary {
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.location-cta-secondary:hover {
+  border-color: #a08339;
+  color: #a08339;
+}
+
+.location-index-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-index-list li {
+  border-bottom: 1px solid #eee;
+}
+
+.location-index-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.1rem 0.25rem;
+  text-decoration: none;
+}
+
+.location-index-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.location-index-list a:hover .location-index-name {
+  color: #a08339;
+}
+
+.location-index-region {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  color: #999;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+  .location-page {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .location-films-grid {
+    grid-template-columns: 1fr;
+  }
+}

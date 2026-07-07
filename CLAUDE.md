@@ -67,6 +67,8 @@ phaminh.com/cine reads from src/data/films.js (curated) and src/data/vimeo-video
 | `src/data/films.js` | Curated film list. Each entry has: slug, vimeoId, title, location, date, description, vendor credits. Edit manually when adding featured films. |
 | `src/data/vimeo-videos.json` | Auto-updated by GitHub Action. Do not edit manually — it gets overwritten every 6 hours. |
 | `src/data/blogPosts.js` | 7 SEO blog articles targeting Bay Area and NWA keywords. |
+| `src/data/locations.json` | Local-SEO landing page content for 8 NorCal markets (Napa, Sonoma, SF, Silicon Valley, Carmel/Big Sur, Half Moon Bay, Marin, Tahoe). Read by both `LocationPage.js` and `prerender.js`. Add a new market by adding an entry here — routes, prerender, and sitemap pick it up automatically. |
+| `src/pages/LocationPage/LocationPage.js` | Renders `/wedding-videographer` (hub) and `/wedding-videographer/:slug` from `locations.json`, with FAQPage + Service JSON-LD. |
 | `public/sitemap.xml` | Updated by `seo-automation.js` when new films are added. |
 | `public/.htaccess` | HTTPS enforcement, www redirect, React SPA routing. |
 

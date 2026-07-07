@@ -1,5 +1,7 @@
 // src/components/FooterShowcase/FooterShowcase.js
 import React from 'react';
+import { Link } from 'react-router-dom';
+import locations from '../../data/locations.json';
 import './FooterShowcase.css';
 
 const InstagramIcon = () => (
@@ -83,6 +85,24 @@ const FooterShowcase = () => {
             Email
           </a>
         </div>
+
+        <nav className="footer-locations" aria-label="Wedding videography service areas">
+          {['Northern California', 'Arkansas'].map((group) => (
+            <div key={group} className="footer-locations-group">
+              <span className="footer-locations-label">Filming across {group}</span>
+              <p className="footer-locations-links">
+                {locations
+                  .filter((loc) => loc.group === group)
+                  .map((loc, i) => (
+                    <React.Fragment key={loc.slug}>
+                      {i > 0 && <span aria-hidden="true"> · </span>}
+                      <Link to={`/wedding-videographer/${loc.slug}`}>{loc.shortName}</Link>
+                    </React.Fragment>
+                  ))}
+              </p>
+            </div>
+          ))}
+        </nav>
       </div>
     </footer>
   );

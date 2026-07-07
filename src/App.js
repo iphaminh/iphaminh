@@ -13,6 +13,7 @@ import Engagement from './pages/Foto/Engagement';
 import Portrait from './pages/Foto/Portrait';
 import NotFound from './pages/NotFound/NotFound';
 import FilmPage from './pages/FilmPage/FilmPage';
+import LocationPage from './pages/LocationPage/LocationPage';
 import Blog from './pages/Blog/Blog';
 import BlogPost from './pages/Blog/BlogPost';
 import ScrollToTop from './components/ScrollToTop';
@@ -44,6 +45,9 @@ function App() {
 
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+
+        <Route path="/wedding-videographer" element={<LocationPage />} />
+        <Route path="/wedding-videographer/:slug" element={<LocationPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

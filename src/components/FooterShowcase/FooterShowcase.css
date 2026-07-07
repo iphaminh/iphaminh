@@ -150,4 +150,36 @@
   .hide {
     display: none;
   }
-  
+
+  .footer-locations {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .footer-locations-group + .footer-locations-group {
+    margin-top: 12px;
+  }
+
+  .footer-locations-label {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 8px;
+  }
+
+  .footer-locations-links {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+    max-width: 640px;
+  }
+
+  .footer-locations-links a:hover {
+    opacity: 0.85;
+  }

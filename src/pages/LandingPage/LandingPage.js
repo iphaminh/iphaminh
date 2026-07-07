@@ -87,11 +87,31 @@ const LandingPage = () => {
             Serving Couples Across
           </h2>
           <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', color: '#444', lineHeight: 2, maxWidth: 700, margin: '0 auto' }}>
-            <strong>Bay Area:</strong> San Francisco · Oakland · San Jose · Berkeley · Napa · Sonoma · Marin · Palo Alto · Walnut Creek · Fremont · Sacramento
+            <strong>Northern California:</strong>{' '}
+            <Link to="/wedding-videographer/san-francisco" style={{ color: '#444' }}>San Francisco</Link> ·{' '}
+            <Link to="/wedding-videographer/napa-valley" style={{ color: '#444' }}>Napa Valley</Link> ·{' '}
+            <Link to="/wedding-videographer/sonoma-healdsburg" style={{ color: '#444' }}>Sonoma & Healdsburg</Link> ·{' '}
+            <Link to="/wedding-videographer/silicon-valley" style={{ color: '#444' }}>Silicon Valley</Link> ·{' '}
+            <Link to="/wedding-videographer/marin-county" style={{ color: '#444' }}>Marin County</Link> ·{' '}
+            <Link to="/wedding-videographer/half-moon-bay" style={{ color: '#444' }}>Half Moon Bay</Link> ·{' '}
+            <Link to="/wedding-videographer/carmel-big-sur" style={{ color: '#444' }}>Carmel & Big Sur</Link> ·{' '}
+            <Link to="/wedding-videographer/lake-tahoe" style={{ color: '#444' }}>Lake Tahoe</Link>
             <br />
-            <strong>Northwest Arkansas:</strong> Fayetteville · Bentonville · Rogers · Springdale · Siloam Springs · Bella Vista · Eureka Springs
+            <strong>Northwest Arkansas:</strong>{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Fayetteville</Link> ·{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Bentonville</Link> ·{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Rogers</Link> ·{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Springdale</Link> ·{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Siloam Springs</Link> ·{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Bella Vista</Link> ·{' '}
+            <Link to="/wedding-videographer/eureka-springs" style={{ color: '#444' }}>Eureka Springs</Link>
             <br />
-            <strong>Central Arkansas:</strong> Little Rock · Conway · Hot Springs · Fort Smith · Jonesboro
+            <strong>Central Arkansas:</strong>{' '}
+            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Little Rock</Link> ·{' '}
+            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Conway</Link> ·{' '}
+            <Link to="/wedding-videographer/hot-springs" style={{ color: '#444' }}>Hot Springs</Link> ·{' '}
+            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Fort Smith</Link> ·{' '}
+            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Jonesboro</Link>
             <br />
             <em style={{ fontSize: '0.85rem', color: '#555' }}>Available for destination weddings worldwide.</em>
           </p>
