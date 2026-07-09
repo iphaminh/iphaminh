@@ -742,6 +742,283 @@ If you need your film by a specific date — for an anniversary trip, to share a
       },
     ],
   },
+  {
+    slug: 'best-napa-valley-wedding-venues',
+    title: 'The Best Napa Valley Wedding Venues for a Luxury Celebration (2026)',
+    description: 'A wedding videographer\'s guide to Napa Valley\'s most stunning venues — Auberge du Soleil, Carneros Resort, Stanly Ranch, and more — with honest notes on how each one films.',
+    date: '2026-06-05',
+    location: 'Napa Valley, CA',
+    category: 'Venues',
+    readTime: '8 min',
+    image: '/assets/seo/phaminh-wedding-cover.jpg',
+    sections: [
+      {
+        type: 'intro',
+        content: `Napa Valley hosts some of the most beautiful — and most photographed — weddings in America. But venue lists written for brochures rarely tell you what a place is actually like on a wedding day: where the light falls at 6 pm, which lawns catch the wind, which reception rooms glow on camera and which fight you.
+
+As a [Napa Valley wedding videographer](/wedding-videographer/napa-valley), I see these venues through a lens — literally. Here's my honest guide to the valley's standout venues, and what makes each one special on film.`,
+      },
+      {
+        type: 'section',
+        heading: 'Auberge du Soleil — Rutherford',
+        content: `The grande dame of Napa luxury. Perched on a hillside of olive trees above the Silverado Trail, Auberge du Soleil is intimate by design — it suits elopements and small luxury weddings rather than 200-guest celebrations.
+
+**On film:** the west-facing terrace views mean ceremony light gets better as the day goes on, and golden hour here is genuinely the best in the valley. If you're planning an intimate wedding with a serious budget, this is the one.`,
+      },
+      {
+        type: 'section',
+        heading: 'Carneros Resort and Spa — Napa',
+        content: `Modern farmhouse cottages, manicured lawns, and one of the most reliable sunset views in Carneros. The resort handles weddings from intimate to grand, and everything is on property — getting ready, ceremony, reception — which makes for a relaxed timeline.
+
+**On film:** the boardwalk paths and white cottages give a clean, editorial look, and the vineyard-edge lawn catches beautiful late light. Wind picks up in the afternoon in Carneros, so ceremony audio needs proper mics — something I always plan for here.`,
+      },
+      {
+        type: 'section',
+        heading: 'Stanly Ranch — Napa',
+        content: `The newest Auberge property brought a fresh, contemporary energy to the valley. Wide-open Carneros views, modern architecture, and event lawns that seem designed with photographers and filmmakers in mind.
+
+**On film:** sweeping establishing shots, clean lines, and huge skies. Stanly Ranch weddings feel expansive and modern — if your style is less "chateau" and more "architectural," this is your venue.`,
+      },
+      {
+        type: 'section',
+        heading: 'The Estate Yountville & Solage — Yountville and Calistoga',
+        content: `**The Estate Yountville** puts you in the heart of the valley's best food town — walkable, elegant grounds, and beautiful stone buildings. Guests love the location, and the courtyard receptions glow at night.
+
+**Solage, Auberge Resorts Collection** in Calistoga is relaxed luxury: palm-lined pool scenes, casual elegance, and a warmer, more laid-back feel than the formal estates. Perfect for couples who want luxury without stiffness.`,
+      },
+      {
+        type: 'section',
+        heading: 'Historic Wineries: Charles Krug, V. Sattui, and Beaulieu Garden',
+        content: `For couples who want true wine-country character, the historic properties deliver:
+
+- **Charles Krug Winery** — Napa's oldest winery; the redwood cellar makes reception footage feel timeless.
+- **V. Sattui Winery** — stone cellars, garden ceremonies, and a classic St. Helena setting.
+- **Beaulieu Garden** — the sycamore-lined ceremony corridor is one of the most cinematic frames in all of Napa.
+
+**On film:** these venues bring texture — old stone, barrel rooms, hundred-year-old trees — that modern resorts can't replicate. Lighting in cellar receptions is dim and warm, which rewards a videographer who shoots fast lenses and knows the rooms.`,
+      },
+      {
+        type: 'section',
+        heading: 'What a Napa Wedding Really Costs',
+        content: `Honest numbers help planning. Luxury Napa venues typically run from the mid five figures for venue and catering at the historic wineries to well beyond that at the flagship resorts. Most couples marrying at these properties invest correspondingly in photography and film.
+
+My [wedding film packages](/pricing) start at $2,700, and I film across the valley regularly from my Bay Area base — no complicated travel logistics. If you're comparing videographers for a Napa wedding, my advice is simple: watch full films, not trailers, and choose the person whose storytelling moves you.`,
+      },
+    ],
+    faqs: [
+      {
+        question: 'Which Napa Valley venue is best for an intimate wedding or elopement?',
+        answer: 'Auberge du Soleil is the classic choice for intimate luxury — the terrace views and restaurant make a tiny wedding feel extraordinary. For a relaxed feel, Solage in Calistoga is wonderful for small celebrations. Many wineries also offer weekday elopement packages worth asking about.',
+      },
+      {
+        question: 'What time of year is best for a Napa Valley wedding?',
+        answer: 'Late spring (May–June) brings green vineyards and mild weather; harvest season (September–October) brings golden vines and the valley\'s most dramatic light. July and August are beautiful but hot — plan ceremonies for late afternoon. Winter weddings are underrated: dramatic skies, available dates, and better rates.',
+      },
+      {
+        question: 'Do wedding vendors charge travel fees for Napa?',
+        answer: 'Many San Francisco–based vendors do. I\'m based in the Bay Area and film in Napa regularly — Napa, Yountville, St. Helena, and Calistoga are all part of my standard service area. Always ask for an all-in quote so there are no surprises.',
+      },
+    ],
+  },
+  {
+    slug: 'san-francisco-city-hall-elopement-guide',
+    title: 'San Francisco City Hall Elopement: The Complete Guide (2026)',
+    description: 'Everything you need to plan a San Francisco City Hall wedding — appointments, the best times and floors for photos, private ceremony options, and how to capture it all on film.',
+    date: '2026-06-18',
+    location: 'San Francisco, CA',
+    category: 'Elopements',
+    readTime: '9 min',
+    image: '/assets/seo/phaminh-wedding-cover.jpg',
+    sections: [
+      {
+        type: 'intro',
+        content: `San Francisco City Hall might be the most beautiful place in America to elope. The Beaux-Arts rotunda, the marble staircase, the fourth-floor windows pouring soft light — it looks like a European palace, and it marries you for a fraction of the cost of a traditional wedding.
+
+I've filmed many City Hall elopements as a [San Francisco wedding videographer](/wedding-videographer/san-francisco), and this guide covers what I tell every couple who asks: how it works, when to go, and how to make a 30-minute civil ceremony feel like a feature film.`,
+      },
+      {
+        type: 'section',
+        heading: 'Step 1: The Paperwork',
+        content: `You need two separate appointments, both booked through the SF County Clerk's website:
+
+- **Marriage license appointment** — bring valid photo IDs. The license is valid for 90 days, so you can get it in advance or the same day.
+- **Civil ceremony appointment** — the standard public ceremony takes place near the Rotunda and lasts only a few minutes.
+
+Book both as early as possible — popular dates (spring, fall, and anything near Valentine's Day) fill up weeks ahead. Check the SF County Clerk's official site for current fees and rules; they change periodically.`,
+      },
+      {
+        type: 'section',
+        heading: 'Step 2: Pick Your Ceremony Style',
+        content: `**The standard civil ceremony** is short, sweet, and takes place in the public building — usually at the top of the grand staircase or a nearby alcove. You can bring a small group of guests.
+
+**Private one-hour ceremonies** can be booked through the City Hall Events Department for the Fourth Floor North Gallery or the Mayor's Balcony — you get the space reserved, more guests, and room for personal vows. This is the sweet spot for couples who want an elopement that still feels like a wedding.
+
+**Full building buyouts** exist too — evening weddings with the whole rotunda — at a price that rivals traditional venues.`,
+      },
+      {
+        type: 'section',
+        heading: 'When to Go: A Filmmaker\'s Timing Guide',
+        content: `City Hall is a working government building, and timing changes everything:
+
+- **Early morning appointments** are the quietest — fewer tourists, clean backgrounds, unhurried portraits.
+- **Tuesday through Thursday** are calmer than Fridays, which are packed with weddings.
+- **The fourth floor north windows** have the softest, most flattering light in the building — every photographer and videographer will take you there.
+- **After your ceremony**, budget an hour for portraits inside, then consider golden hour at Baker Beach, Lands End, or the Palace of Fine Arts — the classic SF elopement double-feature.`,
+      },
+      {
+        type: 'section',
+        heading: 'Should You Hire a Videographer for a City Hall Elopement?',
+        content: `A City Hall elopement is short — which is exactly why film matters. There's no 10-hour day to remember in pieces; there's one hour that goes by in a blur. A film gives you back the sound of it: your vows echoing in the rotunda, the laugh when the judge says "you may kiss," the quiet moments on the staircase.
+
+My [elopement film packages](/pricing) start at $2,500 and typically cover the ceremony, portraits through the building, and a location or two afterward — delivered as a cinematic highlight film you'll send to everyone who couldn't be there.`,
+      },
+    ],
+    faqs: [
+      {
+        question: 'How many guests can attend a City Hall civil ceremony?',
+        answer: 'The standard civil ceremony officially allows a small number of guests — check the County Clerk\'s current policy when you book. If you want more people, book a private one-hour ceremony on the Mayor\'s Balcony or Fourth Floor North Gallery through the Events Department.',
+      },
+      {
+        question: 'Do I need a permit to film or photograph at SF City Hall?',
+        answer: 'Standard wedding photography and videography during public hours doesn\'t require a permit for typical civil ceremonies. Professional crews follow building rules — no blocking hallways or staircases, no lighting rigs. Experienced SF vendors know the etiquette.',
+      },
+      {
+        question: 'What should we do after our City Hall ceremony?',
+        answer: 'The classic move: portraits inside City Hall, then golden hour at a scenic location — Baker Beach with the Golden Gate behind you, Lands End trails, or the Palace of Fine Arts. Then dinner at a favorite restaurant with your people. It\'s a full wedding day compressed into its best hours.',
+      },
+    ],
+  },
+  {
+    slug: 'best-silicon-valley-wedding-venues',
+    title: 'The Best Silicon Valley & Peninsula Wedding Venues (2026 Guide)',
+    description: 'From redwood estates in Los Gatos to mountaintop wineries in Woodside — a local videographer\'s guide to the South Bay and Peninsula\'s most cinematic wedding venues.',
+    date: '2026-06-29',
+    location: 'Silicon Valley, CA',
+    category: 'Venues',
+    readTime: '8 min',
+    image: '/assets/seo/phaminh-wedding-cover.jpg',
+    sections: [
+      {
+        type: 'intro',
+        content: `The Peninsula and South Bay quietly hold some of Northern California's most stunning wedding venues. While everyone talks about Napa, locals know: within 45 minutes of Palo Alto you can get married in a redwood grove, on a mountaintop vineyard, or in a historic villa's formal gardens.
+
+I live in Mountain View and film across this area constantly as a [Silicon Valley wedding videographer](/wedding-videographer/silicon-valley). These are the venues I recommend when couples ask where to look — with honest notes on how each films.`,
+      },
+      {
+        type: 'section',
+        heading: 'Nestldown — Los Gatos',
+        content: `If a storybook had a wedding venue, it would be Nestldown. Redwood groves, a tiny red barn, manicured gardens, even a miniature train. It's one of the most beloved venues in Northern California, and dates go fast.
+
+**On film:** the light through the redwoods at ceremony time is pure magic — god rays, soft shadows, deep greens. This venue single-handedly justifies hiring a videographer who knows how to expose for forest light.`,
+      },
+      {
+        type: 'section',
+        heading: 'Thomas Fogarty Winery — Woodside',
+        content: `Ceremonies on a deck that floats above the entire Bay Area, with vineyard rows falling away below. On a clear day you can see from San Francisco to San Jose.
+
+**On film:** unbeatable establishing shots and a sunset that turns the whole valley gold. It's exposed up there — wind protection on microphones is non-negotiable, and I always bring it.`,
+      },
+      {
+        type: 'section',
+        heading: 'Villa Montalvo & Mountain Winery — Saratoga',
+        content: `**Villa Montalvo** is a historic Mediterranean villa with formal gardens, sweeping lawns, and a grand staircase made for portraits. Classic, elegant, timeless on camera.
+
+**The Mountain Winery** sits above Saratoga with amphitheater views across the valley — dramatic at dusk when the lights come on below. Both venues give a wedding film real production value.`,
+      },
+      {
+        type: 'section',
+        heading: 'Filoli, Allied Arts Guild & Kohl Mansion — The Peninsula Classics',
+        content: `- **Filoli** (Woodside) — the legendary estate and gardens; every frame looks like a period film.
+- **Allied Arts Guild** (Menlo Park) — Spanish colonial courtyards, fountains, and bougainvillea.
+- **Kohl Mansion** (Burlingame) — Tudor brick grandeur with rose gardens.
+
+**On film:** these historic properties bring architecture and texture that make even simple ceremonies feel grand. They're also photographer/videographer-friendly, with decades of weddings behind them.`,
+      },
+      {
+        type: 'section',
+        heading: 'Modern Luxury: Rosewood Sand Hill and Hotel Options',
+        content: `**Rosewood Sand Hill** (Menlo Park) is the Peninsula's five-star play — modern California architecture, Windy Hill views, impeccable service. Tech-industry couples love it, and it films like a resort editorial.
+
+For city-style celebrations, San Jose's historic **Hayes Mansion** and downtown hotels handle larger guest lists with classic ballroom elegance.
+
+Wherever you land, one local advantage matters: I'm based in Mountain View, minutes from all of these venues — no travel fees, easy venue walkthroughs, and a videographer who already knows the light. See [my packages](/pricing) or [check your date](/contact).`,
+      },
+    ],
+    faqs: [
+      {
+        question: 'What do Silicon Valley wedding venues cost?',
+        answer: 'Venue fees range widely: garden and historic venues often run $5,000–$15,000, while luxury resorts like Rosewood Sand Hill command significantly more. Peak Saturday dates in spring and fall book 12+ months out at the most popular venues like Nestldown.',
+      },
+      {
+        question: 'Which South Bay venues are best for outdoor ceremonies?',
+        answer: 'Nestldown and Thomas Fogarty are the standouts for natural beauty — redwoods and vineyard views respectively. Villa Montalvo\'s Great Lawn and Filoli\'s gardens are the classic formal options. All four have reliable weather most of the year, though hilltop venues need wind planning.',
+      },
+      {
+        question: 'Do you need a videographer familiar with these venues?',
+        answer: 'It genuinely helps. Forest venues like Nestldown demand skill with dappled light; hilltop venues like Thomas Fogarty demand audio wind protection; historic interiors reward fast lenses. A videographer who has filmed your venue arrives with a plan instead of learning on your wedding day.',
+      },
+    ],
+  },
+  {
+    slug: 'anthony-chapel-wedding-guide',
+    title: 'Getting Married at Anthony Chapel: A Videographer\'s Guide (2026)',
+    description: 'Anthony Chapel at Garvan Woodland Gardens is Arkansas\'s most breathtaking wedding venue. Here\'s how to plan your ceremony there — timing, light, logistics, and film.',
+    date: '2026-07-05',
+    location: 'Hot Springs, AR',
+    category: 'Venues',
+    readTime: '7 min',
+    image: '/assets/seo/phaminh-wedding-cover.jpg',
+    sections: [
+      {
+        type: 'intro',
+        content: `Six stories of glass and pine rising out of an Arkansas forest — Anthony Chapel at Garvan Woodland Gardens isn't just the most famous wedding venue in Arkansas; it's one of the most striking ceremony spaces in America. Couples travel from across the country to marry under its soaring wooden trusses.
+
+I've filmed at Anthony Chapel as a [Hot Springs wedding videographer](/wedding-videographer/hot-springs), and it deserves both the hype and some honest planning advice. Here's what to know.`,
+      },
+      {
+        type: 'section',
+        heading: 'Why Anthony Chapel Is Special',
+        content: `Designed in the tradition of E. Fay Jones' Thorncrown Chapel (its architects worked with Jones), Anthony Chapel turns the surrounding forest into the architecture. The glass walls mean your ceremony happens *inside* the woods — dogwoods in spring, deep green in summer, fire-colored leaves in fall, and bare dramatic branches in winter.
+
+Every season films differently, and all of them film beautifully. There is no bad month for an Anthony Chapel wedding.`,
+      },
+      {
+        type: 'section',
+        heading: 'Booking and Logistics',
+        content: `- **Book early.** Anthony Chapel is one of the most in-demand venues in the region — popular Saturday dates often book a year or more ahead. Weekdays and Sunday afternoons open up more availability.
+- **Time slots are structured.** Ceremonies run in scheduled blocks, which keeps the day organized but means your timeline needs to be tight. Your vendors should know the rhythm.
+- **Receptions happen nearby.** Many couples pair the chapel ceremony with a reception at the adjacent Magnolia Room or at hotels and venues in Hot Springs proper.
+- **The gardens are part of the deal.** Garvan Woodland Gardens surrounds the chapel — bridges, waterfalls, and koi ponds make portrait sessions extraordinary.`,
+      },
+      {
+        type: 'section',
+        heading: 'Filming Anthony Chapel: What Your Videographer Should Know',
+        content: `The chapel is glorious and technically demanding in equal measure:
+
+**The light is extreme.** Glass walls mean the forest can be in shade while the sky glows above — a dynamic range challenge that punishes auto settings. Your videographer needs to know how to expose for it.
+
+**The ceremony moves fast.** With structured time blocks, there are no do-overs. Multiple cameras, pre-planned positions, and clean audio on the officiant and vows are essential.
+
+**Golden hour in the gardens** after the ceremony is where the film earns its keep — the bridges and pavilions of Garvan Gardens at dusk are pure cinema.
+
+If you're planning an Anthony Chapel wedding, [my film packages](/pricing) start at $2,700, and I know the chapel's light and timing well. I film across [Central Arkansas](/wedding-videographer/little-rock) and [Northwest Arkansas](/wedding-videographer/northwest-arkansas) year-round.`,
+      },
+    ],
+    faqs: [
+      {
+        question: 'How far in advance should we book Anthony Chapel?',
+        answer: 'For peak Saturdays in spring and fall, plan on 12–18 months ahead. Weekday and off-season dates are considerably more available. Book the chapel first, then build your vendor team around your date.',
+      },
+      {
+        question: 'What is the best season for an Anthony Chapel wedding?',
+        answer: 'All four seasons are beautiful because the forest is the backdrop: spring dogwoods, lush green summers, blazing fall color (late October–early November is peak), and dramatic bare-branch winters. Fall books heaviest; winter is the hidden gem for availability and moody film aesthetics.',
+      },
+      {
+        question: 'Where do receptions happen after an Anthony Chapel ceremony?',
+        answer: 'Many couples use event spaces at Garvan Woodland Gardens or head into Hot Springs — the historic Arlington Hotel and lakeside venues on Lake Hamilton are popular. Your videographer can film both locations in one package; just plan travel time into the timeline.',
+      },
+    ],
+  },
 ];
 
 export const getBlogPost = (slug) => blogPosts.find((p) => p.slug === slug);

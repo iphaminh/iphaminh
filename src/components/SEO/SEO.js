@@ -113,7 +113,21 @@ const SEO = ({
     },
     founder: {
       '@type': 'Person',
+      '@id': `${SITE_URL}/#minhpham`,
       name: 'Minh Pham',
+      jobTitle: 'Wedding Videographer & Cinematographer',
+      worksFor: { '@id': `${SITE_URL}/#localbusiness` },
+      knowsAbout: [
+        'Wedding videography',
+        'Cinematic wedding films',
+        'Elopement films',
+        'Wedding photography',
+      ],
+      sameAs: [
+        'https://www.instagram.com/phaminh/',
+        'https://vimeo.com/minhpham',
+        'https://www.youtube.com/@Phaminh-Cinematography',
+      ],
     },
     areaServed: [
       // Bay Area cities

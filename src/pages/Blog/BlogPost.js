@@ -15,12 +15,20 @@ function formatDate(dateStr) {
   });
 }
 
-// Render **bold** markdown inline
+// Render **bold** and [text](url) markdown inline
 function renderInline(text) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     if (part.startsWith('**') && part.endsWith('**')) {
       return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      const [, label, href] = link;
+      if (href.startsWith('/')) {
+        return <Link key={i} to={href}>{label}</Link>;
+      }
+      return <a key={i} href={href} target="_blank" rel="noreferrer">{label}</a>;
     }
     return part;
   });

@@ -66,7 +66,8 @@ phaminh.com/cine reads from src/data/films.js (curated) and src/data/vimeo-video
 | `src/pages/CineGallery/CineGallery.js` | Gallery page. Hero carousel (4 hardcoded featured films) + grid (from `src/data/films.js`). Each grid thumbnail links to `/cine/:slug` for SEO-indexable individual film pages. |
 | `src/data/films.js` | Curated film list. Each entry has: slug, vimeoId, title, location, date, description, vendor credits. Edit manually when adding featured films. |
 | `src/data/vimeo-videos.json` | Auto-updated by GitHub Action. Do not edit manually — it gets overwritten every 6 hours. |
-| `src/data/blogPosts.js` | 7 SEO blog articles targeting Bay Area and NWA keywords. |
+| `src/data/blogPosts.js` | 12 SEO blog articles targeting Bay Area, Napa, Silicon Valley, and Arkansas keywords. Content supports `**bold**`, `- ` lists, and `[text](url)` internal links. |
+| `public/llms.txt` | AI-search (AEO) summary of the business for LLM crawlers — update when service areas or pricing change. |
 | `src/data/locations.json` | Local-SEO landing page content for 8 NorCal markets (Napa, Sonoma, SF, Silicon Valley, Carmel/Big Sur, Half Moon Bay, Marin, Tahoe). Read by both `LocationPage.js` and `prerender.js`. Add a new market by adding an entry here — routes, prerender, and sitemap pick it up automatically. |
 | `src/pages/LocationPage/LocationPage.js` | Renders `/wedding-videographer` (hub) and `/wedding-videographer/:slug` from `locations.json`, with FAQPage + Service JSON-LD. |
 | `public/sitemap.xml` | Updated by `seo-automation.js` when new films are added. |

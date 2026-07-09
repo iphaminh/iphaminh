@@ -12,6 +12,22 @@ import './LocationPage.css';
 
 const SITE_URL = 'https://www.phaminh.com';
 
+// Prefer films whose location matches the page's region; fill with the
+// newest films if there aren't enough regional matches yet.
+const GROUP_KEYWORDS = {
+  Arkansas: ['arkansas', 'ozark'],
+  'Northern California': ['california', 'napa', 'sonoma', 'san francisco', 'bay area', 'carmel', 'big sur', 'tahoe', 'monterey'],
+};
+
+function filmsForGroup(group, count = 3) {
+  const keywords = GROUP_KEYWORDS[group] || [];
+  const matches = films.filter((f) =>
+    keywords.some((k) => f.location.toLowerCase().includes(k))
+  );
+  const fill = films.filter((f) => !matches.includes(f));
+  return [...matches, ...fill].slice(0, count);
+}
+
 // Hub page listing every market — rendered at /wedding-videographer
 function LocationIndex() {
   return (
@@ -79,7 +95,7 @@ export default function LocationPage() {
   }
 
   const url = `${SITE_URL}/wedding-videographer/${loc.slug}`;
-  const featuredFilms = films.slice(0, 3);
+  const featuredFilms = filmsForGroup(loc.group);
   const nearby = (loc.nearby || [])
     .map((s) => locations.find((l) => l.slug === s))
     .filter(Boolean);
