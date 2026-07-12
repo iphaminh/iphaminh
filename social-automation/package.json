@@ -1,0 +1,16 @@
+{
+  "name": "phaminh-social-automation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node src/generate.js",
+    "publish": "node src/publish.js",
+    "run": "node src/run.js",
+    "check": "node --check src/generate.js && node --check src/publish.js && node --check src/run.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "sharp": "^0.34.3"
+  }
+}

@@ -1,0 +1,74 @@
+name: Daily Vietnamese Social Content
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Generate, publish, or run both steps
+        type: choice
+        options: [generate, publish, both]
+        default: both
+      force_regenerate:
+        description: Replace today's generated carousel
+        type: boolean
+        default: false
+
+concurrency:
+  group: daily-social-content
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  social-content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: social-automation/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: social-automation
+
+      - name: Generate carousel
+        if: ${{ github.event_name == 'schedule' || inputs.mode == 'generate' || inputs.mode == 'both' }}
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node src/generate.js ${{ inputs.force_regenerate && '--force' || '' }}
+        working-directory: social-automation
+
+      - name: Commit generated content
+        if: ${{ github.event_name == 'schedule' || inputs.mode == 'generate' || inputs.mode == 'both' }}
+        run: |
+          git config user.name "Phaminh Social Bot"
+          git config user.email "social-bot@phaminh.com"
+          git add public/social-content
+          git diff --cached --quiet || git commit -m "content: daily Vietnamese carousel [skip social]"
+          git push
+
+      - name: Publish carousel
+        if: ${{ github.event_name == 'schedule' || inputs.mode == 'publish' || inputs.mode == 'both' }}
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          TIKTOK_ACCESS_TOKEN: ${{ secrets.TIKTOK_ACCESS_TOKEN }}
+          PUBLISH_ENABLED: ${{ vars.SOCIAL_PUBLISH_ENABLED || 'false' }}
+        run: node src/publish.js
+        working-directory: social-automation
+
+      - name: Commit publication receipt
+        if: ${{ vars.SOCIAL_PUBLISH_ENABLED == 'true' }}
+        run: |
+          git add public/social-content
+          git diff --cached --quiet || git commit -m "chore: record social publication [skip ci]"
+          git push
