@@ -24,6 +24,7 @@ const fs = require("fs");
 const path = require("path");
 const { URL } = require("url");
 const os = require("os");
+const { execFile } = require("child_process");
 const { logVideoToNotion } = require("./notion-log");
 
 const VIMEO_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
@@ -122,14 +123,29 @@ async function fetchAllVimeoVideos() {
   return videos;
 }
 
-function pickBestDownload(video) {
-  const downloads = video.download || [];
-  if (!downloads.length) return null;
-  // Prefer 720p or 1080p (fast download+upload, still HD).
-  const preferred = downloads.find((d) => PREFERRED_QUALITY_LABEL.test(d.public_name || d.rendition || ""))
-                 || downloads.find((d) => (d.height || 0) <= 1080)
-                 || downloads[0];
-  return preferred.link;
+// Download a Vimeo video with yt-dlp. It handles all the auth, embed-restriction,
+// and format-selection quirks that break naive HTTP downloaders. Requires yt-dlp
+// on PATH (installed via brew locally and via pip in the GitHub Action).
+function downloadVimeoWithYtDlp(videoId, destPath) {
+  return new Promise((resolve, reject) => {
+    const args = [
+      "-f", "best[height<=1080]/best",   // prefer 1080p or below (small enough to upload fast, still HD)
+      "-o", destPath,
+      "--no-warnings",
+      "--no-progress",
+      "--referer", "https://www.phaminh.com/",
+      `https://vimeo.com/${videoId}`,
+    ];
+    execFile("yt-dlp", args, { maxBuffer: 20 * 1024 * 1024 }, (err, stdout, stderr) => {
+      if (err) {
+        return reject(new Error(`yt-dlp failed: ${stderr || err.message}`));
+      }
+      if (!fs.existsSync(destPath)) {
+        return reject(new Error(`yt-dlp finished but output file not found: ${destPath}`));
+      }
+      resolve(destPath);
+    });
+  });
 }
 
 function findVimeoThumbnail(video) {
@@ -158,7 +174,7 @@ function isSEOFormatted(video) {
 function claude(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
-      model: "claude-opus-4-6",
+      model: "claude-sonnet-4-6",
       max_tokens: 2000,
       messages: [{ role: "user", content: prompt }],
     });
@@ -176,9 +192,18 @@ function claude(prompt) {
       let data = "";
       res.on("data", (c) => (data += c));
       res.on("end", () => {
-        try {
-          resolve(JSON.parse(data).content[0].text);
-        } catch (e) { reject(e); }
+        let parsed;
+        try { parsed = JSON.parse(data); }
+        catch (e) { return reject(new Error(`Claude non-JSON response (${res.statusCode}): ${data.slice(0, 300)}`)); }
+
+        if (parsed.type === "error" || parsed.error) {
+          const err = parsed.error || parsed;
+          return reject(new Error(`Claude API error (${res.statusCode}) ${err.type || ""}: ${err.message || JSON.stringify(err).slice(0, 300)}`));
+        }
+        if (!parsed.content?.[0]?.text) {
+          return reject(new Error(`Claude unexpected response (${res.statusCode}): ${JSON.stringify(parsed).slice(0, 300)}`));
+        }
+        resolve(parsed.content[0].text);
       });
     });
     req.on("error", reject);
@@ -188,33 +213,73 @@ function claude(prompt) {
 }
 
 async function generateYouTubeSEO(vimeoTitle, vimeoDescription) {
-  const prompt = `You are a YouTube SEO specialist for Phaminh Cinematography, a luxury wedding film company owned by Minh Pham.
+  const prompt = `You are a YouTube SEO specialist optimizing for YouTube's 2026 discovery algorithm.
+Client: Phaminh Cinematography — a luxury wedding videography studio owned by Minh Pham.
 
-Service areas: San Francisco Bay Area · Napa · Mountain View California · Bentonville Arkansas · Northwest Arkansas · Hot Springs Arkansas.
+BRAND CONTEXT
+Service areas: San Francisco Bay Area · Napa Valley · Sonoma · Silicon Valley · Marin · Bentonville AR · Fayetteville AR · Rogers AR · Northwest Arkansas · Little Rock · Hot Springs AR.
 Website: https://www.phaminh.com
-Instagram: @phaminh
+YouTube: https://www.youtube.com/@Phaminh-Cinematography
+Instagram: https://www.instagram.com/phaminh/
+Contact: phaminh@outlook.com · (870) 270-8837
+Positioning: Cinematic, story-first wedding films. Warm, timeless, calm-on-the-wedding-day approach.
 
-The video was originally published on Vimeo with this metadata:
+SOURCE VIDEO (from Vimeo)
 Title: ${vimeoTitle}
 Description: ${vimeoDescription || "(no description)"}
 
-Now generate a complete YouTube SEO package tuned for YouTube's search + discovery (YouTube prefers different phrasing than Vimeo: front-load high-intent keywords, questions, and location searches).
+YOUR TASK
+Produce a complete YouTube SEO package tuned for 2026's algorithm. Return ONLY the exact format below — no preamble, no closing summary.
 
-Return ONLY this exact format:
+===== YT_TITLE =====
+Rules for the title (60-70 chars ideal, hard cap 100):
+- Front-load the primary keyword in the first 40 characters (YouTube weights early words heavily).
+- Use the pattern: "[Couple/Venue] | [Location] Wedding Videographer" or "[Emotional hook] | [Location] Wedding Film 2026".
+- Include the year "2026" when it fits — it drives freshness rankings.
+- Prefer natural, human phrasing over keyword stuffing (YouTube's 2026 update penalizes clickbait).
+- Avoid ALL CAPS and excessive emojis (one max, and only if it fits the brand).
 
-YT_TITLE: [max 100 chars. Front-load with the couple names or venue + location + "wedding videographer/cinematographer" phrasing]
+===== YT_DESCRIPTION =====
+Rules for the description (target 400-600 words):
+- **First 125 characters are critical** — they appear as the search snippet AND above-the-fold on watch pages. Lead with 1 emotional sentence that includes the primary keyword + location.
+- **Line 2 (still above the fold on mobile):** the concrete "who + where + what" — couple, venue if named, city.
+- Include a horizontal separator like "━━━━━━━━━━" between sections so the description scans well.
+- **Sections in this order:**
+  1. Emotional hook (2-3 sentences, keyword-rich).
+  2. About the wedding — vendors and venue named from the source description if any.
+  3. About Phaminh Cinematography (1 paragraph: what we do, service areas, style).
+  4. "📩 BOOKING & INQUIRIES" — website + email + phone.
+  5. "🎬 WATCH MORE" — 2-3 line breaks with placeholder like "→ Wedding films: https://www.phaminh.com/cine"
+  6. "🔗 FOLLOW" — Instagram + YouTube subscribe reminder.
+  7. Timestamps section labeled "⏱ TIMESTAMPS" with 3-4 approximate chapters (00:00 Introduction / 00:XX Ceremony / etc.) — use best guess based on video type; don't fabricate if unknown for very short teasers.
+  8. Community engagement question ("💬 What's your favorite wedding tradition? Let me know in the comments.") — YouTube's 2026 algorithm heavily weights comment engagement.
+  9. Final line: 3-5 relevant hashtags (see hashtag rules below).
 
-YT_DESCRIPTION: [500+ words. Structure:
-- 1-2 sentence emotional hook
-- Wedding details (couple, venue, location, date if in original)
-- What you loved capturing
-- Vendor credits mentioning any that appear in the original
-- Call to action: "Book your wedding film at https://www.phaminh.com"
-- Contact: phaminh@outlook.com
-- Follow on Instagram: https://www.instagram.com/phaminh/
-- Hashtags at the end (10-15 relevant tags)]
+===== YT_TAGS =====
+Return exactly 20 comma-separated tags optimized for 2026 YouTube:
+- 1-3 broad category tags (wedding videographer, wedding film, cinematic wedding)
+- 5-7 location-specific long-tail tags ("bay area wedding videographer", "northwest arkansas wedding film", "napa valley wedding")
+- 3-5 venue or style tags if hinted by source (e.g., "outdoor wedding", "vineyard wedding", "elopement film")
+- 2-3 aspirational/searcher-intent phrases ("best wedding videographer 2026", "how to hire a wedding videographer")
+- 2-3 brand tags ("phaminh cinematography", "minh pham videographer")
+Keep every tag under 30 characters. All lowercase. No hashtag "#" prefix (tags are separate from hashtags).
 
-YT_TAGS: [15 comma-separated tags optimized for YouTube search: mix location-specific ("bay area wedding videographer"), venue names if present, style keywords ("cinematic wedding film"), and long-tail phrases ("best wedding videographer in northwest arkansas")]`;
+===== HASHTAGS (embedded in description, not tags) =====
+End the description with exactly 5 hashtags on one line. Prioritize:
+- 1 primary location hashtag (#BayAreaWeddingVideographer, #ArkansasWeddingFilm, etc.)
+- 1 style hashtag (#CinematicWeddingFilm)
+- 1 secondary location hashtag if the wedding spans regions
+- 1 brand hashtag (#PhaminhCinematography)
+- 1 year/trending hashtag (#WeddingFilm2026 or #Wedding2026)
+Note: YouTube shows the first 3 hashtags above the title. Choose those 3 to be the highest-search-volume.
+
+FORMAT — return exactly this, and nothing else:
+
+YT_TITLE: <title>
+
+YT_DESCRIPTION: <description with all sections above, real line breaks — no HTML>
+
+YT_TAGS: <tag1>, <tag2>, ..., <tag20>`;
 
   const raw = await claude(prompt);
 
@@ -222,10 +287,35 @@ YT_TAGS: [15 comma-separated tags optimized for YouTube search: mix location-spe
   const descMatch = raw.match(/YT_DESCRIPTION:\s*([\s\S]+?)(?=YT_TAGS:|$)/);
   const tagsMatch = raw.match(/YT_TAGS:\s*(.+)/);
 
+  const rawTags = tagsMatch
+    ? tagsMatch[1].trim().split(",")
+        .map((t) => t
+          .trim()
+          .replace(/^#/, "")             // strip hashtag prefix if any
+          .replace(/["'<>]/g, "")          // YouTube forbids quotes, angle brackets
+          .replace(/[:\|]/g, " ")          // colons and pipes break tag parsing
+          .replace(/\s+/g, " ")            // collapse whitespace
+          .trim()
+          .toLowerCase()
+        )
+        .filter((t) => t.length > 1 && t.length < 100)  // YouTube per-tag limits
+    : [];
+  // YouTube caps total tags at 500 characters. Tags with spaces count as
+  // <length> + 2 (surrounded by quotes when serialized). Drop until we fit.
+  const tags = [];
+  let totalLen = 0;
+  for (const t of rawTags) {
+    const cost = t.includes(" ") ? t.length + 2 : t.length;
+    if (totalLen + cost + 1 > 450) break;
+    tags.push(t);
+    totalLen += cost + 1;
+  }
+  console.log(`  🏷  ${tags.length} sanitized tags (${totalLen} chars): ${tags.join(", ")}`);
+
   return {
     title: titleMatch ? titleMatch[1].trim().slice(0, 100) : vimeoTitle,
-    description: descMatch ? descMatch[1].trim() : (vimeoDescription || ""),
-    tags: tagsMatch ? tagsMatch[1].trim().split(",").map((t) => t.trim()).filter(Boolean).slice(0, 15) : [],
+    description: descMatch ? descMatch[1].trim().slice(0, 5000) : (vimeoDescription || ""),
+    tags: tags.slice(0, 20),
   };
 }
 
@@ -361,20 +451,14 @@ async function processVideo(video, accessToken) {
   const label = `${video.name} (${videoId})`;
   console.log(`\n▶ ${label}`);
 
-  const downloadUrl = pickBestDownload(video);
-  if (!downloadUrl) {
-    console.log(`  ✗ No downloadable rendition available (check Vimeo plan / video privacy).`);
-    return;
-  }
-
   const thumbUrl = findVimeoThumbnail(video);
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "yt-sync-"));
   const mp4Path = path.join(tmpDir, `${videoId}.mp4`);
   const thumbPath = path.join(tmpDir, `${videoId}.jpg`);
 
   try {
-    console.log(`  ⬇ Downloading from Vimeo...`);
-    await downloadToFile(downloadUrl, mp4Path);
+    console.log(`  ⬇ Downloading from Vimeo via yt-dlp...`);
+    await downloadVimeoWithYtDlp(videoId, mp4Path);
     const sizeMB = (fs.statSync(mp4Path).size / (1024 * 1024)).toFixed(1);
     console.log(`  ⬇ Downloaded ${sizeMB} MB`);
 

@@ -99,6 +99,9 @@ jobs:
           VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
         run: node scripts/update-cine-gallery.js
 
+      - name: Install yt-dlp (used to download videos from Vimeo)
+        run: pip install --user yt-dlp
+
       - name: Sync eligible Vimeo videos to YouTube
         continue-on-error: true   # non-fatal — quota exhaustion / network hiccups shouldn't fail whole workflow
         env:
