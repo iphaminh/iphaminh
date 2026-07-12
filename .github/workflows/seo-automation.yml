@@ -99,6 +99,19 @@ jobs:
           VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
         run: node scripts/update-cine-gallery.js
 
+      - name: Sync eligible Vimeo videos to YouTube
+        continue-on-error: true   # non-fatal — quota exhaustion / network hiccups shouldn't fail whole workflow
+        env:
+          VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
+          VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: node scripts/youtube-sync.js --limit=3
+
       - name: Commit updated video data if changed
         run: |
           git config user.name "github-actions[bot]"
