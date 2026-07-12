@@ -37,6 +37,37 @@ const YT_REFRESH_TOKEN = process.env.YOUTUBE_REFRESH_TOKEN;
 const YT_SYNC_TAG_PREFIX = "youtube:";
 const DEFAULT_LIMIT = 3;
 const PREFERRED_QUALITY_LABEL = /(720p|1080p)/i;
+const REGISTRY_PATH = path.join(__dirname, "youtube-registry.json");
+
+// Local JSON registry (vimeoId -> youtubeId). Used as a fallback when Vimeo
+// rejects new tags (e.g. video is at Vimeo's 100-tag limit) and as belt-and-
+// suspenders duplicate protection.
+function loadRegistry() {
+  try {
+    if (!fs.existsSync(REGISTRY_PATH)) return {};
+    const raw = fs.readFileSync(REGISTRY_PATH, "utf8");
+    const parsed = JSON.parse(raw);
+    // Drop the "_comment" key so it doesn't get treated as an entry.
+    const clean = {};
+    for (const [k, v] of Object.entries(parsed)) {
+      if (!k.startsWith("_") && typeof v === "string") clean[k] = v;
+    }
+    return clean;
+  } catch (e) {
+    console.warn(`  ⚠ Could not read registry (${e.message}) — proceeding without it`);
+    return {};
+  }
+}
+
+function saveRegistryEntry(vimeoId, youtubeId) {
+  let parsed = {};
+  if (fs.existsSync(REGISTRY_PATH)) {
+    try { parsed = JSON.parse(fs.readFileSync(REGISTRY_PATH, "utf8")); }
+    catch (e) { parsed = {}; }
+  }
+  parsed[vimeoId] = youtubeId;
+  fs.writeFileSync(REGISTRY_PATH, JSON.stringify(parsed, null, 2) + "\n");
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Generic HTTPS helpers
@@ -159,7 +190,9 @@ async function tagVimeoVideo(videoId, tag) {
   return vimeo("PUT", `/videos/${videoId}/tags/${encodeURIComponent(tag)}`, {});
 }
 
-function hasYouTubeSyncTag(video) {
+function hasYouTubeSyncTag(video, registry) {
+  const videoId = video.uri.replace("/videos/", "");
+  if (registry && registry[videoId]) return true;
   return (video.tags || []).some((t) => (t.name || "").startsWith(YT_SYNC_TAG_PREFIX));
 }
 
@@ -486,9 +519,17 @@ async function processVideo(video, accessToken) {
       }
     }
 
-    // Tag the Vimeo video so we skip it next run
-    await tagVimeoVideo(videoId, `${YT_SYNC_TAG_PREFIX}${youtubeId}`);
-    console.log(`  🏷  Vimeo tagged: ${YT_SYNC_TAG_PREFIX}${youtubeId}`);
+    // Tag the Vimeo video so we skip it next run.
+    // If Vimeo rejects (403 = tag limit, etc.), fall back to the JSON registry.
+    try {
+      const tagResult = await tagVimeoVideo(videoId, `${YT_SYNC_TAG_PREFIX}${youtubeId}`);
+      if (tagResult.status >= 400) throw new Error(`HTTP ${tagResult.status}`);
+      console.log(`  🏷  Vimeo tagged: ${YT_SYNC_TAG_PREFIX}${youtubeId}`);
+    } catch (tagErr) {
+      console.warn(`  ⚠ Vimeo tag failed (${tagErr.message}) — recording in local registry instead`);
+      saveRegistryEntry(videoId, youtubeId);
+      console.log(`  🏷  Registry updated: ${videoId} -> ${youtubeId}`);
+    }
 
     // Log to Notion
     try {
@@ -525,8 +566,18 @@ async function main() {
   const accessToken = await getYouTubeAccessToken();
   console.log("✓ YouTube access token acquired");
 
+  const registry = loadRegistry();
+  const registryCount = Object.keys(registry).length;
+  if (registryCount) console.log(`✓ Loaded registry with ${registryCount} pre-existing Vimeo → YouTube mappings`);
+
   let candidates;
   if (forcedId) {
+    // Force sync bypasses the sync-tag check but still respects the registry
+    // so we don't accidentally re-upload something already on YouTube.
+    if (registry[forcedId]) {
+      console.log(`Video ${forcedId} is in the registry as youtube:${registry[forcedId]} — already on YouTube. Aborting.`);
+      return;
+    }
     const { body } = await vimeo("GET", `/videos/${forcedId}?fields=uri,name,description,tags,pictures,download`);
     if (!body?.uri) {
       console.error(`Vimeo video ${forcedId} not found`);
@@ -536,7 +587,7 @@ async function main() {
     console.log(`Forcing sync of video ${forcedId}`);
   } else {
     const allVideos = await fetchAllVimeoVideos();
-    candidates = allVideos.filter((v) => isSEOFormatted(v) && !hasYouTubeSyncTag(v)).slice(0, limit);
+    candidates = allVideos.filter((v) => isSEOFormatted(v) && !hasYouTubeSyncTag(v, registry)).slice(0, limit);
     console.log(`Found ${allVideos.length} videos total; ${candidates.length} eligible for YouTube sync (limit: ${limit})`);
   }
 
