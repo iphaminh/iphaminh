@@ -24,6 +24,13 @@ const ContactForm = () => {
       if (res.ok) {
         setStatus('success');
         form.reset();
+        // GA4 lead conversion — mark generate_lead as a Key Event in GA4
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', {
+            form_id: 'contact',
+            interested_in: data.get('interested_in') || '',
+          });
+        }
       } else {
         setStatus('error');
       }
