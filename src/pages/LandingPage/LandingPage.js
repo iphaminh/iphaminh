@@ -9,6 +9,13 @@ import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import SEO from '../../components/SEO/SEO';
 import './LandingPage.css';
 
+// Phones get a 540p encode (8 MB) instead of the full 720p desktop file (36 MB).
+// Decided once at load — background hero quality is indistinguishable on small screens.
+const HERO_VIDEO =
+  typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+    ? '/assets/highlight_film/Phaminh-web-mobile.mp4'
+    : '/assets/highlight_film/Phaminh-web.mp4';
+
 const LandingPage = () => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -51,7 +58,7 @@ const LandingPage = () => {
           if (v && v.paused) v.play().catch(() => {});
         }}
       >
-        <source src="/assets/highlight_film/Phaminh-web.mp4" type="video/mp4" />
+        <source src={HERO_VIDEO} type="video/mp4" />
         <track kind="captions" srcLang="en" label="English captions" default />
         Your browser does not support the video tag.
       </video>
