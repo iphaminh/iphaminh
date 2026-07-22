@@ -155,9 +155,24 @@ async function fetchAllVimeoVideos() {
   return videos;
 }
 
-// Download a Vimeo video with yt-dlp. It handles all the auth, embed-restriction,
-// and format-selection quirks that break naive HTTP downloaders. Requires yt-dlp
-// on PATH (installed via brew locally and via pip in the GitHub Action).
+// Preferred download path: Vimeo's own API download links. First-party and
+// reliable — no scraping. Requires a token whose account/scope exposes the
+// \`download\` field. Returns null when unavailable so we can fall back to yt-dlp.
+async function getVimeoDirectDownloadUrl(videoId) {
+  const { body } = await vimeo("GET", `/videos/${videoId}?fields=download`);
+  const links = (body?.download || []).filter((d) => d.link && d.type !== "source");
+  if (!links.length) return null;
+  // Prefer the largest rendition at or below 1080p; else the smallest overall.
+  const capped = links.filter((d) => (d.height || 0) <= 1080);
+  const pick = (capped.length ? capped : links).sort((a, b) => (b.height || 0) - (a.height || 0))[capped.length ? 0 : links.length - 1];
+  console.log(`  ⬇ Vimeo API offers ${links.length} download link(s) — using ${pick.rendition || pick.height + "p"} (${Math.round((pick.size || 0) / 1024 / 1024)} MB)`);
+  return pick.link;
+}
+
+// Fallback: yt-dlp. Vimeo periodically breaks its extractor (e.g. the mid-2026
+// \"Failed to fetch macos OAuth token: 401\" lockout), so the workflow installs
+// the nightly channel for the freshest fixes and we only use it when the API
+// exposes no direct download links.
 function downloadVimeoWithYtDlp(videoId, destPath) {
   return new Promise((resolve, reject) => {
     const args = [
@@ -504,8 +519,13 @@ async function processVideo(video, accessToken) {
   const thumbPath = path.join(tmpDir, `${videoId}.jpg`);
 
   try {
-    console.log(`  ⬇ Downloading from Vimeo via yt-dlp...`);
-    await downloadVimeoWithYtDlp(videoId, mp4Path);
+    const directUrl = await getVimeoDirectDownloadUrl(videoId);
+    if (directUrl) {
+      await downloadToFile(directUrl, mp4Path);
+    } else {
+      console.log(`  ⬇ No API download links — falling back to yt-dlp...`);
+      await downloadVimeoWithYtDlp(videoId, mp4Path);
+    }
     const sizeMB = (fs.statSync(mp4Path).size / (1024 * 1024)).toFixed(1);
     console.log(`  ⬇ Downloaded ${sizeMB} MB`);
 

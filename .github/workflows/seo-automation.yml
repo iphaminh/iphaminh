@@ -155,8 +155,11 @@ jobs:
       - name: Install Node deps
         run: cd scripts && npm install
 
-      - name: Install yt-dlp
-        run: pip install --user yt-dlp
+      # Nightly channel — Vimeo breaks yt-dlp's extractor periodically and
+      # fixes land in nightly first. yt-dlp is only the fallback downloader;
+      # the script prefers Vimeo API direct download links.
+      - name: Install yt-dlp (nightly)
+        run: pip install --user --pre "yt-dlp[default]"
 
       - name: Sync one Vimeo video to YouTube
         env:

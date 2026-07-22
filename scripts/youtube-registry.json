@@ -1,5 +1,7 @@
 {
-  "_comment": "Local registry: vimeoId -> youtubeId. Used as a fallback when Vimeo won't accept new tags (100-tag limit) or when we want a persistent record separate from Vimeo. youtube-sync.js reads BOTH this file AND Vimeo tags when deciding whether to skip.",
+  "446604711": "hDaGSXNgjPs",
+  "464379149": "MWoZ4BJVmU4",
+  "466407255": "ker6eLtaz5c",
   "483900333": "UpbZPKbCUNQ",
-  "446604711": "hDaGSXNgjPs"
+  "_comment": "Local registry: vimeoId -> youtubeId. Used as a fallback when Vimeo won't accept new tags (100-tag limit) or when we want a persistent record separate from Vimeo. youtube-sync.js reads BOTH this file AND Vimeo tags when deciding whether to skip."
 }
