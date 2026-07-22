@@ -4,20 +4,12 @@ on:
   schedule:
     # Bulk SEO refresh every 6 hours (Vimeo titles/descriptions + gallery JSON)
     - cron: '0 */6 * * *'
-    # YouTube sync every 5 days at 14:00 UTC (steady cadence for YT algorithm)
-    # Fires on the 1st, 6th, 11th, 16th, 21st, 26th, 31st of each month.
-    - cron: '0 14 */5 * *'
   workflow_dispatch:
     inputs:
       vimeo_url:
         description: 'Vimeo video URL to process (leave blank for bulk scheduled run)'
         required: false
         type: string
-      run_youtube_sync:
-        description: 'Also run YouTube sync (only used on manual dispatch)'
-        required: false
-        type: boolean
-        default: false
 
 jobs:
   # ── Manual: add/update a specific video in films.js ──────────────────────────
@@ -60,10 +52,9 @@ jobs:
 
   # ── Scheduled: bulk Vimeo SEO + refresh vimeo-videos.json ───────────────────
   bulk-seo-refresh:
-    # Runs on the 6-hour SEO cron OR on any manual dispatch (whether or not
-    # the user opted into YouTube sync too).
+    # Runs on the 6-hour SEO cron OR on a manual dispatch with no Vimeo URL.
     if: >
-      (github.event_name == 'schedule' && github.event.schedule == '0 */6 * * *')
+      github.event_name == 'schedule'
       || (github.event_name == 'workflow_dispatch' && github.event.inputs.vimeo_url == '')
     runs-on: ubuntu-latest
     steps:
@@ -119,38 +110,3 @@ jobs:
           git add src/data/vimeo-videos.json
           git diff --cached --quiet || git commit -m "chore: auto-update vimeo-videos.json [skip ci]"
           git push
-
-  # ── Scheduled: Vimeo → YouTube sync (every 5 days for steady algorithm cadence)
-  youtube-sync:
-    # Runs on the 5-day cron OR when manually triggered with run_youtube_sync=true.
-    # Uses the schedule expression to differentiate the two scheduled crons.
-    if: >
-      (github.event_name == 'schedule' && github.event.schedule == '0 14 */5 * *')
-      || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_youtube_sync == 'true')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Node deps
-        run: cd scripts && npm install
-
-      - name: Install yt-dlp
-        run: pip install --user yt-dlp
-
-      - name: Sync one Vimeo video to YouTube
-        env:
-          VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
-          VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
-          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
-          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-        run: node scripts/youtube-sync.js --limit=1
