@@ -61,9 +61,12 @@ phaminh.com/cine reads from src/data/films.js (curated) and src/data/vimeo-video
 | `scripts/update-cine-gallery.js` | Fetches all Vimeo videos with pagination → writes `src/data/vimeo-videos.json` with id, title, description, thumbnailUrl, vimeoUrl. |
 | `scripts/notion-log.js` | Creates a row in the Notion "Phaminh Wedding Films" database. Properties: Video Title (title), Vimeo URL (url), Status (select), Date Processed (date). Can also be called as CLI: `node scripts/notion-log.js "Title" "https://vimeo.com/ID"`. |
 | `scripts/seo-automation.js` | Per-video SEO + adds film to `src/data/films.js` + updates sitemap. Used by the manual `single-video-seo` job (triggered with a specific Vimeo URL). |
+| `scripts/youtube-sync.js` | Vimeo → YouTube sync. Downloads via yt-dlp, generates YouTube-tuned SEO with Claude, resumable-uploads, sets thumbnail, tags the Vimeo video `youtube:<id>` (or falls back to `youtube-registry.json`) so it's never re-uploaded. Runs every 5 days via the `youtube-sync` job (`--limit=1`). |
+| `scripts/youtube-auth.js` | One-time OAuth flow to mint `YOUTUBE_REFRESH_TOKEN`. Re-run locally if the sync fails with `invalid_grant`, then update the GitHub secret. |
+| `scripts/youtube-registry.json` | Fallback vimeoId → youtubeId map (used when Vimeo tag writes fail). Committed back by the workflow when it changes. |
 | `scripts/package.json` | Scripts subfolder has its own dependencies: `@anthropic-ai/sdk`, `dotenv`. Run `cd scripts && npm install` to install. |
 | `.github/workflows/deploy.yml` | Triggers on every push to `main`. Runs `npm ci` → `npm run build` → FTP deploys `build/` to Hostinger `/domains/phaminh.com/public_html/`. |
-| `.github/workflows/seo-automation.yml` | Two jobs: (1) `single-video-seo` — manual trigger with a Vimeo URL, adds to films.js; (2) `bulk-seo-refresh` — scheduled every 6 hours, runs all three scripts. Both use `GH_PAT` for git push. |
+| `.github/workflows/seo-automation.yml` | Three jobs: (1) `single-video-seo` — manual trigger with a Vimeo URL, adds to films.js; (2) `bulk-seo-refresh` — scheduled every 6 hours, runs all three SEO scripts; (3) `youtube-sync` — every 5 days at 14:00 UTC, syncs one Vimeo video to YouTube. All use `GH_PAT` for git push. |
 | `src/pages/CineGallery/CineGallery.js` | Gallery page. Hero carousel (4 hardcoded featured films) + grid (from `src/data/films.js`). Each grid thumbnail links to `/cine/:slug` for SEO-indexable individual film pages. |
 | `src/data/films.js` | Curated film list. Each entry has: slug, vimeoId, title, location, date, description, vendor credits. Edit manually when adding featured films. |
 | `src/data/vimeo-videos.json` | Auto-updated by GitHub Action. Do not edit manually — it gets overwritten every 6 hours. |
@@ -91,6 +94,9 @@ All secrets live in two places: **GitHub repo Settings → Secrets** and the loc
 | `FTP_USERNAME` | Hostinger FTP username |
 | `FTP_PASSWORD` | Hostinger FTP password |
 | `GH_PAT` | GitHub Personal Access Token — used by Actions to push commits back to repo |
+| `YOUTUBE_CLIENT_ID` | Google Cloud OAuth client for the YouTube Data API |
+| `YOUTUBE_CLIENT_SECRET` | Google Cloud OAuth client secret |
+| `YOUTUBE_REFRESH_TOKEN` | Long-lived token minted by `scripts/youtube-auth.js`. If sync fails with `invalid_grant`, re-run that script and update this secret. |
 
 **Local `.env` file** (recreate on each machine — never committed):
 ```
@@ -148,6 +154,12 @@ node scripts/notion-log.js "Video Title" "https://vimeo.com/ID" "Processed"
 
 **Trigger bulk SEO run in the cloud (no laptop needed):**
 GitHub → Actions → "Phaminh SEO Automation" → "Run workflow" → leave URL blank → Run
+
+**Force-sync one specific video to YouTube:**
+```bash
+node scripts/youtube-sync.js 1162740145
+```
+(or GitHub → Actions → "Phaminh SEO Automation" → "Run workflow" → check "Also run YouTube sync")
 
 **Add a new featured film to the gallery:**
 GitHub → Actions → "Phaminh SEO Automation" → "Run workflow" → paste Vimeo URL → Run
