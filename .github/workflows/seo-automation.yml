@@ -11,6 +11,11 @@ on:
         required: false
         type: string
 
+# Never let two runs overlap (e.g. a slow bulk run colliding with the next cron)
+concurrency:
+  group: seo-automation
+  cancel-in-progress: false
+
 jobs:
   # ── Manual: add/update a specific video in films.js ──────────────────────────
   single-video-seo:
@@ -47,6 +52,7 @@ jobs:
             echo "No changes — film may already exist in films.js"
           else
             git commit -m "Add new film: ${{ steps.seo.outputs.film_title }}"
+            git pull --rebase origin main
             git push
           fi
 
@@ -86,7 +92,7 @@ jobs:
           echo "NOTION_DATABASE_ID set: ${{ secrets.NOTION_DATABASE_ID != '' }}"
           echo "Node version: $(node --version)"
           echo "Scripts node_modules dotenv exists: $(test -d scripts/node_modules/dotenv && echo yes || echo NO)"
-          node -e "require('./scripts/vimeo-seo.js') && console.log('syntax ok')" 2>&1 || echo "syntax/require error above"
+          node --check scripts/vimeo-seo.js && node --check scripts/update-cine-gallery.js && node --check scripts/notion-log.js && echo "syntax ok"
 
       - name: Bulk update Vimeo SEO (titles, descriptions, tags)
         env:
@@ -103,10 +109,17 @@ jobs:
           VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
         run: node scripts/update-cine-gallery.js
 
+      # No [skip ci]: a real data change should trigger deploy.yml so the live
+      # gallery stays current. Runs with no changes commit nothing.
       - name: Commit updated video data if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/vimeo-videos.json
-          git diff --cached --quiet || git commit -m "chore: auto-update vimeo-videos.json [skip ci]"
-          git push
+          if git diff --cached --quiet; then
+            echo "No data changes — nothing to commit"
+          else
+            git commit -m "chore: auto-update vimeo-videos.json"
+            git pull --rebase origin main
+            git push
+          fi

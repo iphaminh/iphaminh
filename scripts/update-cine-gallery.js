@@ -19,6 +19,7 @@ function vimeoGet(apiPath) {
       },
     };
     const req = https.request(options, (res) => {
+      res.setEncoding("utf8"); // prevent multi-byte characters splitting across chunks
       let data = "";
       res.on("data", (chunk) => (data += chunk));
       res.on("end", () => {

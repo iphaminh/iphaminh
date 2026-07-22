@@ -28,7 +28,7 @@ scripts/vimeo-seo.js fetches all videos via Vimeo API
         ↓
 Skips videos already in SEO format (title contains " | ")
         ↓
-Claude AI (claude-opus-4-6) generates:
+Claude AI (claude-sonnet-4-6) generates:
   - SEO title (60 chars max, location + keywords)
   - 700+ word description (emotion, vendors, location SEO, CTA)
   - 20 tags (location, style, venue, wedding keywords)
@@ -37,9 +37,10 @@ Vimeo API updated via PATCH /videos/{id}
         ↓
 scripts/notion-log.js logs Video Title, Vimeo URL, Status, Date to Notion DB
         ↓
-scripts/update-cine-gallery.js fetches all 107+ videos → writes src/data/vimeo-videos.json
+scripts/update-cine-gallery.js fetches all 100+ videos → writes src/data/vimeo-videos.json
         ↓
-GitHub Action commits vimeo-videos.json back to repo [skip ci]
+GitHub Action commits vimeo-videos.json back to repo (only when data actually
+changed — the commit triggers deploy.yml so the live gallery stays current)
         ↓
 On every push to main → deploy.yml builds React app → FTP deploys to Hostinger
         ↓
@@ -48,7 +49,7 @@ phaminh.com/cine reads from src/data/films.js (curated) and src/data/vimeo-video
 
 **Two data sources for the gallery:**
 - `src/data/films.js` — curated showcase films with slug, location, vendor info, individual pages at `/cine/:slug`
-- `src/data/vimeo-videos.json` — auto-updated raw data (all 107+ videos) with real thumbnails from Vimeo API
+- `src/data/vimeo-videos.json` — auto-updated raw data (all 100+ videos) with real thumbnails from Vimeo API
 
 ---
 
@@ -174,6 +175,9 @@ GitHub → Actions → "Phaminh SEO Automation" → "Run workflow" → paste Vim
 | `GH_PAT` instead of `GITHUB_TOKEN` for git push | `GITHUB_TOKEN` has read-only permissions by default in this repo config. `GH_PAT` has full write access needed to push commits from Actions. |
 | Two gallery data sources (`films.js` + `vimeo-videos.json`) | `films.js` = curated showcase with SEO slugs and individual pages. `vimeo-videos.json` = complete raw feed for thumbnails and metadata. Both serve different purposes. |
 | `process.exit(1)` removed from `notion-log.js` | Using `throw new Error()` instead so missing Notion credentials are caught gracefully by `vimeo-seo.js` — Notion failure is non-fatal and should not stop SEO updates. |
+| `res.setEncoding("utf8")` on every https response | Node emits raw Buffers by default; appending them to a string can split multi-byte UTF-8 chars across chunk boundaries, corrupting `—` into `��`. This caused mojibake and made vimeo-videos.json "change" every run. |
+| `require.main === module` guard in `vimeo-seo.js` | Requiring the module (e.g. for a syntax check) must not launch a full SEO run. The workflow verify step previously did exactly that, running bulk SEO twice per cycle. |
+| No `[skip ci]` on vimeo-videos.json auto-commits | The gallery JSON is baked into the React build at deploy time. With `[skip ci]`, fresh data never reached the live site. Commits only happen when data actually changed, so deploys stay rare. |
 
 ---
 
@@ -221,4 +225,10 @@ KNOWN GOTCHAS TO AVOID:
 - notion-log.js must throw Error (not process.exit) so failures are non-fatal
 - scripts/ needs its own package.json with dotenv dependency
 - Run: npm ci && cd scripts && npm install in the workflow install step
+- Always res.setEncoding("utf8") before accumulating https response chunks —
+  otherwise multi-byte characters split across chunks become mojibake (��)
+- Guard script entry points with `if (require.main === module)` so requiring
+  the file (syntax checks, imports) never triggers a full run
+- Don't put [skip ci] on data commits the site build depends on — the deploy
+  will never pick them up
 ```

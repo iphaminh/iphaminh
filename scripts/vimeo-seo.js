@@ -19,9 +19,13 @@ function vimeoRequest(method, path, body = null) {
       },
     };
     const req = https.request(options, (res) => {
+      res.setEncoding("utf8"); // prevent multi-byte characters splitting across chunks
       let data = "";
       res.on("data", (chunk) => (data += chunk));
       res.on("end", () => {
+        if (res.statusCode >= 400) {
+          return reject(new Error(`Vimeo ${method} ${path}: ${res.statusCode} ${data.slice(0, 200)}`));
+        }
         try { resolve(JSON.parse(data)); }
         catch (e) { resolve(data); }
       });
@@ -51,11 +55,15 @@ function claudeRequest(prompt) {
       },
     };
     const req = https.request(options, (res) => {
+      res.setEncoding("utf8"); // prevent multi-byte characters splitting across chunks
       let data = "";
       res.on("data", (chunk) => (data += chunk));
       res.on("end", () => {
         try {
           const parsed = JSON.parse(data);
+          if (!parsed.content || !parsed.content[0]) {
+            return reject(new Error(`Claude API error: ${data.slice(0, 200)}`));
+          }
           resolve(parsed.content[0].text);
         } catch (e) { reject(e); }
       });
@@ -142,7 +150,7 @@ async function updateVimeoVideo(videoUri, seo) {
   const result = await vimeoRequest("PATCH", `/videos/${videoId}`, body);
 
   if (seo.tags && seo.tags.length > 0) {
-    for (const tag of seo.tags.slice(0, 10)) {
+    for (const tag of seo.tags.slice(0, 20)) {
       await vimeoRequest("PUT", `/videos/${videoId}/tags/${encodeURIComponent(tag)}`, {});
     }
   }
@@ -152,6 +160,11 @@ async function updateVimeoVideo(videoUri, seo) {
 
 async function main() {
   console.log("=== Phaminh Vimeo SEO Automation ===");
+
+  if (!VIMEO_TOKEN || !ANTHROPIC_KEY || !VIMEO_USER_ID) {
+    console.error("Missing required env vars: VIMEO_ACCESS_TOKEN, ANTHROPIC_API_KEY, VIMEO_USER_ID");
+    process.exit(1);
+  }
 
   const videoIdArg = process.argv[2];
 
@@ -203,6 +216,13 @@ async function main() {
   }
 
   console.log(`\n=== Done — ${successCount} updated, ${failCount} failed ===`);
+  if (failCount > 0 && successCount === 0) process.exit(1);
 }
 
-main();
+// Only run when executed directly — requiring this module must not trigger a full SEO run
+if (require.main === module) {
+  main().catch((err) => {
+    console.error("Fatal error:", err.message);
+    process.exit(1);
+  });
+}
