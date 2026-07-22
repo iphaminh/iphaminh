@@ -171,7 +171,13 @@ jobs:
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-        run: node scripts/youtube-sync.js --limit=1
+          VIMEO_COOKIES: ${{ secrets.VIMEO_COOKIES }}
+        run: |
+          if [ -n "$VIMEO_COOKIES" ]; then
+            printf '%s\n' "$VIMEO_COOKIES" > "$RUNNER_TEMP/vimeo-cookies.txt"
+            export VIMEO_COOKIES_PATH="$RUNNER_TEMP/vimeo-cookies.txt"
+          fi
+          node scripts/youtube-sync.js --limit=1
 
       # Persist registry fallback entries written during the run — losing them
       # risks duplicate uploads next cycle when Vimeo tagging failed.

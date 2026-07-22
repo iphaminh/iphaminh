@@ -176,16 +176,30 @@ async function getVimeoDirectDownloadUrl(videoId) {
 function downloadVimeoWithYtDlp(videoId, destPath) {
   return new Promise((resolve, reject) => {
     const args = [
-      "-f", "best[height<=1080]/best",   // prefer 1080p or below (small enough to upload fast, still HD)
+      // Vimeo mostly serves split HLS streams now — merge video+audio via ffmpeg
+      "-f", "bestvideo[height<=1080]+bestaudio/best[height<=1080]/best",
+      "--merge-output-format", "mp4",
       "-o", destPath,
       "--no-warnings",
       "--no-progress",
       "--referer", "https://www.phaminh.com/",
-      `https://vimeo.com/${videoId}`,
     ];
+    // Vimeo requires a logged-in session for downloads (Plus tier has no API
+    // file access). VIMEO_COOKIES_PATH points at a Netscape-format cookie file
+    // exported from the owner's browser (stored as the VIMEO_COOKIES secret).
+    if (process.env.VIMEO_COOKIES_PATH) args.push("--cookies", process.env.VIMEO_COOKIES_PATH);
+    args.push(`https://vimeo.com/${videoId}`);
     execFile("yt-dlp", args, { maxBuffer: 20 * 1024 * 1024 }, (err, stdout, stderr) => {
       if (err) {
-        return reject(new Error(`yt-dlp failed: ${stderr || err.message}`));
+        const msg = stderr || err.message;
+        if (/logged-in|log in|credentials|--cookies/i.test(msg)) {
+          return reject(new Error(
+            "Vimeo rejected the session — the VIMEO_COOKIES secret is missing or expired. " +
+            "Fix: log into vimeo.com in your browser, re-export cookies (see CLAUDE.md §6), " +
+            "and update the VIMEO_COOKIES secret. Raw error: " + msg.slice(0, 200)
+          ));
+        }
+        return reject(new Error(`yt-dlp failed: ${msg.slice(0, 300)}`));
       }
       if (!fs.existsSync(destPath)) {
         return reject(new Error(`yt-dlp finished but output file not found: ${destPath}`));

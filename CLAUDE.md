@@ -97,6 +97,7 @@ All secrets live in two places: **GitHub repo Settings → Secrets** and the loc
 | `YOUTUBE_CLIENT_ID` | Google Cloud OAuth client for the YouTube Data API |
 | `YOUTUBE_CLIENT_SECRET` | Google Cloud OAuth client secret |
 | `YOUTUBE_REFRESH_TOKEN` | Long-lived token minted by `scripts/youtube-auth.js`. If sync fails with `invalid_grant`, re-run that script and update this secret. |
+| `VIMEO_COOKIES` | Netscape-format vimeo.com cookies from Minh's browser (Edge). Needed because Vimeo Plus has no API file access and yt-dlp requires a logged-in session. Expires after months — when sync fails with "VIMEO_COOKIES secret is missing or expired", re-export (see §6). |
 
 **Local `.env` file** (recreate on each machine — never committed):
 ```
@@ -154,6 +155,15 @@ node scripts/notion-log.js "Video Title" "https://vimeo.com/ID" "Processed"
 
 **Trigger bulk SEO run in the cloud (no laptop needed):**
 GitHub → Actions → "Phaminh SEO Automation" → "Run workflow" → leave URL blank → Run
+
+**Refresh the VIMEO_COOKIES secret (when YouTube sync says cookies expired):**
+```bash
+# Be logged into vimeo.com in Edge first. Extracts, filters to vimeo-only, copies to clipboard:
+yt-dlp --cookies-from-browser edge --cookies /tmp/vc-full.txt --simulate "https://vimeo.com/VIDEO_ID"
+{ echo "# Netscape HTTP Cookie File"; grep -E '^\.?([a-z0-9-]+\.)*vimeo\.com\s' /tmp/vc-full.txt; } | pbcopy
+rm /tmp/vc-full.txt
+```
+Then GitHub → Settings → Secrets → Actions → `VIMEO_COOKIES` → Update → paste.
 
 **Force-sync one specific video to YouTube:**
 ```bash
