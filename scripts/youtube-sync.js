@@ -175,18 +175,23 @@ async function getVimeoDirectDownloadUrl(videoId) {
 // exposes no direct download links.
 function downloadVimeoWithYtDlp(videoId, destPath) {
   return new Promise((resolve, reject) => {
+    // Use an extension TEMPLATE instead of a fixed .mp4 path. When yt-dlp
+    // merges split streams (or remuxes HLS) it may emit a different container
+    // than requested — with a fixed -o path the file can land elsewhere and
+    // we'd wrongly report "output file not found".
+    const outDir = path.dirname(destPath);
+    const outTemplate = path.join(outDir, `${videoId}.%(ext)s`);
     const args = [
       // Vimeo mostly serves split HLS streams now — merge video+audio via ffmpeg
       "-f", "bestvideo[height<=1080]+bestaudio/best[height<=1080]/best",
       "--merge-output-format", "mp4",
-      "-o", destPath,
-      "--no-warnings",
+      "-o", outTemplate,
       "--no-progress",
       "--referer", "https://www.phaminh.com/",
     ];
     // Vimeo requires a logged-in session for downloads (Plus tier has no API
     // file access). VIMEO_COOKIES_PATH points at a Netscape-format cookie file
-    // exported from the owner's browser (stored as the VIMEO_COOKIES secret).
+    // exported from the owner's browser (stored as the VIMEO_COOKIES_B64 secret).
     if (process.env.VIMEO_COOKIES_PATH) args.push("--cookies", process.env.VIMEO_COOKIES_PATH);
     args.push(`https://vimeo.com/${videoId}`);
     execFile("yt-dlp", args, { maxBuffer: 20 * 1024 * 1024 }, (err, stdout, stderr) => {
@@ -194,17 +199,26 @@ function downloadVimeoWithYtDlp(videoId, destPath) {
         const msg = stderr || err.message;
         if (/logged-in|log in|credentials|--cookies/i.test(msg)) {
           return reject(new Error(
-            "Vimeo rejected the session — the VIMEO_COOKIES secret is missing or expired. " +
+            "Vimeo rejected the session — the VIMEO_COOKIES_B64 secret is missing or expired. " +
             "Fix: log into vimeo.com in your browser, re-export cookies (see CLAUDE.md §6), " +
-            "and update the VIMEO_COOKIES secret. Raw error: " + msg.slice(0, 200)
+            "and update the VIMEO_COOKIES_B64 secret. Raw error: " + msg.slice(0, 200)
           ));
         }
         return reject(new Error(`yt-dlp failed: ${msg.slice(0, 300)}`));
       }
-      if (!fs.existsSync(destPath)) {
-        return reject(new Error(`yt-dlp finished but output file not found: ${destPath}`));
+      // Find whatever video file yt-dlp actually produced (extension may vary).
+      const produced = fs.readdirSync(outDir)
+        .filter((f) => f.startsWith(String(videoId)) && /\.(mp4|mkv|webm|mov|m4v)$/i.test(f) && !/\.part$/i.test(f))
+        .map((f) => path.join(outDir, f))
+        .sort((a, b) => fs.statSync(b).size - fs.statSync(a).size);
+      if (!produced.length) {
+        const dirListing = fs.readdirSync(outDir).join(", ") || "(empty)";
+        const tail = (String(stderr) + "\n" + String(stdout)).slice(-400);
+        return reject(new Error(
+          `yt-dlp finished but no video file found in ${outDir}. Dir contents: ${dirListing}. Output tail: ${tail}`
+        ));
       }
-      resolve(destPath);
+      resolve(produced[0]);
     });
   });
 }
@@ -533,15 +547,18 @@ async function processVideo(video, accessToken) {
   const thumbPath = path.join(tmpDir, `${videoId}.jpg`);
 
   try {
+    // videoFilePath may differ from mp4Path — yt-dlp can emit a different
+    // container extension after merging streams.
+    let videoFilePath = mp4Path;
     const directUrl = await getVimeoDirectDownloadUrl(videoId);
     if (directUrl) {
       await downloadToFile(directUrl, mp4Path);
     } else {
       console.log(`  ⬇ No API download links — falling back to yt-dlp...`);
-      await downloadVimeoWithYtDlp(videoId, mp4Path);
+      videoFilePath = await downloadVimeoWithYtDlp(videoId, mp4Path);
     }
-    const sizeMB = (fs.statSync(mp4Path).size / (1024 * 1024)).toFixed(1);
-    console.log(`  ⬇ Downloaded ${sizeMB} MB`);
+    const sizeMB = (fs.statSync(videoFilePath).size / (1024 * 1024)).toFixed(1);
+    console.log(`  ⬇ Downloaded ${sizeMB} MB (${path.basename(videoFilePath)})`);
 
     if (thumbUrl) {
       await downloadToFile(thumbUrl, thumbPath);
@@ -554,7 +571,7 @@ async function processVideo(video, accessToken) {
     console.log(`  ✨ Tags: ${seo.tags.slice(0, 5).join(", ")}...`);
 
     console.log(`  ⬆ Uploading to YouTube...`);
-    const youtubeId = await youtubeUpload({ accessToken, filePath: mp4Path, seo });
+    const youtubeId = await youtubeUpload({ accessToken, filePath: videoFilePath, seo });
     const youtubeUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
     console.log(`  ✅ Uploaded: ${youtubeUrl}`);
 
