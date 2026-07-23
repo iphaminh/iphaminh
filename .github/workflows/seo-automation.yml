@@ -171,11 +171,15 @@ jobs:
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-          VIMEO_COOKIES: ${{ secrets.VIMEO_COOKIES }}
+          # Base64-encoded Netscape cookie file. Base64 survives copy-paste
+          # (plain cookie text kept losing its required TAB separators when
+          # pasted into the GitHub secrets UI).
+          VIMEO_COOKIES_B64: ${{ secrets.VIMEO_COOKIES_B64 }}
         run: |
-          if [ -n "$VIMEO_COOKIES" ]; then
-            printf '%s\n' "$VIMEO_COOKIES" > "$RUNNER_TEMP/vimeo-cookies.txt"
+          if [ -n "$VIMEO_COOKIES_B64" ]; then
+            printf '%s' "$VIMEO_COOKIES_B64" | base64 -d > "$RUNNER_TEMP/vimeo-cookies.txt"
             export VIMEO_COOKIES_PATH="$RUNNER_TEMP/vimeo-cookies.txt"
+            echo "Cookie file decoded: $(wc -l < "$RUNNER_TEMP/vimeo-cookies.txt") lines"
           fi
           node scripts/youtube-sync.js --limit=1
 
