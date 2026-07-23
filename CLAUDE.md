@@ -205,52 +205,15 @@ GitHub → Actions → "Phaminh SEO Automation" → "Run workflow" → paste Vim
 
 ## NEW BUSINESS TEMPLATE
 
-Copy this prompt to set up the same Vimeo SEO automation system for any new client:
+Superseded by the Claude Code skill **`/business-seo-automation`**
+(`~/.claude/skills/business-seo-automation/SKILL.md` on Minh's machines).
 
-```
-I'm building a Vimeo SEO automation system for [BUSINESS NAME].
+The skill contains the complete bootstrap guide: interview questions, credential
+setup with every known gotcha (OAuth Testing-mode token death, Vimeo cookie
+base64 procedure, GH_PAT vs GITHUB_TOKEN, yt-dlp output templates, tag
+sanitization), script adaptation notes, audience-optimized cron design,
+duplicate protection, verification checklist, and failure-signature diagnosis
+table. This repo is the canonical implementation the skill copies from.
 
-BUSINESS INFO:
-- Owner: [NAME]
-- Service: [TYPE OF BUSINESS]
-- Service areas: [LOCATION 1], [LOCATION 2]
-- Website: [URL]
-- Vimeo user ID: [VIMEO_USERNAME]
-
-EXISTING SETUP:
-- React app deployed to [HOSTING PROVIDER] via [DEPLOY METHOD]
-- GitHub repo: [REPO URL]
-- .env has: VIMEO_ACCESS_TOKEN, VIMEO_USER_ID, ANTHROPIC_API_KEY
-
-TASKS:
-1. Create scripts/vimeo-seo.js — fetches all Vimeo videos, generates SEO title/description/tags
-   via Claude AI tuned for [BUSINESS TYPE] keywords, updates Vimeo via API, skips already-formatted
-   titles (containing " | "), logs each update to Notion
-2. Create scripts/update-gallery.js — fetches all videos from Vimeo API with pagination,
-   writes src/data/vimeo-videos.json with id, title, description, thumbnailUrl, vimeoUrl
-3. Create scripts/notion-log.js — creates Notion DB rows with: Title, URL, Status, Date
-4. Create .github/workflows/seo-automation.yml — runs every 6 hours + manual trigger,
-   uses GH_PAT (not GITHUB_TOKEN) for git push, passes all secrets as env vars
-5. Update the gallery page to use src/data/vimeo-videos.json instead of hardcoded video arrays
-6. Add all secrets to .env and GitHub repo secrets:
-   VIMEO_ACCESS_TOKEN, VIMEO_USER_ID, ANTHROPIC_API_KEY,
-   NOTION_API_KEY, NOTION_DATABASE_ID, GH_PAT
-
-SEO STYLE FOR CLAUDE PROMPT:
-- Title format: [Couple Name] | [Venue/Style] Wedding Film | [Location]
-- Description: 700+ words, emotional opening, vendor credits, location keywords,
-  [BUSINESS NAME] branding, call to action with website URL, hashtags
-- Tags: 20 tags mixing location, style, venue name, wedding keywords
-
-KNOWN GOTCHAS TO AVOID:
-- Use GH_PAT not GITHUB_TOKEN for git push steps in Actions
-- notion-log.js must throw Error (not process.exit) so failures are non-fatal
-- scripts/ needs its own package.json with dotenv dependency
-- Run: npm ci && cd scripts && npm install in the workflow install step
-- Always res.setEncoding("utf8") before accumulating https response chunks —
-  otherwise multi-byte characters split across chunks become mojibake (��)
-- Guard script entry points with `if (require.main === module)` so requiring
-  the file (syntax checks, imports) never triggers a full run
-- Don't put [skip ci] on data commits the site build depends on — the deploy
-  will never pick them up
-```
+To bootstrap a new business: open a Claude Code session in the new project and
+invoke `/business-seo-automation`.
