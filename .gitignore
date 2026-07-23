@@ -21,3 +21,6 @@ node_modules/
 npm-debug.log*
 
 .DS_Store
+
+# Vimeo session cookies (secret — used by youtube-sync yt-dlp fallback)
+.vimeo-cookies.txt
