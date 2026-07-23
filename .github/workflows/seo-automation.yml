@@ -4,9 +4,11 @@ on:
   schedule:
     # Bulk SEO refresh every 6 hours (Vimeo titles/descriptions + gallery JSON)
     - cron: '0 */6 * * *'
-    # YouTube sync every 5 days at 14:00 UTC (steady cadence for YT algorithm)
-    # Fires on the 1st, 6th, 11th, 16th, 21st, 26th, 31st of each month.
-    - cron: '0 14 */5 * *'
+    # YouTube sync: Sundays + Tuesdays at 23:00 UTC (4pm Pacific / 6pm Central).
+    # Wedding audiences browse heaviest Sun + Tue-Thu evenings; posting ~2-4h
+    # before the 7-10pm local peak gives YouTube time to index. Sun+Tue =
+    # one video every 3-4 days — steady cadence the algorithm rewards.
+    - cron: '0 23 * * 0,2'
   workflow_dispatch:
     inputs:
       vimeo_url:
@@ -135,10 +137,10 @@ jobs:
 
   # ── Scheduled: Vimeo → YouTube sync (every 5 days for steady algorithm cadence)
   youtube-sync:
-    # Runs on the 5-day cron OR when manually triggered with run_youtube_sync=true.
+    # Runs on the Sun+Tue cron OR when manually triggered with run_youtube_sync=true.
     # Uses the schedule expression to differentiate the two scheduled crons.
     if: >
-      (github.event_name == 'schedule' && github.event.schedule == '0 14 */5 * *')
+      (github.event_name == 'schedule' && github.event.schedule == '0 23 * * 0,2')
       || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_youtube_sync == 'true')
     runs-on: ubuntu-latest
     steps:

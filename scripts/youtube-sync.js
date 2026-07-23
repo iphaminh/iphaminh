@@ -145,7 +145,7 @@ function vimeo(method, apiPath, body = null) {
 
 async function fetchAllVimeoVideos() {
   const videos = [];
-  let nextPage = `/users/${VIMEO_USER_ID}/videos?per_page=100&sort=date&direction=desc&fields=uri,name,description,tags,pictures,download`;
+  let nextPage = `/users/${VIMEO_USER_ID}/videos?per_page=100&sort=date&direction=desc&fields=uri,name,description,tags,pictures,download,duration`;
   while (nextPage) {
     const { body } = await vimeo("GET", nextPage);
     if (!body?.data) break;
@@ -290,7 +290,15 @@ function claude(prompt) {
   });
 }
 
-async function generateYouTubeSEO(vimeoTitle, vimeoDescription) {
+function formatDuration(seconds) {
+  if (!seconds || seconds <= 0) return null;
+  const m = Math.floor(seconds / 60);
+  const s = Math.round(seconds % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+async function generateYouTubeSEO(vimeoTitle, vimeoDescription, durationSeconds) {
+  const durationStr = formatDuration(durationSeconds);
   const prompt = `You are a YouTube SEO specialist optimizing for YouTube's 2026 discovery algorithm.
 Client: Phaminh Cinematography — a luxury wedding videography studio owned by Minh Pham.
 
@@ -329,7 +337,9 @@ Rules for the description (target 400-600 words):
   4. "📩 BOOKING & INQUIRIES" — website + email + phone.
   5. "🎬 WATCH MORE" — 2-3 line breaks with placeholder like "→ Wedding films: https://www.phaminh.com/cine"
   6. "🔗 FOLLOW" — Instagram + YouTube subscribe reminder.
-  7. Timestamps section labeled "⏱ TIMESTAMPS" with 3-4 approximate chapters (00:00 Introduction / 00:XX Ceremony / etc.) — use best guess based on video type; don't fabricate if unknown for very short teasers.
+  7. Timestamps section labeled "⏱ TIMESTAMPS" — ${durationStr
+    ? `the video is exactly ${durationStr} long. Include 3-4 chapters that fit INSIDE that runtime (first must be 00:00; last chapter must start well before ${durationStr}). Spread them sensibly for a wedding film arc (getting ready → ceremony → portraits → reception). If the video is under 2:00, SKIP the timestamps section entirely — chapters on teasers feel broken.`
+    : `video duration unknown — SKIP the timestamps section entirely rather than inventing times.`}
   8. Community engagement question ("💬 What's your favorite wedding tradition? Let me know in the comments.") — YouTube's 2026 algorithm heavily weights comment engagement.
   9. Final line: 3-5 relevant hashtags (see hashtag rules below).
 
@@ -566,7 +576,7 @@ async function processVideo(video, accessToken) {
     }
 
     console.log(`  ✨ Generating YouTube SEO with Claude...`);
-    const seo = await generateYouTubeSEO(video.name, video.description);
+    const seo = await generateYouTubeSEO(video.name, video.description, video.duration);
     console.log(`  ✨ Title: ${seo.title}`);
     console.log(`  ✨ Tags: ${seo.tags.slice(0, 5).join(", ")}...`);
 
@@ -645,7 +655,7 @@ async function main() {
       console.log(`Video ${forcedId} is in the registry as youtube:${registry[forcedId]} — already on YouTube. Aborting.`);
       return;
     }
-    const { body } = await vimeo("GET", `/videos/${forcedId}?fields=uri,name,description,tags,pictures,download`);
+    const { body } = await vimeo("GET", `/videos/${forcedId}?fields=uri,name,description,tags,pictures,download,duration`);
     if (!body?.uri) {
       console.error(`Vimeo video ${forcedId} not found`);
       process.exit(1);
