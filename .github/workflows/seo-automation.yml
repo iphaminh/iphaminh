@@ -177,9 +177,13 @@ jobs:
           VIMEO_COOKIES_B64: ${{ secrets.VIMEO_COOKIES_B64 }}
         run: |
           if [ -n "$VIMEO_COOKIES_B64" ]; then
-            printf '%s' "$VIMEO_COOKIES_B64" | base64 -d > "$RUNNER_TEMP/vimeo-cookies.txt"
+            # Strip ALL whitespace first — pasting into the GitHub UI can wrap
+            # the value and introduce spaces/newlines that break base64 -d.
+            printf '%s' "$VIMEO_COOKIES_B64" | tr -d ' \n\r\t' | base64 -d > "$RUNNER_TEMP/vimeo-cookies.txt"
             export VIMEO_COOKIES_PATH="$RUNNER_TEMP/vimeo-cookies.txt"
             echo "Cookie file decoded: $(wc -l < "$RUNNER_TEMP/vimeo-cookies.txt") lines"
+          else
+            echo "WARNING: VIMEO_COOKIES_B64 secret is empty or missing — yt-dlp will likely get HTTP 401"
           fi
           node scripts/youtube-sync.js --limit=1
 
