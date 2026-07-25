@@ -12,24 +12,21 @@ description: Resume work on the Phaminh automation project. Loads current state,
 4. Give Minh a short "here's where we are" summary, then continue the pending work.
 5. **At the end of every session: update the Current state + Pending sections in this file, commit, and push.** That is what makes the next session seamless.
 
-## Current state (updated 2026-07-25)
+## Current state (updated 2026-07-25, evening)
 
-**Healthy and running:**
-- Vimeo SEO automation (6-hour cron): fixed and verified — UTF-8 chunk corruption fixed everywhere (`res.setEncoding("utf8")`), no more churn commits, double-run bug fixed (`require.main` guard), real data changes now auto-deploy to the live site (no more `[skip ci]` starvation).
-- Deploy pipeline: `npm ci` + cache, verified green.
-- Gallery JSON: clean (the 4 "missing" videos were private, not deleted — cloud token sees 107, public token sees 103).
+**Everything is working end-to-end. 🎉**
+- Vimeo SEO automation (6-hour cron): healthy — UTF-8 chunk corruption fixed everywhere (`res.setEncoding("utf8")`), no more churn commits, double-run bug fixed (`require.main` guard), real data changes auto-deploy to the live site.
+- **YouTube sync: CONFIRMED WORKING.** "Emma & Hadar" and "Kyle & Hayley" auto-uploaded 2026-07-23 (channel at 16 videos). The full fix stack: fresh OAuth refresh token (minted 2026-07-22), browser-cookie downloads via `VIMEO_COOKIES_B64` secret (base64 — plain paste mangled TABs), HLS merge format, yt-dlp output-template fix.
+- Sync schedule: **Sundays + Tuesdays 23:00 UTC** (audience-timed), one video per run. ~91 videos remain eligible.
+- Vimeo Plus has NO API file access (`download`/`files`/`play` empty even with `video_files` scope) — cookies are the only download path unless Minh upgrades to a Pro-tier plan.
 
-**YouTube sync — rebuilt, one step from working:**
-- Root causes found and fixed: (1) YouTube OAuth refresh token was revoked (`invalid_grant`) — fresh token minted 2026-07-22 via `scripts/youtube-auth.js`, verified working, GitHub secret updated. (2) Vimeo locked out yt-dlp anonymous downloads AND Vimeo Plus has no API file access (`download`/`files`/`play` all empty even with `video_files` scope) — solved via browser-cookie downloads (Minh's Edge login), tested locally end-to-end.
-- Code pushed through commit `abaf2a0f` (cookie support, HLS merge format, loud failure messages, registry duplicate guards).
+## Watchpoints (check when resuming)
 
-## Pending next steps (in order)
-
-1. **Minh: add `VIMEO_COOKIES` secret** — repo Settings → Secrets → Actions → New secret named `VIMEO_COOKIES`, value = vimeo-only Netscape cookie export. Re-export procedure: CLAUDE.md §6 ("Refresh the VIMEO_COOKIES secret"). The 2026-07-22 export at `/tmp/vimeo-cookies.txt` is likely gone (tmp clears on reboot) — re-extract from **Edge** (his browser).
-2. **Test dispatch**: Actions → "Phaminh SEO Automation" → Run workflow → URL blank → check "Also run YouTube sync". Success = sync step runs several MINUTES (download+upload) and "Emma & Hadar" (Vimeo 1162069383) appears on the channel. Verify via the YouTube API (Runbook below).
-3. **Confirm Google OAuth app is published to "In production"** — https://console.cloud.google.com/apis/credentials/consent. If still "Testing", refresh tokens die every 7 days (would fail ~2026-07-29 with `invalid_grant`). Minh was told; completion unconfirmed.
-4. **Soft spot**: YouTube video "Linda & Linh" (DymoL-l7qyQ) has no linked Vimeo counterpart — if its Vimeo twin exists (private or renamed), add it to `scripts/youtube-registry.json` to guarantee no duplicate upload.
-5. Sync cron runs on the 1st/6th/11th/16th/21st/26th/31st at 14:00 UTC, one video per run (~93 videos eligible → full catalog takes ~15 months; discuss increasing cadence/limit once a test upload succeeds).
+1. **OAuth app publish status unconfirmed** — if the Google OAuth consent screen is still "Testing", the refresh token dies ~7 days after mint (~2026-07-29) with `invalid_grant`. If the Sun 07-27 or Tue 07-29 sync run fails that way: confirm Minh published the app to "In production" (https://console.cloud.google.com/apis/credentials/consent), then re-auth per Runbook.
+2. **Vimeo cookies expire eventually** (months). Failure message says so explicitly; refresh procedure in CLAUDE.md §6 (base64 → `VIMEO_COOKIES_B64`).
+3. **Soft spot**: YouTube video "Linda & Linh" (DymoL-l7qyQ) has no linked Vimeo counterpart — if its Vimeo twin exists (private or renamed), add it to `scripts/youtube-registry.json` to guarantee no duplicate upload.
+4. At 2/week, the ~91-video backlog takes ~11 months. If Minh wants faster, raise `--limit` (max 5/run for quota) or add cron days.
+5. Registry commits from sync runs use `[skip ci]` — correct (nothing in the build reads it).
 
 ## Runbook
 
@@ -46,7 +43,7 @@ cd scripts && node -e "require('dotenv').config({path:'../.env'});(async()=>{con
 
 **Fix `invalid_grant` (YouTube token dead):** `node scripts/youtube-auth.js` locally (needs `YOUTUBE_CLIENT_ID`/`SECRET` in `.env`) → browser consent → new token written to `.env` → Minh updates `YOUTUBE_REFRESH_TOKEN` GitHub secret. Copy value to his clipboard: `grep '^YOUTUBE_REFRESH_TOKEN=' .env | cut -d= -f2- | tr -d '\n' | pbcopy`.
 
-**Fix expired Vimeo cookies:** procedure in CLAUDE.md §6. Minh's browser is **Microsoft Edge**. Filter to vimeo-only lines before it goes anywhere near a secret; delete the full jar.
+**Fix expired Vimeo cookies:** procedure in CLAUDE.md §6 — export from **Microsoft Edge** (Minh's browser), filter to vimeo-only lines, **base64-encode**, paste into the `VIMEO_COOKIES_B64` secret. Never ship the unfiltered jar; delete it after.
 
 **Machine quirks (this MacBook):**
 - `.env` now has: both Vimeo token names, `VIMEO_USER_ID`, `YOUTUBE_CLIENT_ID/SECRET/REFRESH_TOKEN`. `VIMEO_ACCESS_TOKEN` = the full-scope token ending `b3b0` (same as GitHub secret). Still missing: `ANTHROPIC_API_KEY`, `NOTION_API_KEY`, `NOTION_DATABASE_ID`.
