@@ -4,11 +4,15 @@ on:
   schedule:
     # Bulk SEO refresh every 6 hours (Vimeo titles/descriptions + gallery JSON)
     - cron: '0 */6 * * *'
-    # YouTube sync: Sundays + Tuesdays at 23:00 UTC (4pm Pacific / 6pm Central).
+    # YouTube sync: Sun/Tue/Thu/Sat at 23:00 UTC (4pm Pacific / 6pm Central).
     # Wedding audiences browse heaviest Sun + Tue-Thu evenings; posting ~2-4h
-    # before the 7-10pm local peak gives YouTube time to index. Sun+Tue =
-    # one video every 3-4 days — steady cadence the algorithm rewards.
-    - cron: '0 23 * * 0,2'
+    # before the 7-10pm local peak gives YouTube time to index.
+    #
+    # Still ONE video per run — four slots beats three-at-once, because a
+    # steady drip is what the algorithm rewards. At 4/week the ~90-video
+    # Vimeo backlog clears in ~5 months instead of ~11 at the old 2/week.
+    # Quota is not a constraint: an upload costs 1,600 units of 10,000/day.
+    - cron: '0 23 * * 0,2,4,6'
   workflow_dispatch:
     inputs:
       vimeo_url:
@@ -135,12 +139,14 @@ jobs:
             git push
           fi
 
-  # ── Scheduled: Vimeo → YouTube sync (every 5 days for steady algorithm cadence)
+  # ── Scheduled: Vimeo → YouTube sync, one video 4x/week ──────────────────────
   youtube-sync:
-    # Runs on the Sun+Tue cron OR when manually triggered with run_youtube_sync=true.
-    # Uses the schedule expression to differentiate the two scheduled crons.
+    # Runs on the Sun/Tue/Thu/Sat cron OR a manual dispatch with run_youtube_sync=true.
+    # The schedule string below MUST stay byte-identical to the `on.schedule`
+    # cron above — GitHub matches it literally, and a mismatch silently stops
+    # the sync from ever running on schedule.
     if: >
-      (github.event_name == 'schedule' && github.event.schedule == '0 23 * * 0,2')
+      (github.event_name == 'schedule' && github.event.schedule == '0 23 * * 0,2,4,6')
       || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_youtube_sync == 'true')
     runs-on: ubuntu-latest
     steps:
@@ -205,3 +211,88 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+
+  # ── Alert on any failure ────────────────────────────────────────────────────
+  # A red Action notifies nobody by default. The 2026-07-29 token expiry ran
+  # 10 days unnoticed because of that. This opens (or pings) a single assigned
+  # GitHub issue so a failure reaches Minh's inbox the same day.
+  alert-on-failure:
+    needs: [single-video-seo, bulk-seo-refresh, youtube-sync]
+    if: always() && contains(needs.*.result, 'failure')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or update the failure issue
+        uses: actions/github-script@v7
+        with:
+          # GH_PAT, not GITHUB_TOKEN — the default token is read-only in this repo.
+          github-token: ${{ secrets.GH_PAT }}
+          script: |
+            const LABEL = 'automation-failure';
+            const TITLE = '⚠️ Phaminh automation is failing';
+            // Re-ping at most once per ~12h so a broken 6-hour cron (4 runs/day)
+            // doesn't bury the thread in duplicate comments.
+            const QUIET_HOURS = 11;
+
+            const results = {
+              'single-video-seo': ${{ toJSON(needs['single-video-seo'].result) }},
+              'bulk-seo-refresh': ${{ toJSON(needs['bulk-seo-refresh'].result) }},
+              'youtube-sync':     ${{ toJSON(needs['youtube-sync'].result) }},
+            };
+            const failed = Object.entries(results)
+              .filter(([, r]) => r === 'failure')
+              .map(([j]) => j);
+
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}` +
+                           `/actions/runs/${context.runId}`;
+
+            const body = [
+              `**Failed job(s):** ${failed.map(j => '`' + j + '`').join(', ')}`,
+              ``,
+              `**Run:** ${runUrl}`,
+              ``,
+              `### Most likely causes`,
+              `- \`invalid_grant\` in **youtube-sync** — the YouTube refresh token died.`,
+              `  Re-mint it first, check the OAuth publish status second:`,
+              `  \`cd ~/Documents/GitHub/iphaminh && node scripts/youtube-auth.js\`,`,
+              `  then update the \`YOUTUBE_REFRESH_TOKEN\` secret.`,
+              `- **Cookies expired** — refresh \`VIMEO_COOKIES_B64\` per CLAUDE.md §6.`,
+              `- Anything in **bulk-seo-refresh** — usually a Vimeo/Anthropic API hiccup.`,
+              `  One red run is not an outage; two in a row is.`,
+              ``,
+              `_Close this issue once the next run is green — it reopens automatically on the next failure._`,
+            ].join('\n');
+
+            // Make sure the label exists (creating an issue with an unknown label
+            // is not reliable across API versions).
+            try {
+              await github.rest.issues.getLabel({ ...context.repo, name: LABEL });
+            } catch {
+              await github.rest.issues.createLabel({
+                ...context.repo, name: LABEL, color: 'b60205',
+                description: 'Scheduled automation failed',
+              });
+            }
+
+            const { data: open } = await github.rest.issues.listForRepo({
+              ...context.repo, state: 'open', labels: LABEL, per_page: 1,
+            });
+
+            if (open.length === 0) {
+              const { data: issue } = await github.rest.issues.create({
+                ...context.repo, title: TITLE, body, labels: [LABEL],
+                assignees: [context.repo.owner],
+              });
+              core.notice(`Opened failure issue #${issue.number}`);
+              return;
+            }
+
+            const issue = open[0];
+            const ageHours = (Date.now() - new Date(issue.updated_at)) / 3.6e6;
+            if (ageHours < QUIET_HOURS) {
+              core.notice(`Issue #${issue.number} pinged ${ageHours.toFixed(1)}h ago — staying quiet.`);
+              return;
+            }
+            await github.rest.issues.createComment({
+              ...context.repo, issue_number: issue.number, body: `Still failing.\n\n${body}`,
+            });
+            core.notice(`Commented on existing failure issue #${issue.number}`);

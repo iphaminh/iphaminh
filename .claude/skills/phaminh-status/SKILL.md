@@ -17,7 +17,8 @@ description: Resume work on the Phaminh automation project. Loads current state,
 **Everything is working end-to-end. 🎉**
 - Vimeo SEO automation (6-hour cron): healthy, green on every run.
 - **YouTube sync: restored 2026-08-08** after a 10-day outage (see below). Verified upload: "Northwest Arkansas Wedding Film | Darby + Tyler 2026" → https://www.youtube.com/watch?v=kOOESDhfVXU — thumbnail set, Vimeo tagged `youtube:kOOESDhfVXU`, Notion logged, `1 uploaded, 0 failed`.
-- Sync schedule: **Sundays + Tuesdays 23:00 UTC** (audience-timed), one video per run.
+- Sync schedule: **Sun/Tue/Thu/Sat 23:00 UTC** = 4pm Pacific / 6pm Central, one video per run (raised from 2x/week on 2026-08-08 — clears the ~90-video backlog in ~5 months instead of ~11).
+- **Failure alerting is live** (`alert-on-failure` job): any failed job opens or pings a single assigned GitHub issue labelled `automation-failure`, re-pinging at most once per ~11h. Uses `GH_PAT` because the default `GITHUB_TOKEN` is read-only here.
 - Vimeo Plus has NO API file access (`download`/`files`/`play` empty even with `video_files` scope) — cookies are the only download path unless Minh upgrades to a Pro-tier plan.
 
 ## What broke 2026-07-29 → 2026-08-08 (read this before debugging `invalid_grant` again)
@@ -31,11 +32,18 @@ The trap: by the time we investigated, the OAuth consent screen already read **"
 ## Watchpoints (check when resuming)
 
 1. **New token minted 2026-08-08, with the app already "In production"** — it should now be permanent. If it dies around **2026-08-15**, the 7-day theory is wrong and something else is revoking it: check https://myaccount.google.com/permissions for a revoked grant, and whether the Google account password changed.
-2. **No failure alerting** — this outage ran 10 days in silence because a red Action notifies nobody. Minh was offered a workflow-level failure notification and hasn't decided yet. Worth revisiting; it's the difference between a 2-day and a 10-day outage.
-3. **Vimeo cookies expire eventually** (months). Failure message says so explicitly; refresh procedure in CLAUDE.md §6 (base64 → `VIMEO_COOKIES_B64`).
-4. **Soft spot**: YouTube video "Linda & Linh" (DymoL-l7qyQ) has no linked Vimeo counterpart — if its Vimeo twin exists (private or renamed), add it to `scripts/youtube-registry.json` to guarantee no duplicate upload.
-5. At 2/week, the ~90-video backlog takes ~11 months. If Minh wants faster, raise `--limit` (max 5/run for quota) or add cron days.
-6. Registry commits from sync runs use `[skip ci]` — correct (nothing in the build reads it). Note a successful upload often leaves the registry *unchanged*, because the link is written as a Vimeo tag instead. **Absence of a registry commit is NOT evidence that no upload happened** — check the run logs.
+2. **Verify the alert actually fires.** `alert-on-failure` was added 2026-08-08 and has not yet fired for real. First red run should open an assigned issue — if it doesn't, check that `GH_PAT` still has `repo` scope (issue creation needs it; the default `GITHUB_TOKEN` is read-only here).
+3. **Changing the sync cron means changing TWO strings.** The `on.schedule` cron and the `youtube-sync` job's `github.event.schedule == '...'` guard must stay byte-identical — GitHub compares them literally, and a mismatch silently stops the sync with no error. Validator:
+   ```bash
+   python3 -c "
+   import yaml,re;s=open('.github/workflows/seo-automation.yml').read();w=yaml.safe_load(s)
+   c=[x['cron'] for x in (w.get('on') or w[True])['schedule']];g=re.findall(r\"github.event.schedule == '([^']+)'\",s)
+   print('crons',c);print('guards',g);print('OK' if set(g)<=set(c) else 'MISMATCH')"
+   ```
+4. **Vimeo cookies expire eventually** (months). Failure message says so explicitly; refresh procedure in CLAUDE.md §6 (base64 → `VIMEO_COOKIES_B64`).
+5. **Soft spot**: YouTube video "Linda & Linh" (DymoL-l7qyQ) has no linked Vimeo counterpart — if its Vimeo twin exists (private or renamed), add it to `scripts/youtube-registry.json` to guarantee no duplicate upload.
+6. Backlog now ~5 months at 4/week. To go faster, add cron days rather than raising `--limit` — one video per slot beats several at one timestamp, and quota is not the binding constraint (1,600 units/upload of 10,000/day).
+7. Registry commits from sync runs use `[skip ci]` — correct (nothing in the build reads it). Note a successful upload often leaves the registry *unchanged*, because the link is written as a Vimeo tag instead. **Absence of a registry commit is NOT evidence that no upload happened** — check the run logs.
 
 ## Pending / next up
 
