@@ -43,7 +43,8 @@ function LocationIndex() {
           <p className="location-region">Northern California & Arkansas</p>
           <h1>Where I Film Weddings</h1>
           <p className="location-intro-p">
-            I'm Minh Pham, a Bay Area–based wedding videographer with deep
+            I'm Minh Pham, a wedding videographer based in Vacaville,
+            California — between Napa Valley and Sacramento — with deep
             Arkansas roots. These are the regions I serve most — each with its
             own guide to venues, light, and planning your wedding film there.
           </p>

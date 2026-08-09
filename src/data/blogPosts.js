@@ -902,7 +902,7 @@ My [elopement film packages](/pricing) start at $2,500 and typically cover the c
         type: 'intro',
         content: `The Peninsula and South Bay quietly hold some of Northern California's most stunning wedding venues. While everyone talks about Napa, locals know: within 45 minutes of Palo Alto you can get married in a redwood grove, on a mountaintop vineyard, or in a historic villa's formal gardens.
 
-I live in Mountain View and film across this area constantly as a [Silicon Valley wedding videographer](/wedding-videographer/silicon-valley). These are the venues I recommend when couples ask where to look — with honest notes on how each films.`,
+I film across this area constantly as a [Silicon Valley wedding videographer](/wedding-videographer/silicon-valley). These are the venues I recommend when couples ask where to look — with honest notes on how each films.`,
       },
       {
         type: 'section',
@@ -941,7 +941,7 @@ I live in Mountain View and film across this area constantly as a [Silicon Valle
 
 For city-style celebrations, San Jose's historic **Hayes Mansion** and downtown hotels handle larger guest lists with classic ballroom elegance.
 
-Wherever you land, one local advantage matters: I'm based in Mountain View, minutes from all of these venues — no travel fees, easy venue walkthroughs, and a videographer who already knows the light. See [my packages](/pricing) or [check your date](/contact).`,
+Wherever you land, one advantage matters: I film these venues regularly, so you get easy walkthroughs and a videographer who already knows the light. See [my packages](/pricing) or [check your date](/contact).`,
       },
     ],
     faqs: [

@@ -9,7 +9,7 @@
     "h1": "Napa Valley Wedding Videographer",
     "intro": [
       "Napa Valley weddings deserve films as breathtaking as the valley itself. Rows of vines catching golden hour light, hilltop ceremonies overlooking the valley floor, candlelit receptions in barrel rooms — this is some of the most cinematic scenery in the world, and it's where I do some of my favorite work.",
-      "I'm Minh Pham, a Bay Area–based wedding videographer specializing in story-driven, emotional wedding films. Napa is under 90 minutes from my home base, so I film here often — I know how the light falls across the valley in late afternoon, when the fog burns off in Carneros, and how to capture a vineyard ceremony without ever getting in the way of your guests or your photographer.",
+      "I'm Minh Pham, a wedding videographer based in Vacaville — just 30-40 minutes from the valley floor, closer to Napa than almost any San Francisco videographer. I film here often, so I know how the light falls across the valley in late afternoon, when the fog burns off in Carneros, and how to capture a vineyard ceremony without ever getting in the way of your guests or your photographer.",
       "My approach is calm and documentary at heart: real vows, real toasts, real laughter — edited into a cinematic film you'll rewatch on every anniversary. Every wedding I take is the only wedding I film that day, so my full attention belongs to you."
     ],
     "venuesTitle": "Napa Valley Wedding Venues I Love Filming",
@@ -67,9 +67,164 @@
       }
     ],
     "nearby": [
+      "vacaville-suisun-valley",
       "sonoma-healdsburg",
       "marin-county",
       "san-francisco"
+    ],
+    "group": "Northern California"
+  },
+  {
+    "slug": "vacaville-suisun-valley",
+    "name": "Vacaville & Suisun Valley",
+    "shortName": "Vacaville",
+    "region": "Solano County, CA",
+    "metaTitle": "Vacaville & Suisun Valley Wedding Videographer | Solano County",
+    "metaDescription": "Cinematic wedding films in Vacaville, Fairfield & Suisun Valley by Minh Pham — the wedding videographer who actually lives here. Suisun Valley Inn, Vezér, Il Fiorello. From $2,700.",
+    "h1": "Vacaville & Suisun Valley Wedding Videographer",
+    "intro": [
+      "This is home. I live in Vacaville, and Suisun Valley — the quiet wine region ten minutes from my door — is where I film some of my favorite weddings. Rolling vineyards without the Napa crowds, golden hillsides at sunset, barn venues and Victorian mansions that photograph like a dream: Solano County is one of Northern California's best-kept wedding secrets.",
+      "Because I'm local, everything is easier. No travel fees anywhere in Solano County, easy venue walkthroughs before your wedding day, and a videographer who already knows exactly where the light lands at Suisun Valley Inn at five o'clock in June. Couples get Napa-quality cinematography without Napa minimums.",
+      "My style is documentary at heart and cinematic in craft: your real vows, real toasts, and the in-between moments you didn't know were being filmed — edited into a film you'll rewatch on every anniversary. One wedding per day, always."
+    ],
+    "venuesTitle": "Vacaville, Fairfield & Suisun Valley Wedding Venues I Love Filming",
+    "venues": [
+      {
+        "name": "Suisun Valley Inn at Monroe Ranch",
+        "note": "The valley's stunning new barn venue — vineyard rows and big-sky sunsets."
+      },
+      {
+        "name": "Vezér Family Vineyard — The Blue Victorian",
+        "note": "A Victorian mansion rising out of the vines; pure storybook."
+      },
+      {
+        "name": "Vezér Family Vineyard — Mankas Gardens",
+        "note": "Garden ceremonies under mature trees, barrel-room receptions."
+      },
+      {
+        "name": "Bally Keal Estate",
+        "note": "Hilltop views over Green Valley — dramatic golden hour, every time."
+      },
+      {
+        "name": "Il Fiorello Olive Oil Company",
+        "note": "Olive groves and Tuscan light in the heart of Suisun Valley."
+      },
+      {
+        "name": "Green Valley Country Club",
+        "note": "Classic fairway backdrops and an easy, elegant flow for full-day films."
+      },
+      {
+        "name": "The Timbers at Silveyville",
+        "note": "Rustic charm in Dixon — barn ceremonies ringed by orchards."
+      },
+      {
+        "name": "Jefferson Street Mansion",
+        "note": "Benicia's grand 1861 estate — antique elegance by the Carquinez Strait."
+      }
+    ],
+    "why": "I live here, and it shows in the films. I know which Suisun Valley ridgelines glow last at sunset, when the Vacaville hills turn from green to gold, and how to route a wedding day so we catch the valley's best light without rushing anyone. You get a local's knowledge, zero travel logistics, and full-day coverage that starts calm because the videographer slept in his own bed.",
+    "faqs": [
+      {
+        "q": "Where are you based?",
+        "a": "I live in Vacaville, California. Suisun Valley is about ten minutes from my door, Fairfield fifteen, and I film across all of Solano County — this is genuinely my home turf, not a market I drive into."
+      },
+      {
+        "q": "Do you charge travel fees for Vacaville, Fairfield, or Suisun Valley weddings?",
+        "a": "Never. There are no travel fees anywhere in Solano County — or Napa, Yolo, and Sacramento counties either."
+      },
+      {
+        "q": "How much does a wedding videographer cost in Solano County?",
+        "a": "My wedding films start at $2,700 for full-day cinematic coverage, and elopement films at $2,500. Most Solano County couples invest between $2,700 and $6,000 — see the pricing page for current packages."
+      },
+      {
+        "q": "Which Suisun Valley wedding venues have you filmed at?",
+        "a": "Suisun Valley Inn at Monroe Ranch, both Vezér properties (The Blue Victorian and Mankas Gardens), Il Fiorello, and Bally Keal Estate, plus Green Valley Country Club and venues across Vacaville, Fairfield, and Dixon."
+      },
+      {
+        "q": "We're getting married in Napa but live near Vacaville — do you cover both?",
+        "a": "All the time. Napa Valley is 30-40 minutes from my home, so a rehearsal dinner in Suisun Valley and a wedding at a Napa winery is an easy weekend for me — one videographer, no handoffs."
+      },
+      {
+        "q": "Do you also photograph weddings?",
+        "a": "Yes — I offer combined film + photography coverage, and I work happily alongside any photographer you've already booked."
+      }
+    ],
+    "nearby": [
+      "napa-valley",
+      "sacramento",
+      "sonoma-healdsburg",
+      "san-francisco"
+    ],
+    "group": "Northern California"
+  },
+  {
+    "slug": "sacramento",
+    "name": "Sacramento",
+    "shortName": "Sacramento",
+    "region": "Sacramento Valley, CA",
+    "metaTitle": "Sacramento Wedding Videographer | Phaminh Cinematography",
+    "metaDescription": "Cinematic Sacramento wedding films by Minh Pham — Vizcaya, Scribner Bend, Park Winters, Field & Pond. Based 35 minutes away in Vacaville; no travel fees. From $2,700.",
+    "h1": "Sacramento Wedding Videographer",
+    "intro": [
+      "Sacramento weddings have range: grand ballrooms downtown, riverside vineyard ceremonies at Scribner Bend, white-barn elegance at Park Winters, and golden-field sunsets that rival anything in wine country. It's some of the most underrated wedding scenery in California — and it's practically next door to me.",
+      "I'm Minh Pham, a wedding videographer based in Vacaville, about 35 minutes down I-80 from downtown Sacramento — close enough that there's never a travel fee, far enough that I still get the giddy feeling of arriving somewhere beautiful. I film across Sacramento, Woodland, Winters, and Davis regularly.",
+      "Every film is built from your day's real moments — vows, toasts, the way your people show up for you — edited into something cinematic you'll rewatch for decades. One wedding per day, full attention, always."
+    ],
+    "venuesTitle": "Sacramento-Area Wedding Venues I Love Filming",
+    "venues": [
+      {
+        "name": "Vizcaya Sacramento",
+        "note": "The city's classic — a pavilion and Victorian mansion made for film."
+      },
+      {
+        "name": "Scribner Bend Vineyards",
+        "note": "Vineyard rows along the Sacramento River; unbeatable dusk light."
+      },
+      {
+        "name": "Park Winters",
+        "note": "The iconic white barn and gardens between Winters and Woodland."
+      },
+      {
+        "name": "Field & Pond",
+        "note": "A wildflower farm outside Winters — intimate, organic, gorgeous."
+      },
+      {
+        "name": "Wolfe Heights Estate Winery",
+        "note": "Hilltop vines and sweeping valley views east of the city."
+      },
+      {
+        "name": "The Maples",
+        "note": "Woodland's historic estate — towering trees and lawn ceremonies."
+      }
+    ],
+    "why": "Sacramento couples usually choose between hiring locally or paying a Bay Area videographer's travel. I'm the third option: Vacaville is 35 minutes away, so you get wine-country-caliber cinematography with zero travel fees and a videographer who can scout your venue on a Tuesday. I know the valley light — hot, golden, and generous right before sunset — and I build wedding-day timelines around it.",
+    "faqs": [
+      {
+        "q": "Do you charge a travel fee for Sacramento weddings?",
+        "a": "No — Sacramento is about 35 minutes from my home in Vacaville, and everything in Sacramento, Yolo, and Solano counties is travel-fee free."
+      },
+      {
+        "q": "How much does a wedding videographer cost in Sacramento?",
+        "a": "My films start at $2,700 for full-day cinematic coverage; elopement films start at $2,500. Most Sacramento couples invest between $2,700 and $6,000."
+      },
+      {
+        "q": "Which Sacramento wedding venues have you worked at?",
+        "a": "Vizcaya, Scribner Bend Vineyards, Park Winters, Field & Pond, The Maples in Woodland, and estate venues across Winters, Davis, and the Sacramento Delta."
+      },
+      {
+        "q": "Can you film a Sacramento wedding and a Tahoe or Napa event on the same weekend?",
+        "a": "Often, yes — I sit right on the I-80 corridor between wine country and the Sierra, so multi-day celebrations across the region are easy to cover."
+      },
+      {
+        "q": "Do you offer photography too?",
+        "a": "Yes — combined film + photo packages are available, and I collaborate smoothly with any photographer you've already hired."
+      }
+    ],
+    "nearby": [
+      "vacaville-suisun-valley",
+      "napa-valley",
+      "lake-tahoe",
+      "sonoma-healdsburg"
     ],
     "group": "Northern California"
   },
@@ -129,7 +284,7 @@
       },
       {
         "q": "Do you film weddings throughout Sonoma County?",
-        "a": "Yes — Sonoma, Healdsburg, Santa Rosa, Glen Ellen, Kenwood, Sebastopol, Guerneville, and the Russian River Valley are all areas I serve regularly from my Bay Area home base."
+        "a": "Yes — Sonoma, Healdsburg, Santa Rosa, Glen Ellen, Kenwood, Sebastopol, Guerneville, and the Russian River Valley are all areas I serve regularly from my home in Vacaville — Sonoma is about an hour away, with no travel fees."
       },
       {
         "q": "Can you film both video and photo at our Sonoma wedding?",
@@ -223,7 +378,7 @@
     "h1": "Silicon Valley & Peninsula Wedding Videographer",
     "intro": [
       "The Peninsula and South Bay hide some of Northern California's most stunning wedding venues — redwood estates in Los Gatos, mountaintop wineries in Woodside and Saratoga, historic gardens in Menlo Park and Burlingame. I live right here in the heart of Silicon Valley, which makes these venues my true home ground.",
-      "I'm Minh Pham, a wedding videographer based in Mountain View. I create cinematic, emotional wedding films built from the real moments of your day — vows, toasts, quiet glances between portraits — edited with the same care a director gives a film.",
+      "I'm Minh Pham, a Northern California wedding videographer who films across Silicon Valley and the Peninsula regularly. I create cinematic, emotional wedding films built from the real moments of your day — vows, toasts, quiet glances between portraits — edited with the same care a director gives a film.",
       "Because I'm local, booking me for a Peninsula or South Bay wedding is simple: no travel fees, easy venue walkthroughs before your date, and a videographer who already knows how afternoon light falls through the redwoods at Nestldown or across the vines at Thomas Fogarty."
     ],
     "venuesTitle": "Silicon Valley Wedding Venues I Love Filming",
@@ -265,7 +420,7 @@
         "note": "San Jose's historic grand estate."
       }
     ],
-    "why": "As a Mountain View local, I'm minutes from Palo Alto, Los Altos, Saratoga, Los Gatos, Cupertino, Sunnyvale, and San Jose. That means relaxed timelines, easy pre-wedding venue visits, and no travel logistics — just a filmmaker who shows up early and knows the terrain.",
+    "why": "I film across Palo Alto, Los Altos, Saratoga, Los Gatos, Cupertino, Sunnyvale, and San Jose all the time — familiar venues, known light, easy pre-wedding walkthroughs, and a filmmaker who shows up early and knows the terrain.",
     "faqs": [
       {
         "q": "How much does a wedding videographer cost in the South Bay?",
@@ -273,7 +428,7 @@
       },
       {
         "q": "Which cities do you serve in the South Bay and Peninsula?",
-        "a": "All of them — Palo Alto, Menlo Park, Woodside, Redwood City, Burlingame, Los Altos, Mountain View, Sunnyvale, Cupertino, Saratoga, Los Gatos, Campbell, and San Jose. I'm based in Mountain View, so this is my home area."
+        "a": "All of them — Palo Alto, Menlo Park, Woodside, Redwood City, Burlingame, Los Altos, Mountain View, Sunnyvale, Cupertino, Saratoga, Los Gatos, Campbell, and San Jose. The whole Peninsula is part of my regular Northern California coverage."
       },
       {
         "q": "Do you film cultural and fusion weddings?",
@@ -362,7 +517,7 @@
     "metaDescription": "Cinematic Half Moon Bay wedding films — The Ritz-Carlton, Oceano Hotel, coastal bluff ceremonies. Local Bay Area videographer, packages from $2,700.",
     "h1": "Half Moon Bay Wedding Videographer",
     "intro": [
-      "Half Moon Bay is the Bay Area's coastal escape — ocean bluffs, harbor light, and one of the most iconic wedding backdrops in California: the fairway lawns of The Ritz-Carlton perched above the Pacific. It's barely 40 minutes from my home in Mountain View, and I never turn down a chance to film here.",
+      "Half Moon Bay is the Bay Area's coastal escape — ocean bluffs, harbor light, and one of the most iconic wedding backdrops in California: the fairway lawns of The Ritz-Carlton perched above the Pacific. I never turn down a chance to film here.",
       "I'm Minh Pham, and I make cinematic, emotional wedding films built around the real story of your day. On the coastside that means bagpipes at sunset at the Ritz, harbor-front receptions at the Oceano, and windswept bluff-top portraits that look like movie stills.",
       "Coastal weather is part of the charm — fog that turns everything soft and silver, then sun breaking through for golden hour. I plan coverage around the coast's moods so your film wins either way."
     ],
@@ -393,7 +548,7 @@
     "faqs": [
       {
         "q": "Do you charge travel fees for Half Moon Bay?",
-        "a": "Half Moon Bay is part of my local Bay Area service area — it's a short drive over the hill from Mountain View. Reach out for a quote and everything will be spelled out clearly."
+        "a": "Half Moon Bay is part of my regular Bay Area service area. Reach out for a quote and everything will be spelled out clearly."
       },
       {
         "q": "How much does a Half Moon Bay wedding videographer cost?",
@@ -533,6 +688,7 @@
       }
     ],
     "nearby": [
+      "sacramento",
       "napa-valley",
       "sonoma-healdsburg",
       "san-francisco"
