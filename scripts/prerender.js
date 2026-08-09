@@ -19,6 +19,8 @@ const LOCATIONS_PATH = path.join(ROOT, 'src', 'data', 'locations.json');
 // these into the static head, they never see the business at all).
 const { routeMeta } = require(path.join(ROOT, 'src', 'data', 'routeMeta'));
 const { websiteLd, businessLd, breadcrumbLdFor } = require(path.join(ROOT, 'src', 'data', 'businessSchema'));
+const { films: FILMS } = require(FILMS_PATH);
+const { enrichmentFor, videoLdFor } = require(path.join(ROOT, 'src', 'data', 'filmEnrichment'));
 
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
@@ -28,23 +30,11 @@ const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.jpg`;
 // Data extraction — parse films.js and blogPosts.js without needing to evaluate
 // ──────────────────────────────────────────────────────────────────────────────
 
+// films.js is CommonJS — require() it instead of regex-parsing, so new
+// optional fields (date, venue, city, locationSlug) can never silently drop
+// a film from prerender. assertParsedCount still cross-checks the source.
 function parseFilms() {
-  const content = fs.readFileSync(FILMS_PATH, 'utf8');
-  const films = [];
-  // Each film: { slug: '...', title: '...', description: '...', location: '...', vimeoId: '...' }
-  // Descriptions may contain escaped single quotes
-  const re = /\{\s*slug:\s*'([^']+)',\s*title:\s*'([^']+)',\s*description:\s*'((?:[^'\\]|\\.)*)',\s*location:\s*'([^']+)',\s*vimeoId:\s*'([^']+)',?\s*\}/g;
-  let m;
-  while ((m = re.exec(content)) !== null) {
-    films.push({
-      slug: m[1],
-      title: m[2],
-      description: m[3].replace(/\\'/g, "'"),
-      location: m[4],
-      vimeoId: m[5],
-    });
-  }
-  return films;
+  return FILMS;
 }
 
 function parseBlogPosts() {
@@ -389,28 +379,12 @@ function generateAll() {
   for (const film of films) {
     const url = `${SITE_URL}/cine/${film.slug}`;
     const title = `${film.title} | ${film.location} Wedding Film | Phaminh Cinematography`;
-    const thumbnail = `https://vumbnail.com/${film.vimeoId}.jpg`;
-    const videoEmbedUrl = `https://player.vimeo.com/video/${film.vimeoId}`;
+    const enrichment = enrichmentFor(film.vimeoId);
+    const thumbnail = enrichment.thumbnailUrl;
     const videoLandingUrl = `https://vimeo.com/${film.vimeoId}`;
 
-    const videoLd = {
-      '@context': 'https://schema.org',
-      '@type': 'VideoObject',
-      name: film.title,
-      description: film.description,
-      thumbnailUrl: [thumbnail],
-      uploadDate: '2024-01-01',
-      contentUrl: videoLandingUrl,
-      embedUrl: videoEmbedUrl,
-      publisher: {
-        '@type': 'Organization',
-        name: SITE_NAME,
-        logo: {
-          '@type': 'ImageObject',
-          url: `${SITE_URL}/assets/images/logo.png`,
-        },
-      },
-    };
+    // Shared with FilmPage.js — identical static and hydrated VideoObject.
+    const videoLd = videoLdFor(film);
 
     const headBlock = buildHead({
       title,
@@ -581,16 +555,52 @@ function writeSitemap({ films, posts, locations }) {
     { loc: `${SITE_URL}/wedding-videographer`, priority: '0.9', changefreq: 'monthly' },
     ...locations.map(l => ({ loc: `${SITE_URL}/wedding-videographer/${l.slug}`, priority: '0.9', changefreq: 'monthly' })),
     ...posts.map(p => ({ loc: `${SITE_URL}/blog/${p.slug}`, priority: '0.7', changefreq: 'monthly', lastmod: p.date })),
-    ...films.map(f => ({ loc: `${SITE_URL}/cine/${f.slug}`, priority: '0.6', changefreq: 'yearly' })),
+    ...films.map(f => {
+      const e = enrichmentFor(f.vimeoId);
+      return {
+        loc: `${SITE_URL}/cine/${f.slug}`,
+        priority: '0.6',
+        changefreq: 'yearly',
+        ...(e.uploadDate ? { lastmod: e.uploadDate.slice(0, 10) } : {}),
+        video: {
+          title: f.title,
+          description: f.description,
+          thumbnail: e.thumbnailUrl,
+          playerLoc: `https://player.vimeo.com/video/${f.vimeoId}`,
+          durationSeconds: e.durationSeconds,
+          publicationDate: e.uploadDate,
+        },
+      };
+    }),
   ];
 
+  // XML text fields need their own escaping — one raw '&' in a film title
+  // invalidates the entire sitemap for Google.
+  const escapeXml = s => String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+
+  const videoBlock = u => {
+    if (!u.video) return '';
+    const v = u.video;
+    return `
+    <video:video>
+      <video:thumbnail_loc>${escapeXml(v.thumbnail)}</video:thumbnail_loc>
+      <video:title>${escapeXml(v.title)}</video:title>
+      <video:description>${escapeXml(v.description)}</video:description>
+      <video:player_loc>${escapeXml(v.playerLoc)}</video:player_loc>${v.durationSeconds ? `
+      <video:duration>${Math.round(v.durationSeconds)}</video:duration>` : ''}${v.publicationDate ? `
+      <video:publication_date>${escapeXml(v.publicationDate)}</video:publication_date>` : ''}
+    </video:video>`;
+  };
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${urls.map(u => `  <url>
     <loc>${u.loc}</loc>${u.lastmod ? `
     <lastmod>${u.lastmod}</lastmod>` : ''}
     <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
+    <priority>${u.priority}</priority>${videoBlock(u)}
   </url>`).join('\n')}
 </urlset>
 `;

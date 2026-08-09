@@ -63,6 +63,11 @@ async function fetchAllVideos() {
         description: video.description || "",
         thumbnailUrl: bestThumbnail(video),
         vimeoUrl: `https://vimeo.com/${id}`,
+        // Feed the VideoObject schema on /cine/:slug pages (via
+        // src/data/filmEnrichment.js) — real dates/durations instead of
+        // placeholders. duration is in seconds.
+        releaseTime: video.release_time || null,
+        duration: typeof video.duration === "number" ? video.duration : null,
       });
     }
 

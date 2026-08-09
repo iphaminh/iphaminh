@@ -146,9 +146,12 @@ Focus keywords on Arkansas and Bay Area CA for maximum SEO impact on phaminh.com
   },`;
 
   const updatedFilms = filmsContent.replace(
-    /^(export const films = \[)\n/m,
+    /^(const films = \[)\n/m,
     `$1\n${newEntry}\n`
   );
+  if (updatedFilms === filmsContent) {
+    throw new Error('films.js insertion anchor "const films = [" not found — film NOT added');
+  }
   fs.writeFileSync(filmsPath, updatedFilms, 'utf8');
   console.log('  films.js updated.');
 

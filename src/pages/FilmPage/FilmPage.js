@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO/SEO';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import { films } from '../../data/films';
+import { enrichmentFor, videoLdFor } from '../../data/filmEnrichment';
 import './FilmPage.css';
 
 const SITE_URL = 'https://www.phaminh.com';
@@ -33,27 +34,12 @@ export default function FilmPage() {
     `?title=0&byline=0&portrait=0&dnt=1`;
 
   const pageTitle = `${film.title} | ${film.location} Wedding Film | Phaminh Cinematography`;
-  const thumbnail = `https://vumbnail.com/${film.vimeoId}.jpg`;
+  const thumbnail = enrichmentFor(film.vimeoId).thumbnailUrl;
 
-  // VideoObject JSON-LD for rich results in Google video search
-  const videoLd = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name: film.title,
-    description: film.description,
-    thumbnailUrl: [thumbnail],
-    uploadDate: '2024-01-01',
-    contentUrl: `https://vimeo.com/${film.vimeoId}`,
-    embedUrl: `https://player.vimeo.com/video/${film.vimeoId}`,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Phaminh Cinematography',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/assets/images/logo.png`,
-      },
-    },
-  };
+  // VideoObject JSON-LD — shared builder (src/data/filmEnrichment.js) keeps
+  // this identical to the prerendered static block: real upload date and
+  // duration from the Vimeo feed when known, omitted when not, no contentUrl.
+  const videoLd = videoLdFor(film);
 
   return (
     <>

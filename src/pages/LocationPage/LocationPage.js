@@ -13,20 +13,20 @@ import { routeMeta } from '../../data/routeMeta';
 
 const SITE_URL = 'https://www.phaminh.com';
 
-// Prefer films whose location matches the page's region; fill with the
-// newest films if there aren't enough regional matches yet.
+// Only films whose location genuinely matches the page's region. No cross-group
+// fill: it used to put the first three ARKANSAS films on every Northern
+// California page, which reads as fake local proof to couples and to Google.
+// When there are no real matches, the section renders nothing.
 const GROUP_KEYWORDS = {
   Arkansas: ['arkansas', 'ozark'],
-  'Northern California': ['california', 'napa', 'sonoma', 'san francisco', 'bay area', 'carmel', 'big sur', 'tahoe', 'monterey'],
+  'Northern California': ['california', 'napa', 'sonoma', 'san francisco', 'bay area', 'carmel', 'big sur', 'tahoe', 'monterey', 'sacramento', 'vacaville', 'suisun', 'mountain view'],
 };
 
 function filmsForGroup(group, count = 3) {
   const keywords = GROUP_KEYWORDS[group] || [];
-  const matches = films.filter((f) =>
-    keywords.some((k) => f.location.toLowerCase().includes(k))
-  );
-  const fill = films.filter((f) => !matches.includes(f));
-  return [...matches, ...fill].slice(0, count);
+  return films
+    .filter((f) => keywords.some((k) => f.location.toLowerCase().includes(k)))
+    .slice(0, count);
 }
 
 // Hub page listing every market — rendered at /wedding-videographer
@@ -161,26 +161,28 @@ export default function LocationPage() {
           <p>{loc.why}</p>
         </section>
 
-        <section className="location-films">
-          <h2>Recent Wedding Films</h2>
-          <div className="location-films-grid">
-            {featuredFilms.map((film) => (
-              <Link key={film.slug} to={`/cine/${film.slug}`} className="location-film-card">
-                <img
-                  src={`https://vumbnail.com/${film.vimeoId}.jpg`}
-                  alt={`${film.title} — wedding film by Phaminh Cinematography`}
-                  loading="lazy"
-                  width="640"
-                  height="360"
-                />
-                <span>{film.title}</span>
-              </Link>
-            ))}
-          </div>
-          <p className="location-films-more">
-            <Link to="/cine">Watch the full portfolio →</Link>
-          </p>
-        </section>
+        {featuredFilms.length > 0 && (
+          <section className="location-films">
+            <h2>Recent Wedding Films</h2>
+            <div className="location-films-grid">
+              {featuredFilms.map((film) => (
+                <Link key={film.slug} to={`/cine/${film.slug}`} className="location-film-card">
+                  <img
+                    src={`https://vumbnail.com/${film.vimeoId}.jpg`}
+                    alt={`${film.title} — wedding film by Phaminh Cinematography`}
+                    loading="lazy"
+                    width="640"
+                    height="360"
+                  />
+                  <span>{film.title}</span>
+                </Link>
+              ))}
+            </div>
+            <p className="location-films-more">
+              <Link to="/cine">Watch the full portfolio →</Link>
+            </p>
+          </section>
+        )}
 
         <section className="location-faqs">
           <h2>{loc.shortName} Wedding Videography FAQs</h2>

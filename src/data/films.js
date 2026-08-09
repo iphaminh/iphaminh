@@ -1,6 +1,9 @@
-// Shared film data — used by CineGallery grid and individual FilmPage routes.
-// Update title/description/location for each film as needed.
-export const films = [
+// Shared film data — used by CineGallery grid, FilmPage routes, LocationPage,
+// and scripts/prerender.js (which require()s this file directly — that's why
+// it's CommonJS, not ESM; webpack imports CJS fine but plain node can't do ESM).
+// Fields beyond vimeoId are optional-forward: date, venue, city, locationSlug
+// may be added per film and consumers must treat them as optional.
+const films = [
   {
     slug: 'golden-hour-arkansas-wedding-film',
     title: 'Golden Hour Wedding Film',
@@ -121,3 +124,5 @@ export const films = [
     vimeoId: '889359140',
   },
 ];
+
+module.exports = { films };

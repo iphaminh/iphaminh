@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://www.phaminh.com/</loc>
     <changefreq>weekly</changefreq>
@@ -52,6 +52,16 @@
   </url>
   <url>
     <loc>https://www.phaminh.com/wedding-videographer/napa-valley</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/wedding-videographer/vacaville-suisun-valley</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/wedding-videographer/sacramento</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -186,85 +196,187 @@
     <loc>https://www.phaminh.com/cine/golden-hour-arkansas-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2095416922-4887d9f153886f474af428e1d038eb24727c6f35a1c7002eb98d534db60018f6-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Golden Hour Wedding Film</video:title>
+      <video:description>A 2025 wedding film by Phaminh Cinematography capturing heartfelt vows, golden hour portraits, and the joy of an Arkansas celebration. Every frame crafted with a calm, story-first approach.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1145842678</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/romance-at-the-bluff</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1245293248-66bc37a81b92a62028b73213fb9d6b260056240f11b3aca525037f551cc38f85-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Romance at the Bluff</video:title>
+      <video:description>An Arkansas wedding film set against dramatic river bluffs — inspired by nature and authentic emotion. This cinematic story captures love in the heart of the Natural State.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/608232970</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/sunset-vows-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2095422513-011f8bb9eda9050219f9e12a6b315292b28390098710d8cebd3d1c4fc0b8cdb5-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Sunset Vows</video:title>
+      <video:description>A cinematic Arkansas wedding film filled with soft golden light, tearful vows, and moments of pure joy shared between family and friends.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1145833331</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/arkansas-ceremony-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2095422272-c08f95e866d273e476fb410c710d6470aee252719de02cf19da39ef8cabdd212-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Arkansas Ceremony Film</video:title>
+      <video:description>A story-driven wedding film from Arkansas capturing the ceremony, reception, and quiet in-between moments that make each wedding one of a kind.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1145837841</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/timeless-love-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2095422393-7ed1168761dc92ceb428786edb24e1fef9f98e1fb6ae8a3bb35020373609cae1-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Timeless Love</video:title>
+      <video:description>A timeless wedding film woven together with natural light, candid laughter, and the genuine emotion of two people beginning their forever.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1145835171</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/love-in-the-ozarks</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2095417612-2fdb32b88c9b3cc2321ac7703ca98555f0458c9e69503bbbff706c7cb754f915-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Love in the Ozarks</video:title>
+      <video:description>A wedding film set in the stunning Ozark region of Northwest Arkansas — where rolling hills and open skies set the stage for a cinematic celebration of love.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1145843833</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/georgia-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1480308928-62adc150cf92e05b4a51465146ccde41db34d060db6e984310b595947d6611f3-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Georgia Wedding Film</video:title>
+      <video:description>A cinematic Georgia wedding film by Phaminh Cinematography capturing the warmth of Southern hospitality and the deep emotion of a couple&apos;s most important day.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/735641625</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/rustic-romance-barn-wedding</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1788897477-ad4b9f5d7f96da207fe8e7bc7108e5a96896c7b70144450bd691ab670e8ece9b-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Rustic Romance</video:title>
+      <video:description>A warm, rustic Arkansas barn wedding film overflowing with heartfelt moments, golden hour light, and the genuine joy of a couple surrounded by everyone they love.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/889737378</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/elegant-moments-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2095421975-eaee35102f3b47fa3a2556a8ceb3e98039ceeae2bd1033fcc60258856b49a98d-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Elegant Moments</video:title>
+      <video:description>A Phaminh Cinematography wedding film focused on the elegant, intimate, and unrepeatable moments that define a wedding day.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1145842030</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/destination-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1198551570-73b4b2b73351cfb09ba45258e5b2023875dcb584af20c9c3386f81f705387e35-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Destination Wedding Film</video:title>
+      <video:description>A destination wedding film by Minh Pham capturing the magic of celebrating love far from home — with cinematic beauty and emotional depth.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/579239863</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/northwest-arkansas-wedding</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1788900058-a5d93161da11f1944d541ef37804c69d2f43d42a307f631a109945bf3649f4b9-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Northwest Arkansas Wedding</video:title>
+      <video:description>A cinematic Northwest Arkansas wedding film showcasing the natural beauty of the region, heartfelt vows, and the joyful celebration of a modern couple.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/738121759</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/ceremony-and-celebration</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1804322406-6a182302a0bc3050521458c90a08aad46f3b62e41700b61abb85ffbd7956969d-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Ceremony &amp; Celebration</video:title>
+      <video:description>A beautifully filmed wedding day capturing every meaningful detail — from the quiet pre-ceremony moments to the spirited energy of the reception.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/907939938</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/estate-elegance-wedding</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1788889718-55e0992607ae01528b8be07af72ade1e73e4a9651cde892d9fcc0e3fbdff8675-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Estate Elegance</video:title>
+      <video:description>A cinematic estate wedding film capturing the grandeur, intimacy, and timeless elegance of a breathtaking Arkansas wedding day.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/770458916</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/northwest-arkansas-videography</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1788878888-2fc0b6170a29d6bf5637215e0b563ff5686c10dfbb22554628f3f7c36eaa01e9-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Northwest Arkansas Videography</video:title>
+      <video:description>A cinematic wedding film from Northwest Arkansas featuring stunning Ozark scenery, heartfelt vows, and warm candid family moments.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/739312203</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/garden-ceremony-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1788891041-db63a5a1d14967c49697ebea140e923c416c9ca1003dd82c9bb96881b79951e7-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Garden Ceremony Film</video:title>
+      <video:description>A lush garden wedding film by Phaminh Cinematography, filled with natural beauty, soft light, and the unforgettable emotion of a wedding ceremony.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/763166896</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/outdoor-celebration-wedding-film</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1761213843-abffcc3646f58091bf4f36f4c138722e1ed252e29eac8c33425e49d6ed76bdde-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Outdoor Wedding Celebration</video:title>
+      <video:description>A cinematic outdoor wedding film capturing the beauty of celebrating love under open skies, with family and friends gathered to witness a new beginning.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/889342561</video:player_loc>
+    </video:video>
   </url>
   <url>
     <loc>https://www.phaminh.com/cine/intimate-wedding-story</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/1761213067-f516ecb8fc8d324ea178324d2aa6cb09d5a1ab72490139c41c7df4786db33bb5-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Intimate Wedding Story</video:title>
+      <video:description>An intimate and emotional wedding film by Phaminh Cinematography, focusing on the quiet moments and deep connections that make each wedding unique.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/889359140</video:player_loc>
+    </video:video>
   </url>
 </urlset>
