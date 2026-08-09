@@ -8,6 +8,7 @@ import SEO from '../../components/SEO/SEO';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import locations from '../../data/locations.json';
 import { films } from '../../data/films';
+import { getBlogPost } from '../../data/blogPosts';
 import './LocationPage.css';
 import { routeMeta } from '../../data/routeMeta';
 
@@ -101,6 +102,11 @@ export default function LocationPage() {
   const nearby = (loc.nearby || [])
     .map((s) => locations.find((l) => l.slug === s))
     .filter(Boolean);
+  // Optional per-location guide links (relatedPosts is absent on entries added
+  // before the field existed — always guard).
+  const relatedPosts = (loc.relatedPosts || [])
+    .map((slug) => getBlogPost(slug))
+    .filter(Boolean);
 
   const faqLd = {
     '@context': 'https://schema.org',
@@ -193,6 +199,20 @@ export default function LocationPage() {
             </details>
           ))}
         </section>
+
+        {relatedPosts.length > 0 && (
+          <section className="location-nearby">
+            <h2>Planning Resources</h2>
+            <p>
+              {relatedPosts.map((p, i) => (
+                <React.Fragment key={p.slug}>
+                  {i > 0 && ' · '}
+                  <Link to={`/blog/${p.slug}`}>{p.title}</Link>
+                </React.Fragment>
+              ))}
+            </p>
+          </section>
+        )}
 
         {nearby.length > 0 && (
           <section className="location-nearby">

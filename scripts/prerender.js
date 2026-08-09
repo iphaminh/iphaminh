@@ -20,6 +20,7 @@ const LOCATIONS_PATH = path.join(ROOT, 'src', 'data', 'locations.json');
 const { routeMeta } = require(path.join(ROOT, 'src', 'data', 'routeMeta'));
 const { websiteLd, businessLd, breadcrumbLdFor } = require(path.join(ROOT, 'src', 'data', 'businessSchema'));
 const { films: FILMS } = require(FILMS_PATH);
+const { blogPosts: BLOG_POSTS } = require(BLOG_PATH);
 const { enrichmentFor, videoLdFor } = require(path.join(ROOT, 'src', 'data', 'filmEnrichment'));
 
 const SITE_URL = 'https://www.phaminh.com';
@@ -37,25 +38,10 @@ function parseFilms() {
   return FILMS;
 }
 
+// blogPosts.js is CommonJS — require() gives us sections verbatim for full-body
+// static rendering (the old regex could only reach the metadata header).
 function parseBlogPosts() {
-  const content = fs.readFileSync(BLOG_PATH, 'utf8');
-  const posts = [];
-  // Match each post header (just the metadata fields we need)
-  const re = /\{\s*slug:\s*'([^']+)',\s*title:\s*'((?:[^'\\]|\\.)*)',\s*description:\s*'((?:[^'\\]|\\.)*)',\s*date:\s*'([^']+)',\s*location:\s*'((?:[^'\\]|\\.)*)',\s*category:\s*'([^']+)',\s*readTime:\s*'([^']+)',\s*image:\s*'([^']+)'/g;
-  let m;
-  while ((m = re.exec(content)) !== null) {
-    posts.push({
-      slug: m[1],
-      title: m[2].replace(/\\'/g, "'"),
-      description: m[3].replace(/\\'/g, "'"),
-      date: m[4],
-      location: m[5].replace(/\\'/g, "'"),
-      category: m[6],
-      readTime: m[7],
-      image: m[8],
-    });
-  }
-  return posts;
+  return BLOG_POSTS;
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -118,10 +104,47 @@ function buildHead({ title, description, canonical, ogImage, ogType, jsonLd, rob
   `.trim();
 }
 
-// Renders a <noscript> body block — what crawlers without JS see.
-// This is real HTML, real text content, real links for indexing.
+// Mirrors BlogPost.js renderInline: **bold** and [text](url), on escaped text.
+function renderInlineMd(text) {
+  let out = escapeHtml(text);
+  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, label, href) => `<a href="${href}">${label}</a>`);
+  return out;
+}
+
+// Mirrors BlogPost.js renderContent: paragraphs and '- ' lists.
+function renderContentMd(content) {
+  return String(content).split('\n\n').map(block => {
+    if (!block.trim()) return '';
+    if (block.trim().startsWith('- ') || block.includes('\n- ')) {
+      const items = block.split('\n').filter(Boolean)
+        .map(line => `<li>${renderInlineMd(line.replace(/^- /, ''))}</li>`).join('');
+      return `<ul>${items}</ul>`;
+    }
+    return `<p>${renderInlineMd(block)}</p>`;
+  }).join('');
+}
+
+// Full post body for the static page — headings, sections, and FAQs.
+function renderPostBody(post) {
+  const sections = (post.sections || []).map(s => {
+    const heading = s.heading ? `<h2>${escapeHtml(s.heading)}</h2>` : '';
+    return `${heading}${renderContentMd(s.content || '')}`;
+  }).join('');
+  const faqs = (post.faqs || []).length
+    ? `<h2>Frequently Asked Questions</h2>` + post.faqs.map(f =>
+        `<h3>${escapeHtml(f.question)}</h3>${renderContentMd(f.answer || '')}`).join('')
+    : '';
+  return sections + faqs;
+}
+
+// Renders the static content block that goes INSIDE <div id="root"> — what
+// crawlers and no-JS visitors see. Several AI crawlers skip <noscript>
+// entirely, so this is a real div: React 18 createRoot().render() replaces
+// the container's children on mount (src/index.js uses createRoot), so
+// hydrated users only ever see the React app.
 function buildNoscript(html) {
-  return `<noscript><div style="max-width:900px;margin:2rem auto;padding:1rem;font-family:sans-serif;line-height:1.6;color:#222">${html}</div></noscript>`;
+  return `<div class="prerender-content" style="max-width:900px;margin:2rem auto;padding:1rem;font-family:sans-serif;line-height:1.6;color:#222">${html}</div>`;
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -156,8 +179,11 @@ function rewritePage(template, { headBlock, noscriptHtml }) {
   // Insert our head block right before </head>
   html = html.replace('</head>', `${headBlock}\n</head>`);
 
-  // Replace the entire noscript block (the build keeps the public/index.html one)
-  html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscriptHtml);
+  // Drop the template's noscript notice and put the static content INSIDE
+  // #root, where crawlers that skip <noscript> still read it. createRoot()
+  // replaces these children on mount, so users see only the React app.
+  html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, '');
+  html = html.replace('<div id="root"></div>', `<div id="root">${noscriptHtml}</div>`);
 
   return html;
 }
@@ -205,8 +231,10 @@ function generateAll() {
     {
       path: '/',
       noscript: `
-        <h1>Phaminh Cinematography — Bay Area & Arkansas Wedding Videographer</h1>
-        <p>Minh Pham creates cinematic wedding films and photography for couples in San Francisco, Oakland, San Jose, Napa, Sonoma, Fayetteville AR, Bentonville AR, Rogers AR, Little Rock AR, and destination weddings worldwide.</p>
+        <h1>Cinematic Wedding Films — Napa Valley, the Bay Area & Sacramento</h1>
+        <p>Minh Pham is a luxury wedding videographer based in Vacaville, California — between Napa Valley and Sacramento — creating cinematic wedding films and photography for couples across Napa, Sonoma, San Francisco, the Bay Area, Sacramento, Vacaville & Suisun Valley, and Northwest Arkansas.</p>
+        <h2>Where I Film</h2>
+        <p><a href="/wedding-videographer/vacaville-suisun-valley">Vacaville & Suisun Valley</a> · <a href="/wedding-videographer/napa-valley">Napa Valley</a> · <a href="/wedding-videographer/sacramento">Sacramento</a> · <a href="/wedding-videographer">all service areas</a></p>
         <h2>Wedding Films</h2>
         <p>Browse our <a href="/cine">complete wedding film portfolio</a> featuring real couples and emotional, story-driven cinematic films.</p>
         <h2>Photography</h2>
@@ -449,8 +477,8 @@ function generateAll() {
       <p><a href="/blog">← All Articles</a></p>
       <h1>${escapeHtml(post.title)}</h1>
       <p><em>${escapeHtml(post.date)} · ${escapeHtml(post.category)} · ${escapeHtml(post.readTime)}</em></p>
-      <p>${escapeHtml(post.description)}</p>
-      <p><a href="/blog/${post.slug}">Read the full article</a></p>
+      ${renderPostBody(post)}
+      <p><a href="/contact">Check your date</a> · <a href="/pricing">View packages</a> · <a href="/wedding-videographer">Service areas</a></p>
     `);
 
     writePage(`/blog/${post.slug}`, rewritePage(template, { headBlock, noscriptHtml }));
@@ -522,6 +550,10 @@ function generateAll() {
       <p>${escapeHtml(loc.why)}</p>
       <h2>${escapeHtml(loc.shortName)} Wedding Videography FAQs</h2>
       ${loc.faqs.map(f => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`).join('')}
+      ${(loc.relatedPosts || []).length ? `<h2>Planning Resources</h2><p>${(loc.relatedPosts || []).map(s => {
+        const rp = posts.find(p => p.slug === s);
+        return rp ? `<a href="/blog/${rp.slug}">${escapeHtml(rp.title)}</a>` : '';
+      }).filter(Boolean).join(' · ')}</p>` : ''}
       <p>Also serving: ${(loc.nearby || []).map(s => {
         const n = locations.find(l => l.slug === s);
         return n ? `<a href="/wedding-videographer/${n.slug}">${escapeHtml(n.name)}</a>` : '';

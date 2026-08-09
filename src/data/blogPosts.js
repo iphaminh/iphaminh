@@ -1,7 +1,7 @@
 // src/data/blogPosts.js
 // Full blog post data — metadata + structured content rendered by BlogPost.js
 
-export const blogPosts = [
+const blogPosts = [
   {
     slug: 'wedding-videography-cost-bay-area',
     title: 'How Much Does Wedding Videography Cost in the Bay Area? (2026 Pricing Guide)',
@@ -1021,5 +1021,9 @@ If you're planning an Anthony Chapel wedding, [my film packages](/pricing) start
   },
 ];
 
-export const getBlogPost = (slug) => blogPosts.find((p) => p.slug === slug);
-export const getRecentPosts = (count = 3) => blogPosts.slice(0, count);
+const getBlogPost = (slug) => blogPosts.find((p) => p.slug === slug);
+const getRecentPosts = (count = 3) => blogPosts.slice(0, count);
+
+// CommonJS: scripts/prerender.js require()s this file to render full post
+// bodies into the static HTML; webpack imports CJS fine. Do not convert to ESM.
+module.exports = { blogPosts, getBlogPost, getRecentPosts };

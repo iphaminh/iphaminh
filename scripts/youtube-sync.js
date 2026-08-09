@@ -303,7 +303,8 @@ async function generateYouTubeSEO(vimeoTitle, vimeoDescription, durationSeconds)
 Client: Phaminh Cinematography — a luxury wedding videography studio owned by Minh Pham.
 
 BRAND CONTEXT
-Service areas: San Francisco Bay Area · Napa Valley · Sonoma · Silicon Valley · Marin · Bentonville AR · Fayetteville AR · Rogers AR · Northwest Arkansas · Little Rock · Hot Springs AR.
+Based in: Vacaville, CA (Solano County — between Napa Valley and Sacramento).
+Service areas: Napa Valley · Vacaville & Suisun Valley · Sacramento · Sonoma · San Francisco Bay Area · Silicon Valley · Marin · Bentonville AR · Fayetteville AR · Rogers AR · Northwest Arkansas · Little Rock · Hot Springs AR.
 Website: https://www.phaminh.com
 YouTube: https://www.youtube.com/@Phaminh-Cinematography
 Instagram: https://www.instagram.com/phaminh/
@@ -320,7 +321,9 @@ Produce a complete YouTube SEO package tuned for 2026's algorithm. Return ONLY t
 ===== YT_TITLE =====
 Rules for the title (60-70 chars ideal, hard cap 100):
 - Front-load the primary keyword in the first 40 characters (YouTube weights early words heavily).
-- Use the pattern: "[Couple/Venue] | [Location] Wedding Videographer" or "[Emotional hook] | [Location] Wedding Film 2026".
+- If a VENUE is named in the source, lead with it: "[Venue] Wedding Film | [Couple] | [City, ST]" — venue-name searches are the highest-intent, lowest-competition queries in this vertical.
+- Otherwise use: "[Couple/Venue] | [Location] Wedding Videographer" or "[Emotional hook] | [Location] Wedding Film 2026".
+- The title MUST contain the " | " separator (pipe with spaces) — the sync pipeline uses its presence as the processed-video marker; a title without it gets reprocessed forever.
 - Include the year "2026" when it fits — it drives freshness rankings.
 - Prefer natural, human phrasing over keyword stuffing (YouTube's 2026 update penalizes clickbait).
 - Avoid ALL CAPS and excessive emojis (one max, and only if it fits the brand).
@@ -328,17 +331,18 @@ Rules for the title (60-70 chars ideal, hard cap 100):
 ===== YT_DESCRIPTION =====
 Rules for the description (target 400-600 words):
 - **First 125 characters are critical** — they appear as the search snippet AND above-the-fold on watch pages. Lead with 1 emotional sentence that includes the primary keyword + location.
-- **Line 2 (still above the fold on mobile):** the concrete "who + where + what" — couple, venue if named, city.
+- **Line 2 (still above the fold on mobile):** a deep link to the MATCHING location page on the site, chosen from: https://www.phaminh.com/wedding-videographer/northwest-arkansas (or /hot-springs, /eureka-springs, /little-rock, /napa-valley, /vacaville-suisun-valley, /sacramento, /sonoma-healdsburg, /san-francisco — pick whichever matches the wedding's region; NEVER just the homepage).
+- **Line 3:** the concrete "who + where + what" — couple, venue if named, city and county in prose (venue + city + county names are what search and AI engines extract).
 - Include a horizontal separator like "━━━━━━━━━━" between sections so the description scans well.
 - **Sections in this order:**
   1. Emotional hook (2-3 sentences, keyword-rich).
   2. About the wedding — vendors and venue named from the source description if any.
-  3. About Phaminh Cinematography (1 paragraph: what we do, service areas, style).
+  3. About Phaminh Cinematography — ALWAYS include this exact entity line, then 1-2 sentences on style: "Wedding videographer based in Vacaville, CA — serving Napa Valley, Sonoma, the SF Bay Area, Sacramento & Northwest Arkansas." 
   4. "📩 BOOKING & INQUIRIES" — website + email + phone.
   5. "🎬 WATCH MORE" — 2-3 line breaks with placeholder like "→ Wedding films: https://www.phaminh.com/cine"
   6. "🔗 FOLLOW" — Instagram + YouTube subscribe reminder.
   7. Timestamps section labeled "⏱ TIMESTAMPS" — ${durationStr
-    ? `the video is exactly ${durationStr} long. Include 3-4 chapters that fit INSIDE that runtime (first must be 00:00; last chapter must start well before ${durationStr}). Spread them sensibly for a wedding film arc (getting ready → ceremony → portraits → reception). If the video is under 2:00, SKIP the timestamps section entirely — chapters on teasers feel broken.`
+    ? `the video is exactly ${durationStr} long. Include 3-4 chapters that fit INSIDE that runtime (first must be 00:00; last chapter must start well before ${durationStr}). Name them for the wedding arc — Ceremony / Vows / First Dance / Toasts (or Getting Ready / Portraits where the film starts there); these become Google Key Moments automatically. If the video is under 2:00, SKIP the timestamps section entirely — chapters on teasers feel broken.`
     : `video duration unknown — SKIP the timestamps section entirely rather than inventing times.`}
   8. Community engagement question ("💬 What's your favorite wedding tradition? Let me know in the comments.") — YouTube's 2026 algorithm heavily weights comment engagement.
   9. Final line: 3-5 relevant hashtags (see hashtag rules below).

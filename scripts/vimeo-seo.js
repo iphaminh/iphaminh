@@ -105,7 +105,8 @@ async function generateSEO(video) {
 
   const prompt = `You are an expert wedding videography SEO specialist for Phaminh Cinematography, a luxury wedding film company owned by Minh Pham.
 
-Service areas: Bay Area California, Napa California, Mountain View California, Bentonville Arkansas, Northwest Arkansas, Hot Springs Arkansas.
+Based in: Vacaville, California (Solano County — between Napa Valley and Sacramento).
+Service areas: Napa Valley, Vacaville & Suisun Valley, Sacramento, Sonoma, San Francisco Bay Area, Bentonville Arkansas, Northwest Arkansas, Hot Springs Arkansas.
 Website: https://www.phaminh.com
 YouTube: https://www.youtube.com/@Phaminh-Cinematography
 
@@ -116,9 +117,9 @@ Tags: ${tags}
 
 Generate a complete SEO package. Return ONLY this exact format with no extra text:
 
-SEO_TITLE: [compelling 60-char max title with location and keywords]
+SEO_TITLE: [compelling 60-char max title with location and keywords. If a VENUE is named in the source info, lead with the venue name — venue searches are the highest-intent queries. MUST contain the " | " separator (pipe with spaces): its presence marks the video as processed, so a title without it would be reprocessed on every run]
 
-SEO_DESCRIPTION: [700+ word description with: emotional opening paragraph, film details, vendor credits if mentioned, location keywords, luxury wedding phrases, Bay Area AND Arkansas SEO phrases, call to action with website URL, hashtags at the end]
+SEO_DESCRIPTION: [700+ word description with: emotional opening paragraph, film details, vendor credits if mentioned, the venue name (when known) in the first paragraph, location keywords, luxury wedding phrases, Bay Area AND Arkansas SEO phrases, call to action with website URL, hashtags at the end]
 
 VIMEO_TAGS: [20 comma-separated tags: mix of location, style, vendor names if known, wedding keywords]`;
 

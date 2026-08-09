@@ -79,6 +79,21 @@ const LandingPage = () => {
       />
 
       <div className="landing-page-content">
+        <section style={{ textAlign: 'center', padding: '3rem 1.5rem 1rem', maxWidth: 760, margin: '0 auto' }}>
+          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '0.04em', color: '#2b2b2b', marginBottom: '1rem' }}>
+            Cinematic Wedding Films — Napa Valley, the Bay Area &amp; Sacramento
+          </h1>
+          <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.98rem', color: '#444', lineHeight: 1.8 }}>
+            I'm Minh Pham, a luxury wedding videographer based in Vacaville,
+            California — between Napa Valley and Sacramento — with deep roots in
+            Arkansas. I film one wedding a day, documentary at heart and cinematic
+            in craft: your real vows, real toasts, and the moments in between,
+            edited into a film you'll rewatch on every anniversary. Explore{' '}
+            <Link to="/cine" style={{ color: '#2b2b2b' }}>recent wedding films</Link>,{' '}
+            <Link to="/pricing" style={{ color: '#2b2b2b' }}>packages from $2,700</Link>, or{' '}
+            <Link to="/wedding-videographer" style={{ color: '#2b2b2b' }}>everywhere I film</Link>.
+          </p>
+        </section>
         <BadgesContainer />
         <RecentFilm />
 
@@ -97,30 +112,22 @@ const LandingPage = () => {
           </h2>
           <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', color: '#444', lineHeight: 2, maxWidth: 700, margin: '0 auto' }}>
             <strong>Northern California:</strong>{' '}
-            <Link to="/wedding-videographer/san-francisco" style={{ color: '#444' }}>San Francisco</Link> ·{' '}
+            <Link to="/wedding-videographer/vacaville-suisun-valley" style={{ color: '#444' }}>Vacaville & Suisun Valley</Link> ·{' '}
             <Link to="/wedding-videographer/napa-valley" style={{ color: '#444' }}>Napa Valley</Link> ·{' '}
+            <Link to="/wedding-videographer/sacramento" style={{ color: '#444' }}>Sacramento</Link> ·{' '}
             <Link to="/wedding-videographer/sonoma-healdsburg" style={{ color: '#444' }}>Sonoma & Healdsburg</Link> ·{' '}
+            <Link to="/wedding-videographer/san-francisco" style={{ color: '#444' }}>San Francisco</Link> ·{' '}
             <Link to="/wedding-videographer/silicon-valley" style={{ color: '#444' }}>Silicon Valley</Link> ·{' '}
             <Link to="/wedding-videographer/marin-county" style={{ color: '#444' }}>Marin County</Link> ·{' '}
             <Link to="/wedding-videographer/half-moon-bay" style={{ color: '#444' }}>Half Moon Bay</Link> ·{' '}
             <Link to="/wedding-videographer/carmel-big-sur" style={{ color: '#444' }}>Carmel & Big Sur</Link> ·{' '}
             <Link to="/wedding-videographer/lake-tahoe" style={{ color: '#444' }}>Lake Tahoe</Link>
             <br />
-            <strong>Northwest Arkansas:</strong>{' '}
-            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Fayetteville</Link> ·{' '}
-            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Bentonville</Link> ·{' '}
-            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Rogers</Link> ·{' '}
-            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Springdale</Link> ·{' '}
-            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Siloam Springs</Link> ·{' '}
-            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Bella Vista</Link> ·{' '}
-            <Link to="/wedding-videographer/eureka-springs" style={{ color: '#444' }}>Eureka Springs</Link>
-            <br />
-            <strong>Central Arkansas:</strong>{' '}
-            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Little Rock</Link> ·{' '}
-            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Conway</Link> ·{' '}
+            <strong>Arkansas:</strong>{' '}
+            <Link to="/wedding-videographer/northwest-arkansas" style={{ color: '#444' }}>Northwest Arkansas — Fayetteville, Bentonville & Rogers</Link> ·{' '}
+            <Link to="/wedding-videographer/eureka-springs" style={{ color: '#444' }}>Eureka Springs</Link> ·{' '}
             <Link to="/wedding-videographer/hot-springs" style={{ color: '#444' }}>Hot Springs</Link> ·{' '}
-            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Fort Smith</Link> ·{' '}
-            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Jonesboro</Link>
+            <Link to="/wedding-videographer/little-rock" style={{ color: '#444' }}>Little Rock & Central Arkansas</Link>
             <br />
             <em style={{ fontSize: '0.85rem', color: '#555' }}>Available for destination weddings worldwide.</em>
           </p>
