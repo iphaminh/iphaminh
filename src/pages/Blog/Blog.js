@@ -20,7 +20,6 @@ export default function Blog() {
         title={routeMeta['/blog'].title}
         description={routeMeta['/blog'].description}
         canonical={routeMeta['/blog'].canonical}
-        canonical="https://www.phaminh.com/blog"
       />
 
       <div className="blog-page">

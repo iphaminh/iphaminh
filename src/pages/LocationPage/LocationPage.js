@@ -37,7 +37,6 @@ function LocationIndex() {
         title={routeMeta['/wedding-videographer'].title}
         description={routeMeta['/wedding-videographer'].description}
         canonical={routeMeta['/wedding-videographer'].canonical}
-        canonical={`${SITE_URL}/wedding-videographer`}
       />
       <div className="location-page">
         <header className="location-hero">

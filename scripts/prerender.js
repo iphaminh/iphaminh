@@ -15,7 +15,10 @@ const BLOG_PATH = path.join(ROOT, 'src', 'data', 'blogPosts.js');
 const LOCATIONS_PATH = path.join(ROOT, 'src', 'data', 'locations.json');
 
 // Shared with the React app — single source of truth for static-route metadata
+// and for the business entity schema (AI crawlers run no JS; without baking
+// these into the static head, they never see the business at all).
 const { routeMeta } = require(path.join(ROOT, 'src', 'data', 'routeMeta'));
+const { websiteLd, businessLd, breadcrumbLdFor } = require(path.join(ROOT, 'src', 'data', 'businessSchema'));
 
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
@@ -300,15 +303,56 @@ function generateAll() {
     },
   ];
 
+  // Per-route structured-data extras beyond the shared entity blocks.
+  const staticRouteLd = {
+    '/cine': [{
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Wedding Films by Phaminh Cinematography',
+      itemListElement: films.map((f, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: f.title,
+        url: `${SITE_URL}/cine/${f.slug}`,
+      })),
+    }],
+    '/pricing': [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How much does a wedding videographer cost in Napa Valley and the Bay Area?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Most couples in Napa Valley, the Bay Area, and Sacramento invest $2,700-$8,000 in their wedding film with Phaminh Cinematography. Full-day cinematic coverage starts at $2,700; elopement films start at $2,500. There are no travel fees anywhere in Solano, Napa, or Sacramento counties.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How much does a wedding videographer cost in Northwest Arkansas?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Wedding films in Northwest Arkansas, Eureka Springs, Hot Springs, and Little Rock start at $2,700 for full-day cinematic coverage, with elopement films from $2,500.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is included in a wedding film package?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Every package includes a cinematic highlight film edited from your real vows, toasts, and candid moments. Longer edits, full-ceremony films, drone coverage, and photography add-ons are available — see the pricing page for current packages.' },
+        },
+      ],
+    }],
+  };
+
   for (const route of staticRoutes) {
     const meta = routeMeta[route.path];
     if (!meta) throw new Error(`No routeMeta entry for static route ${route.path} — add it to src/data/routeMeta.js`);
+    const routeLd = [websiteLd, businessLd];
+    const crumbs = breadcrumbLdFor(route.path);
+    if (crumbs) routeLd.push(crumbs);
+    routeLd.push(...(staticRouteLd[route.path] || []));
     const headBlock = buildHead({
       title: meta.title,
       description: meta.description,
       canonical: meta.canonical,
       ogImage: DEFAULT_IMAGE,
       ogType: 'website',
+      jsonLd: routeLd,
     });
     const noscriptHtml = buildNoscript(route.noscript);
     writePage(route.path, rewritePage(template, { headBlock, noscriptHtml }));
@@ -374,7 +418,7 @@ function generateAll() {
       canonical: url,
       ogImage: thumbnail,
       ogType: 'video.other',
-      jsonLd: videoLd,
+      jsonLd: [websiteLd, businessLd, breadcrumbLdFor(`/cine/${film.slug}`, { [film.slug]: film.title }), videoLd],
     });
 
     const noscriptHtml = buildNoscript(`
@@ -424,7 +468,7 @@ function generateAll() {
       canonical: url,
       ogImage: absoluteImage(post.image),
       ogType: 'article',
-      jsonLd: articleLd,
+      jsonLd: [websiteLd, businessLd, breadcrumbLdFor(`/blog/${post.slug}`, { [post.slug]: post.title }), articleLd],
     });
 
     const noscriptHtml = buildNoscript(`
@@ -447,6 +491,7 @@ function generateAll() {
       canonical: hubMeta.canonical,
       ogImage: DEFAULT_IMAGE,
       ogType: 'website',
+      jsonLd: [websiteLd, businessLd, breadcrumbLdFor('/wedding-videographer')],
     });
     const hubNoscript = buildNoscript(`
       <h1>Wedding Videographer Service Areas — Northern California & Arkansas</h1>
@@ -472,13 +517,23 @@ function generateAll() {
       })),
     };
 
+    const serviceLd = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: `Wedding Videography in ${loc.name}`,
+      serviceType: 'Wedding videography',
+      areaServed: { '@type': 'AdministrativeArea', name: loc.name },
+      provider: { '@id': `${SITE_URL}/#localbusiness` },
+      url,
+    };
+
     const headBlock = buildHead({
       title: loc.metaTitle,
       description: loc.metaDescription,
       canonical: url,
       ogImage: DEFAULT_IMAGE,
       ogType: 'website',
-      jsonLd: faqLd,
+      jsonLd: [websiteLd, businessLd, breadcrumbLdFor(`/wedding-videographer/${loc.slug}`, { [loc.slug]: loc.name }), faqLd, serviceLd],
     });
 
     const noscriptHtml = buildNoscript(`
