@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Gallery from '../../components/Foto/Gallery';
 import SEO from '../../components/SEO/SEO';
+import { routeMeta } from '../../data/routeMeta';
 
   const images = [
     'phaminh-portrait-photo-4.jpg',
@@ -51,8 +52,9 @@ import SEO from '../../components/SEO/SEO';
     return (
       <>
         <SEO
-          title="Portrait Photography | San Francisco Bay Area & Northwest Arkansas | Phaminh"
-          description="Portrait and lifestyle sessions in San Francisco, Oakland, Fayetteville AR, Bentonville AR, and Rogers AR — editorial, creative, and authentically you."
+          title={routeMeta['/foto/portrait'].title}
+          description={routeMeta['/foto/portrait'].description}
+        canonical={routeMeta['/foto/portrait'].canonical}
         />
         <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
           Portrait and lifestyle sessions for individuals, couples, and brands — editorial, creative, and authentically you.{' '}

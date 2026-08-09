@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Gallery from '../../components/Foto/Gallery';
 import SEO from '../../components/SEO/SEO';
+import { routeMeta } from '../../data/routeMeta';
 
   const images = [
     'phaminh-engagement-photo-2.jpg',
@@ -45,8 +46,9 @@ function shuffleArray(array) {
     return (
       <>
         <SEO
-          title="Engagement Photography | San Francisco Bay Area & NW Arkansas | Phaminh"
-          description="Engagement sessions in San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR — candid, romantic, and uniquely yours."
+          title={routeMeta['/foto/engagement'].title}
+          description={routeMeta['/foto/engagement'].description}
+        canonical={routeMeta['/foto/engagement'].canonical}
         />
         <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
           Romantic engagement sessions across the Bay Area and Arkansas — relaxed, candid, and full of real connection.{' '}

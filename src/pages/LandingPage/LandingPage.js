@@ -8,6 +8,7 @@ import ShowcaseImage from '../../components/ShowcaseImage/ShowcaseImage';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import SEO from '../../components/SEO/SEO';
 import './LandingPage.css';
+import { routeMeta } from '../../data/routeMeta';
 
 // Phones get a 540p encode (8 MB) instead of the full 720p desktop file (36 MB).
 // Decided once at load — background hero quality is indistinguishable on small screens.
@@ -36,8 +37,9 @@ const LandingPage = () => {
   return (
     <div className="landing-page-container">
       <SEO
-        title="San Francisco Bay Area & Arkansas Wedding Videographer | Phaminh Cinematography"
-        description="Minh Pham is a cinematic wedding videographer and photographer serving San Francisco, Oakland, Napa, Sonoma, Fayetteville AR, Bentonville AR, Little Rock AR, and destination weddings worldwide."
+        title={routeMeta['/'].title}
+        description={routeMeta['/'].description}
+        canonical={routeMeta['/'].canonical}
       />
 
       <video

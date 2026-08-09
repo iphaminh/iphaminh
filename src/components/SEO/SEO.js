@@ -18,7 +18,10 @@ function getCurrentUrl(canonical) {
   if (canonical) return canonical;
 
   if (typeof window !== 'undefined' && window.location.pathname) {
-    const normalizedPath = CANONICAL_PATHS[window.location.pathname] || window.location.pathname;
+    // Canonical form is slash-less (matches the prerendered static canonicals
+    // and the .htaccess trailing-slash strip) — never emit /pricing/ style URLs.
+    const p = window.location.pathname.replace(/\/+$/, '') || '/';
+    const normalizedPath = CANONICAL_PATHS[p] || p;
     return `${SITE_URL}${normalizedPath === '/' ? '/' : normalizedPath}`;
   }
 

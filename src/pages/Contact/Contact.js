@@ -4,6 +4,7 @@ import ContactForm from '../../components/ContactForm/ContactForm';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import SEO from '../../components/SEO/SEO';
 import './Contact.css';
+import { routeMeta } from '../../data/routeMeta';
 
 const Contact = () => {
   const [offsetY, setOffsetY] = useState(0);
@@ -20,8 +21,9 @@ const Contact = () => {
   return (
     <div>
       <SEO
-        title="Book Your Wedding Videographer | San Francisco Bay Area & NW Arkansas | Phaminh"
-        description="Inquire with Minh Pham for wedding videography in San Francisco, Oakland, Napa, Sonoma, Fayetteville AR, Bentonville AR, Rogers AR, Little Rock AR, and destination weddings."
+        title={routeMeta['/contact'].title}
+        description={routeMeta['/contact'].description}
+        canonical={routeMeta['/contact'].canonical}
       />
       {/* Parallax banner image */}
       <div

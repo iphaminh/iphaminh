@@ -6,13 +6,15 @@ import FAQs from '../../components/FAQs/FAQs';
 import InstagramFeed from '../../components/InstagramFeed/InstagramFeed';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import SEO from '../../components/SEO/SEO';
+import { routeMeta } from '../../data/routeMeta';
 
 export default function Pricing() {
   return (
  <div className="container mx-auto px-4">
    <SEO
-     title="Wedding Videography Pricing | San Francisco Bay Area & Northwest Arkansas | Phaminh"
-     description="Wedding videography packages for San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and destination couples. Films start at $2,700. Elopements from $2,500."
+     title={routeMeta['/pricing'].title}
+     description={routeMeta['/pricing'].description}
+        canonical={routeMeta['/pricing'].canonical}
    />
    {/* Hero section with headline */}
    <section className="text-center py-12">

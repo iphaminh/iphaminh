@@ -9,6 +9,7 @@ import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import locations from '../../data/locations.json';
 import { films } from '../../data/films';
 import './LocationPage.css';
+import { routeMeta } from '../../data/routeMeta';
 
 const SITE_URL = 'https://www.phaminh.com';
 
@@ -33,8 +34,9 @@ function LocationIndex() {
   return (
     <>
       <SEO
-        title="Wedding Videographer Service Areas | Northern California & Arkansas | Phaminh"
-        description="Cinematic wedding films across Northern California — Napa Valley, Sonoma, San Francisco, Silicon Valley, Carmel, Tahoe — and Arkansas: NWA, Eureka Springs, Hot Springs, Little Rock."
+        title={routeMeta['/wedding-videographer'].title}
+        description={routeMeta['/wedding-videographer'].description}
+        canonical={routeMeta['/wedding-videographer'].canonical}
         canonical={`${SITE_URL}/wedding-videographer`}
       />
       <div className="location-page">

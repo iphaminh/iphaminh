@@ -14,6 +14,9 @@ const FILMS_PATH = path.join(ROOT, 'src', 'data', 'films.js');
 const BLOG_PATH = path.join(ROOT, 'src', 'data', 'blogPosts.js');
 const LOCATIONS_PATH = path.join(ROOT, 'src', 'data', 'locations.json');
 
+// Shared with the React app — single source of truth for static-route metadata
+const { routeMeta } = require(path.join(ROOT, 'src', 'data', 'routeMeta'));
+
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.jpg`;
@@ -81,32 +84,44 @@ function absoluteImage(img) {
   return `${SITE_URL}${img}`;
 }
 
-// Renders a complete <head> block for a page
-function buildHead({ title, description, canonical, ogImage, ogType, jsonLd }) {
+// Renders a complete <head> block for a page.
+// `canonical` may be falsy (the 404 page) — then no canonical/og:url is emitted.
+// `jsonLd` may be a single object or an array of schema.org objects.
+// `robots` (e.g. 'noindex') emits a robots meta when present.
+function buildHead({ title, description, canonical, ogImage, ogType, jsonLd, robots }) {
   const safeTitle = escapeHtml(title);
   const safeDesc = escapeHtml(description);
-  const safeCanonical = escapeHtml(canonical);
   const safeImage = escapeHtml(ogImage);
   const safeType = escapeHtml(ogType || 'website');
 
-  const ldJson = jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : '';
+  const ldBlocks = (Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])
+    .map(ld => `<script type="application/ld+json">${JSON.stringify(ld)}</script>`)
+    .join('\n    ');
+
+  const canonicalTags = canonical
+    ? `<link rel="canonical" href="${escapeHtml(canonical)}" />
+    <meta property="og:url" content="${escapeHtml(canonical)}" />`
+    : '';
+  // rewritePage strips the template's robots meta, so this tag is the only
+  // directive on the page — pass 'noindex' to exclude a page from indexing.
+  const robotsTag = `<meta name="robots" content="${escapeHtml(robots || 'index,follow,max-image-preview:large')}" />`;
 
   return `
     <title>${safeTitle}</title>
     <meta name="description" content="${safeDesc}" />
-    <link rel="canonical" href="${safeCanonical}" />
+    ${robotsTag}
+    ${canonicalTags}
     <meta property="og:site_name" content="${SITE_NAME}" />
     <meta property="og:title" content="${safeTitle}" />
     <meta property="og:description" content="${safeDesc}" />
     <meta property="og:type" content="${safeType}" />
-    <meta property="og:url" content="${safeCanonical}" />
     <meta property="og:image" content="${safeImage}" />
     <meta property="og:image:alt" content="${safeTitle}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${safeTitle}" />
     <meta name="twitter:description" content="${safeDesc}" />
     <meta name="twitter:image" content="${safeImage}" />
-    ${ldJson}
+    ${ldBlocks}
   `.trim();
 }
 
@@ -130,6 +145,7 @@ function rewritePage(template, { headBlock, noscriptHtml }) {
   // Strip the existing tags that we're replacing
   html = html
     .replace(/<title>[^<]*<\/title>/, '')
+    .replace(/<meta name="robots"[^>]*\/?>/, '')
     .replace(/<meta name="description"[^>]*\/?>/, '')
     .replace(/<link rel="canonical"[^>]*\/?>/, '')
     .replace(/<meta property="og:site_name"[^>]*\/?>/, '')
@@ -165,11 +181,29 @@ function writePage(routePath, html) {
 // Routes
 // ──────────────────────────────────────────────────────────────────────────────
 
+// A parser that silently drops an entry unpublishes that page: with the SPA
+// catch-all gone from .htaccess, a missing prerender file is a hard 404 in
+// production. Count `slug:` fields at line starts (template-literal bodies
+// can't skew that) and fail the build loudly on any mismatch.
+function assertParsedCount(kind, parsed, sourcePath) {
+  const source = fs.readFileSync(sourcePath, 'utf8');
+  const expected = (source.match(/^\s*slug:\s*'/gm) || []).length;
+  if (parsed.length !== expected || parsed.length === 0) {
+    throw new Error(
+      `${kind} parser mismatch: parsed ${parsed.length} entries but ${path.basename(sourcePath)} ` +
+      `declares ${expected} slugs. A field was likely added/reordered — update the parser in scripts/prerender.js.`
+    );
+  }
+}
+
 function generateAll() {
   const template = loadTemplate();
   const films = parseFilms();
   const posts = parseBlogPosts();
   const locations = JSON.parse(fs.readFileSync(LOCATIONS_PATH, 'utf8'));
+
+  assertParsedCount('films', films, FILMS_PATH);
+  assertParsedCount('blog posts', posts, BLOG_PATH);
 
   console.log(`\nPrerendering: ${films.length} films, ${posts.length} blog posts, ${locations.length} location pages, plus static routes\n`);
 
@@ -177,8 +211,6 @@ function generateAll() {
   const staticRoutes = [
     {
       path: '/',
-      title: 'Phaminh Cinematography | Bay Area & Arkansas Wedding Videographer',
-      description: 'Minh Pham creates cinematic wedding films and photography for couples in the San Francisco Bay Area, Northern California, Northwest Arkansas, and destination weddings worldwide.',
       noscript: `
         <h1>Phaminh Cinematography — Bay Area & Arkansas Wedding Videographer</h1>
         <p>Minh Pham creates cinematic wedding films and photography for couples in San Francisco, Oakland, San Jose, Napa, Sonoma, Fayetteville AR, Bentonville AR, Rogers AR, Little Rock AR, and destination weddings worldwide.</p>
@@ -194,8 +226,6 @@ function generateAll() {
     },
     {
       path: '/cine',
-      title: 'Cinematic Wedding Films | San Francisco Bay Area & NW Arkansas Videographer | Phaminh',
-      description: 'Watch wedding films by Minh Pham — serving San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR. Emotional, story-driven films for real couples.',
       noscript: `
         <h1>Wedding Films by Phaminh Cinematography</h1>
         <p>Cinematic wedding films for couples across the San Francisco Bay Area, Northern California, and Northwest Arkansas.</p>
@@ -208,8 +238,6 @@ function generateAll() {
     },
     {
       path: '/foto',
-      title: 'Wedding Photography | Bay Area & Arkansas Photographer | Phaminh',
-      description: 'Candid, timeless wedding photography by Minh Pham. Serving San Francisco Bay Area, Northern California, and Northwest Arkansas. Wedding, engagement, and portrait sessions.',
       noscript: `
         <h1>Wedding Photography by Phaminh Cinematography</h1>
         <p>Candid, timeless wedding and engagement photography by Minh Pham.</p>
@@ -222,26 +250,18 @@ function generateAll() {
     },
     {
       path: '/foto/wedding',
-      title: 'Wedding Photography Portfolio | Bay Area & Arkansas | Phaminh',
-      description: 'Wedding photography portfolio by Minh Pham — real couples across San Francisco, Bay Area, Napa, Sonoma, and Northwest Arkansas.',
       noscript: `<h1>Wedding Photography Portfolio</h1><p>Real weddings photographed by Phaminh Cinematography across California and Arkansas.</p>`,
     },
     {
       path: '/foto/engagement',
-      title: 'Engagement Photography | Bay Area & Arkansas | Phaminh',
-      description: 'Engagement photography by Minh Pham — relaxed, candid couples sessions for Bay Area and Northwest Arkansas weddings.',
       noscript: `<h1>Engagement Photography</h1><p>Relaxed, story-driven engagement sessions for Bay Area and Arkansas couples.</p>`,
     },
     {
       path: '/foto/portrait',
-      title: 'Portrait Photography | Bay Area & Arkansas | Phaminh',
-      description: 'Portrait photography by Minh Pham — natural, story-driven portrait sessions in the Bay Area and Northwest Arkansas.',
       noscript: `<h1>Portrait Photography</h1><p>Natural light portrait sessions by Phaminh Cinematography.</p>`,
     },
     {
       path: '/pricing',
-      title: 'Wedding Videography & Photography Pricing | Phaminh Cinematography',
-      description: 'Wedding videography packages start at $2,700. Browse complete pricing for wedding films, elopement films, and photography in the Bay Area and Northwest Arkansas.',
       noscript: `
         <h1>Pricing — Phaminh Cinematography</h1>
         <h2>Wedding Videography</h2>
@@ -254,8 +274,6 @@ function generateAll() {
     },
     {
       path: '/contact',
-      title: 'Contact Phaminh Cinematography | Book Your Wedding Film',
-      description: 'Get in touch with Minh Pham to book your wedding film. Serving the San Francisco Bay Area, Northern California, Northwest Arkansas, and destination weddings.',
       noscript: `
         <h1>Contact Phaminh Cinematography</h1>
         <p>Ready to book your wedding film? Reach out to Minh Pham.</p>
@@ -268,14 +286,10 @@ function generateAll() {
     },
     {
       path: '/testimonials',
-      title: 'Client Reviews | Phaminh Cinematography',
-      description: 'Read reviews from real couples about their wedding film experience with Phaminh Cinematography.',
       noscript: `<h1>Client Reviews</h1><p>Real reviews from real couples — <a href="/contact">book your own film</a>.</p>`,
     },
     {
       path: '/blog',
-      title: 'Wedding Videography Blog | Tips, Pricing & Guides | Phaminh',
-      description: 'Practical guides on wedding videography pricing, what to look for in a videographer, venues, and more — written by Minh Pham of Phaminh Cinematography.',
       noscript: `
         <h1>Phaminh Wedding Blog</h1>
         <p>Practical guides for couples planning their wedding film.</p>
@@ -287,15 +301,44 @@ function generateAll() {
   ];
 
   for (const route of staticRoutes) {
+    const meta = routeMeta[route.path];
+    if (!meta) throw new Error(`No routeMeta entry for static route ${route.path} — add it to src/data/routeMeta.js`);
     const headBlock = buildHead({
-      title: route.title,
-      description: route.description,
-      canonical: `${SITE_URL}${route.path === '/' ? '/' : route.path}`,
+      title: meta.title,
+      description: meta.description,
+      canonical: meta.canonical,
       ogImage: DEFAULT_IMAGE,
       ogType: 'website',
     });
     const noscriptHtml = buildNoscript(route.noscript);
     writePage(route.path, rewritePage(template, { headBlock, noscriptHtml }));
+  }
+
+  // ─── 404 page ──────────────────────────────────────────────────────────────
+  // Apache's ErrorDocument (.htaccess) serves this with a real 404 status.
+  // A root-level FILE, not a directory — build/404.html/index.html would break
+  // the ErrorDocument reference. noindex + no canonical: the file is also
+  // directly fetchable at /404.html with a 200, and must never be indexed.
+  // Keeps the CRA JS bundle so humans still get the styled React NotFound page.
+  {
+    const headBlock = buildHead({
+      title: 'Page Not Found | Phaminh Cinematography',
+      description: "The page you're looking for doesn't exist.",
+      robots: 'noindex',
+      ogImage: DEFAULT_IMAGE,
+    });
+    const noscriptHtml = buildNoscript(`
+      <h1>Page Not Found</h1>
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/cine">Wedding Films</a></li>
+        <li><a href="/wedding-videographer">Service Areas</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    `);
+    fs.writeFileSync(path.join(BUILD_DIR, '404.html'), rewritePage(template, { headBlock, noscriptHtml }));
+    console.log('  ✓ /404.html (root file for ErrorDocument)');
   }
 
   // ─── Film pages ────────────────────────────────────────────────────────────
@@ -397,11 +440,11 @@ function generateAll() {
 
   // ─── Location landing pages ────────────────────────────────────────────────
   {
-    const hubUrl = `${SITE_URL}/wedding-videographer`;
+    const hubMeta = routeMeta['/wedding-videographer'];
     const hubHead = buildHead({
-      title: 'Wedding Videographer Service Areas | Northern California & Arkansas | Phaminh',
-      description: 'Cinematic wedding films across Northern California — Napa Valley, Sonoma, San Francisco, Silicon Valley, Carmel, Tahoe — and Arkansas: NWA, Eureka Springs, Hot Springs, Little Rock.',
-      canonical: hubUrl,
+      title: hubMeta.title,
+      description: hubMeta.description,
+      canonical: hubMeta.canonical,
       ogImage: DEFAULT_IMAGE,
       ogType: 'website',
     });
@@ -472,7 +515,8 @@ function writeSitemap({ films, posts, locations }) {
     { loc: `${SITE_URL}/`, priority: '1.0', changefreq: 'weekly' },
     { loc: `${SITE_URL}/cine`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${SITE_URL}/foto`, priority: '0.9', changefreq: 'monthly' },
-    { loc: `${SITE_URL}/foto/wedding`, priority: '0.8', changefreq: 'monthly' },
+    // /foto/wedding intentionally absent: it duplicates /foto (same component)
+    // and canonicalizes there.
     { loc: `${SITE_URL}/foto/engagement`, priority: '0.7', changefreq: 'monthly' },
     { loc: `${SITE_URL}/foto/portrait`, priority: '0.7', changefreq: 'monthly' },
     { loc: `${SITE_URL}/pricing`, priority: '0.8', changefreq: 'monthly' },

@@ -5,13 +5,15 @@ import TestimonialSection from '../../components/TestimonialItem/TestimonialSect
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import SEO from '../../components/SEO/SEO'; 
 import './Testimonials.css';
+import { routeMeta } from '../../data/routeMeta';
 
 const Testimonials = () => {
   return (
     <>
       <SEO
-        title="Wedding Videographer Reviews | Bay Area, NW Arkansas & Georgia Couples | Phaminh"
-        description="Real reviews from couples in San Francisco, Fayetteville AR, Bentonville AR, Little Rock AR, and Georgia who trusted Phaminh Cinematography for their wedding films and photos."
+        title={routeMeta['/testimonials'].title}
+        description={routeMeta['/testimonials'].description}
+        canonical={routeMeta['/testimonials'].canonical}
       />
 
       <FullScreenImage

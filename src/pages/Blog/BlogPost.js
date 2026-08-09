@@ -61,6 +61,10 @@ export default function BlogPost() {
   if (!post) {
     return (
       <div className="blog-post-not-found">
+        <Helmet>
+          <title>Post Not Found | Phaminh Cinematography</title>
+          <meta name="robots" content="noindex" />
+        </Helmet>
         <h1>Post not found</h1>
         <p><Link to="/blog">← Back to blog</Link></p>
       </div>
@@ -69,10 +73,11 @@ export default function BlogPost() {
 
   const canonicalUrl = `${SITE_URL}/blog/${post.slug}`;
 
-  // Article schema
+  // Matches the prerendered JSON-LD type (scripts/prerender.js) so the static
+  // and hydrated blocks never disagree about what this page is.
   const articleLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     datePublished: post.date,

@@ -9,6 +9,7 @@ import FooterShowcase from "../../components/FooterShowcase/FooterShowcase";
 import SEO from "../../components/SEO/SEO";
 import { films } from "../../data/films";
 import "./CineGallery.css";
+import { routeMeta } from '../../data/routeMeta';
 
 Modal.setAppElement("#root");
 
@@ -61,8 +62,9 @@ export default function CineGallery() {
   return (
     <>
       <SEO
-        title="Cinematic Wedding Films | San Francisco Bay Area & NW Arkansas Videographer | Phaminh"
-        description="Watch wedding films by Minh Pham — serving San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR. Emotional, story-driven films for real couples."
+        title={routeMeta['/cine'].title}
+        description={routeMeta['/cine'].description}
+        canonical={routeMeta['/cine'].canonical}
       />
 
       {/* Hero carousel — click to preview in modal */}

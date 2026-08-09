@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Gallery from '../../components/Foto/Gallery';
 import SEO from '../../components/SEO/SEO';
+import { routeMeta } from '../../data/routeMeta';
 
 const images = [
   'phaminh-wedding-photo-2.jpg',
@@ -35,8 +36,9 @@ const Wedding = () => {
   return (
     <>
       <SEO
-        title="Wedding Photography | San Francisco, Napa, Fayetteville AR & Bentonville AR | Phaminh"
-        description="Wedding photography portfolio from Minh Pham — serving the San Francisco Bay Area, Wine Country, Fayetteville AR, Bentonville AR, Rogers AR, and Little Rock AR."
+        title={routeMeta['/foto/wedding'].title}
+        description={routeMeta['/foto/wedding'].description}
+        canonical={routeMeta['/foto/wedding'].canonical}
       />
       <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
         Timeless wedding photographs from the Bay Area and Arkansas — candid, cinematic, and crafted to last a lifetime.{' '}

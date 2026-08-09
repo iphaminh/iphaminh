@@ -5,6 +5,7 @@ import SEO from '../../components/SEO/SEO';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import { blogPosts } from '../../data/blogPosts';
 import './Blog.css';
+import { routeMeta } from '../../data/routeMeta';
 
 function formatDate(dateStr) {
   return new Date(dateStr).toLocaleDateString('en-US', {
@@ -16,8 +17,9 @@ export default function Blog() {
   return (
     <>
       <SEO
-        title="Wedding Videography Blog | Bay Area & Northwest Arkansas Tips | Phaminh"
-        description="Advice, pricing guides, venue roundups, and real wedding stories for couples in the San Francisco Bay Area and Northwest Arkansas — from wedding videographer Minh Pham."
+        title={routeMeta['/blog'].title}
+        description={routeMeta['/blog'].description}
+        canonical={routeMeta['/blog'].canonical}
         canonical="https://www.phaminh.com/blog"
       />
 

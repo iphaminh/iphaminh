@@ -2,13 +2,15 @@ import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import SEO from '../../components/SEO/SEO';
 import './Foto.css';
+import { routeMeta } from '../../data/routeMeta';
 
 const Foto = () => {
   return (
     <div className="foto-container">
       <SEO
-        title="Wedding Photography | San Francisco Bay Area & Northwest Arkansas | Phaminh"
-        description="Wedding, engagement, and portrait photography serving San Francisco, Oakland, Napa, Fayetteville AR, Bentonville AR, and Rogers AR. Cinematic, candid, and timeless."
+        title={routeMeta['/foto'].title}
+        description={routeMeta['/foto'].description}
+        canonical={routeMeta['/foto'].canonical}
       />
       {/* Category Links */}
       <div className="foto-categories">

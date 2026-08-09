@@ -8,7 +8,9 @@ const NotFound = () => {
       <SEO
         title="Page Not Found | Phaminh Cinematography"
         description="The page you're looking for doesn't exist."
-      />
+      >
+        <meta name="robots" content="noindex" />
+      </SEO>
       <div style={{ textAlign: 'center', padding: '6rem 2rem', minHeight: '60vh' }}>
         <h1 style={{ fontSize: '6rem', margin: 0, fontFamily: 'Playfair Display, serif' }}>404</h1>
         <h2 style={{ fontFamily: 'Playfair Display, serif', marginBottom: '1rem' }}>Page Not Found</h2>
