@@ -8,6 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import FooterShowcase from "../../components/FooterShowcase/FooterShowcase";
 import SEO from "../../components/SEO/SEO";
 import { films } from "../../data/films";
+import { enrichmentFor } from "../../data/filmEnrichment";
 import "./CineGallery.css";
 import { routeMeta } from '../../data/routeMeta';
 
@@ -23,7 +24,9 @@ function extractVimeoId(urlOrId) {
 
 function vimeoThumb(vimeoId) {
   if (!vimeoId) return FALLBACK_THUMB;
-  return `https://vumbnail.com/${vimeoId}.jpg`;
+  // Real i.vimeocdn.com thumbnail from the auto-refreshed gallery feed;
+  // enrichmentFor falls back to the vumbnail proxy for brand-new films.
+  return enrichmentFor(vimeoId).thumbnailUrl;
 }
 
 // Hero carousel — opens a modal on click for immersive preview
@@ -86,7 +89,9 @@ export default function CineGallery() {
 
       {/* Intro content — visible to users and search engines */}
       <section className="cine-intro">
+        <p className="cine-intro-eyebrow">The Portfolio</p>
         <h1 className="cine-intro-heading">Wedding Films</h1>
+        <div className="cine-intro-rule" aria-hidden="true" />
         <p className="cine-intro-text">
           We create cinematic wedding films for couples across the San Francisco
           Bay Area, Northern California, and Northwest Arkansas. Each film is
@@ -106,15 +111,20 @@ export default function CineGallery() {
             className="video-thumbnail"
             aria-label={`Watch ${film.title} — ${film.location} wedding film`}
           >
-            <img
-              src={vimeoThumb(film.vimeoId)}
-              alt={`${film.title} — ${film.location} wedding film by Phaminh Cinematography`}
-              loading="lazy"
-              onError={(e) => {
-                e.currentTarget.src = FALLBACK_THUMB;
-              }}
-            />
-            <div className="video-thumbnail-label">{film.title}</div>
+            <span className="film-card-frame">
+              <img
+                src={vimeoThumb(film.vimeoId)}
+                alt={`${film.title} — ${film.location} wedding film by Phaminh Cinematography`}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = FALLBACK_THUMB;
+                }}
+              />
+            </span>
+            <span className="film-card-caption">
+              <span className="film-card-title">{film.title}</span>
+              <span className="film-card-location">{film.location}</span>
+            </span>
           </Link>
         ))}
       </div>

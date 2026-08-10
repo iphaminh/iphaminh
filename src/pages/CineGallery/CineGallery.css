@@ -128,3 +128,102 @@
     grid-template-columns: 1fr;
   }
 }
+/* ── Gallery-plate cards (2026 pass) — appended last to win the cascade ────── */
+
+.cine-intro-eyebrow {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #a08339;
+  margin: 0 0 0.9rem;
+}
+
+.cine-intro-rule {
+  width: 56px;
+  height: 1px;
+  background: #c9ab63;
+  margin: 1.3rem auto 0;
+}
+
+.cine-gallery-container {
+  gap: 2.5rem 2rem;
+  padding: 2rem 3rem 3.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.video-thumbnail {
+  border-radius: 0;
+  overflow: visible;
+}
+
+.film-card-frame {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: #f2efe8;
+}
+
+.film-card-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.video-thumbnail:hover .film-card-frame img {
+  transform: scale(1.045);
+}
+
+/* The old always-on/hover label overlay is replaced by the caption below */
+.video-thumbnail-label {
+  display: none;
+}
+
+.film-card-caption {
+  display: block;
+  text-align: center;
+  padding: 0.9rem 0.5rem 0;
+}
+
+.film-card-title {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #23211d;
+  line-height: 1.4;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.video-thumbnail:hover .film-card-title {
+  color: #a08339;
+  border-color: #c9ab63;
+}
+
+.film-card-location {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #9a917f;
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 900px) {
+  .cine-gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem 1.5rem 3rem;
+    gap: 2rem 1.25rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .cine-gallery-container {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
