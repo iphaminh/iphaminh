@@ -65,6 +65,11 @@ The trap: by the time we investigated, the OAuth consent screen already read **"
 - **Blog images shipped 2026-08-10 (`31218864`)**: all 13 posts use REAL film frames (i.vimeocdn URLs from vimeo-videos.json, region-matched) rendered on index cards + post heroes with "From a real wedding film" captions; onError falls back to the cover webp. Decision on record: NO AI-generated wedding imagery on this site — brand-trust risk for a real cinematographer, and Minh's Higgsfield account has 0 credits anyway. Swap in Minh's own stills whenever he provides them.
 - **Content follow-ups:** curate California films into films.js when Minh identifies them (search vimeo-videos.json for Mountain View/CA titles) with venue/city/locationSlug fields — the schema + parser already accept them; retrofit 2-3 internal links into the 8 older blog posts (skipped: template-literal editing risk).
 
+## Standing automation outside the repo
+
+- **Weekly Monday Health Check Routine** (`trig_01Qs14EogC1aACo2khhL7Vuj`, created 2026-08-10): fires Mondays 15:00 UTC (8am PT) into a FRESH session; read-only report on Actions health, YouTube sync slots, and open automation-failure issues; push+email notification to Minh. Manage via list_triggers/update_trigger, or claude.ai Routines UI. It reads THIS file first — keep Current state honest.
+- **Connectors Minh has linked** (claude.ai level): Gmail, Google Drive, Google Calendar, Calendly (account "Phaminh Cinematography", scheduling URL https://calendly.com/minhmeoquay-sace, TZ America/Los_Angeles, created 2026-08-10 — NO event types yet), Notion, Adobe, Stripe (account state unverified), GitHub. Next session candidates: create a "Wedding Consultation" Calendly event type + add a Book-a-Call CTA to the site; Gmail review-request drafts to past couples.
+
 ## Runbook
 
 **Check recent workflow runs (unauthenticated, 60 req/hr — poll gently, ≥60s apart):**
