@@ -3,6 +3,55 @@
 
 const blogPosts = [
   {
+    slug: 'brindare-napa-wedding-guide',
+    title: 'Brindare Napa Wedding Guide: A Videographer\'s Look at St. Helena\'s Italian-Style Estate',
+    description: 'What makes Brindare Napa such a beautiful wedding venue on film — its five spaces, the vineyard light, and how to plan your wedding video there. A filmmaker\'s guide for engaged couples.',
+    date: '2026-08-10',
+    location: 'St. Helena, Napa Valley, CA',
+    category: 'Venues',
+    readTime: '6 min',
+    image: '/assets/seo/phaminh-wedding-cover.jpg',
+    sections: [
+      {
+        type: 'intro',
+        content: 'Tucked into St. Helena in the heart of Napa Valley, Brindare is one of wine country\'s most film-friendly wedding venues — an Italian-inspired estate where a vineyard ceremony flows into an evening of dinner and dancing under the stars. Couples are often drawn in by the photos. As a videographer, what catches me is how the property moves: the way light travels across the vines through the afternoon, and how each of its spaces gives a wedding film a different scene.\n\nThis guide is written from a filmmaker\'s perspective — what each space offers on camera and how to plan a wedding day at Brindare so your film gets the very best of it. For tours, menus, dates, and pricing, the venue\'s events team is the right door to knock on; they take wonderful care of couples, and I\'ll leave those details to them.',
+      },
+      {
+        type: 'section',
+        heading: 'Five Spaces, Five Scenes for Your Film',
+        content: 'Brindare is built around five event spaces, and from behind a camera each one plays a distinct role in the story of the day:\n\n- **The Vineyard** — ceremony rows framed by vines. In late afternoon the sun drops low across the valley and backlights everything in gold; this is where the signature frames of a Napa wedding film live.\n- **The Garden Grove** — soft, green, and shaded. Beautiful even light for ceremonies and portraits, and a gentle setting for quiet moments — first looks, letter readings, a minute alone after vows.\n- **The Courtyard** — al fresco cocktail hour and reception energy. Toasts, laughter, and candid coverage thrive here as daylight fades and the string lights take over.\n- **The Vignetto** — intimate and tucked into the property; a lovely scene-setter for smaller gatherings and detail shots.\n- **The Harvest Room** — the indoor anchor. When dancing moves inside, warm interior light makes for rich, cinematic reception footage no matter the season.\n\nA wedding film loves variety, and this is Brindare\'s quiet superpower: without a single location move, your film naturally travels through five different worlds.',
+      },
+      {
+        type: 'section',
+        heading: 'Planning Your Wedding Film at Brindare: Light Is Everything',
+        content: 'Napa Valley light is generous, but it rewards planning. A few things I build into any vineyard-estate timeline:\n\n- **Golden hour is the headline.** The most breathtaking footage at any vineyard venue happens in the last 60-90 minutes before sunset. If your ceremony ends near that window, we can slip into the vines for fifteen minutes of portraits that will anchor your entire film.\n- **Al fresco evenings film beautifully.** Dinner and dancing outdoors under bistro lights is the look couples fall in love with in wedding films — plan your videographer\'s coverage to run through the first dances, not just the ceremony.\n- **Summer heat, valley style.** Midday sun in wine country is strong; ceremonies later in the afternoon photograph and film better, and your guests will thank you too.\n- **One property, zero travel gaps.** Because everything happens on the estate, there is no mid-day drive eating into coverage — more real moments make it into the film.',
+      },
+      {
+        type: 'section',
+        heading: 'Working With the Venue\'s Team',
+        content: 'The best wedding films are a collaboration between the couple, the venue\'s coordinators, and the film team. Venue coordinators know their property\'s rhythm better than anyone — where the sun sets, when to flip a space, how the evening flows — and I build my filming plan around that expertise, not over it.\n\nSo here\'s my honest advice: if Brindare is on your shortlist, [reach out to their events team](https://www.brindarenapa.com) for a tour and let them walk you through dates, menus, and options. Then, when you\'re ready to think about how the day becomes a film, [that\'s where I come in](/contact).',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Do you film weddings at Brindare Napa?',
+        answer: 'Yes — Brindare is squarely in my home territory. I\'m based in Vacaville, about 40 minutes from St. Helena, and I film across every Napa Valley venue with no travel fees.',
+      },
+      {
+        question: 'When is the best time of day for wedding photos and video at a Napa vineyard venue?',
+        answer: 'The last 60-90 minutes before sunset. At a vineyard property, golden hour backlights the vines and gives films their signature warm, cinematic glow. I always build timelines around it.',
+      },
+      {
+        question: 'How do I find out about Brindare\'s pricing and availability?',
+        answer: 'Directly from the venue — their events team handles tours, dates, menus, and pricing, and they\'re the best source for all of it. My guide covers only the videography side of planning.',
+      },
+      {
+        question: 'Do you coordinate with the venue\'s wedding coordinator?',
+        answer: 'Always. I share my filming plan with your coordinator ahead of the day and build around the venue\'s timeline, so the coverage never gets in the way of the celebration.',
+      },
+    ],
+  },
+  {
     slug: 'wedding-videography-cost-bay-area',
     title: 'How Much Does Wedding Videography Cost in the Bay Area? (2026 Pricing Guide)',
     description: 'Wedding videography in the San Francisco Bay Area typically ranges from $2,500 to $7,000. Here\'s an honest breakdown of what you get at each price point — and how to find the right fit.',

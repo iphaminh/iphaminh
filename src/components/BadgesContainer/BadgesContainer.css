@@ -1,30 +1,12 @@
 /* src/components/BadgesContainer/BadgesContainer.css */
 
-/* Simple fade-in-up animation for badges */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Apply animation class (if you want to use it later) */
-.badge-appear {
-  animation-name: fadeInUp;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-/* Full-width white band — sits exactly below the hero video */
+/* White award strip. The hero offset now lives on .home-intro (LandingPage.css),
+   so this band sits flush under the intro — the old dead vh-gap is gone. */
 .badges-section {
   background: white;
   width: 100%;
-  margin-top: calc(91.5vh - 1rem);
-  padding: 0.5rem 0;
+  margin-top: 0;
+  padding: 0.75rem 0 1.5rem;
 }
 
 /* Inner centered row of badges */
@@ -34,59 +16,92 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  gap: 2.25rem;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   overflow: visible;
   box-sizing: border-box;
 }
 
+/* Per-badge wrapper: reveal (opacity/rise) + scroll drift (--drift) */
+.badge-wrap {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.badges-revealed .badge-wrap {
+  opacity: 1;
+  transform: translateY(var(--drift, 0px));
+}
+
+/* Hover micro-interaction: quiet grayscale at rest, color + lift on hover */
+.badge-wrap img {
+  filter: grayscale(62%) opacity(0.82);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.badge-wrap:hover img {
+  filter: grayscale(0%) opacity(1);
+  transform: translateY(-4px) scale(1.04);
+}
+
+/* Accessibility: no motion for users who ask for none */
+@media (prefers-reduced-motion: reduce) {
+  .badge-wrap {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .badges-revealed .badge-wrap {
+    transform: none;
+  }
+  .badge-wrap img {
+    filter: none;
+    transition: none;
+  }
+}
+
 /* badge size on desktop + medium tablet */
 .badges-container img {
-  width: 140px;
+  width: 132px;
   height: auto;
 }
 
 /* phones: stack in a column */
 @media (max-width: 600px) {
-  .badges-section {
-    margin-top: calc(95vh - 1rem);
-  }
-
   .badges-container {
     flex-direction: column;
     align-items: center;
+    gap: 1.5rem;
     max-width: 320px;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
   }
 
   .badges-container img {
-    width: 130px;
+    width: 126px;
   }
 }
 
-/* ultra-narrow phones (e.g., iPhone SE): override the 600px rules */
+/* ultra-narrow phones (e.g., iPhone SE) */
 @media (max-width: 380px) {
   .badges-container {
-    /* override the huge vh-based spacing on tiny screens */
-    margin-top: 2.25rem;
     max-width: 100%;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     gap: 1.25rem;
   }
 
   .badges-container img {
-    width: 120px;
+    width: 118px;
   }
 }
 
 /* tablets: 3 badges on top row, 2 centered underneath */
 @media (min-width: 601px) and (max-width: 1024px) {
-  .badges-section {
-    margin-top: calc(95vh - 1rem);
-  }
-
   .badges-container {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, auto));
@@ -94,39 +109,19 @@
     justify-content: center;
     align-items: center;
     justify-items: center;
+    gap: 1.5rem 0.5rem;
     max-width: 600px;
-    padding: 1.2rem 0;
+    padding: 1rem 0;
   }
 
-  /* Top row: 1, 2, 3 */
-  .badges-container > :nth-child(1) {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .badges-container > :nth-child(2) {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  .badges-container > :nth-child(3) {
-    grid-column: 5;
-    grid-row: 1;
-  }
-
-  /* Bottom row: 4, 5 centered under top row */
-  .badges-container > :nth-child(4) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .badges-container > :nth-child(5) {
-    grid-column: 4;
-    grid-row: 2;
-  }
+  .badges-container > :nth-child(1) { grid-column: 1; grid-row: 1; }
+  .badges-container > :nth-child(2) { grid-column: 3; grid-row: 1; }
+  .badges-container > :nth-child(3) { grid-column: 5; grid-row: 1; }
+  .badges-container > :nth-child(4) { grid-column: 2; grid-row: 2; }
+  .badges-container > :nth-child(5) { grid-column: 4; grid-row: 2; }
 
   .badges-container img {
-    width: 140px;
+    width: 132px;
     height: auto;
   }
 }

@@ -79,19 +79,23 @@ const LandingPage = () => {
       />
 
       <div className="landing-page-content">
-        <section style={{ textAlign: 'center', padding: '3rem 1.5rem 1rem', maxWidth: 760, margin: '0 auto' }}>
-          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '0.04em', color: '#2b2b2b', marginBottom: '1rem' }}>
+        {/* White intro band — carries the hero offset so the fullscreen video
+            above stays clean. The H1 lives here, first thing in the white. */}
+        <section className="home-intro">
+          <p className="home-intro-eyebrow">Phaminh Cinematography</p>
+          <h1 className="home-intro-h1">
             Cinematic Wedding Films — Napa Valley, the Bay Area &amp; Sacramento
           </h1>
-          <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.98rem', color: '#444', lineHeight: 1.8 }}>
+          <div className="home-intro-rule" aria-hidden="true" />
+          <p className="home-intro-body">
             I'm Minh Pham, a luxury wedding videographer based in Vacaville,
             California — between Napa Valley and Sacramento — with deep roots in
             Arkansas. I film one wedding a day, documentary at heart and cinematic
             in craft: your real vows, real toasts, and the moments in between,
             edited into a film you'll rewatch on every anniversary. Explore{' '}
-            <Link to="/cine" style={{ color: '#2b2b2b' }}>recent wedding films</Link>,{' '}
-            <Link to="/pricing" style={{ color: '#2b2b2b' }}>packages from $2,700</Link>, or{' '}
-            <Link to="/wedding-videographer" style={{ color: '#2b2b2b' }}>everywhere I film</Link>.
+            <Link to="/cine">recent wedding films</Link>,{' '}
+            <Link to="/pricing">packages from $2,700</Link>, or{' '}
+            <Link to="/wedding-videographer">everywhere I film</Link>.
           </p>
         </section>
         <BadgesContainer />
