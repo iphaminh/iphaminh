@@ -21,13 +21,18 @@ export default function Pricing() {
         <div className="responsive-img-wrapper">
           <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.png" alt="Elegant wedding table setting filmed by Phaminh Cinematography" />
         </div>
+        <p className="pricing-eyebrow">Investment</p>
         <h1 className="hero-title">
             Preserving Life's Priceless Moments <br /> Through The Art Of Film
-          </h1>   
-          <p className="hero-text">VIDEO PRODUCTION IS A UNIQUE WAY TO REPLAY SPECIAL MOMENTS IN OUR LIVES. WHETHER IT BE THE CEREMONIAL KISS UNDER THE ARBOR FOR THE FIRST TIME AS HUSBAND
-AND WIFE; YOUR SWEET GRANDPA ROCKING OUT ON THE DANCE FLOOR; A NEWBORN CHILD BEING BROUGHT INTO THIS WORLD; ONCE IN A LIFETIME MEMORIES AND ADVENTURES
-ARE ABLE TO BE RELIVED THROUGH THE ESSENCE OF FILM. JUST PICTURE THIRTY YEARS FROM NOW, HAVING THE ABILITY TO GO BACK AND RELIVE YOUR FATHER WALKING YOU
-DOWN THE AISLE ON YOUR WEDDING DAY OR THE FIRST TIME SEEING YOUR LOVED ONE COMING HOME TO YOU, AFTER YEARS OF BEING APART.</p>
+          </h1>
+          <div className="pricing-rule" aria-hidden="true" />
+          <p className="hero-text">
+            Thirty years from now, you'll be able to watch your father walk you
+            down the aisle — hear his voice, your vows, your grandpa on the dance
+            floor. That's what a wedding film is for. Every package below is
+            full-day, story-first coverage; wherever you celebrate between Napa
+            Valley and Sacramento, there's never a travel fee.
+          </p>
 
   </section>
 
@@ -54,6 +59,11 @@ DOWN THE AISLE ON YOUR WEDDING DAY OR THE FIRST TIME SEEING YOUR LOVED ONE COMIN
         <p className="package-price">Starting at $500</p>
           </div>
         </div>
+        <p className="packages-note">
+          Every film is delivered within 6–8 weeks. One wedding per day, 20–25
+          weddings per year — so each film gets the devotion it deserves.{' '}
+          <Link to="/contact">Ask for the full pricing guide</Link>.
+        </p>
          {/* New Section Below Packages */}
       <section className="call-to-action-section">
         <img src="/assets/pricing/georgia-wedding-couple-portraits-phaminh.png" alt="Wedding couple portraits by Phaminh Cinematography" className="w-full" />
