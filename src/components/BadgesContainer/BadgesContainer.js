@@ -11,31 +11,34 @@ import React, { useEffect, useRef, useState } from 'react';
 import './BadgesContainer.css';
 import Badge from '../Badge/Badge';
 
+// Filenames and alt text name the REAL award each badge shows (the old
+// keyword-stuffed names claimed markets — 'Atlanta', 'near me' — instead of
+// describing the recognition, which is worthless for accessibility and SEO).
 const badgesData = [
   {
-    imageSrc: '/assets/badges_image/arkansas-wedding-videographer.webp',
-    altText: 'Arkansas Wedding Videographer',
+    imageSrc: '/assets/badges_image/best-10-wedding-videographers-little-rock.webp',
+    altText: 'The Best 10 Wedding Videographers in Little Rock, Arkansas award',
     link: '#',
   },
   {
-    imageSrc: '/assets/badges_image/atlanta-wedding-videographer.webp',
-    altText: 'Atlanta Wedding Videographer',
+    imageSrc: '/assets/badges_image/the-knot-best-of-weddings-2023.webp',
+    altText: 'The Knot Best of Weddings 2023 award',
     link: '#',
   },
   {
-    imageSrc: '/assets/badges_image/best-wedding-videographer.webp',
-    altText: 'Best Wedding Videographer',
+    imageSrc: '/assets/badges_image/big-bear-film-summit-official-selection.webp',
+    altText: 'Big Bear Film Summit 2021 Official Selection',
     link: '#',
     className: 'bear-badge',
   },
   {
-    imageSrc: '/assets/badges_image/top-wedding-videographer.webp',
-    altText: 'Top Wedding Videographer',
+    imageSrc: '/assets/badges_image/los-angeles-film-awards-quarter-finalist.webp',
+    altText: 'Los Angeles Film Awards 2021 Quarter-Finalist',
     link: '#',
   },
   {
-    imageSrc: '/assets/badges_image/videographer-near-me.webp',
-    altText: 'Videographer Near Me',
+    imageSrc: '/assets/badges_image/weddingwire-couples-choice-award.webp',
+    altText: "WeddingWire Couples' Choice Awards — Phaminh Cinematography",
     link: '#',
   },
 ];
