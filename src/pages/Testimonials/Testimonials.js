@@ -17,7 +17,7 @@ const Testimonials = () => {
       />
 
       <FullScreenImage
-        src="/assets/testimonials/phaminh-arkansas-sunset-wedding-photo.png"
+        src="/assets/testimonials/phaminh-arkansas-sunset-wedding-photo.webp"
         alt="Arkansas Sunset Wedding"
       />
 

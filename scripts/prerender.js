@@ -25,7 +25,7 @@ const { enrichmentFor, videoLdFor } = require(path.join(ROOT, 'src', 'data', 'fi
 
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`;
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Data extraction — parse films.js and blogPosts.js without needing to evaluate

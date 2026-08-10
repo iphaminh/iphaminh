@@ -10,7 +10,7 @@
 
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`;
 
 // One canonical set of profiles — the same list everywhere. A split entity
 // graph (different sameAs sets, or the wrong YouTube handle the business

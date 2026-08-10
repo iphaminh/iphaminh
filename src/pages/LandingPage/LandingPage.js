@@ -52,7 +52,7 @@ const LandingPage = () => {
         muted={isMuted}
         preload="auto"
         fetchpriority="high"
-        poster="/assets/seo/phaminh-wedding-cover.jpg"
+        poster="/assets/seo/phaminh-wedding-cover.webp"
         controls={false}
         disablePictureInPicture
         onCanPlay={() => {

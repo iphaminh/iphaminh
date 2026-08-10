@@ -19,7 +19,7 @@ export default function Pricing() {
    {/* Hero section with headline */}
    <section className="text-center py-12">
         <div className="responsive-img-wrapper">
-          <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.png" alt="Elegant wedding table setting filmed by Phaminh Cinematography" />
+          <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.webp" alt="Elegant wedding table setting filmed by Phaminh Cinematography" />
         </div>
         <p className="pricing-eyebrow">Investment</p>
         <h1 className="hero-title">
@@ -66,7 +66,7 @@ export default function Pricing() {
         </p>
          {/* New Section Below Packages */}
       <section className="call-to-action-section">
-        <img src="/assets/pricing/georgia-wedding-couple-portraits-phaminh.png" alt="Wedding couple portraits by Phaminh Cinematography" className="w-full" />
+        <img src="/assets/pricing/georgia-wedding-couple-portraits-phaminh.webp" alt="Wedding couple portraits by Phaminh Cinematography" className="w-full" />
         <div className="cta-content">
           <h2 className="cta-heading">LET'S DO THIS THING!</h2>
           <p className="cta-text">INQUIRE ABOUT YOUR WEDDING DATE</p>

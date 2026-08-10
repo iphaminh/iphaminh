@@ -55,7 +55,7 @@ const AboutMe = () => {
       </div>
       <div className={`aboutMeImage ${isVisible ? 'fade-in' : ''}`}>
         <img
-          src="/assets/images/phaminh-cinematography.png"
+          src="/assets/images/phaminh-cinematography.webp"
           alt="Minh Pham, Bay Area and Arkansas wedding videographer"
           width="600"
           height="594"

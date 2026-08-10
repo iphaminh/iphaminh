@@ -7,7 +7,7 @@ const SITE_URL = 'https://www.phaminh.com'; // keep this as your main domain
 const SITE_NAME = 'Phaminh Cinematography';
 const DEFAULT_DESCRIPTION =
   'Cinematic wedding videography and photography for couples in the San Francisco Bay Area, Northern California, Northwest Arkansas, and beyond.';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`;
 
 const CANONICAL_PATHS = {
   '/testimonial': '/testimonials',

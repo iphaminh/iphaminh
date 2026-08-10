@@ -38,7 +38,7 @@ const Foto = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src="/assets/images/instagram-phaminh.png" alt="Instagram" />
+          <img src="/assets/images/instagram-phaminh.webp" alt="Instagram" />
         </a>
         <a
           href="https://www.youtube.com/@Phaminh-Cinematography"

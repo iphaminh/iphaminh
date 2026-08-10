@@ -93,7 +93,7 @@ export default function BlogPost() {
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/assets/images/logo.png` },
     },
     url: canonicalUrl,
-    image: post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/assets/seo/phaminh-wedding-cover.jpg`,
+    image: post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`,
   };
 
   // FAQ schema if post has FAQs

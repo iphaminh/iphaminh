@@ -14,7 +14,7 @@ import { routeMeta } from '../../data/routeMeta';
 
 Modal.setAppElement("#root");
 
-const FALLBACK_THUMB = "/assets/seo/phaminh-wedding-cover.jpg";
+const FALLBACK_THUMB = "/assets/seo/phaminh-wedding-cover.webp";
 
 function extractVimeoId(urlOrId) {
   const str = String(urlOrId || "").trim();
@@ -31,10 +31,10 @@ function vimeoThumb(vimeoId) {
 
 // Hero carousel — opens a modal on click for immersive preview
 const carouselVideos = [
-  { img: "/assets/gallery/GA Wedding Video.png", vimeoId: "735641625", label: "Georgia Wedding Film" },
-  { img: "/assets/gallery/Ar Wedding Video.png", vimeoId: "751499247", label: "Arkansas Wedding Film" },
-  { img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.png", vimeoId: "739310663", label: "Northwest Arkansas Wedding Videographer" },
-  { img: "/assets/gallery/NorthWest Arkansas Wedding Videography.png", vimeoId: "506883833", label: "Northwest Arkansas Wedding Videography" },
+  { img: "/assets/gallery/GA Wedding Video.webp", vimeoId: "735641625", label: "Georgia Wedding Film" },
+  { img: "/assets/gallery/Ar Wedding Video.webp", vimeoId: "751499247", label: "Arkansas Wedding Film" },
+  { img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.webp", vimeoId: "739310663", label: "Northwest Arkansas Wedding Videographer" },
+  { img: "/assets/gallery/NorthWest Arkansas Wedding Videography.webp", vimeoId: "506883833", label: "Northwest Arkansas Wedding Videography" },
 ];
 
 export default function CineGallery() {
