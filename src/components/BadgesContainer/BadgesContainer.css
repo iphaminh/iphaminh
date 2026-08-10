@@ -125,3 +125,41 @@
     height: auto;
   }
 }
+
+/* ── Press-bar treatment ─────────────────────────────────────────────────────
+   Small-caps gold label + height-normalized logos so the mixed badge shapes
+   sit on one optical baseline and read as a single editorial strip. */
+.badges-eyebrow {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #a08339;
+  text-align: center;
+  margin: 0.5rem 0 1.4rem;
+}
+
+.badges-container img {
+  width: auto;
+  height: 108px;
+}
+
+@media (max-width: 600px) {
+  .badges-container img {
+    width: auto;
+    height: 100px;
+  }
+}
+
+@media (max-width: 380px) {
+  .badges-container img {
+    height: 92px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .badges-container img {
+    width: auto;
+    height: 104px;
+  }
+}

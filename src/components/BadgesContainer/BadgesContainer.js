@@ -95,6 +95,7 @@ const BadgesContainer = () => {
 
   return (
     <div className={`badges-section${revealed ? ' badges-revealed' : ''}`} ref={sectionRef}>
+      <p className="badges-eyebrow">Recognized By</p>
       <div className="badges-container">
         {badgesData.map((badge, index) => (
           <div
