@@ -19,7 +19,7 @@ export default function Pricing() {
    {/* Hero section with headline */}
    <section className="text-center py-12">
         <figure className="pricing-hero">
-          <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.webp" alt="Elegant wedding table setting filmed by Phaminh Cinematography" />
+          <img src="/assets/pricing/beach-destination-wedding-film-phaminh.webp" alt="Bride and groom on the beach — frame from a destination wedding film by Phaminh Cinematography" />
           <div className="pricing-hero-scrim" aria-hidden="true" />
           <div className="pricing-hero-overlay">
             <p className="pricing-eyebrow pricing-eyebrow-on-image">Investment</p>
