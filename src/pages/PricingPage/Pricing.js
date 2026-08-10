@@ -18,13 +18,16 @@ export default function Pricing() {
    />
    {/* Hero section with headline */}
    <section className="text-center py-12">
-        <div className="responsive-img-wrapper">
+        <figure className="pricing-hero">
           <img src="/assets/pricing/elegant-wedding-table-setting-georgia-phaminh.webp" alt="Elegant wedding table setting filmed by Phaminh Cinematography" />
-        </div>
-        <p className="pricing-eyebrow">Investment</p>
-        <h1 className="hero-title">
-            Preserving Life's Priceless Moments <br /> Through The Art Of Film
-          </h1>
+          <div className="pricing-hero-scrim" aria-hidden="true" />
+          <div className="pricing-hero-overlay">
+            <p className="pricing-eyebrow pricing-eyebrow-on-image">Investment</p>
+            <h1 className="hero-title hero-title-on-image">
+              Preserving Life's Priceless Moments <br /> Through The Art Of Film
+            </h1>
+          </div>
+        </figure>
           <div className="pricing-rule" aria-hidden="true" />
           <p className="hero-text">
             Thirty years from now, you'll be able to watch your father walk you
