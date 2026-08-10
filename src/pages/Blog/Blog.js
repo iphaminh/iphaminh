@@ -39,6 +39,18 @@ export default function Blog() {
               to={`/blog/${post.slug}`}
               className="blog-card"
             >
+              {post.image && (
+                <span className="blog-card-frame">
+                  <img
+                    src={post.image}
+                    alt={`${post.title} — from a real wedding film by Phaminh Cinematography`}
+                    loading="lazy"
+                    width="640"
+                    height="360"
+                    onError={(e) => { e.currentTarget.src = '/assets/seo/phaminh-wedding-cover.webp'; }}
+                  />
+                </span>
+              )}
               <span className="blog-card-category">{post.category}</span>
               <h2 className="blog-card-title">{post.title}</h2>
               <p className="blog-card-excerpt">{post.description}</p>

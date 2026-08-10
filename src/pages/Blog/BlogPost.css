@@ -163,3 +163,26 @@
   .blog-post-page { padding: 1.5rem 1rem 3rem; }
   .blog-faq-section { padding: 1.5rem; }
 }
+
+/* ── Post hero — a real film frame under the header (2026 pass) ── */
+.blog-post-hero {
+  margin: 2rem 0 2.5rem;
+}
+
+.blog-post-hero img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #f2efe8;
+}
+
+.blog-post-hero figcaption {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a917f;
+  text-align: center;
+  margin-top: 0.7rem;
+}

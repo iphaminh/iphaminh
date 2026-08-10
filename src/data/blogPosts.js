@@ -10,7 +10,7 @@ const blogPosts = [
     location: 'St. Helena, Napa Valley, CA',
     category: 'Venues',
     readTime: '6 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117684523-4c84023462e15cc322ae99816b2b9de63da33bf6e9adbcda115def07049b4616-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -59,7 +59,7 @@ const blogPosts = [
     location: 'San Francisco Bay Area, CA',
     category: 'Pricing',
     readTime: '7 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117700170-f1759b02ff1ef8a3b559daa7155812adf615682fa2b91088f7a0b702d88c49a5-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -168,7 +168,7 @@ Elopement and smaller ceremony packages start at $2,500. For an exact quote base
     location: 'Northwest Arkansas',
     category: 'Pricing',
     readTime: '6 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117680037-63118898668b4400a289f8cbca9188964d497406f6dc11e7527819b6e8f9d95a-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -255,7 +255,7 @@ Phaminh Cinematography NWA wedding packages start at $2,700. For elopements or s
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Planning',
     readTime: '9 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2118640434-11b4adbc716f61e650c5a8dd9675c10e99ff311ef8a1baa5d637e6fc8cd04122-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -383,7 +383,7 @@ If a videographer is reluctant to share their contract before you sign, that's a
     location: 'Northwest Arkansas',
     category: 'Venues',
     readTime: '8 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/1788897477-ad4b9f5d7f96da207fe8e7bc7108e5a96896c7b70144450bd691ab670e8ece9b-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -485,7 +485,7 @@ As a wedding videographer who has filmed across the region, I've seen how differ
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Planning',
     readTime: '6 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117692891-0bf2a02bc599fc3901fb00b4f8320e9036cd82cd9e576dd73bbd9faf728fac42-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -560,7 +560,7 @@ The result is a film that feels true to who you are, not like a production.`,
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Planning',
     readTime: '5 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2094972881-028d1c6cace6e0878d88c618ca1c0da106718dc5b27190b805bd6c1d8060b66c-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -630,7 +630,7 @@ The one thing I'd caution against: cutting video because it seems like the easie
     location: 'San Francisco Bay Area, CA',
     category: 'Venues',
     readTime: '8 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117689148-cc21744e213648972c550e3f8a22e90a21bac7457f50ecbff30414152d92b1e5-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -717,7 +717,7 @@ As someone who films weddings across the Bay Area, here's my honest guide to the
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Education',
     readTime: '5 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/1761213843-abffcc3646f58091bf4f36f4c138722e1ed252e29eac8c33425e49d6ed76bdde-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -799,7 +799,7 @@ If you need your film by a specific date — for an anniversary trip, to share a
     location: 'Napa Valley, CA',
     category: 'Venues',
     readTime: '8 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2094980967-bb166183710774e1536fbea84ff69b3e34d6e0c3feb655ae18efba15f5911fd3-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -877,7 +877,7 @@ My [wedding film packages](/pricing) start at $2,700, and I film across the vall
     location: 'San Francisco, CA',
     category: 'Elopements',
     readTime: '9 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2095422096-d302b00a17e0c45f79c1e0b83c89e528b8f3a2e8a180aae45530359f610a48b1-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -945,7 +945,7 @@ My [elopement film packages](/pricing) start at $2,500 and typically cover the c
     location: 'Silicon Valley, CA',
     category: 'Venues',
     readTime: '8 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117706039-9cd30288ee6a7abaa6f5a5d29c0336c68f01e72ee1aef8beb6315d794de6e83d-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',
@@ -1016,7 +1016,7 @@ Wherever you land, one advantage matters: I film these venues regularly, so you 
     location: 'Hot Springs, AR',
     category: 'Venues',
     readTime: '7 min',
-    image: '/assets/seo/phaminh-wedding-cover.webp',
+    image: 'https://i.vimeocdn.com/video/2117686915-14d4a8e3fc899ef820b22239856cc6971ce2cbb5b2bf3c8e04c8c18a7cad9a35-d_1920x1080?&r=pad&region=us',
     sections: [
       {
         type: 'intro',

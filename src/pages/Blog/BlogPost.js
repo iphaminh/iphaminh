@@ -93,7 +93,10 @@ export default function BlogPost() {
       logo: { '@type': 'ImageObject', url: `${SITE_URL}/assets/images/logo.png` },
     },
     url: canonicalUrl,
-    image: post.image ? `${SITE_URL}${post.image}` : `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`,
+    // post.image may be an absolute CDN URL (real film frames) or site-relative
+    image: post.image
+      ? (post.image.startsWith('http') ? post.image : `${SITE_URL}${post.image}`)
+      : `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`,
   };
 
   // FAQ schema if post has FAQs
@@ -132,6 +135,19 @@ export default function BlogPost() {
             <span>By Minh Pham</span>
           </div>
         </header>
+
+        {post.image && (
+          <figure className="blog-post-hero">
+            <img
+              src={post.image}
+              alt={`A real wedding film frame by Phaminh Cinematography`}
+              width="1280"
+              height="720"
+              onError={(e) => { e.currentTarget.src = '/assets/seo/phaminh-wedding-cover.webp'; }}
+            />
+            <figcaption>From a real wedding film by Phaminh Cinematography</figcaption>
+          </figure>
+        )}
 
         <div className="blog-post-body">
           {post.sections.map((section, i) => {
