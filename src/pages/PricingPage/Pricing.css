@@ -442,7 +442,9 @@ body {
   position: relative;
   overflow: hidden;
   margin: 0 0 2.5rem;
-  aspect-ratio: 21 / 9;
+  /* Native frame of the hero photo — Minh wants the FULL image visible,
+     sky and all; no cinematic crop. Matches the 4645x2580 source (1.8:1). */
+  aspect-ratio: 9 / 5;
   background: #23211d;
 }
 
@@ -501,10 +503,10 @@ body {
 }
 
 @media (max-width: 600px) {
-  .pricing-hero {
-    aspect-ratio: 4 / 3;
-  }
   .pricing-hero-overlay {
-    inset: auto 1rem 1.4rem;
+    inset: auto 1rem 1.2rem;
+  }
+  .hero-title-on-image {
+    font-size: 1.05rem;
   }
 }
