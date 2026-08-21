@@ -44,7 +44,7 @@ function bestThumbnail(video) {
 
 async function fetchAllVideos() {
   const videos = [];
-  let nextPage = `/users/${VIMEO_USER_ID}/videos?per_page=100&sort=date&direction=desc&fields=uri,name,description,pictures`;
+  let nextPage = `/users/${VIMEO_USER_ID}/videos?per_page=100&sort=date&direction=desc&fields=uri,name,description,pictures,release_time,duration`;
 
   while (nextPage) {
     console.log(`Fetching: ${nextPage}`);
