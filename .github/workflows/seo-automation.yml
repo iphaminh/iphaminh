@@ -166,8 +166,10 @@ jobs:
       # Nightly channel — Vimeo breaks yt-dlp's extractor periodically and
       # fixes land in nightly first. yt-dlp is only the fallback downloader;
       # the script prefers Vimeo API direct download links.
+      # curl-cffi is required: Vimeo's extractor now needs browser impersonation
+      # ("no impersonate target is available" failure on 2026-08-22 otherwise).
       - name: Install yt-dlp (nightly)
-        run: pip install --user --pre "yt-dlp[default]"
+        run: pip install --user --pre "yt-dlp[default,curl-cffi]"
 
       - name: Sync one Vimeo video to YouTube
         env:
