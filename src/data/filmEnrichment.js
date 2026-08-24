@@ -81,4 +81,16 @@ function videoLdFor(film) {
   return ld;
 }
 
-module.exports = { enrichmentFor, videoLdFor, toIsoDuration };
+// <title> for /cine/:slug — used by BOTH FilmPage.js and scripts/prerender.js
+// so the static and hydrated titles never drift. No long brand suffix: Bing
+// flags titles over ~65 chars. When the film's own title already names the
+// location ("Georgia Wedding Film" + "Georgia"), the location segment would
+// just repeat it — the short brand reads better there.
+function filmPageTitle(film) {
+  if (film.title.toLowerCase().includes(film.location.toLowerCase())) {
+    return `${film.title} | Phaminh`;
+  }
+  return `${film.title} | ${film.location} Wedding Film`;
+}
+
+module.exports = { enrichmentFor, videoLdFor, toIsoDuration, filmPageTitle };

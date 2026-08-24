@@ -5,7 +5,8 @@ const blogPosts = [
   {
     slug: 'brindare-napa-wedding-guide',
     title: 'Brindare Napa Wedding Guide: A Videographer\'s Look at St. Helena\'s Italian-Style Estate',
-    description: 'What makes Brindare Napa such a beautiful wedding venue on film — its five spaces, the vineyard light, and how to plan your wedding video there. A filmmaker\'s guide for engaged couples.',
+    metaTitle: 'Brindare Napa Wedding Venue Guide (2026)',
+    description: 'What makes Brindare Napa such a beautiful wedding venue on film — its five spaces, the vineyard light, and how to plan your wedding video there.',
     date: '2026-08-10',
     location: 'St. Helena, Napa Valley, CA',
     category: 'Venues',
@@ -54,7 +55,8 @@ const blogPosts = [
   {
     slug: 'wedding-videography-cost-bay-area',
     title: 'How Much Does Wedding Videography Cost in the Bay Area? (2026 Pricing Guide)',
-    description: 'Wedding videography in the San Francisco Bay Area typically ranges from $2,500 to $7,000. Here\'s an honest breakdown of what you get at each price point — and how to find the right fit.',
+    metaTitle: 'Bay Area Wedding Videography Cost (2026 Guide)',
+    description: 'Wedding videography in the San Francisco Bay Area typically runs $2,500 to $7,000. An honest breakdown of what you get at each price point.',
     date: '2026-05-16',
     location: 'San Francisco Bay Area, CA',
     category: 'Pricing',
@@ -163,7 +165,8 @@ Elopement and smaller ceremony packages start at $2,500. For an exact quote base
   {
     slug: 'wedding-videography-cost-northwest-arkansas',
     title: 'How Much Does Wedding Videography Cost in Northwest Arkansas? (2026 Guide)',
-    description: 'Wedding videography in Fayetteville, Bentonville, and Rogers AR typically ranges from $1,500 to $4,500. Here\'s what to expect at each price point in the NWA market.',
+    metaTitle: 'Wedding Videography Cost in Northwest Arkansas',
+    description: 'Wedding videography in Fayetteville, Bentonville, and Rogers AR typically runs $1,500 to $4,500 — what to expect at each price point in the NWA market.',
     date: '2026-05-16',
     location: 'Northwest Arkansas',
     category: 'Pricing',
@@ -250,7 +253,8 @@ Phaminh Cinematography NWA wedding packages start at $2,700. For elopements or s
   {
     slug: 'how-to-choose-a-wedding-videographer',
     title: 'How to Choose a Wedding Videographer: 10 Questions to Ask Before You Book',
-    description: 'Choosing a wedding videographer is one of the most important decisions of your wedding planning. Here are the 10 questions every couple should ask — and the red flags to watch for.',
+    metaTitle: 'How to Choose a Wedding Videographer: 10 Questions',
+    description: 'The 10 questions every couple should ask before booking a wedding videographer — and the red flags to watch for.',
     date: '2026-05-16',
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Planning',
@@ -378,6 +382,7 @@ If a videographer is reluctant to share their contract before you sign, that's a
   {
     slug: 'best-wedding-venues-northwest-arkansas',
     title: 'Best Wedding Venues in Northwest Arkansas: A 2026 Guide for Couples',
+    metaTitle: 'Best Wedding Venues in Northwest Arkansas (2026)',
     description: 'From Crystal Bridges to Ozark mountain barns, here are the most beautiful wedding venues in Fayetteville, Bentonville, Rogers, and the surrounding NWA area.',
     date: '2026-05-16',
     location: 'Northwest Arkansas',
@@ -480,7 +485,8 @@ As a wedding videographer who has filmed across the region, I've seen how differ
   {
     slug: 'cinematic-vs-documentary-wedding-video',
     title: 'Cinematic vs. Documentary Wedding Video: Which Style Is Right for You?',
-    description: 'What\'s the difference between a cinematic wedding film and a documentary-style wedding video? Here\'s how to decide which approach fits your vision — and your personality.',
+    metaTitle: 'Cinematic vs. Documentary Wedding Video',
+    description: 'What\'s the difference between a cinematic wedding film and a documentary-style wedding video? How to decide which approach fits your vision.',
     date: '2026-05-16',
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Planning',
@@ -555,7 +561,8 @@ The result is a film that feels true to who you are, not like a production.`,
   {
     slug: 'do-you-need-a-wedding-videographer',
     title: 'Do You Really Need a Wedding Videographer? (Honest Answer)',
-    description: 'Should you book a wedding videographer? Here\'s an honest look at why most couples who skip video regret it — and the scenarios where it might not be the right call.',
+    metaTitle: 'Do You Really Need a Wedding Videographer?',
+    description: 'An honest look at why most couples who skip wedding video regret it — and the scenarios where it might not be the right call.',
     date: '2026-05-16',
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Planning',
@@ -625,7 +632,8 @@ The one thing I'd caution against: cutting video because it seems like the easie
   {
     slug: 'best-outdoor-wedding-venues-bay-area',
     title: 'Best Outdoor Wedding Venues in the Bay Area, California (2026)',
-    description: 'From Napa vineyards to redwood forests, here are the most beautiful outdoor wedding venues in the San Francisco Bay Area — and what makes each one special to film.',
+    metaTitle: 'Best Outdoor Wedding Venues in the Bay Area',
+    description: 'From Napa vineyards to redwood forests — the most beautiful outdoor wedding venues in the San Francisco Bay Area, and what makes each one special to film.',
     date: '2026-05-16',
     location: 'San Francisco Bay Area, CA',
     category: 'Venues',
@@ -712,7 +720,8 @@ As someone who films weddings across the Bay Area, here's my honest guide to the
   {
     slug: 'what-is-a-wedding-highlight-film',
     title: 'What Is a Wedding Highlight Film? Everything You Need to Know',
-    description: 'A wedding highlight film is the short, cinematic edit of your wedding day — typically 3–6 minutes. Here\'s what goes into making one, what to expect, and how to make sure yours is everything you hoped.',
+    metaTitle: 'What Is a Wedding Highlight Film?',
+    description: 'A wedding highlight film is the short, cinematic edit of your wedding day — typically 3–6 minutes. What goes into making one and what to expect.',
     date: '2026-05-16',
     location: 'Bay Area, CA & Northwest Arkansas',
     category: 'Education',
@@ -794,7 +803,8 @@ If you need your film by a specific date — for an anniversary trip, to share a
   {
     slug: 'best-napa-valley-wedding-venues',
     title: 'The Best Napa Valley Wedding Venues for a Luxury Celebration (2026)',
-    description: 'A wedding videographer\'s guide to Napa Valley\'s most stunning venues — Auberge du Soleil, Carneros Resort, Stanly Ranch, and more — with honest notes on how each one films.',
+    metaTitle: 'Best Napa Valley Wedding Venues (2026)',
+    description: 'A wedding videographer\'s guide to Napa Valley\'s most stunning venues — Auberge du Soleil, Carneros Resort, Stanly Ranch, and more.',
     date: '2026-06-05',
     location: 'Napa Valley, CA',
     category: 'Venues',
@@ -872,7 +882,8 @@ My [wedding film packages](/pricing) start at $2,700, and I film across the vall
   {
     slug: 'san-francisco-city-hall-elopement-guide',
     title: 'San Francisco City Hall Elopement: The Complete Guide (2026)',
-    description: 'Everything you need to plan a San Francisco City Hall wedding — appointments, the best times and floors for photos, private ceremony options, and how to capture it all on film.',
+    metaTitle: 'San Francisco City Hall Elopement Guide (2026)',
+    description: 'How to plan a San Francisco City Hall wedding — appointments, the best times and floors for photos, private ceremony options, and how to film it all.',
     date: '2026-06-18',
     location: 'San Francisco, CA',
     category: 'Elopements',
@@ -940,7 +951,8 @@ My [elopement film packages](/pricing) start at $2,500 and typically cover the c
   {
     slug: 'best-silicon-valley-wedding-venues',
     title: 'The Best Silicon Valley & Peninsula Wedding Venues (2026 Guide)',
-    description: 'From redwood estates in Los Gatos to mountaintop wineries in Woodside — a local videographer\'s guide to the South Bay and Peninsula\'s most cinematic wedding venues.',
+    metaTitle: 'Best Silicon Valley Wedding Venues (2026)',
+    description: 'From redwood estates in Los Gatos to mountaintop wineries in Woodside — a local guide to the Peninsula\'s most cinematic wedding venues.',
     date: '2026-06-29',
     location: 'Silicon Valley, CA',
     category: 'Venues',
@@ -1011,7 +1023,8 @@ Wherever you land, one advantage matters: I film these venues regularly, so you 
   {
     slug: 'anthony-chapel-wedding-guide',
     title: 'Getting Married at Anthony Chapel: A Videographer\'s Guide (2026)',
-    description: 'Anthony Chapel at Garvan Woodland Gardens is Arkansas\'s most breathtaking wedding venue. Here\'s how to plan your ceremony there — timing, light, logistics, and film.',
+    metaTitle: 'Anthony Chapel Wedding Guide (2026)',
+    description: 'Anthony Chapel at Garvan Woodland Gardens is Arkansas\'s most breathtaking venue. How to plan your ceremony there — timing, light, logistics, and film.',
     date: '2026-07-05',
     location: 'Hot Springs, AR',
     category: 'Venues',

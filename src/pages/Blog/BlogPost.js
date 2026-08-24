@@ -115,7 +115,7 @@ export default function BlogPost() {
   return (
     <>
       <SEO
-        title={`${post.title} | Phaminh Cinematography`}
+        title={`${post.metaTitle || post.title} | Phaminh`}
         description={post.description}
         canonical={canonicalUrl}
       />

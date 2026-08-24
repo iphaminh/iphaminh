@@ -234,6 +234,82 @@ async function tagVimeoVideo(videoId, tag) {
   return vimeo("PUT", `/videos/${videoId}/tags/${encodeURIComponent(tag)}`, {});
 }
 
+// ── Content-level duplicate guard ────────────────────────────────────────────
+// The Vimeo-ID checks below only know about IDs. When the SAME film exists on
+// Vimeo twice under different IDs (a re-upload), or was uploaded to YouTube by
+// hand years ago, they see two unrelated videos and post the film twice — which
+// is exactly what happened to Kyle & Hayley, Emma & Hadar, Victoria & Tyler,
+// Danielle + Jake and Morgan + Parker. So before uploading anything we read the
+// channel's existing titles and refuse to post a couple that is already there.
+
+// "Emma & Hadar | Luxury Bay Area Wedding Film" -> "emma+hadar"
+// Returns null when no couple pair is detectable (reels, teasers, demos) —
+// those fall through to the ID-based checks rather than being blocked.
+function coupleKeyFromTitle(title) {
+  const m = String(title || "").match(/([A-Z][a-z]+)\s*[&+]\s*([A-Z][a-z]+)/);
+  if (!m) return null;
+  const pair = [m[1].toLowerCase(), m[2].toLowerCase()].sort();
+  return pair.join("+");
+}
+
+// The YouTube channel is a wedding portfolio — commercials, temple ceremonies,
+// and other non-wedding work stay on Vimeo only (Minh's call, 2026-08-24).
+// A video qualifies when its TITLE carries wedding language or names a couple.
+// Descriptions are ignored on purpose: the SEO boilerplate says "wedding
+// videographer" on every video, which would let anything through.
+const WEDDING_TITLE_RE = /wedding|elopement|engag|bride|groom|vows|newlywed|\bweds?\b|sweetheart/i;
+function isWeddingVideo(video) {
+  const title = String(video.name || "");
+  return WEDDING_TITLE_RE.test(title) || Boolean(coupleKeyFromTitle(title));
+}
+
+// Every video title on the channel (uploads playlist), paginated.
+async function fetchChannelVideoTitles(accessToken) {
+  const get = (url) =>
+    new Promise((resolve, reject) => {
+      https
+        .get(url, { headers: { Authorization: `Bearer ${accessToken}` } }, (res) => {
+          let data = "";
+          res.setEncoding("utf8");
+          res.on("data", (c) => (data += c));
+          res.on("end", () => {
+            try { resolve(JSON.parse(data)); } catch (e) { reject(e); }
+          });
+        })
+        .on("error", reject);
+    });
+
+  const ch = await get(
+    "https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true"
+  );
+  const uploads = ch?.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+  if (!uploads) throw new Error("Could not resolve the channel's uploads playlist");
+
+  const titles = [];
+  let pageToken = "";
+  do {
+    const page = await get(
+      `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${uploads}` +
+        (pageToken ? `&pageToken=${pageToken}` : "")
+    );
+    for (const item of page.items || []) {
+      titles.push({ title: item.snippet?.title || "", videoId: item.snippet?.resourceId?.videoId });
+    }
+    pageToken = page.nextPageToken || "";
+  } while (pageToken);
+  return titles;
+}
+
+// Map of coupleKey -> youtubeId for everything already on the channel.
+function buildChannelCoupleIndex(channelVideos) {
+  const index = {};
+  for (const v of channelVideos) {
+    const key = coupleKeyFromTitle(v.title);
+    if (key && !index[key]) index[key] = v.videoId;
+  }
+  return index;
+}
+
 function hasYouTubeSyncTag(video, registry) {
   const videoId = video.uri.replace("/videos/", "");
   if (registry && registry[videoId]) return true;
@@ -666,9 +742,54 @@ async function main() {
     }
     candidates = [body];
     console.log(`Forcing sync of video ${forcedId}`);
+    if (!isWeddingVideo(body)) {
+      console.log(`⚠ "${body.name}" doesn't look like a wedding video — uploading anyway since it was explicitly requested.`);
+    }
   } else {
     const allVideos = await fetchAllVimeoVideos();
-    candidates = allVideos.filter((v) => isSEOFormatted(v) && !hasYouTubeSyncTag(v, registry)).slice(0, limit);
+    let eligible = allVideos.filter((v) => isSEOFormatted(v) && !hasYouTubeSyncTag(v, registry));
+
+    // Wedding-only channel: keep commercials and other non-wedding work off
+    // YouTube. Not recorded in the registry (that maps to real YouTube IDs) —
+    // they're simply re-skipped every run, and a forced ID overrides.
+    const nonWedding = eligible.filter((v) => !isWeddingVideo(v));
+    if (nonWedding.length) {
+      eligible = eligible.filter(isWeddingVideo);
+      console.log(`\n🚫 Skipping ${nonWedding.length} non-wedding video(s) (wedding-only channel):`);
+      for (const v of nonWedding) console.log(`   ${v.uri.replace("/videos/", "")} "${v.name}"`);
+      console.log(`   To post one deliberately: node scripts/youtube-sync.js <vimeoId>\n`);
+    }
+
+    // Content-level guard: drop anything whose couple is already on the channel,
+    // and remember it in the registry so we never reconsider it.
+    let channelIndex = {};
+    try {
+      const channelVideos = await fetchChannelVideoTitles(accessToken);
+      channelIndex = buildChannelCoupleIndex(channelVideos);
+      console.log(`✓ Channel inventory: ${channelVideos.length} videos, ${Object.keys(channelIndex).length} identifiable couples`);
+    } catch (e) {
+      console.warn(`  ⚠ Could not read channel inventory (${e.message}) — falling back to ID-only duplicate checks`);
+    }
+
+    const blocked = [];
+    eligible = eligible.filter((v) => {
+      const key = coupleKeyFromTitle(v.name);
+      if (!key || !channelIndex[key]) return true;
+      blocked.push({ id: v.uri.replace("/videos/", ""), name: v.name, key, youtubeId: channelIndex[key] });
+      return false;
+    });
+
+    if (blocked.length) {
+      console.log(`\n⛔ Skipping ${blocked.length} video(s) already on the channel under a different Vimeo ID:`);
+      for (const b of blocked) {
+        console.log(`   ${b.id} "${b.name}" → already posted as youtube:${b.youtubeId}`);
+        registry[b.id] = b.youtubeId;
+        saveRegistryEntry(b.id, b.youtubeId);
+      }
+      console.log("   Recorded in youtube-registry.json so they are never reconsidered.\n");
+    }
+
+    candidates = eligible.slice(0, limit);
     console.log(`Found ${allVideos.length} videos total; ${candidates.length} eligible for YouTube sync (limit: ${limit})`);
   }
 
