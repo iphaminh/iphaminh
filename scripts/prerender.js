@@ -21,7 +21,7 @@ const { routeMeta } = require(path.join(ROOT, 'src', 'data', 'routeMeta'));
 const { websiteLd, businessLd, breadcrumbLdFor } = require(path.join(ROOT, 'src', 'data', 'businessSchema'));
 const { films: FILMS } = require(FILMS_PATH);
 const { blogPosts: BLOG_POSTS } = require(BLOG_PATH);
-const { enrichmentFor, videoLdFor } = require(path.join(ROOT, 'src', 'data', 'filmEnrichment'));
+const { enrichmentFor, videoLdFor, filmPageTitle } = require(path.join(ROOT, 'src', 'data', 'filmEnrichment'));
 
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
@@ -406,7 +406,7 @@ function generateAll() {
   // ─── Film pages ────────────────────────────────────────────────────────────
   for (const film of films) {
     const url = `${SITE_URL}/cine/${film.slug}`;
-    const title = `${film.title} | ${film.location} Wedding Film | Phaminh Cinematography`;
+    const title = filmPageTitle(film);
     const enrichment = enrichmentFor(film.vimeoId);
     const thumbnail = enrichment.thumbnailUrl;
     const videoLandingUrl = `https://vimeo.com/${film.vimeoId}`;
@@ -438,7 +438,8 @@ function generateAll() {
   // ─── Blog post pages ───────────────────────────────────────────────────────
   for (const post of posts) {
     const url = `${SITE_URL}/blog/${post.slug}`;
-    const title = `${post.title} | Phaminh Cinematography`;
+    // metaTitle is the ≤65-char search title; the full title stays as the H1.
+    const title = `${post.metaTitle || post.title} | Phaminh`;
 
     const articleLd = {
       '@context': 'https://schema.org',

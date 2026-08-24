@@ -7,14 +7,14 @@ const films = [
   {
     slug: 'golden-hour-arkansas-wedding-film',
     title: 'Golden Hour Wedding Film',
-    description: 'A 2025 wedding film by Phaminh Cinematography capturing heartfelt vows, golden hour portraits, and the joy of an Arkansas celebration. Every frame crafted with a calm, story-first approach.',
+    description: 'A 2025 wedding film by Phaminh Cinematography capturing heartfelt vows, golden hour portraits, and the joy of an Arkansas celebration.',
     location: 'Arkansas',
     vimeoId: '1145842678',
   },
   {
     slug: 'romance-at-the-bluff',
     title: 'Romance at the Bluff',
-    description: 'An Arkansas wedding film set against dramatic river bluffs — inspired by nature and authentic emotion. This cinematic story captures love in the heart of the Natural State.',
+    description: 'An Arkansas wedding film set against dramatic river bluffs — a cinematic story of love in the heart of the Natural State.',
     location: 'Arkansas',
     vimeoId: '608232970',
   },
@@ -56,7 +56,7 @@ const films = [
   {
     slug: 'rustic-romance-barn-wedding',
     title: 'Rustic Romance',
-    description: 'A warm, rustic Arkansas barn wedding film overflowing with heartfelt moments, golden hour light, and the genuine joy of a couple surrounded by everyone they love.',
+    description: 'A warm, rustic Arkansas barn wedding film overflowing with heartfelt moments, golden hour light, and the genuine joy of a couple surrounded by loved ones.',
     location: 'Arkansas',
     vimeoId: '889737378',
   },

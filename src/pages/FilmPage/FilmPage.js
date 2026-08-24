@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import SEO from '../../components/SEO/SEO';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import { films } from '../../data/films';
-import { enrichmentFor, videoLdFor } from '../../data/filmEnrichment';
+import { enrichmentFor, videoLdFor, filmPageTitle } from '../../data/filmEnrichment';
 import './FilmPage.css';
 
 const SITE_URL = 'https://www.phaminh.com';
@@ -33,7 +33,7 @@ export default function FilmPage() {
     `https://player.vimeo.com/video/${film.vimeoId}` +
     `?title=0&byline=0&portrait=0&dnt=1`;
 
-  const pageTitle = `${film.title} | ${film.location} Wedding Film | Phaminh Cinematography`;
+  const pageTitle = filmPageTitle(film);
   const thumbnail = enrichmentFor(film.vimeoId).thumbnailUrl;
 
   // VideoObject JSON-LD — shared builder (src/data/filmEnrichment.js) keeps

@@ -13,19 +13,19 @@ const routeMeta = {
   '/': {
     title: 'Napa Valley & Bay Area Wedding Videographer | Phaminh',
     description:
-      'Minh Pham is a luxury wedding videographer based in Vacaville, California — filming cinematic wedding films across Napa Valley, Sonoma, the San Francisco Bay Area, Sacramento, and Northwest Arkansas.',
+      'Minh Pham is a luxury wedding videographer in Vacaville, CA — cinematic films across Napa Valley, Sonoma, the Bay Area, Sacramento, and Northwest Arkansas.',
     canonical: `${SITE_URL}/`,
   },
   '/cine': {
     title: 'Wedding Films | Napa, Bay Area & Arkansas | Phaminh',
     description:
-      'Watch cinematic wedding films by Minh Pham — real couples across Napa Valley, the San Francisco Bay Area, Sacramento, and Northwest Arkansas. Emotional, story-driven films.',
+      'Watch cinematic wedding films by Minh Pham — real couples across Napa Valley, the Bay Area, Sacramento & Northwest Arkansas. Story-driven, emotional films.',
     canonical: `${SITE_URL}/cine`,
   },
   '/foto': {
     title: 'Wedding Photography | Bay Area & Arkansas | Phaminh',
     description:
-      'Candid, timeless wedding photography by Minh Pham. Serving Napa Valley, the San Francisco Bay Area, Sacramento, and Northwest Arkansas. Wedding, engagement, and portrait sessions.',
+      'Timeless wedding photography by Minh Pham — wedding, engagement & portrait sessions across Napa Valley, the Bay Area, Sacramento, and Northwest Arkansas.',
     canonical: `${SITE_URL}/foto`,
   },
   '/foto/wedding': {
@@ -50,13 +50,13 @@ const routeMeta = {
   '/pricing': {
     title: 'Wedding Videography Pricing & Packages | Phaminh',
     description:
-      'Wedding videography packages start at $2,700 and elopement films at $2,500 — full pricing for Napa Valley, Bay Area, Sacramento, and Northwest Arkansas weddings.',
+      'Wedding videography packages from $2,700 and elopement films from $2,500 — full pricing for Napa Valley, Bay Area, Sacramento, and Northwest Arkansas weddings.',
     canonical: `${SITE_URL}/pricing`,
   },
   '/contact': {
     title: 'Contact | Book Your Wedding Videographer | Phaminh',
     description:
-      'Get in touch with Minh Pham to book your wedding film. Based in Vacaville, California — serving Napa Valley, the Bay Area, Sacramento, Northwest Arkansas, and destination weddings.',
+      'Book your wedding film with Minh Pham — based in Vacaville, CA, serving Napa Valley, the Bay Area, Sacramento, Northwest Arkansas & destination weddings.',
     canonical: `${SITE_URL}/contact`,
   },
   '/testimonials': {
@@ -68,13 +68,13 @@ const routeMeta = {
   '/blog': {
     title: 'Wedding Videography Blog | Tips, Pricing & Guides | Phaminh',
     description:
-      'Practical guides on wedding videography pricing, choosing a videographer, and the best venues in Napa Valley, the Bay Area, and Arkansas — by Minh Pham of Phaminh Cinematography.',
+      'Practical guides on wedding videography pricing, choosing a videographer, and the best venues in Napa Valley, the Bay Area, and Arkansas — by Minh Pham.',
     canonical: `${SITE_URL}/blog`,
   },
   '/wedding-videographer': {
-    title: 'Wedding Videographer Service Areas | California & Arkansas | Phaminh',
+    title: 'Wedding Videographer in California & Arkansas | Phaminh',
     description:
-      'Cinematic wedding films across Northern California — Napa Valley, Sonoma, Vacaville & Suisun Valley, San Francisco, Sacramento, Tahoe — and Arkansas: NWA, Eureka Springs, Hot Springs, Little Rock.',
+      'Cinematic wedding films across Northern California — Napa Valley, Vacaville, San Francisco, Sacramento, Tahoe — and Arkansas, from NWA to Hot Springs.',
     canonical: `${SITE_URL}/wedding-videographer`,
   },
 };
