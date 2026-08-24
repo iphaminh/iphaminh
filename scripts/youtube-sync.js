@@ -252,6 +252,17 @@ function coupleKeyFromTitle(title) {
   return pair.join("+");
 }
 
+// The YouTube channel is a wedding portfolio — commercials, temple ceremonies,
+// and other non-wedding work stay on Vimeo only (Minh's call, 2026-08-24).
+// A video qualifies when its TITLE carries wedding language or names a couple.
+// Descriptions are ignored on purpose: the SEO boilerplate says "wedding
+// videographer" on every video, which would let anything through.
+const WEDDING_TITLE_RE = /wedding|elopement|engag|bride|groom|vows|newlywed|\bweds?\b|sweetheart/i;
+function isWeddingVideo(video) {
+  const title = String(video.name || "");
+  return WEDDING_TITLE_RE.test(title) || Boolean(coupleKeyFromTitle(title));
+}
+
 // Every video title on the channel (uploads playlist), paginated.
 async function fetchChannelVideoTitles(accessToken) {
   const get = (url) =>
@@ -731,9 +742,23 @@ async function main() {
     }
     candidates = [body];
     console.log(`Forcing sync of video ${forcedId}`);
+    if (!isWeddingVideo(body)) {
+      console.log(`⚠ "${body.name}" doesn't look like a wedding video — uploading anyway since it was explicitly requested.`);
+    }
   } else {
     const allVideos = await fetchAllVimeoVideos();
     let eligible = allVideos.filter((v) => isSEOFormatted(v) && !hasYouTubeSyncTag(v, registry));
+
+    // Wedding-only channel: keep commercials and other non-wedding work off
+    // YouTube. Not recorded in the registry (that maps to real YouTube IDs) —
+    // they're simply re-skipped every run, and a forced ID overrides.
+    const nonWedding = eligible.filter((v) => !isWeddingVideo(v));
+    if (nonWedding.length) {
+      eligible = eligible.filter(isWeddingVideo);
+      console.log(`\n🚫 Skipping ${nonWedding.length} non-wedding video(s) (wedding-only channel):`);
+      for (const v of nonWedding) console.log(`   ${v.uri.replace("/videos/", "")} "${v.name}"`);
+      console.log(`   To post one deliberately: node scripts/youtube-sync.js <vimeoId>\n`);
+    }
 
     // Content-level guard: drop anything whose couple is already on the channel,
     // and remember it in the registry so we never reconsider it.
