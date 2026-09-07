@@ -31,6 +31,11 @@ const ContactForm = () => {
             interested_in: data.get('interested_in') || '',
           });
         }
+        // Meta Pixel Lead — no-op until the pixel in public/index.html is
+        // activated with a real Pixel ID.
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead');
+        }
       } else {
         setStatus('error');
       }

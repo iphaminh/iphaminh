@@ -36,6 +36,22 @@
       gtag('js', new Date());
       gtag('config', 'G-0CG3527HBH');
     </script>
+    <!-- Meta Pixel — inert until a real Pixel ID is pasted below. Minh creates
+         the pixel in Meta Events Manager; pasting the ID here (one line) turns
+         on PageView tracking so the retargeting audience builds site-wide. -->
+    <script>
+      (function () {
+        var META_PIXEL_ID = ''; // e.g. '1234567890' — empty means the pixel stays off
+        if (!META_PIXEL_ID) return;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', META_PIXEL_ID);
+        window.fbq('track', 'PageView');
+      })();
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Crimson+Text:wght@400;700&family=Farsan&family=Gamja+Flower&family=Metal&family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&family=Varela+Round&display=swap"
       rel="stylesheet"
