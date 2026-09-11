@@ -4,7 +4,11 @@ import './ContactForm.css';
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnqezqow';
 
-const ContactForm = () => {
+// `formId` only changes the form_id value reported in the GA4 generate_lead
+// event (e.g. 'location-napa-valley' on a city landing page) so leads can be
+// attributed to the page that produced them. The Formspree endpoint, the
+// fields, and the event names are identical on every page.
+const ContactForm = ({ formId = 'contact' }) => {
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
 
   const handleSubmit = async (e) => {
@@ -27,7 +31,7 @@ const ContactForm = () => {
         // GA4 lead conversion — mark generate_lead as a Key Event in GA4
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', {
-            form_id: 'contact',
+            form_id: formId,
             interested_in: data.get('interested_in') || '',
           });
         }

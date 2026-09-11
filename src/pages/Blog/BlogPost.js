@@ -149,6 +149,23 @@ export default function BlogPost() {
           </figure>
         )}
 
+        {post.vimeoId && (
+          <figure className="blog-post-video">
+            <div className="blog-post-video-frame">
+              <iframe
+                src={`https://player.vimeo.com/video/${post.vimeoId}?title=0&byline=0&portrait=0&dnt=1`}
+                title={post.title}
+                loading="lazy"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <figcaption>
+              {post.videoCaption || 'Watch the full wedding film by Phaminh Cinematography'}
+            </figcaption>
+          </figure>
+        )}
+
         <div className="blog-post-body">
           {post.sections.map((section, i) => {
             if (section.type === 'intro') {

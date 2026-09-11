@@ -13,7 +13,7 @@ const routeMeta = {
   '/': {
     title: 'Napa Valley & Bay Area Wedding Videographer | Phaminh',
     description:
-      'Minh Pham is a luxury wedding videographer in Vacaville, CA — cinematic films across Napa Valley, Sonoma, the Bay Area, Sacramento, and Northwest Arkansas.',
+      'Luxury wedding videographer Minh Pham in Vacaville, CA. Cinematic films in Napa Valley, Sonoma, the San Francisco Bay Area and Sacramento. No local travel fees.',
     canonical: `${SITE_URL}/`,
   },
   '/cine': {

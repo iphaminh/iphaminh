@@ -236,12 +236,301 @@
   text-transform: uppercase;
 }
 
+/* ---------------------------------------------------------------------------
+   Ad landing-page additions (optional fields in locations.json):
+   hero CTAs, venue detail, click-to-play film embeds, client quote, and the
+   on-page inquiry form. Palette: gold #a08339, hairline #c9ab63, ink #23211d,
+   body #4a463f.
+   ------------------------------------------------------------------------- */
+
+.location-eyebrow {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a08339;
+  margin: 0 0 0.4rem;
+}
+
+/* Hero CTAs (sit under the H1; the primary one jumps to the on-page form) */
+.location-hero-ctas {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.6rem 0 0;
+}
+
+/* Venue detail paragraphs rendered after the venue list */
+.location-venue-detail {
+  margin-top: 1.75rem;
+}
+
+.location-venue-detail p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #4a463f;
+  margin: 0 0 1.1rem;
+}
+
+.location-venue-detail p:last-child {
+  margin-bottom: 0;
+}
+
+/* Click-to-play film embeds. Two columns; with three films the first spans
+   the full width so it reads as the lead film. */
+.location-embeds-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1.25rem;
+}
+
+.location-embeds-grid[data-count="3"] > :first-child {
+  grid-column: 1 / -1;
+}
+
+.location-embed {
+  margin: 0;
+}
+
+.location-embed-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.location-embed-frame iframe,
+.location-embed-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.location-embed-poster {
+  display: block;
+  color: #fff;
+}
+
+.location-embed-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.location-embed-poster:hover img,
+.location-embed-poster:focus-visible img {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.location-embed-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border-radius: 50%;
+  border: 1px solid #c9ab63;
+  background: rgba(35, 33, 29, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: background 0.25s ease;
+}
+
+.location-embed-play svg {
+  margin-left: 3px; /* optically centre the triangle */
+}
+
+.location-embed-poster:hover .location-embed-play,
+.location-embed-poster:focus-visible .location-embed-play {
+  background: #a08339;
+}
+
+.location-embed-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.65rem;
+}
+
+.location-embed-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  color: #23211d;
+  line-height: 1.4;
+}
+
+.location-embed-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08339;
+  text-decoration: none;
+  border-bottom: 1px solid #c9ab63;
+  padding-bottom: 1px;
+  white-space: nowrap;
+}
+
+.location-embed-link:hover {
+  color: #23211d;
+  border-color: #23211d;
+}
+
+/* Client quote */
+.location-quote {
+  margin: 0;
+  padding: 2.25rem 1.5rem;
+  border-top: 1px solid #c9ab63;
+  border-bottom: 1px solid #c9ab63;
+  text-align: center;
+}
+
+.location-quote p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+  line-height: 1.6;
+  color: #23211d;
+  max-width: 680px;
+  margin: 0 auto 1.25rem;
+}
+
+.location-quote cite {
+  display: block;
+  font-style: normal;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #a08339;
+}
+
+.location-quote-venue {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #4a463f;
+}
+
+/* On-page inquiry form */
+.location-inquiry {
+  padding-top: 2.5rem;
+  border-top: 1px solid #c9ab63;
+  scroll-margin-top: 1.5rem;
+}
+
+.location-inquiry-header {
+  text-align: center;
+}
+
+.location-inquiry-lead {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #4a463f;
+  max-width: 620px;
+  margin: 0 auto 1.5rem;
+}
+
+.location-inquiry-alt {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92rem;
+  color: #4a463f;
+  text-align: center;
+  margin: 0.25rem 0 0;
+}
+
+.location-inquiry-alt a {
+  color: #a08339;
+  text-decoration: none;
+  border-bottom: 1px solid #c9ab63;
+  padding-bottom: 1px;
+}
+
+.location-inquiry-alt a:hover {
+  color: #23211d;
+  border-color: #23211d;
+}
+
+/* Scoped overrides so the shared ContactForm matches this page's palette.
+   Fields, endpoint, and events are untouched; only the skin changes here. */
+.location-inquiry .contact-form label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a463f;
+  margin-bottom: 0.4rem;
+}
+
+.location-inquiry .contact-form input[type="text"],
+.location-inquiry .contact-form input[type="email"],
+.location-inquiry .contact-form input[type="date"],
+.location-inquiry .contact-form select {
+  border: 1px solid #d6d2ca;
+  border-radius: 2px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #23211d;
+}
+
+.location-inquiry .contact-form input:focus,
+.location-inquiry .contact-form select:focus {
+  border-color: #a08339;
+}
+
+.location-inquiry .contact-form input[type="submit"] {
+  background: #23211d;
+  color: #fff;
+  border-radius: 2px;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.location-inquiry .contact-form input[type="submit"]:hover {
+  background: #a08339;
+}
+
+.location-inquiry .contact-form input[type="submit"]:disabled {
+  background: #aaa;
+}
+
 @media (max-width: 640px) {
   .location-page {
     padding: 2rem 1rem 3rem;
   }
 
-  .location-films-grid {
+  .location-films-grid,
+  .location-embeds-grid {
     grid-template-columns: 1fr;
+  }
+
+  .location-quote {
+    padding: 1.75rem 0.5rem;
+  }
+
+  .location-embed-play {
+    width: 54px;
+    height: 54px;
+    margin: -27px 0 0 -27px;
   }
 }

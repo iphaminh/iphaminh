@@ -1,17 +1,13 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import SEO from '../../components/SEO/SEO';
 import './Foto.css';
-import { routeMeta } from '../../data/routeMeta';
 
+// No <SEO> here on purpose: /foto is a layout route and every child
+// (Wedding is the index, plus Engagement, Portrait, RealEstate) renders its
+// own <SEO>. A second instance here made Helmet emit every JSON-LD block twice.
 const Foto = () => {
   return (
     <div className="foto-container">
-      <SEO
-        title={routeMeta['/foto'].title}
-        description={routeMeta['/foto'].description}
-        canonical={routeMeta['/foto'].canonical}
-      />
       {/* Category Links */}
       <div className="foto-categories">
         <Link to="/foto/wedding">Wedding</Link>

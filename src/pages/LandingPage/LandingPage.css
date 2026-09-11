@@ -150,3 +150,236 @@
     padding: 2.5rem 1.25rem 1rem;
   }
 }
+
+/* ── Shared section header (Watch / Where I film) ───────────────────────────
+   Same eyebrow / serif / gold-hairline language as the intro band above. */
+.home-section-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.home-section-eyebrow {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #a08339; /* brand dark gold */
+  margin: 0 0 0.9rem;
+}
+
+.home-section-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  color: #23211d;
+  margin: 0;
+}
+
+.home-section-rule {
+  width: 56px;
+  height: 1px;
+  background: #c9ab63; /* gold hairline */
+  margin: 1.2rem auto;
+}
+
+.home-section-lead {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: #4a463f;
+  margin: 0 auto;
+}
+
+/* ── Watch strip ────────────────────────────────────────────────────────────
+   Horizontal, scroll-snapping row of film cards. Five cards fit side by side
+   on a wide desktop; narrower screens scroll the strip (the strip itself owns
+   the overflow, so the page never scrolls sideways). */
+.home-watch {
+  background: #fff;
+  padding: 3.5rem 1.75rem 3rem;
+  border-top: 1px solid #eee;
+}
+
+.home-watch-strip {
+  list-style: none;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 2.25rem auto 0;
+  padding: 0 0 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #c9ab63 transparent;
+}
+
+.home-watch-card {
+  scroll-snap-align: start;
+  margin: 0;
+}
+
+.home-watch-link {
+  display: block;
+  color: #23211d;
+  text-decoration: none;
+}
+
+.home-watch-thumb {
+  display: block;
+  aspect-ratio: 16 / 9;
+  max-width: 100%;
+  overflow: hidden;
+  background: #1d1b18;
+}
+
+.home-watch-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.home-watch-link:hover .home-watch-thumb img {
+  transform: scale(1.04);
+}
+
+.home-watch-title {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin-top: 0.85rem;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.home-watch-link:hover .home-watch-title {
+  color: #a08339;
+  border-color: #c9ab63;
+}
+
+.home-watch-link:focus-visible {
+  outline: 2px solid #a08339;
+  outline-offset: 4px;
+}
+
+/* Explore row under the strip */
+.home-explore {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 2rem;
+  margin: 2rem auto 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.home-explore a {
+  color: #23211d;
+  text-decoration: none;
+  border-bottom: 1px solid #c9ab63;
+  padding-bottom: 2px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.home-explore a:hover {
+  color: #a08339;
+  border-color: #a08339;
+}
+
+/* ── Where I film ───────────────────────────────────────────────────────────*/
+.home-where {
+  background: #fafafa;
+  padding: 3.5rem 1.75rem 3rem;
+  border-top: 1px solid #eee;
+}
+
+.home-where-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem 0.75rem;
+  max-width: 880px;
+  margin: 2rem auto 0;
+  padding: 0;
+}
+
+.home-where-list a {
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  color: #23211d;
+  text-decoration: none;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid #ddd3bb;
+  border-radius: 999px;
+  background: #fff;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.home-where-list a:hover {
+  color: #a08339;
+  border-color: #a08339;
+}
+
+.home-where-note {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: #4a463f;
+  text-align: center;
+  max-width: 640px;
+  margin: 1.75rem auto 0;
+}
+
+.home-where-note a {
+  color: #23211d;
+  text-decoration: none;
+  border-bottom: 1px solid #c9ab63;
+  padding-bottom: 1px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.home-where-note a:hover {
+  color: #a08339;
+  border-color: #a08339;
+}
+
+.home-where-note em {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  color: #6a655c;
+}
+
+@media (max-width: 768px) {
+  .home-watch,
+  .home-where {
+    padding: 2.75rem 1.25rem 2.5rem;
+  }
+
+  /* One card plus a peek of the next, so the strip reads as scrollable. */
+  .home-watch-strip {
+    grid-auto-columns: minmax(76vw, 1fr);
+    gap: 1rem;
+    margin-top: 1.75rem;
+  }
+
+  .home-explore {
+    gap: 0.6rem 1.4rem;
+  }
+}

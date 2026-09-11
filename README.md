@@ -68,3 +68,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Verifying tracking
+
+The site loads GA4 (measurement ID `G-0CG3527HBH`) and the Meta Pixel (`1394177252086245`) once per page from `public/index.html`. The contact form in `src/components/ContactForm/ContactForm.js` fires `gtag('event', 'generate_lead', { form_id, interested_in })` and `fbq('track', 'Lead')` only after Formspree returns a 2xx response. The same form is embedded on each city page under `/wedding-videographer/:slug`, where `form_id` is `location-<slug>` (for example `location-napa-valley`); on `/contact` it is `contact`.
+
+### GA4 DebugView
+
+1. Enable debug mode in one of two ways: install the Google Analytics Debugger browser extension and turn it on, or open a page with `?debug_mode=1` appended to the URL (for example `https://www.phaminh.com/contact?debug_mode=1`).
+2. In GA4, open Admin, then DebugView. Your browser should appear as a debug device within a few seconds.
+3. Submit the contact form with a test message.
+4. Watch the DebugView event stream for `generate_lead`. Click the event and confirm the `form_id` parameter matches the page you submitted from (`contact` or `location-<slug>`).
+5. If `generate_lead` is missing, check the browser console for `gtag` errors and confirm Formspree returned a success response; the event only fires on success.
+
+### Meta Events Manager Test Events
+
+1. In Meta Events Manager, select the Phaminh pixel and open the Test Events tab.
+2. Enter the site URL and click "Open website", or browse the site in the same browser where the Meta Pixel Helper extension is installed.
+3. Submit the contact form with a test message.
+4. Confirm a `Lead` event appears in the Test Events feed alongside the `PageView` events. The Pixel Helper extension also lists `Lead` on the page after a successful submit.
+
+For both tools, use a test message that is clearly labelled so it can be ignored when it arrives by email.

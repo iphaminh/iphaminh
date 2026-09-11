@@ -26,6 +26,9 @@ const { enrichmentFor, videoLdFor, filmPageTitle } = require(path.join(ROOT, 'sr
 const SITE_URL = 'https://www.phaminh.com';
 const SITE_NAME = 'Phaminh Cinematography';
 const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`;
+// Films the static homepage links to so no-JS crawlers reach them without the
+// React Watch strip (these were Discovered-not-indexed with one inbound link).
+const HOME_WATCH_SLUGS = ['destination-wedding-film', 'elegant-moments-wedding-film', 'intimate-wedding-story', 'outdoor-celebration-wedding-film', 'sunset-vows-wedding-film'];
 
 // ──────────────────────────────────────────────────────────────────────────────
 // Data extraction — parse films.js and blogPosts.js without needing to evaluate
@@ -67,19 +70,26 @@ function absoluteImage(img) {
 // `canonical` may be falsy (the 404 page) — then no canonical/og:url is emitted.
 // `jsonLd` may be a single object or an array of schema.org objects.
 // `robots` (e.g. 'noindex') emits a robots meta when present.
-function buildHead({ title, description, canonical, ogImage, ogType, jsonLd, robots }) {
+function buildHead({ title, description, canonical, ogImage, ogType, jsonLd, jsonLdKeep, robots }) {
   const safeTitle = escapeHtml(title);
   const safeDesc = escapeHtml(description);
   const safeImage = escapeHtml(ogImage);
   const safeType = escapeHtml(ogType || 'website');
 
-  const ldBlocks = (Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])
-    .map(ld => `<script type="application/ld+json">${JSON.stringify(ld)}</script>`)
-    .join('\n    ');
+  // data-prerender="1" marks the static copies of everything Helmet re-emits
+  // at runtime (JSON-LD, description, canonical, og:*, twitter:*). SEO.js
+  // removes every tagged node on first mount; without the marker, JS
+  // renderers (Googlebot) saw each block twice. `jsonLdKeep` blocks have no
+  // runtime twin (the /pricing FAQPage, the /cine ItemList) so they stay
+  // untagged and survive hydration.
+  const P = ' data-prerender="1"';
+  const toLd = (arr, attr) => (Array.isArray(arr) ? arr : arr ? [arr] : [])
+    .map(ld => `<script type="application/ld+json"${attr}>${JSON.stringify(ld)}</script>`);
+  const ldBlocks = [...toLd(jsonLd, P), ...toLd(jsonLdKeep, '')].join('\n    ');
 
   const canonicalTags = canonical
-    ? `<link rel="canonical" href="${escapeHtml(canonical)}" />
-    <meta property="og:url" content="${escapeHtml(canonical)}" />`
+    ? `<link rel="canonical" href="${escapeHtml(canonical)}"${P} />
+    <meta property="og:url" content="${escapeHtml(canonical)}"${P} />`
     : '';
   // rewritePage strips the template's robots meta, so this tag is the only
   // directive on the page — pass 'noindex' to exclude a page from indexing.
@@ -87,19 +97,19 @@ function buildHead({ title, description, canonical, ogImage, ogType, jsonLd, rob
 
   return `
     <title>${safeTitle}</title>
-    <meta name="description" content="${safeDesc}" />
+    <meta name="description" content="${safeDesc}"${P} />
     ${robotsTag}
     ${canonicalTags}
     <meta property="og:site_name" content="${SITE_NAME}" />
-    <meta property="og:title" content="${safeTitle}" />
-    <meta property="og:description" content="${safeDesc}" />
-    <meta property="og:type" content="${safeType}" />
-    <meta property="og:image" content="${safeImage}" />
+    <meta property="og:title" content="${safeTitle}"${P} />
+    <meta property="og:description" content="${safeDesc}"${P} />
+    <meta property="og:type" content="${safeType}"${P} />
+    <meta property="og:image" content="${safeImage}"${P} />
     <meta property="og:image:alt" content="${safeTitle}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${safeTitle}" />
-    <meta name="twitter:description" content="${safeDesc}" />
-    <meta name="twitter:image" content="${safeImage}" />
+    <meta name="twitter:card" content="summary_large_image"${P} />
+    <meta name="twitter:title" content="${safeTitle}"${P} />
+    <meta name="twitter:description" content="${safeDesc}"${P} />
+    <meta name="twitter:image" content="${safeImage}"${P} />
     ${ldBlocks}
   `.trim();
 }
@@ -232,17 +242,24 @@ function generateAll() {
       path: '/',
       noscript: `
         <h1>Cinematic Wedding Films — Napa Valley, the Bay Area & Sacramento</h1>
-        <p>Minh Pham is a luxury wedding videographer based in Vacaville, California — between Napa Valley and Sacramento — creating cinematic wedding films and photography for couples across Napa, Sonoma, San Francisco, the Bay Area, Sacramento, Vacaville & Suisun Valley, and Northwest Arkansas.</p>
+        <p>Minh Pham is a luxury wedding videographer based in Vacaville, California, between Napa Valley and Sacramento, creating cinematic wedding films and photography for couples across Napa, Sonoma, San Francisco, the Bay Area, Sacramento, and Vacaville & Suisun Valley.</p>
         <h2>Where I Film</h2>
-        <p><a href="/wedding-videographer/vacaville-suisun-valley">Vacaville & Suisun Valley</a> · <a href="/wedding-videographer/napa-valley">Napa Valley</a> · <a href="/wedding-videographer/sacramento">Sacramento</a> · <a href="/wedding-videographer">all service areas</a></p>
-        <h2>Wedding Films</h2>
-        <p>Browse our <a href="/cine">complete wedding film portfolio</a> featuring real couples and emotional, story-driven cinematic films.</p>
+        <p><a href="/wedding-videographer/vacaville-suisun-valley">Vacaville & Suisun Valley</a> · <a href="/wedding-videographer/napa-valley">Napa Valley</a> · <a href="/wedding-videographer/sonoma-healdsburg">Sonoma & Healdsburg</a> · <a href="/wedding-videographer/sacramento">Sacramento</a> · <a href="/wedding-videographer/san-francisco">San Francisco</a> · <a href="/wedding-videographer">all service areas</a></p>
+        <h2>Wedding Films to Watch</h2>
+        <ul>
+          ${HOME_WATCH_SLUGS.map(slug => films.find(f => f.slug === slug)).filter(Boolean)
+            .map(f => `<li><a href="/cine/${f.slug}">${escapeHtml(f.title)}</a></li>`).join('')}
+        </ul>
+        <p>Browse the <a href="/cine">complete wedding film portfolio</a> featuring real couples and emotional, story-driven cinematic films.</p>
         <h2>Photography</h2>
-        <p>See our <a href="/foto">wedding, engagement, and portrait photography</a>.</p>
+        <p>See our <a href="/foto">wedding, engagement, and portrait photography</a>, including <a href="/foto/portrait">portrait sessions</a>.</p>
         <h2>Pricing</h2>
         <p>Wedding videography packages start at $2,700. <a href="/pricing">View all packages and pricing</a>.</p>
+        <h2>Planning Guides</h2>
+        <p><a href="/blog/do-you-need-a-wedding-videographer">Do you really need a wedding videographer?</a> · <a href="/blog/how-to-choose-a-wedding-videographer">How to choose a wedding videographer</a> · <a href="/blog">all guides</a></p>
+        <p>Minh also films a handful of weddings each year in <a href="/wedding-videographer/northwest-arkansas">Northwest Arkansas</a> and Hot Springs.</p>
         <h2>Contact</h2>
-        <p>Ready to book? <a href="/contact">Get in touch with Minh</a> — phaminh@outlook.com</p>
+        <p>Ready to book? <a href="/contact">Get in touch with Minh</a>: phaminh@outlook.com</p>
       `,
     },
     {
@@ -363,7 +380,6 @@ function generateAll() {
     const routeLd = [websiteLd, businessLd];
     const crumbs = breadcrumbLdFor(route.path);
     if (crumbs) routeLd.push(crumbs);
-    routeLd.push(...(staticRouteLd[route.path] || []));
     const headBlock = buildHead({
       title: meta.title,
       description: meta.description,
@@ -371,6 +387,8 @@ function generateAll() {
       ogImage: DEFAULT_IMAGE,
       ogType: 'website',
       jsonLd: routeLd,
+      // Static-only extras (no Helmet twin): left untagged so they survive hydration.
+      jsonLdKeep: staticRouteLd[route.path] || [],
     });
     const noscriptHtml = buildNoscript(route.noscript);
     writePage(route.path, rewritePage(template, { headBlock, noscriptHtml }));

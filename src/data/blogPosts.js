@@ -1024,46 +1024,82 @@ Wherever you land, one advantage matters: I film these venues regularly, so you 
     slug: 'anthony-chapel-wedding-guide',
     title: 'Getting Married at Anthony Chapel: A Videographer\'s Guide (2026)',
     metaTitle: 'Anthony Chapel Wedding Guide (2026)',
-    description: 'Anthony Chapel at Garvan Woodland Gardens is Arkansas\'s most breathtaking venue. How to plan your ceremony there — timing, light, logistics, and film.',
+    description: 'Anthony Chapel at Garvan Woodland Gardens is Arkansas\'s most breathtaking venue. How to plan your ceremony there: timing, light, logistics, and film.',
     date: '2026-07-05',
     location: 'Hot Springs, AR',
     category: 'Venues',
     readTime: '7 min',
     image: 'https://i.vimeocdn.com/video/2117686915-14d4a8e3fc899ef820b22239856cc6971ce2cbb5b2bf3c8e04c8c18a7cad9a35-d_1920x1080?&r=pad&region=us',
+    vimeoId: '466407255',
+    videoCaption: 'Anthony Chapel wedding film, Hot Springs, Arkansas, by Phaminh Cinematography',
     sections: [
       {
         type: 'intro',
-        content: `Six stories of glass and pine rising out of an Arkansas forest — Anthony Chapel at Garvan Woodland Gardens isn't just the most famous wedding venue in Arkansas; it's one of the most striking ceremony spaces in America. Couples travel from across the country to marry under its soaring wooden trusses.
+        content: `Six stories of glass and pine rising out of an Arkansas forest: Anthony Chapel at Garvan Woodland Gardens is not just the most famous wedding venue in Arkansas, it is one of the most striking ceremony spaces in the country. Couples travel from across the South and well beyond to marry under its soaring timber trusses, and the gardens that surround it are worth the trip on their own.
 
-I've filmed at Anthony Chapel as a [Hot Springs wedding videographer](/wedding-videographer/hot-springs), and it deserves both the hype and some honest planning advice. Here's what to know.`,
+I have filmed at Anthony Chapel as a [Hot Springs wedding videographer](/wedding-videographer/hot-springs), and it deserves both the hype and some honest planning advice. This guide covers what the chapel is actually like, how the light behaves through the day and the year, the walk in from the parking area, where couples hold their receptions in Hot Springs, and how I plan a film there. To see how it all comes together, you can [watch a real Anthony Chapel wedding film on Vimeo](https://vimeo.com/466407255).`,
       },
       {
         type: 'section',
-        heading: 'Why Anthony Chapel Is Special',
-        content: `Designed in the tradition of E. Fay Jones' Thorncrown Chapel (its architects worked with Jones), Anthony Chapel turns the surrounding forest into the architecture. The glass walls mean your ceremony happens *inside* the woods — dogwoods in spring, deep green in summer, fire-colored leaves in fall, and bare dramatic branches in winter.
+        heading: 'What Anthony Chapel Actually Is',
+        content: `Anthony Chapel opened in 2006 inside Garvan Woodland Gardens, the botanical garden of the University of Arkansas, on a wooded peninsula reaching into Lake Hamilton. It was designed by Maurice Jennings and David McKee. Jennings was the longtime partner of E. Fay Jones, the architect of Thorncrown Chapel in Eureka Springs, and the family resemblance is obvious: floor-to-ceiling glass, a lattice of southern pine overhead, a stone floor underfoot, and a roofline that dissolves into the treetops.
 
-Every season films differently, and all of them film beautifully. There is no bad month for an Anthony Chapel wedding.`,
+The effect is that the forest becomes the architecture. Your ceremony happens inside the woods, not in front of them. Tulips and dogwoods in spring, dense green in summer, fire-colored leaves in fall, and bare dramatic branches in winter. Every season films differently, and all of them film beautifully.
+
+Beside the chapel sits Millsap Bride's Hall, where the wedding party gets ready and waits before the processional, and a carillon bell tower whose bells carry across the gardens and make a wonderful sound cue in a film. Around all of it are the gardens themselves: the Full Moon Bridge, the Garden of the Pine Wind, koi ponds, waterfalls, shaded woodland paths, and the Garvan Pavilion, itself a Fay Jones and Maurice Jennings design.`,
       },
       {
         type: 'section',
-        heading: 'Booking and Logistics',
-        content: `- **Book early.** Anthony Chapel is one of the most in-demand venues in the region — popular Saturday dates often book a year or more ahead. Weekdays and Sunday afternoons open up more availability.
-- **Time slots are structured.** Ceremonies run in scheduled blocks, which keeps the day organized but means your timeline needs to be tight. Your vendors should know the rhythm.
-- **Receptions happen nearby.** Many couples pair the chapel ceremony with a reception at the adjacent Magnolia Room or at hotels and venues in Hot Springs proper.
-- **The gardens are part of the deal.** Garvan Woodland Gardens surrounds the chapel — bridges, waterfalls, and koi ponds make portrait sessions extraordinary.`,
+        heading: 'Light and Timing: What the Glass Does to a Film',
+        content: `The glass is the whole reason to marry here, and it is also the single biggest technical variable on the day. A few things I plan around:
+
+- **Midday sun is the hardest light.** On a clear day, sunlit leaves outside the glass can be many stops brighter than the shaded interior. A camera left on automatic will either blow the forest out to white or drop the couple into shadow. Manual exposure, a locked white balance, and a plan for where each camera sits are not optional here.
+- **Overcast days are a gift.** Soft, even light through every wall. If the forecast says clouds, do not be disappointed; your film will be gentler and more consistent.
+- **Late afternoon is the sweet spot.** As the sun drops, it comes through the trees at an angle and rakes across the timber. Warm, dimensional, and flattering for skin tones.
+- **Dusk is the signature shot.** When the interior lights come on and the woods go blue, the chapel glows like a lantern. If your time block allows even ten minutes of this, I will use them.
+- **Season changes the exposure.** A full summer canopy dims and cools the interior; bare winter branches let far more light in.
+
+Ceremonies at the chapel run in scheduled time blocks, so a plan matters more here than almost anywhere else I film. There are no do-overs on the processional. Confirm your exact window with the gardens' events office when you book, and share it with every vendor.`,
       },
       {
         type: 'section',
-        heading: 'Filming Anthony Chapel: What Your Videographer Should Know',
-        content: `The chapel is glorious and technically demanding in equal measure:
+        heading: 'The Walk In From the Parking Area',
+        content: `Guests do not pull up to the chapel door. You park inside the gardens and walk a path through the trees to reach the chapel complex. It is a short and genuinely lovely walk, but build it into your timeline and tell your guests in advance so nobody is sprinting in heels. Ask the gardens what assistance is available for guests with limited mobility; they handle this regularly and can tell you what applies on your date.
 
-**The light is extreme.** Glass walls mean the forest can be in shade while the sky glows above — a dynamic range challenge that punishes auto settings. Your videographer needs to know how to expose for it.
+For film, this walk is a quiet bonus. I usually arrive well before the block begins, walk the route, and pick out a few spots along the path for guest arrivals and for the couple's exit. Because everything is on foot, there is no car-to-car dead time between the ceremony and portraits, and more real moments end up in the film.`,
+      },
+      {
+        type: 'section',
+        heading: 'Receptions in Hot Springs and Around Lake Hamilton',
+        content: `The chapel is a ceremony site first, so most couples pair it with a reception somewhere else. The usual patterns:
 
-**The ceremony moves fast.** With structured time blocks, there are no do-overs. Multiple cameras, pre-planned positions, and clean audio on the officiant and vows are essential.
+- **Stay on the grounds.** Garvan Woodland Gardens has its own event spaces, and staying put keeps everything on foot and keeps the gardens in your film all evening. Ask the events office what is available for your date and guest count.
+- **Head downtown.** Hot Springs proper is a 15 to 20 minute drive north, and its historic core along Central Avenue and Bathhouse Row has hotels and event spaces with real character. The wedding in the film linked above was catered by Superior Bathhouse Brewery, which sits right on Bathhouse Row.
+- **Go lakeside.** Lake Hamilton wraps around the gardens, and waterfront venues are popular for sunset receptions. A boat exit is very much on the table.
+- **Drive to Little Rock.** About an hour away, with a much larger pool of ballrooms and estates. The film linked above pairs its Anthony Chapel ceremony with Alda's Magnolia Hill in Little Rock.
 
-**Golden hour in the gardens** after the ceremony is where the film earns its keep — the bridges and pavilions of Garvan Gardens at dusk are pure cinema.
+Whatever you choose, plan real travel time. Getting from the chapel to a second location eats into coverage, and a videographer who knows the route will tell you honestly what fits inside your package hours.`,
+      },
+      {
+        type: 'section',
+        heading: 'Seasonal Notes for an Anthony Chapel Wedding',
+        content: `- **Spring (March to May).** Tulips and dogwoods in the gardens, mild temperatures, and high demand. Spring in Arkansas also brings fast-moving showers, so have a rain plan for portraits even though the ceremony itself is under glass.
+- **Summer (June to August).** Lush and green, and hot and humid. Later ceremony times are kinder to guests and to the light. Cicadas and birdsong are loud enough to show up on ceremony audio, which is one more reason for lavalier microphones on the officiant and groom rather than a camera microphone across the room.
+- **Fall (October to November).** Peak color usually lands in late October into early November, and this is the busiest stretch of the calendar for the chapel. Book early.
+- **Winter (December to February).** Bare branches, more light through the glass, and the gardens' annual Holiday Lights display in November and December, which turns the grounds into a film set on its own. Winter is also the easiest season to find an open date.`,
+      },
+      {
+        type: 'section',
+        heading: 'How I Plan Coverage at Anthony Chapel',
+        content: `A typical plan for a ceremony at the chapel and a reception in Hot Springs looks like this:
 
-If you're planning an Anthony Chapel wedding, [my film packages](/pricing) start at $2,700, and I know the chapel's light and timing well. I film across [Central Arkansas](/wedding-videographer/little-rock) and [Northwest Arkansas](/wedding-videographer/northwest-arkansas) year-round.`,
+- **Scout early.** I arrive before the time block begins, walk the path in, check where the sun is, and set exposure for the glass before anyone is watching.
+- **Multiple fixed cameras.** One on the couple from the front side, one at the back of the aisle for the processional and the reveal, and a third for guest reactions. With a strict window, coverage cannot depend on one camera being in the right place.
+- **Audio first.** Lavalier microphones on the officiant and groom, plus a recorder on the sound system if there is one. The vows are the film; the glass and timber are the set.
+- **Portraits in the gardens.** After the ceremony, the bridges, ponds, and pavilion of Garvan Woodland Gardens are where the film earns its keep, ideally in the last hour before sunset.
+- **Reception with the lights on.** Coverage runs through the toasts, the first dances, and the exit, whether that happens downtown, on the lake, or on the grounds.
+
+If you are planning an Anthony Chapel wedding, [my film packages](/pricing) start at $2,700, and I know the chapel's light and timing well. I film across [Central Arkansas](/wedding-videographer/little-rock) and [Northwest Arkansas](/wedding-videographer/northwest-arkansas), and you can [check your date here](/contact).`,
       },
     ],
     faqs: [
@@ -1077,7 +1113,11 @@ If you're planning an Anthony Chapel wedding, [my film packages](/pricing) start
       },
       {
         question: 'Where do receptions happen after an Anthony Chapel ceremony?',
-        answer: 'Many couples use event spaces at Garvan Woodland Gardens or head into Hot Springs — the historic Arlington Hotel and lakeside venues on Lake Hamilton are popular. Your videographer can film both locations in one package; just plan travel time into the timeline.',
+        answer: 'Many couples use event spaces at Garvan Woodland Gardens or head into Hot Springs: the historic Arlington Hotel and lakeside venues on Lake Hamilton are popular. Your videographer can film both locations in one package; just plan travel time into the timeline.',
+      },
+      {
+        question: 'What should guests know before an Anthony Chapel wedding?',
+        answer: 'Parking is inside Garvan Woodland Gardens, and there is a short walk through the trees to the chapel, so choose shoes that can handle a path and arrive early. Ceremonies run on a set schedule, so the processional starts on time. After the ceremony, the gardens are open to explore, and the bridges and ponds are worth the extra half hour.',
       },
     ],
   },

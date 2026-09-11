@@ -1,5 +1,5 @@
 // src/components/SEO/SEO.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { websiteLd, businessLd } from '../../data/businessSchema';
 
@@ -14,6 +14,26 @@ const CANONICAL_PATHS = {
   '/foto/couples': '/foto/engagement',
   '/foto/portraits': '/foto/portrait',
 };
+
+// scripts/prerender.js bakes a static JSON-LD set into every page's <head>
+// (tagged data-prerender="1") so no-JS crawlers such as GPTBot, ClaudeBot and
+// PerplexityBot still see the business entity. Helmet then emits the same
+// schemas at runtime, so after hydration Googlebot saw every block twice
+// (two WebSite, two ProfessionalService, two WebPage/BreadcrumbList, and on
+// city pages two FAQPage/Service). Remove the static copies once per page
+// load: no-JS crawlers keep the static set, JS renderers end with the runtime
+// set only, and SPA navigation stays correct because Helmet owns the head
+// from here on. Module-level flag so this runs once, not on every mount.
+let prerenderedHeadRemoved = false;
+function removePrerenderedJsonLd() {
+  if (prerenderedHeadRemoved || typeof document === 'undefined') return;
+  prerenderedHeadRemoved = true;
+  // Everything prerender.js tags: JSON-LD scripts plus the meta description,
+  // canonical, og:* and twitter:* copies that Helmet re-emits at runtime.
+  document.head
+    .querySelectorAll('[data-prerender]')
+    .forEach((el) => el.remove());
+}
 
 function getCurrentUrl(canonical) {
   if (canonical) return canonical;
@@ -73,6 +93,11 @@ const SEO = ({
   type = 'website',
   children,
 }) => {
+  // Drop the prerendered static JSON-LD on first mount (see comment above).
+  useEffect(() => {
+    removePrerenderedJsonLd();
+  }, []);
+
   const url = getCurrentUrl(canonical);
 
   const metaTitle = title || SITE_NAME;

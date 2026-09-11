@@ -36,6 +36,11 @@ RewriteRule ^(.+)$ /$1/index.html [L]
 #    of soft-200ing the homepage (which got /wedding wrongly indexed).
 ErrorDocument 404 /404.html
 
+# 6) Serve .txt and .xml (llms.txt, robots.txt, sitemap.xml) with charset=utf-8.
+#    Without this the host sent llms.txt as bare text/plain and browsers/crawlers
+#    rendered its UTF-8 punctuation as mojibake (e.g. "â€" sequences).
+AddCharset UTF-8 .txt .xml
+
 # ── Long cache lifetimes for static assets (saves bandwidth on repeat visits) ──
 <IfModule mod_expires.c>
   ExpiresActive On

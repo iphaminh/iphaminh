@@ -186,3 +186,43 @@
   text-align: center;
   margin-top: 0.7rem;
 }
+
+/* ── Post video: a responsive 16:9 Vimeo embed under the hero frame ── */
+.blog-post-video {
+  margin: 0 0 2.5rem;
+}
+
+.blog-post-video-frame {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  overflow: hidden;
+}
+
+.blog-post-video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.blog-post-video figcaption {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a917f;
+  text-align: center;
+  margin-top: 0.7rem;
+}
+
+/* Older browsers without aspect-ratio support fall back to padding-top */
+@supports not (aspect-ratio: 16 / 9) {
+  .blog-post-video-frame {
+    height: 0;
+    padding-top: 56.25%;
+  }
+}
