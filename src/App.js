@@ -8,19 +8,50 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 // Route-based code splitting — each page loads its JS only when visited.
 // LandingPage stays eager so the homepage renders without a second request.
-const CineGallery = lazy(() => import('./pages/CineGallery/CineGallery'));
-const Testimonials = lazy(() => import('./pages/Testimonials/Testimonials'));
-const Pricing = lazy(() => import('./pages/PricingPage/Pricing'));
-const Contact = lazy(() => import('./pages/Contact/Contact'));
-const Foto = lazy(() => import('./pages/Foto/Foto'));
-const Wedding = lazy(() => import('./pages/Foto/Wedding'));
-const Engagement = lazy(() => import('./pages/Foto/Engagement'));
-const Portrait = lazy(() => import('./pages/Foto/Portrait'));
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
-const FilmPage = lazy(() => import('./pages/FilmPage/FilmPage'));
-const Blog = lazy(() => import('./pages/Blog/Blog'));
-const BlogPost = lazy(() => import('./pages/Blog/BlogPost'));
-const LocationPage = lazy(() => import('./pages/LocationPage/LocationPage'));
+
+// Every deploy uploads freshly hashed chunk files and deletes the previous
+// ones (SamKirkland/FTP-Deploy-Action syncs the folder). A tab that loaded the
+// site before a deploy still runs the old main bundle, so the first click on a
+// route it has not visited asks for a chunk that no longer exists, the import
+// rejects with a ChunkLoadError, and the ErrorBoundary showed "Something went
+// wrong" (2026-09-13, /contact, minutes after the dropdown deploy). Reload the
+// page once so the browser fetches the current HTML and bundle; the
+// sessionStorage flag stops a reload loop if the chunk is still missing, in
+// which case the error reaches the boundary as before.
+function lazyWithReload(importer, name) {
+  const flag = `chunk-reload:${name}`;
+  return lazy(() =>
+    importer()
+      .then((mod) => {
+        try { sessionStorage.removeItem(flag); } catch { /* storage blocked */ }
+        return mod;
+      })
+      .catch((err) => {
+        let reloaded = true; // if storage is blocked, never reload (no loop guard)
+        try {
+          reloaded = sessionStorage.getItem(flag) === '1';
+          if (!reloaded) sessionStorage.setItem(flag, '1');
+        } catch { /* storage blocked */ }
+        if (reloaded) throw err;
+        window.location.reload();
+        return new Promise(() => {}); // never settles: the page is going away
+      })
+  );
+}
+
+const CineGallery = lazyWithReload(() => import('./pages/CineGallery/CineGallery'), 'CineGallery');
+const Testimonials = lazyWithReload(() => import('./pages/Testimonials/Testimonials'), 'Testimonials');
+const Pricing = lazyWithReload(() => import('./pages/PricingPage/Pricing'), 'Pricing');
+const Contact = lazyWithReload(() => import('./pages/Contact/Contact'), 'Contact');
+const Foto = lazyWithReload(() => import('./pages/Foto/Foto'), 'Foto');
+const Wedding = lazyWithReload(() => import('./pages/Foto/Wedding'), 'Wedding');
+const Engagement = lazyWithReload(() => import('./pages/Foto/Engagement'), 'Engagement');
+const Portrait = lazyWithReload(() => import('./pages/Foto/Portrait'), 'Portrait');
+const NotFound = lazyWithReload(() => import('./pages/NotFound/NotFound'), 'NotFound');
+const FilmPage = lazyWithReload(() => import('./pages/FilmPage/FilmPage'), 'FilmPage');
+const Blog = lazyWithReload(() => import('./pages/Blog/Blog'), 'Blog');
+const BlogPost = lazyWithReload(() => import('./pages/Blog/BlogPost'), 'BlogPost');
+const LocationPage = lazyWithReload(() => import('./pages/LocationPage/LocationPage'), 'LocationPage');
 
 function App() {
   return (
