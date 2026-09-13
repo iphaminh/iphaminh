@@ -33,6 +33,7 @@ const ContactForm = ({ formId = 'contact' }) => {
           window.gtag('event', 'generate_lead', {
             form_id: formId,
             interested_in: data.get('interested_in') || '',
+            find_us: data.get('find_us') || '',
           });
         }
         // Meta Pixel Lead — no-op until the pixel in public/index.html is
@@ -96,8 +97,21 @@ const ContactForm = ({ formId = 'contact' }) => {
         />
       </div>
 
-      <label htmlFor="find_us">How'd you find us?</label>
-      <input type="text" id="find_us" name="find_us" />
+      <label htmlFor="find_us">How did you find me?</label>
+      <select id="find_us" name="find_us" required defaultValue="">
+        <option value="" disabled>Please choose one</option>
+        <option value="google_search">Google search</option>
+        <option value="google_ad">Google ad</option>
+        <option value="instagram">Instagram</option>
+        <option value="tiktok">TikTok</option>
+        <option value="youtube">YouTube</option>
+        <option value="the_knot">The Knot</option>
+        <option value="weddingwire">WeddingWire</option>
+        <option value="zola">Zola</option>
+        <option value="venue_planner">My venue or planner recommended you</option>
+        <option value="friend_referral">A friend or a past couple</option>
+        <option value="other">Other</option>
+      </select>
 
       {status === 'error' && (
         <p className="contact-form-error">
