@@ -144,12 +144,9 @@ const LandingPage = () => {
               edited into a film you'll rewatch on every anniversary.
             </p>
             <p className="home-intro-explore">
-              <span className="home-intro-explore-label">Explore</span>{' '}
-              <span className="home-intro-explore-links">
-                <Link to="/cine">recent wedding films</Link>,{' '}
-                <Link to="/pricing">packages from $2,700</Link>, or{' '}
-                <Link to="/wedding-videographer">everywhere I film</Link>.
-              </span>
+              Explore <Link to="/cine">recent wedding films</Link>,{' '}
+              <Link to="/pricing">packages from $2,700</Link>, or{' '}
+              <Link to="/wedding-videographer">everywhere I film</Link>.
             </p>
           </div>
         </section>

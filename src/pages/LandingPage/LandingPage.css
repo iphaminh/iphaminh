@@ -191,7 +191,7 @@
 .home-intro {
   background: var(--home-paper);
   margin-top: calc(91.5vh - 1rem);
-  padding: 6.5rem 2rem 2.75rem;
+  padding: 6.5rem 2rem 1.5rem;
   text-align: center;
 }
 
@@ -252,29 +252,19 @@
 
 .home-intro-explore {
   margin: 1.85rem auto 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.2rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-style: italic;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.75;
   letter-spacing: 0;
-  color: var(--home-muted);
-}
-
-.home-intro-explore-label {
-  margin-right: 0.55rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  color: var(--home-gold);
-  vertical-align: 0.14em;
+  color: #6a655c;
 }
 
 .home-intro-explore a {
-  color: var(--home-ink);
+  color: #4e4942;
   text-decoration: none;
-  border-bottom: 1px solid rgba(128, 96, 29, 0.45);
+  border-bottom: 1px solid rgba(128, 96, 29, 0.32);
   padding-bottom: 1px;
   white-space: nowrap;
   transition: color 0.25s ease, border-color 0.25s ease;
@@ -298,7 +288,7 @@
 
   .home-intro {
     margin-top: calc(95vh - 1rem);
-    padding: 5rem 1.75rem 2.75rem;
+    padding: 5rem 1.75rem 1.5rem;
   }
 
   .home-intro-h1 {
@@ -360,21 +350,16 @@
   }
 
   .home-intro-explore {
-    font-size: 1.1rem;
-    line-height: 1.65;
-  }
-
-  .home-intro-explore-label {
-    display: block;
-    margin: 0 0 0.3rem;
-    font-size: 0.63rem;
+    max-width: 330px;
+    font-size: 0.95rem;
+    line-height: 1.8;
   }
 }
 
 @media (max-width: 380px) {
   .home-intro {
     margin-top: calc(95vh - 1rem);
-    padding: 4rem 1.25rem 2.5rem;
+    padding: 4rem 1.25rem 1.5rem;
   }
 
   .home-hero-title {

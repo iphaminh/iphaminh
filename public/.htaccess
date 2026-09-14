@@ -56,8 +56,9 @@ AddCharset UTF-8 .txt .xml
   # Hashed JS/CSS — 1 year (filename changes on update)
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType text/css          "access plus 1 year"
-  # HTML — short cache so users see updates
-  ExpiresByType text/html         "access plus 1 hour"
+  # HTML — revalidate immediately so new hashed asset names are never hidden
+  # behind an older cached page after a deployment.
+  ExpiresByType text/html         "access plus 0 seconds"
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -69,5 +70,8 @@ AddCharset UTF-8 .txt .xml
   </FilesMatch>
   <FilesMatch "\.(js|css)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
