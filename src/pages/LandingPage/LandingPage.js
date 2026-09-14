@@ -133,16 +133,22 @@ const LandingPage = () => {
             Cinematic Wedding Films — Napa Valley, the Bay Area &amp; Sacramento
           </h1>
           <div className="home-intro-rule" aria-hidden="true" />
-          <p className="home-intro-body">
-            I'm Minh Pham, a luxury wedding videographer based in Vacaville,
-            California, between Napa Valley and Sacramento. I film one wedding
-            a day, documentary at heart and cinematic in craft: your real vows,
-            real toasts, and the moments in between, edited into a film you'll
-            rewatch on every anniversary. Explore{' '}
-            <Link to="/cine">recent wedding films</Link>,{' '}
-            <Link to="/pricing">packages from $2,700</Link>, or{' '}
-            <Link to="/wedding-videographer">everywhere I film</Link>.
-          </p>
+          <div className="home-intro-copy">
+            <p className="home-intro-lead">
+              I'm Minh Pham, a luxury wedding videographer based in Vacaville,
+              California, between Napa Valley and Sacramento.
+            </p>
+            <p className="home-intro-body">
+              I film one wedding a day, documentary at heart and cinematic in
+              craft: your real vows, real toasts, and the moments in between,
+              edited into a film you'll rewatch on every anniversary.
+            </p>
+            <p className="home-intro-explore">
+              Explore <Link to="/cine">recent wedding films</Link>,{' '}
+              <Link to="/pricing">packages from $2,700</Link>, or{' '}
+              <Link to="/wedding-videographer">everywhere I film</Link>.
+            </p>
+          </div>
         </section>
         <BadgesContainer />
         <RecentFilm />
@@ -208,10 +214,14 @@ const LandingPage = () => {
             </h2>
             <div className="home-section-rule" aria-hidden="true" />
             <p className="home-section-lead">
-              Based in Vacaville, I film weddings across Napa Valley, the Bay Area
-              and Sacramento, and along the coast from Marin to Big Sur. Each
-              location has its own page with the venues I love filming there and
-              answers to common planning questions.
+              <span className="home-where-opening">
+                Based in Vacaville, I film weddings across Napa Valley, the Bay
+                Area and Sacramento, and along the coast from Marin to Big Sur.
+              </span>
+              <span className="home-where-detail">
+                Each location has its own page with the venues I love filming
+                there and answers to common planning questions.
+              </span>
             </p>
           </div>
 
