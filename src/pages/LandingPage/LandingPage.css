@@ -90,7 +90,7 @@
 }
 
 .home-intro-eyebrow {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -99,7 +99,7 @@
 }
 
 .home-intro-h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.35rem, 3.2vw, 2rem);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -117,7 +117,7 @@
 }
 
 .home-intro-body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.97rem;
   line-height: 1.85;
   color: #4a463f;
@@ -160,7 +160,7 @@
 }
 
 .home-section-eyebrow {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -169,7 +169,7 @@
 }
 
 .home-section-h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.25rem, 2.6vw, 1.7rem);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -186,7 +186,7 @@
 }
 
 .home-section-lead {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.97rem;
   line-height: 1.85;
   color: #4a463f;
@@ -252,7 +252,7 @@
 
 .home-watch-title {
   display: inline-block;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.02rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -280,7 +280,7 @@
   justify-content: center;
   gap: 0.75rem 2rem;
   margin: 2rem auto 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -319,7 +319,7 @@
 
 .home-where-list a {
   display: inline-block;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
   color: #23211d;
@@ -337,7 +337,7 @@
 }
 
 .home-where-note {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.88rem;
   line-height: 1.8;
   color: #4a463f;
