@@ -107,6 +107,23 @@ const LandingPage = () => {
         className="sound-icon"
       />
 
+      <div className="home-hero-overlay">
+        <div className="home-hero-message">
+          <p className="home-hero-kicker">
+            Documentary at heart <span aria-hidden="true">·</span> Cinematic in craft
+          </p>
+          <p className="home-hero-title">Wedding Films That Bring You Back</p>
+          <nav className="home-hero-actions" aria-label="Wedding film actions">
+            <Link className="home-hero-action home-hero-action-primary" to="/contact">
+              Check Your Date
+            </Link>
+            <Link className="home-hero-action home-hero-action-secondary" to="/cine">
+              View Films
+            </Link>
+          </nav>
+        </div>
+      </div>
+
       <div className="landing-page-content">
         {/* White intro band — carries the hero offset so the fullscreen video
             above stays clean. The H1 lives here, first thing in the white. */}
