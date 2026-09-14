@@ -1,13 +1,29 @@
 /* src/components/FooterShowcase/FooterShowcase.css */
 .footer-showcase-container {
-    font-family: 'Metal', serif;
+    font-family: 'Inter', sans-serif;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #000; /* Adjust the color to match your footer background */
-    color: #fff; /* Adjust text color as needed */
+    padding: 4.5rem 2rem;
+    background-color: #1f1d1a;
+    color: #f7f4ee;
+  }
+
+  .footer-showcase-content {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .footer-showcase-heading {
+    max-width: 760px;
+    margin: 0 0 2rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 3.25rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.05;
   }
   
   .detail-section {
@@ -16,7 +32,7 @@
   }
 
   .detail-section h3  {
-    font-family: 'Metal', serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
   }
   
   .logo-section {
@@ -57,8 +73,10 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-size: 16px;
-    letter-spacing: 0.02em;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 
   .footer-showcase-links a svg {
@@ -77,12 +95,12 @@
     transform: rotate(180deg);
     text-align: center;
     margin-bottom: 20px; /* Space at the bottom of the Navigate heading */
-    font-family: 'Metal', serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
 
   }
   
   .navbar-column {
-    font-family: 'Metal', serif;
+    font-family: 'Inter', sans-serif;
     display: flex;
     flex-direction: column;
     margin-right: 40px;
@@ -163,23 +181,37 @@
 
   .footer-locations-label {
     display: block;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(247, 244, 238, 0.5);
     margin-bottom: 8px;
   }
 
   .footer-locations-links {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px;
     line-height: 1.9;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(247, 244, 238, 0.72);
     margin: 0;
     max-width: 640px;
   }
 
   .footer-locations-links a:hover {
     opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .footer-showcase-container {
+      padding: 3.75rem 1.5rem;
+    }
+
+    .footer-showcase-heading {
+      font-size: 2.6rem;
+    }
+
+    .footer-showcase-links {
+      gap: 1rem 1.4rem;
+    }
   }

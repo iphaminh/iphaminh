@@ -1,33 +1,36 @@
 /* src/components/RecentFilm/RecentFilm.css */
 .recent-film-container {
   text-align: center;
-  color: white;
-  background-color: black;
-  padding: 0.75rem 0 1.5rem; /* tighter top padding so header sits closer to the banner edge */
+  color: var(--home-paper, #f7f4ee);
+  background-color: #25231f;
+  padding: 5.5rem 2rem 4.5rem;
 }
 
 .recent-film-header {
-  font-size: 2.6rem;
-  margin: 0 0 0.4rem;
-  font-family: 'Metal', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0 0 1.25rem;
 }
 
 .film-line {
   width: 60px;
   height: 1px;
-  background-color: white;
-  margin: 0 auto 1.25rem; /* tighter spacing below the line */
+  background-color: #c5a65e;
+  margin: 0 auto 2.5rem;
 }
 
 .film-thumbnails {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 2.75rem;
   flex-wrap: wrap;
 }
 .film-thumbnail {
   position: relative;
-  width: 220px; /* smaller thumbnail on desktop (was 250) */
+  width: 260px;
   margin-bottom: 0.5rem;
 }
 
@@ -55,41 +58,56 @@
   object-fit: cover;
   display: block;
   margin: 0;
+  transition: opacity 0.35s ease, transform 0.6s ease;
 }
 .film-thumbnail img {
   margin-bottom: 0.5rem;
 }
 
 .film-caption {
-  color: white;
-  text-align: center; /* Centers the text */
-  /* Remove background-color and padding if caption is below the image */
+  color: var(--home-paper, #f7f4ee);
+  text-align: center;
 }
 
-.film-caption h3, .film-caption p {
-  margin: 0; /* Removes margin from h3 and p elements */
-  font-family: 'Metal', serif;
-  font-size: 20px;
+.film-caption h3 {
+  margin: 1rem 0 0.35rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.film-caption p {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: rgba(247, 244, 238, 0.6);
 }
 
 /* Hover effects */
 .film-thumbnail:hover img {
-  opacity: 0.8; /* Dim the image on hover */
+  opacity: 0.82;
+  transform: scale(1.025);
 }
 
 .film-thumbnail:hover .film-caption h3,
 .film-thumbnail:hover .film-caption p {
-  color: grey; /* Change text color on hover */
+  color: #c5a65e;
 }
 
 /* Stack thumbnails vertically on small screens */
 @media (max-width: 768px) {
   .recent-film-container {
-    padding: 0.5rem 0 1.25rem; /* even tighter on mobile */
+    padding: 4rem 1.25rem 3.5rem;
   }
 
   .recent-film-header {
-    font-size: 2.1rem;
+    font-size: 2.75rem;
   }
 
   .film-thumbnails {
@@ -100,11 +118,10 @@
 
   .film-thumbnail {
     width: 100%;
-    max-width: 220px; /* smaller on mobile (was 320) */
+    max-width: 270px;
   }
 
-  .film-caption h3,
-  .film-caption p {
-    font-size: 16px;
+  .film-caption h3 {
+    font-size: 1.45rem;
   }
 }

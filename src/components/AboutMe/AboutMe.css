@@ -1,121 +1,139 @@
-/* AboutMe.css */
+/* Editorial homepage introduction, using the same type system as LandingPage. */
 .aboutMeContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #fff;
-    padding: 30px;
-    margin: 0px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  align-items: center;
+  gap: 5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--home-paper, #f7f4ee);
+  padding: 7rem max(2rem, calc((100vw - 1180px) / 2));
+  margin: 0;
 }
 
 .aboutMeContent {
-    flex: 1;
-    margin-left: 65px;
-    font-family: 'Metal', serif;
-    margin-right: 65px;
-    font-size: calc(16px + 0.5vw); /* scales with viewport width */
+  min-width: 0;
+  max-width: 660px;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
 }
 
 .aboutMeContent h2 {
-    color: #222;
-    margin-bottom: 15px;
-    font-family: 'Metal', serif;
-    font-size: calc(20px + 0.6vw); /* scales with viewport width */
+  color: var(--home-ink, #292621);
+  margin: 0 0 1.75rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.95;
 }
 
 .aboutMeContent p {
-    color: #555;
-    line-height: 1.6;
+  color: var(--home-muted, #625e57);
+  line-height: 1.9;
+  margin: 0;
+}
+
+.aboutMeLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.75rem;
+  margin-top: 2.25rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.aboutMeLinks a {
+  color: var(--home-ink, #292621);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(128, 96, 29, 0.6);
+  padding-bottom: 3px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.aboutMeLinks a:hover {
+  color: var(--home-gold, #80601d);
+  border-color: var(--home-gold, #80601d);
 }
 
 .aboutMeImage {
-    flex: 1;
-    text-align: right;
-    margin-right: 55px;
+  min-width: 0;
+  margin: 0;
+  text-align: right;
 }
 
 .aboutMeImage img {
-    width: 75%;
-    height: auto;
-    border-radius: 2px;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .aboutMeContent,
-    .aboutMeImage {
-        margin-left: 0;
-        margin-right: 0;
-        max-width: 100%;
-    }
-
-    .aboutMeContent {
-        font-size: calc(14px + 0.5vw); /* smaller base size for smaller viewport */
-    }
-
-    .aboutMeContent h2 {
-        font-size: calc(18px + 0.5vw); /* smaller base size for smaller viewport */
-    }
+  display: block;
+  width: 100%;
+  max-width: 430px;
+  height: auto;
+  margin-left: auto;
+  border-radius: 0;
 }
 
 @keyframes slide-in {
-    from {
-        transform: translateX(-90px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .slide-in {
-    animation: slide-in 1.5s forwards;
+  animation: slide-in 1.1s forwards;
 }
 
 .fade-in {
-    animation: fade-in 2.5s forwards;
+  animation: fade-in 1.4s forwards;
 }
 
-@media (max-width: 480px) {
-    .aboutMeContainer {
-        flex-direction: column;
-    }
-
-    .aboutMeContent,
-    .aboutMeImage {
-        max-width: none;
-        margin: 0 auto; /* centers the content */
-    }
-
-    .aboutMeContent h2 {
-        font-size: calc(18px + 1vw); /* slightly larger size for very small viewports */
-    }
-
-    .aboutMeContent p {
-        font-size: calc(14px + 1vw); /* slightly larger size for very small viewports */
-    }
-
-    .aboutMeImage img {
-        max-width: 100%; /* make sure image is not larger than the container */
-    }
+@media (prefers-reduced-motion: reduce) {
+  .slide-in,
+  .fade-in {
+    animation: none;
+  }
 }
 
-/* Larger screens */
-@media (min-width: 1200px) {
-    .aboutMeImage img {
-        max-width: 30%; /* or any percentage that looks good on large screens */
-    }
-}
+@media (max-width: 768px) {
+  .aboutMeContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4.5rem 1.5rem;
+  }
 
+  .aboutMeContent {
+    max-width: 100%;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .aboutMeContent h2 {
+    font-size: 3.35rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .aboutMeLinks {
+    justify-content: center;
+    gap: 0.8rem 1.25rem;
+  }
+
+  .aboutMeImage {
+    text-align: center;
+  }
+
+  .aboutMeImage img {
+    width: min(100%, 360px);
+    margin: 0 auto;
+  }
+}

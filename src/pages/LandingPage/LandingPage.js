@@ -130,11 +130,11 @@ const LandingPage = () => {
         <BadgesContainer />
         <RecentFilm />
 
-        <nav aria-label="Explore the site" style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', padding: '2rem 1rem', fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: '1rem' }}>
-          <Link to="/cine" style={{ color: '#333', textDecoration: 'none', borderBottom: '1px solid #ccc', paddingBottom: 2 }}>All Wedding Films</Link>
-          <Link to="/foto" style={{ color: '#333', textDecoration: 'none', borderBottom: '1px solid #ccc', paddingBottom: 2 }}>Photography Portfolio</Link>
-          <Link to="/pricing" style={{ color: '#333', textDecoration: 'none', borderBottom: '1px solid #ccc', paddingBottom: 2 }}>Packages & Pricing</Link>
-          <Link to="/contact" style={{ color: '#333', textDecoration: 'none', borderBottom: '1px solid #ccc', paddingBottom: 2 }}>Book Your Date</Link>
+        <nav className="home-primary-links" aria-label="Explore the site">
+          <Link to="/cine">All Wedding Films</Link>
+          <Link to="/foto">Photography Portfolio</Link>
+          <Link to="/pricing">Packages &amp; Pricing</Link>
+          <Link to="/contact">Book Your Date</Link>
         </nav>
 
         <AboutMe />

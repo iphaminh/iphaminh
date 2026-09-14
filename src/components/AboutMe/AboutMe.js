@@ -47,10 +47,10 @@ const AboutMe = () => {
           calm, story-first approach, so your day feels natural while the
           memories are preserved with intention.
         </p>
-        <p style={{ marginTop: '1.2rem', fontSize: '0.95em' }}>
-          <Link to="/cine" style={{ color: '#555', marginRight: '1.5rem' }}>Watch my films →</Link>
-          <Link to="/foto" style={{ color: '#555', marginRight: '1.5rem' }}>See photography →</Link>
-          <Link to="/contact" style={{ color: '#555' }}>Get in touch →</Link>
+        <p className="aboutMeLinks">
+          <Link to="/cine">Watch my films →</Link>
+          <Link to="/foto">See photography →</Link>
+          <Link to="/contact">Get in touch →</Link>
         </p>
       </div>
       <div className={`aboutMeImage ${isVisible ? 'fade-in' : ''}`}>

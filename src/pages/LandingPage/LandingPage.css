@@ -1,12 +1,21 @@
 .landing-page-container {
+  --home-paper: #f7f4ee;
+  --home-paper-deep: #eee8df;
+  --home-ink: #292621;
+  --home-muted: #625e57;
+  --home-gold: #80601d;
+  --home-hairline: rgba(41, 38, 33, 0.18);
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+  background: var(--home-paper);
+  color: var(--home-ink);
 }
 
 .landing-page-content {
   position: relative;
   z-index: 2;
+  background: var(--home-paper);
 }
 
 /* This will apply styles directly to the video element with the 'background-video' ID */
@@ -83,71 +92,90 @@
    First white section under the fullscreen hero video. Owns the hero offset
    (previously on .badges-section) so the video stays free of overlaid text. */
 .home-intro {
-  background: #fff;
+  background: var(--home-paper);
   margin-top: calc(91.5vh - 1rem);
-  padding: 3.5rem 1.75rem 1.25rem;
+  padding: 6.5rem 2rem 6rem;
   text-align: center;
 }
 
 .home-intro-eyebrow {
   font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: #a08339; /* brand dark gold */
-  margin: 0 0 1.1rem;
+  color: var(--home-gold);
+  margin: 0 0 1.75rem;
 }
 
 .home-intro-h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.35rem, 3.2vw, 2rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 1.35;
-  color: #23211d;
-  max-width: 820px;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.98;
+  color: var(--home-ink);
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .home-intro-rule {
   width: 56px;
   height: 1px;
-  background: #c9ab63; /* gold hairline */
-  margin: 1.4rem auto;
+  background: var(--home-gold);
+  margin: 2.25rem auto;
 }
 
 .home-intro-body {
   font-family: 'Inter', sans-serif;
-  font-size: 0.97rem;
-  line-height: 1.85;
-  color: #4a463f;
-  max-width: 700px;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--home-muted);
+  max-width: 760px;
   margin: 0 auto;
 }
 
 .home-intro-body a {
-  color: #23211d;
+  color: var(--home-ink);
   text-decoration: none;
   border-bottom: 1px solid #c9ab63;
   padding-bottom: 1px;
+  white-space: nowrap;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .home-intro-body a:hover {
-  color: #a08339;
-  border-color: #a08339;
+  color: var(--home-gold);
+  border-color: var(--home-gold);
 }
 
 @media (max-width: 1024px) {
   .home-intro {
     margin-top: calc(95vh - 1rem);
+    padding: 5rem 1.75rem;
+  }
+
+  .home-intro-h1 {
+    font-size: 3.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-intro-h1 {
+    font-size: 2.85rem;
+    line-height: 1.02;
+  }
+
+  .home-intro-body {
+    font-size: 1rem;
+    line-height: 1.85;
   }
 }
 
 @media (max-width: 380px) {
   .home-intro {
     margin-top: 2.25rem;
-    padding: 2.5rem 1.25rem 1rem;
+    padding: 4rem 1.25rem;
   }
 }
 
@@ -155,41 +183,43 @@
    Same eyebrow / serif / gold-hairline language as the intro band above. */
 .home-section-head {
   text-align: center;
-  max-width: 720px;
+  max-width: 880px;
   margin: 0 auto;
 }
 
 .home-section-eyebrow {
   font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: #a08339; /* brand dark gold */
-  margin: 0 0 0.9rem;
+  color: var(--home-gold);
+  margin: 0 0 1.25rem;
 }
 
 .home-section-h2 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(1.25rem, 2.6vw, 1.7rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 1.35;
-  color: #23211d;
+  font-size: 3.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.05;
+  color: var(--home-ink);
   margin: 0;
 }
 
 .home-section-rule {
   width: 56px;
   height: 1px;
-  background: #c9ab63; /* gold hairline */
-  margin: 1.2rem auto;
+  background: var(--home-gold);
+  margin: 1.75rem auto;
 }
 
 .home-section-lead {
   font-family: 'Inter', sans-serif;
-  font-size: 0.97rem;
+  font-size: 1.05rem;
   line-height: 1.85;
-  color: #4a463f;
+  color: var(--home-muted);
+  max-width: 680px;
   margin: 0 auto;
 }
 
@@ -198,9 +228,22 @@
    on a wide desktop; narrower screens scroll the strip (the strip itself owns
    the overflow, so the page never scrolls sideways). */
 .home-watch {
-  background: #fff;
-  padding: 3.5rem 1.75rem 3rem;
-  border-top: 1px solid #eee;
+  background: #25231f;
+  padding: 6rem 2rem 5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-watch .home-section-h2,
+.home-watch .home-watch-link {
+  color: var(--home-paper);
+}
+
+.home-watch .home-section-lead {
+  color: rgba(247, 244, 238, 0.68);
+}
+
+.home-watch .home-section-rule {
+  background: #c5a65e;
 }
 
 .home-watch-strip {
@@ -226,7 +269,6 @@
 
 .home-watch-link {
   display: block;
-  color: #23211d;
   text-decoration: none;
 }
 
@@ -253,19 +295,19 @@
 .home-watch-title {
   display: inline-block;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.02rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  line-height: 1.4;
-  margin-top: 0.85rem;
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin-top: 1rem;
   padding-bottom: 1px;
   border-bottom: 1px solid transparent;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .home-watch-link:hover .home-watch-title {
-  color: #a08339;
-  border-color: #c9ab63;
+  color: #c5a65e;
+  border-color: #c5a65e;
 }
 
 .home-watch-link:focus-visible {
@@ -274,80 +316,101 @@
 }
 
 /* Explore row under the strip */
-.home-explore {
+.home-explore,
+.home-primary-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem 2rem;
-  margin: 2rem auto 0;
   font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
 }
 
-.home-explore a {
-  color: #23211d;
+.home-explore {
+  margin: 2.75rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(247, 244, 238, 0.14);
+}
+
+.home-primary-links {
+  margin: 0;
+  padding: 1.5rem 1rem 2.5rem;
+  background: #25231f;
+}
+
+.home-explore a,
+.home-primary-links a {
+  color: var(--home-paper);
   text-decoration: none;
-  border-bottom: 1px solid #c9ab63;
+  border-bottom: 1px solid rgba(197, 166, 94, 0.7);
   padding-bottom: 2px;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 
-.home-explore a:hover {
-  color: #a08339;
-  border-color: #a08339;
+.home-explore a:hover,
+.home-primary-links a:hover {
+  color: #c5a65e;
+  border-color: #c5a65e;
 }
 
 /* ── Where I film ───────────────────────────────────────────────────────────*/
 .home-where {
-  background: #fafafa;
-  padding: 3.5rem 1.75rem 3rem;
-  border-top: 1px solid #eee;
+  background: var(--home-paper-deep);
+  padding: 6rem 2rem 5.5rem;
+  border-top: 1px solid var(--home-hairline);
 }
 
 .home-where-list {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem 0.75rem;
-  max-width: 880px;
-  margin: 2rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  max-width: 980px;
+  margin: 3rem auto 0;
   padding: 0;
+  border-top: 1px solid var(--home-hairline);
+}
+
+.home-where-list li {
+  border-bottom: 1px solid var(--home-hairline);
+}
+
+.home-where-list li:nth-child(odd) {
+  border-right: 1px solid var(--home-hairline);
 }
 
 .home-where-list a {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-  color: #23211d;
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--home-ink);
   text-decoration: none;
-  padding: 0.55rem 1.05rem;
-  border: 1px solid #ddd3bb;
-  border-radius: 999px;
-  background: #fff;
-  transition: color 0.25s ease, border-color 0.25s ease;
+  padding: 1.15rem 1.5rem;
+  transition: color 0.25s ease, padding 0.25s ease;
 }
 
 .home-where-list a:hover {
-  color: #a08339;
-  border-color: #a08339;
+  color: var(--home-gold);
+  padding-left: 1.85rem;
 }
 
 .home-where-note {
   font-family: 'Inter', sans-serif;
   font-size: 0.88rem;
   line-height: 1.8;
-  color: #4a463f;
+  color: var(--home-muted);
   text-align: center;
   max-width: 640px;
   margin: 1.75rem auto 0;
 }
 
 .home-where-note a {
-  color: #23211d;
+  color: var(--home-ink);
   text-decoration: none;
   border-bottom: 1px solid #c9ab63;
   padding-bottom: 1px;
@@ -355,8 +418,8 @@
 }
 
 .home-where-note a:hover {
-  color: #a08339;
-  border-color: #a08339;
+  color: var(--home-gold);
+  border-color: var(--home-gold);
 }
 
 .home-where-note em {
@@ -369,7 +432,15 @@
 @media (max-width: 768px) {
   .home-watch,
   .home-where {
-    padding: 2.75rem 1.25rem 2.5rem;
+    padding: 4.5rem 1.25rem 4rem;
+  }
+
+  .home-section-h2 {
+    font-size: 2.7rem;
+  }
+
+  .home-section-lead {
+    font-size: 1rem;
   }
 
   /* One card plus a peek of the next, so the strip reads as scrollable. */
@@ -381,5 +452,28 @@
 
   .home-explore {
     gap: 0.6rem 1.4rem;
+  }
+
+  .home-primary-links {
+    gap: 0.8rem 1.4rem;
+    padding-bottom: 2rem;
+  }
+
+  .home-where-list {
+    grid-template-columns: 1fr;
+    margin-top: 2.5rem;
+  }
+
+  .home-where-list li:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .home-where-list a {
+    font-size: 1.3rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .home-where-list a:hover {
+    padding-left: 0.8rem;
   }
 }

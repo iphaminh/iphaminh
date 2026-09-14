@@ -3,14 +3,15 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif; /* Use Roboto as the main font */
+  font-family: 'Inter', sans-serif;
+  background: #f7f4ee;
+  color: #292621;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optionally set Varela Round for headings if you wish */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
 /* Apply Gamja Flower to elements with a class 'gamja-flower' */
@@ -23,11 +24,13 @@ code {
 }
 
 .navbar-item a {
-  padding: 0.5rem 1rem; /* Adds padding to the links */
-  font-family: 'Playfair Display', serif; /* Apply the Playfair Display font */
-  font-size: 1.1rem; /* Increase the font size */
-  font-weight: 700; /* Make the font bold */
-  font-style: italic; /* Make the font italic */
-  text-decoration: none; /* Removes the underline */
-  color: inherit; /* Keeps the text color consistent */
+  padding: 0.5rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
 }
