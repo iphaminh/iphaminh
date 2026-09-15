@@ -5,6 +5,41 @@
 // may be added per film and consumers must treat them as optional.
 const films = [
   {
+    slug: 'emma-hadar-bay-area-wedding-film',
+    title: 'Emma & Hadar',
+    description: 'A luminous San Francisco Bay Area wedding film by Phaminh Cinematography, crafted around honest emotion, quiet connection, and the moments that made Emma and Hadar\'s celebration entirely their own.',
+    location: 'San Francisco Bay Area',
+    state: 'CA',
+    locationSlug: 'san-francisco',
+    vimeoId: '1162069383',
+  },
+  {
+    slug: 'duy-vy-bay-area-wedding-film',
+    title: 'Duy + Vy',
+    description: 'An elegant Vietnamese wedding film from the San Francisco Bay Area, told with a calm, story-first focus on family, heartfelt emotion, and the meaningful moments shared by Duy and Vy.',
+    location: 'San Francisco Bay Area',
+    state: 'CA',
+    locationSlug: 'san-francisco',
+    vimeoId: '1162074477',
+  },
+  {
+    slug: 'kyle-hayley-bay-area-wedding-film',
+    title: 'Kyle & Hayley',
+    description: 'A romantic Bay Area wedding film by Phaminh Cinematography, preserving Kyle and Hayley\'s natural connection, joyful celebration, and quiet in-between moments with cinematic care.',
+    location: 'San Francisco Bay Area',
+    state: 'CA',
+    locationSlug: 'san-francisco',
+    vimeoId: '1162065278',
+  },
+  {
+    slug: 'victoria-tyler-california-wedding-film',
+    title: 'Victoria & Tyler',
+    description: 'A timeless Northern California wedding film centered on Victoria and Tyler\'s genuine connection, the people they love, and a celebration captured with an honest documentary heart.',
+    location: 'Northern California',
+    state: 'CA',
+    vimeoId: '1162061593',
+  },
+  {
     slug: 'golden-hour-arkansas-wedding-film',
     title: 'Golden Hour Wedding Film',
     description: 'A 2025 wedding film by Phaminh Cinematography capturing heartfelt vows, golden hour portraits, and the joy of an Arkansas celebration.',

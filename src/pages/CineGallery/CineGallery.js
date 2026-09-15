@@ -16,12 +16,6 @@ Modal.setAppElement("#root");
 
 const FALLBACK_THUMB = "/assets/seo/phaminh-wedding-cover.webp";
 
-function extractVimeoId(urlOrId) {
-  const str = String(urlOrId || "").trim();
-  const match = str.match(/(\d+)(?:\D*$)/);
-  return match ? match[1] : "";
-}
-
 function vimeoThumb(vimeoId) {
   if (!vimeoId) return FALLBACK_THUMB;
   // Real i.vimeocdn.com thumbnail from the auto-refreshed gallery feed;
@@ -29,13 +23,41 @@ function vimeoThumb(vimeoId) {
   return enrichmentFor(vimeoId).thumbnailUrl;
 }
 
-// Hero carousel — opens a modal on click for immersive preview
-const carouselVideos = [
-  { img: "/assets/gallery/GA Wedding Video.webp", vimeoId: "735641625", label: "Georgia Wedding Film" },
-  { img: "/assets/gallery/Ar Wedding Video.webp", vimeoId: "751499247", label: "Arkansas Wedding Film" },
-  { img: "/assets/gallery/NorthWest Arkansas Wedding Videographer.webp", vimeoId: "739310663", label: "Northwest Arkansas Wedding Videographer" },
-  { img: "/assets/gallery/NorthWest Arkansas Wedding Videography.webp", vimeoId: "506883833", label: "Northwest Arkansas Wedding Videography" },
+const featuredFilmDetails = [
+  {
+    slug: "emma-hadar-bay-area-wedding-film",
+    eyebrow: "Bay Area Wedding Film",
+    summary: "A luminous celebration shaped by real emotion.",
+    objectPosition: "center 48%",
+  },
+  {
+    slug: "duy-vy-bay-area-wedding-film",
+    eyebrow: "Vietnamese Wedding Film",
+    summary: "Tradition, family, and a love story told with intention.",
+    objectPosition: "center 46%",
+  },
+  {
+    slug: "kyle-hayley-bay-area-wedding-film",
+    eyebrow: "Cinematic Wedding Film",
+    summary: "Quiet connection and joy, preserved with a story-first eye.",
+    objectPosition: "center 52%",
+  },
+  {
+    slug: "victoria-tyler-california-wedding-film",
+    eyebrow: "Northern California Wedding",
+    summary: "A timeless celebration filled with warmth and connection.",
+    objectPosition: "center 44%",
+  },
 ];
+
+const carouselVideos = featuredFilmDetails
+  .map((featured) => {
+    const film = films.find((item) => item.slug === featured.slug);
+    return film
+      ? { ...film, ...featured, img: vimeoThumb(film.vimeoId) }
+      : null;
+  })
+  .filter(Boolean);
 
 export default function CineGallery() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -55,13 +77,6 @@ export default function CineGallery() {
     setSelectedVideoUrl("");
   };
 
-  const onKeyOpen = (e, vimeoId) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      openModal(vimeoId);
-    }
-  };
-
   return (
     <>
       <SEO
@@ -70,19 +85,57 @@ export default function CineGallery() {
         canonical={routeMeta['/cine'].canonical}
       />
 
-      {/* Hero carousel — click to preview in modal */}
-      <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
+      {/* Hero carousel — recent Bay Area work with preview and film-page links */}
+      <Carousel
+        className="cine-hero-carousel"
+        autoPlay
+        infiniteLoop
+        interval={7000}
+        transitionTime={700}
+        stopOnHover
+        swipeable
+        emulateTouch
+        useKeyboardArrows
+        showThumbs={false}
+        showStatus={false}
+        ariaLabel="Featured wedding films"
+      >
         {carouselVideos.map((video, index) => (
-          <div
-            key={index}
-            className="carousel-slide-click"
-            onClick={() => openModal(video.vimeoId)}
-            onKeyDown={(e) => onKeyOpen(e, video.vimeoId)}
-            role="button"
-            tabIndex={0}
-            aria-label={`Play ${video.label}`}
-          >
-            <img src={video.img} alt={video.label} />
+          <div key={video.slug} className="cine-hero-slide">
+            <img
+              className="cine-hero-image"
+              src={video.img}
+              alt={`${video.title} — ${video.location} wedding film`}
+              width="1920"
+              height="1080"
+              loading={index === 0 ? "eager" : "lazy"}
+              {...(index === 0 ? { fetchpriority: "high" } : {})}
+              decoding={index === 0 ? "sync" : "async"}
+              style={{ objectPosition: video.objectPosition }}
+            />
+            <div className="cine-hero-scrim" aria-hidden="true" />
+            <div className="cine-hero-content">
+              <p className="cine-hero-eyebrow">{video.eyebrow}</p>
+              <h2 className="cine-hero-title">{video.title}</h2>
+              <p className="cine-hero-summary">{video.summary}</p>
+              <div className="cine-hero-actions">
+                <button
+                  type="button"
+                  className="cine-hero-action cine-hero-play"
+                  onClick={() => openModal(video.vimeoId)}
+                  aria-label={`Play ${video.title} wedding film`}
+                >
+                  <span className="cine-hero-play-icon" aria-hidden="true" />
+                  Play Film
+                </button>
+                <Link
+                  className="cine-hero-action cine-hero-story"
+                  to={`/cine/${video.slug}`}
+                >
+                  View Story
+                </Link>
+              </div>
+            </div>
           </div>
         ))}
       </Carousel>
@@ -145,6 +198,14 @@ export default function CineGallery() {
         className="video-modal"
         overlayClassName="video-modal-overlay"
       >
+        <button
+          type="button"
+          className="video-modal-close"
+          onClick={closeModal}
+          aria-label="Close wedding film"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
         {selectedVideoUrl && (
           <iframe
             title="Wedding Film Preview"

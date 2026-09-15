@@ -199,6 +199,62 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://www.phaminh.com/cine/emma-hadar-bay-area-wedding-film</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2117700170-f1759b02ff1ef8a3b559daa7155812adf615682fa2b91088f7a0b702d88c49a5-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Emma &amp; Hadar</video:title>
+      <video:description>A luminous San Francisco Bay Area wedding film by Phaminh Cinematography, crafted around honest emotion, quiet connection, and the moments that made Emma and Hadar&apos;s celebration entirely their own.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1162069383</video:player_loc>
+      <video:duration>287</video:duration>
+      <video:publication_date>2026-02-05T06:36:29+00:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/cine/duy-vy-bay-area-wedding-film</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2117706039-9cd30288ee6a7abaa6f5a5d29c0336c68f01e72ee1aef8beb6315d794de6e83d-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Duy + Vy</video:title>
+      <video:description>An elegant Vietnamese wedding film from the San Francisco Bay Area, told with a calm, story-first focus on family, heartfelt emotion, and the meaningful moments shared by Duy and Vy.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1162074477</video:player_loc>
+      <video:duration>320</video:duration>
+      <video:publication_date>2026-02-05T07:06:54+00:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/cine/kyle-hayley-bay-area-wedding-film</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2117689148-cc21744e213648972c550e3f8a22e90a21bac7457f50ecbff30414152d92b1e5-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Kyle &amp; Hayley</video:title>
+      <video:description>A romantic Bay Area wedding film by Phaminh Cinematography, preserving Kyle and Hayley&apos;s natural connection, joyful celebration, and quiet in-between moments with cinematic care.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1162065278</video:player_loc>
+      <video:duration>306</video:duration>
+      <video:publication_date>2026-02-05T06:10:59+00:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.phaminh.com/cine/victoria-tyler-california-wedding-film</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://i.vimeocdn.com/video/2117684523-4c84023462e15cc322ae99816b2b9de63da33bf6e9adbcda115def07049b4616-d_1920x1080?&amp;r=pad&amp;region=us</video:thumbnail_loc>
+      <video:title>Victoria &amp; Tyler</video:title>
+      <video:description>A timeless Northern California wedding film centered on Victoria and Tyler&apos;s genuine connection, the people they love, and a celebration captured with an honest documentary heart.</video:description>
+      <video:player_loc>https://player.vimeo.com/video/1162061593</video:player_loc>
+      <video:duration>408</video:duration>
+      <video:publication_date>2026-02-05T05:47:45+00:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
     <loc>https://www.phaminh.com/cine/golden-hour-arkansas-wedding-film</loc>
     <lastmod>2025-12-12</lastmod>
     <changefreq>yearly</changefreq>

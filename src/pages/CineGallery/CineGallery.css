@@ -1,18 +1,179 @@
 /* src/pages/CineGallery/CineGallery.css */
 
-/* Carousel */
-.carousel .slide {
-  background: none;
+/* Featured film hero */
+.cine-hero-carousel {
+  background: #1f1c18;
 }
 
-.carousel img {
+.cine-hero-carousel .carousel .slide {
+  background: #1f1c18;
+  text-align: left;
+}
+
+.cine-hero-slide {
+  position: relative;
+  height: clamp(440px, 42vw, 620px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cine-hero-carousel .carousel .slide .cine-hero-image {
+  display: block;
   width: 100%;
-  max-height: 600px;
+  height: 100%;
   object-fit: cover;
+  transform: scale(1.015);
+  transition: transform 7s ease-out;
 }
 
-.carousel-slide-click {
+.cine-hero-carousel .carousel .slide.selected .cine-hero-image {
+  transform: scale(1.045);
+}
+
+.cine-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(18, 16, 13, 0.8) 0%,
+    rgba(18, 16, 13, 0.55) 38%,
+    rgba(18, 16, 13, 0.12) 72%
+  );
+}
+
+.cine-hero-content {
+  position: absolute;
+  left: clamp(2rem, 8vw, 8rem);
+  bottom: clamp(3.5rem, 8vw, 6rem);
+  z-index: 2;
+  width: min(600px, 76vw);
+  color: #fff;
+}
+
+.cine-hero-eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #dfc47f;
+}
+
+.cine-hero-title {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 6.25rem;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28);
+}
+
+.cine-hero-summary {
+  max-width: 500px;
+  margin: 1rem 0 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.cine-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+.cine-hero-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 150px;
+  min-height: 48px;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.cine-hero-play {
+  gap: 0.65rem;
+  background: #f8f5ee;
+  border-color: #f8f5ee;
+  color: #24211c;
+}
+
+.cine-hero-play-icon {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid currentColor;
+}
+
+.cine-hero-story {
+  background: rgba(18, 16, 13, 0.12);
+  color: #fff;
+}
+
+.cine-hero-action:hover,
+.cine-hero-action:focus-visible {
+  background: #b18b3f;
+  border-color: #b18b3f;
+  color: #fff;
+}
+
+.cine-hero-action:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.cine-hero-carousel .carousel .control-dots {
+  bottom: 0.85rem;
+  z-index: 3;
+  margin: 0;
+}
+
+.cine-hero-carousel .carousel .control-dots .dot {
+  width: 7px;
+  height: 7px;
+  margin: 0 5px;
+  box-shadow: none;
+  background: #fff;
+  opacity: 0.55;
+}
+
+.cine-hero-carousel .carousel .control-dots .dot.selected {
+  background: #dfc47f;
+  opacity: 1;
+}
+
+.cine-hero-carousel .carousel .control-arrow {
+  z-index: 3;
+  width: 56px;
+  opacity: 0.75;
+}
+
+.cine-hero-carousel .carousel .control-arrow:hover,
+.cine-hero-carousel .carousel .control-arrow:focus-visible {
+  background: rgba(18, 16, 13, 0.24);
+  opacity: 1;
 }
 
 /* Intro section */
@@ -173,16 +334,140 @@
   border: 0;
 }
 
+.video-modal-close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 50%;
+  background: rgba(18, 16, 13, 0.72);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.video-modal-close:hover,
+.video-modal-close:focus-visible {
+  background: #9a7936;
+  border-color: #9a7936;
+}
+
+.video-modal-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
 /* Responsive */
+@media (max-width: 1100px) {
+  .cine-hero-title {
+    font-size: 5rem;
+  }
+}
+
 @media (max-width: 900px) {
+  .cine-hero-slide {
+    height: clamp(360px, 58vw, 500px);
+  }
+
+  .cine-hero-content {
+    left: 2rem;
+    bottom: 3.5rem;
+    width: min(560px, 82vw);
+  }
+
+  .cine-hero-title {
+    font-size: 4.5rem;
+  }
+
   .cine-gallery-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
+  .cine-hero-slide {
+    height: 330px;
+  }
+
+  .cine-hero-scrim {
+    background: linear-gradient(
+      0deg,
+      rgba(18, 16, 13, 0.88) 0%,
+      rgba(18, 16, 13, 0.46) 58%,
+      rgba(18, 16, 13, 0.08) 100%
+    );
+  }
+
+  .cine-hero-content {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 2.85rem;
+    width: auto;
+  }
+
+  .cine-hero-eyebrow {
+    margin-bottom: 0.45rem;
+    font-size: 0.62rem;
+  }
+
+  .cine-hero-title {
+    font-size: 3.5rem;
+    line-height: 0.95;
+  }
+
+  .cine-hero-summary {
+    max-width: 320px;
+    margin-top: 0.55rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .cine-hero-actions {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .cine-hero-action {
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    font-size: 0.66rem;
+  }
+
+  .cine-hero-carousel .carousel .control-arrow {
+    display: none;
+  }
+
+  .cine-hero-carousel .carousel .control-dots {
+    bottom: 0.65rem;
+  }
+
   .cine-gallery-container {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .cine-hero-title {
+    font-size: 2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cine-hero-carousel .carousel .slide .cine-hero-image {
+    transform: none;
+    transition: none;
   }
 }
 /* ── Gallery-plate cards (2026 pass) — appended last to win the cascade ────── */
