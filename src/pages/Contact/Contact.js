@@ -1,23 +1,13 @@
 // src/pages/Contact/Contact.js
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ContactForm from '../../components/ContactForm/ContactForm';
+import DroneBanner from '../../components/DroneBanner/DroneBanner';
 import FooterShowcase from '../../components/FooterShowcase/FooterShowcase';
 import SEO from '../../components/SEO/SEO';
 import './Contact.css';
 import { routeMeta } from '../../data/routeMeta';
 
 const Contact = () => {
-  const [offsetY, setOffsetY] = useState(0);
-  const handleScroll = () => setOffsetY(window.pageYOffset);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const bannerImageURL = process.env.PUBLIC_URL + '/assets/images/wedding-highlights-phaminh-cinematography.webp';
-
   return (
     <div>
       <SEO
@@ -25,18 +15,8 @@ const Contact = () => {
         description={routeMeta['/contact'].description}
         canonical={routeMeta['/contact'].canonical}
       />
-      {/* Parallax banner image */}
-      <div
-        style={{
-          backgroundImage: `url(${bannerImageURL})`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-
-          backgroundPosition: `center ${300 - offsetY * 0.1}%`, // Adjust the 0.1 to control the speed
-          height: '400px', // Adjust the height as needed
-          width: '100%',
-        }}
-      ></div>
+      {/* Two-layer drone banner: see components/DroneBanner */}
+      <DroneBanner />
       
       {/* Rest of the content */}
       <div className="contact-page-content">

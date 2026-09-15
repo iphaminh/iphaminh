@@ -1,0 +1,43 @@
+/* DroneBanner.css */
+.drone-banner {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 42vw, 460px);
+  overflow: hidden;
+  background: #cfc3d9; /* mid sky tone while the image loads */
+}
+
+/* 116% tall and pulled up 16% so the parallax shift never shows an edge.
+   Keep in step with BG_SHIFT in DroneBanner.js. */
+.drone-banner-sky {
+  position: absolute;
+  left: 0;
+  top: -16%;
+  width: 100%;
+  height: 116%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  will-change: transform;
+}
+
+.drone-banner-drone {
+  position: absolute;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.drone-banner-drone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: drone-banner-hover 4.4s ease-in-out infinite;
+}
+
+@keyframes drone-banner-hover {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(-0.6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drone-banner-drone img { animation: none; }
+}
