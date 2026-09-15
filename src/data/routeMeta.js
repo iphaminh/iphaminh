@@ -62,7 +62,7 @@ const routeMeta = {
   '/testimonials': {
     title: 'Wedding Videographer Reviews | Phaminh Cinematography',
     description:
-      'Real reviews from couples across Napa Valley, the Bay Area, Arkansas, and Georgia who trusted Phaminh Cinematography with their wedding films and photos.',
+      'Real reviews from couples across Napa Valley, the Bay Area, Sacramento, and Arkansas who trusted Phaminh Cinematography with their wedding films and photos.',
     canonical: `${SITE_URL}/testimonials`,
   },
   '/blog': {

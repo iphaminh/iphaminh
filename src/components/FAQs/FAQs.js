@@ -62,7 +62,7 @@ const FAQs = () => {
 
     {
       question: 'Are taxes included?',
-      answer: 'Arkansas State and Georgia State Sales Tax is 7% of your total package price. This amount will be added to your client invoice in compliance with Arkansas State Law.',
+      answer: 'Any applicable California or Arkansas sales tax is calculated for your wedding location and shown clearly on your invoice.',
     },
   ];
 

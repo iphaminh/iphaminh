@@ -12,7 +12,7 @@ import './BadgesContainer.css';
 import Badge from '../Badge/Badge';
 
 // Filenames and alt text name the REAL award each badge shows (the old
-// keyword-stuffed names claimed markets — 'Atlanta', 'near me' — instead of
+// keyword-stuffed names claimed unrelated markets or used 'near me' instead of
 // describing the recognition, which is worthless for accessibility and SEO).
 const badgesData = [
   {

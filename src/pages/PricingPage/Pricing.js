@@ -69,7 +69,7 @@ export default function Pricing() {
         </p>
          {/* New Section Below Packages */}
       <section className="call-to-action-section">
-        <img src="/assets/pricing/georgia-wedding-couple-portraits-phaminh.webp" alt="Wedding couple portraits by Phaminh Cinematography" className="w-full" />
+        <img src="/assets/pricing/wedding-couple-portraits-phaminh.webp" alt="Wedding couple portraits by Phaminh Cinematography" className="w-full" />
         <div className="cta-content">
           <h2 className="cta-heading">LET'S DO THIS THING!</h2>
           <p className="cta-text">INQUIRE ABOUT YOUR WEDDING DATE</p>

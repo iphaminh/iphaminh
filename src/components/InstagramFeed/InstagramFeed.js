@@ -4,13 +4,13 @@ import './InstagramFeed.css';
 const InstagramFeed = () => {
   const thumbnails = [
     { src: '/assets/pricing/arkansas-wedding-venue-overview-phaminh-photography.webp', link: 'https://www.instagram.com/p/C3DZtb8L92H/' },
-    { src: '/assets/pricing/georgia-wedding-floral-arrangements-phaminh-videography.webp', link: 'https://www.instagram.com/p/C2xc8_vL8xF/' },
+    { src: '/assets/pricing/wedding-floral-arrangements-phaminh-videography.webp', link: 'https://www.instagram.com/p/C2xc8_vL8xF/' },
     { src: '/assets/pricing/phaminh-arkansas-bridal-entrance-cinematography.webp', link: 'https://www.instagram.com/p/Co1FEBcsMXP/' },
-    { src: '/assets/pricing/phaminh-romantic-sunset-vows-georgia-wedding.webp', link: 'https://www.instagram.com/p/Co8sugoDoV0/' },
+    { src: '/assets/pricing/phaminh-romantic-sunset-vows-wedding.webp', link: 'https://www.instagram.com/p/Co8sugoDoV0/' },
     { src: '/assets/pricing/wedding-party-fun-arkansas-phaminh.webp', link: 'https://www.instagram.com/p/CxN_Jr0A9zC/' },
     { src: '/assets/pricing/arkansas-rustic-wedding-photography-phaminh.webp', link: 'https://www.instagram.com/p/CIAGhozDMNx/' },
-    { src: '/assets/pricing/phaminh-georgia-outdoor-wedding-ceremony-videography.webp', link: 'https://www.instagram.com/p/Co7875JphXt/' },
-    { src: '/assets/pricing/phaminh-georgia-wedding-toast-moments.webp', link: 'https://www.instagram.com/p/Co4xkZOJ2Wi/' },
+    { src: '/assets/pricing/phaminh-outdoor-wedding-ceremony-videography.webp', link: 'https://www.instagram.com/p/Co7875JphXt/' },
+    { src: '/assets/pricing/phaminh-wedding-toast-moments.webp', link: 'https://www.instagram.com/p/Co4xkZOJ2Wi/' },
   ];
   const playButton = '/assets//pricing/phaminh-arkansas-wedding-rings-closeup.png';
 

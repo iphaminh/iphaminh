@@ -82,13 +82,6 @@ const films = [
     vimeoId: '1145843833',
   },
   {
-    slug: 'georgia-wedding-film',
-    title: 'Georgia Wedding Film',
-    description: 'A cinematic Georgia wedding film by Phaminh Cinematography capturing the warmth of Southern hospitality and the deep emotion of a couple\'s most important day.',
-    location: 'Georgia',
-    vimeoId: '735641625',
-  },
-  {
     slug: 'rustic-romance-barn-wedding',
     title: 'Rustic Romance',
     description: 'A warm, rustic Arkansas barn wedding film overflowing with heartfelt moments, golden hour light, and the genuine joy of a couple surrounded by loved ones.',
