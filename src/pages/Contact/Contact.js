@@ -46,15 +46,14 @@ const Contact = () => {
             Please fill out the contact form below to get more detailed
             information about the offered Wedding Collections and services.
           </p>
-          <p className="contact-page-service-area">
-            Serving San Francisco · Oakland · Napa · Sonoma · San Jose · East Bay &amp; all of Northern California
-            <br />
-            Fayetteville · Bentonville · Rogers · Springdale · Little Rock · Hot Springs &amp; all of Arkansas
-            <br />
-            Available for destination weddings worldwide.
-          </p>
           
           <ContactForm />
+
+          <p className="contact-page-service-area">
+            <span>Serving San Francisco · Oakland · Napa · Sonoma · San Jose · East Bay &amp; all of Northern California</span>
+            <span>Fayetteville · Bentonville · Rogers · Springdale · Little Rock · Hot Springs &amp; all of Arkansas</span>
+            <span className="contact-page-destination-note">Available for destination weddings worldwide.</span>
+          </p>
           
           <div className="contact-footer">
             <span>870.270.8837</span>
