@@ -92,14 +92,22 @@ export default function CineGallery() {
         <p className="cine-intro-eyebrow">The Portfolio</p>
         <h1 className="cine-intro-heading">Wedding Films</h1>
         <div className="cine-intro-rule" aria-hidden="true" />
-        <p className="cine-intro-text">
+        <p className="cine-intro-lead">
           We create cinematic wedding films for couples across the San Francisco
-          Bay Area, Northern California, and Northwest Arkansas. Each film is
-          crafted with a calm, story-first approach — capturing real emotion,
-          natural light, and the moments that matter most.{" "}
-          <Link to="/contact">Book your wedding film</Link> or{" "}
-          <Link to="/pricing">view pricing</Link>.
+          Bay Area, Northern California, and Northwest Arkansas.
         </p>
+        <p className="cine-intro-text">
+          Each film is crafted with a calm, story-first approach — capturing real
+          emotion, natural light, and the moments that matter most.
+        </p>
+        <nav className="cine-intro-actions" aria-label="Wedding film information">
+          <Link className="cine-intro-action cine-intro-action-primary" to="/contact">
+            Book Your Wedding Film
+          </Link>
+          <Link className="cine-intro-action cine-intro-action-secondary" to="/pricing">
+            View Pricing
+          </Link>
+        </nav>
       </section>
 
       {/* Film grid — each thumbnail links to its own indexable page */}
