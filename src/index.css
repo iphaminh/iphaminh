@@ -14,13 +14,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Apply Gamja Flower to elements with a class 'gamja-flower' */
-.gamja-flower {
-  font-family: 'Gamja Flower', cursive;
-}
-
 code {
-  font-family: 'Roboto', monospace; /* Roboto can also be used for code, but keep monospace as a fallback */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 .navbar-item a {

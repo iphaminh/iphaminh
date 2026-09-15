@@ -8,16 +8,17 @@
 }
 
 .faqs-eyebrow {
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: #a08339;
+  color: #80601d;
   margin: 0 0 0.9rem;
 }
 
 .faqs-heading {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 600;
   color: #23211d;
@@ -52,7 +53,7 @@
 }
 
 .faq-question {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.05rem;
   font-weight: 600;
   color: #23211d;
@@ -61,7 +62,7 @@
 }
 
 .faq-answer {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.93rem;
   line-height: 1.8;
   color: #4a463f;

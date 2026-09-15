@@ -56,9 +56,9 @@ import { routeMeta } from '../../data/routeMeta';
           description={routeMeta['/foto/portrait'].description}
         canonical={routeMeta['/foto/portrait'].canonical}
         />
-        <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
+        <p className="foto-intro">
           Portrait and lifestyle sessions for individuals, couples, and brands — editorial, creative, and authentically you.{' '}
-          <Link to="/contact" style={{ color: '#333' }}>Book a session</Link> or <Link to="/pricing" style={{ color: '#333' }}>view packages</Link>.
+          <Link to="/contact">Book a session</Link> or <Link to="/pricing">view packages</Link>.
         </p>
         <Gallery images={images} basePath="/assets/foto/portrait" />
       </>

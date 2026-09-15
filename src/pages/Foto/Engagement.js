@@ -50,9 +50,9 @@ function shuffleArray(array) {
           description={routeMeta['/foto/engagement'].description}
         canonical={routeMeta['/foto/engagement'].canonical}
         />
-        <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.95rem', lineHeight: 1.7, color: '#666', margin: '0 0 1.25rem', maxWidth: 520 }}>
+        <p className="foto-intro">
           Romantic engagement sessions across the Bay Area and Arkansas — relaxed, candid, and full of real connection.{' '}
-          <Link to="/contact" style={{ color: '#333' }}>Book a session</Link> or <Link to="/pricing" style={{ color: '#333' }}>view packages</Link>.
+          <Link to="/contact">Book a session</Link> or <Link to="/pricing">view packages</Link>.
         </p>
         <Gallery images={shuffledImages} basePath="/assets/foto/engagement" />
       </>

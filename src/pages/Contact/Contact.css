@@ -10,23 +10,35 @@
 }
 
 .contact-page-title {
-  font-family: 'Metal', serif;
-  letter-spacing: 4px;
-  font-weight: 300;
-  font-size: 47px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-size: clamp(2.85rem, 5vw, 4rem);
+  line-height: 1;
+  color: #292621;
   margin: 0 0 1.5rem;
   text-align: center;
 }
 
 .contact-page-intro {
-  color: #3f3f3f;
-  font-family: 'Metal', serif;
-  font-size: 17px;
-  letter-spacing: 1.2px;
-  line-height: 1.7;
-  margin: 0 0 3rem;
+  max-width: 620px;
+  color: #625e57;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  letter-spacing: 0;
+  line-height: 1.9;
+  margin: 0 auto 3rem;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: none;
+}
+
+.contact-page-service-area {
+  margin: 0 0 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: #817b72;
+  text-align: center;
 }
 
 .contact-footer {
@@ -36,7 +48,11 @@
   gap: 2rem;
   border-top: 2px solid #e3e3e3;
   color: #4a5568;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   margin-top: 3rem;
   padding: 1.25rem 0 2.75rem;
   text-align: center;
@@ -53,12 +69,11 @@
   }
 
   .contact-page-title {
-    font-size: 36px;
-    letter-spacing: 3px;
+    font-size: 2.85rem;
   }
 
   .contact-page-intro {
-    font-size: 14px;
+    font-size: 0.95rem;
   }
 
   .contact-footer {

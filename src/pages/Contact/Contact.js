@@ -46,7 +46,7 @@ const Contact = () => {
             Please fill out the contact form below to get more detailed
             information about the offered Wedding Collections and services.
           </p>
-          <p style={{ fontFamily: 'Roboto, sans-serif', fontSize: '0.85rem', color: '#888', textAlign: 'center', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+          <p className="contact-page-service-area">
             Serving San Francisco · Oakland · Napa · Sonoma · San Jose · East Bay &amp; all of Northern California
             <br />
             Fayetteville · Bentonville · Rogers · Springdale · Little Rock · Hot Springs &amp; all of Arkansas

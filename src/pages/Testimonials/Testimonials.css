@@ -5,7 +5,7 @@
   max-width: 1200px;
   margin: auto;
   padding: 20px;
-  font-family: 'Farsan', cursive; /* Applying the Farsan font globally to the section */
+  font-family: 'Inter', sans-serif;
 }
 
 /* Styles for each testimonial item */
@@ -39,7 +39,13 @@
   margin-left: -30px; /* Add space between text and image */
   flex: 1; /* Allows text block to fill the remaining space */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-size: 22px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: #292621;
 }
 
 /* Fullscreen Image Styles */

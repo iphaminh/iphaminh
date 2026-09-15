@@ -12,7 +12,7 @@
 }
 
 .location-region {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -21,17 +21,19 @@
 }
 
 .location-page h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.8rem, 5vw, 2.8rem);
-  font-weight: 700;
-  color: #111;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: #292621;
   margin: 0;
 }
 
 .location-page h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
-  font-weight: 700;
+  font-weight: 600;
   color: #111;
   margin: 0 0 1rem;
 }
@@ -41,10 +43,10 @@
 }
 
 .location-intro-p {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #444;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  color: #625e57;
   margin: 0 auto 1.1rem;
   max-width: 720px;
 }
@@ -56,7 +58,7 @@
 }
 
 .location-venues li {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   color: #444;
@@ -69,7 +71,7 @@
 }
 
 .location-why p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.05rem;
   line-height: 1.75;
   color: #444;
@@ -86,7 +88,7 @@
   display: block;
   text-decoration: none;
   color: #333;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 0.92rem;
 }
 
@@ -106,7 +108,8 @@
 
 .location-films-more {
   margin-top: 1.25rem;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
 }
 
 .location-films-more a {
@@ -127,15 +130,15 @@
 }
 
 .location-faqs summary {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #111;
   cursor: pointer;
 }
 
 .location-faqs details p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   color: #444;
@@ -143,7 +146,7 @@
 }
 
 .location-nearby p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   color: #444;
 }
@@ -172,9 +175,11 @@
 
 .location-cta {
   padding: 0.65rem 1.8rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-decoration: none;
   border-radius: 2px;
 }
@@ -218,9 +223,9 @@
 }
 
 .location-index-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #111;
 }
 
@@ -229,7 +234,7 @@
 }
 
 .location-index-region {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: #999;
   letter-spacing: 0.06em;
@@ -244,7 +249,7 @@
    ------------------------------------------------------------------------- */
 
 .location-eyebrow {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -267,7 +272,7 @@
 }
 
 .location-venue-detail p {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.02rem;
   line-height: 1.75;
   color: #4a463f;
@@ -367,14 +372,15 @@
 }
 
 .location-embed-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
   font-size: 0.95rem;
   color: #23211d;
   line-height: 1.4;
 }
 
 .location-embed-link {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -400,7 +406,7 @@
 }
 
 .location-quote p {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
   font-size: clamp(1.1rem, 2.6vw, 1.35rem);
   line-height: 1.6;
@@ -412,7 +418,7 @@
 .location-quote cite {
   display: block;
   font-style: normal;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -440,7 +446,7 @@
 }
 
 .location-inquiry-lead {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.02rem;
   line-height: 1.75;
   color: #4a463f;
@@ -449,7 +455,7 @@
 }
 
 .location-inquiry-alt {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.92rem;
   color: #4a463f;
   text-align: center;
@@ -471,9 +477,9 @@
 /* Scoped overrides so the shared ContactForm matches this page's palette.
    Fields, endpoint, and events are untouched; only the skin changes here. */
 .location-inquiry .contact-form label {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4a463f;
@@ -486,7 +492,7 @@
 .location-inquiry .contact-form select {
   border: 1px solid #d6d2ca;
   border-radius: 2px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   color: #23211d;
 }
@@ -501,9 +507,11 @@
   color: #fff;
   border-radius: 2px;
   padding: 0.75rem 1.5rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .location-inquiry .contact-form input[type="submit"]:hover {

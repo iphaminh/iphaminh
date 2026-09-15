@@ -29,7 +29,8 @@
   text-decoration: none;
   color: #333;
   font-size: large;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
 }
 
 .foto-categories a:hover {
@@ -66,6 +67,27 @@
   grid-column: 2;
   grid-row: 1 / span 2;
   overflow-y: auto;
+}
+
+.foto-intro {
+  max-width: 520px;
+  margin: 0 0 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #625e57;
+}
+
+.foto-intro a {
+  color: #292621;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(128, 96, 29, 0.45);
+  padding-bottom: 1px;
+}
+
+.foto-intro a:hover {
+  color: #80601d;
+  border-color: #80601d;
 }
 
 .foto-gallery img {

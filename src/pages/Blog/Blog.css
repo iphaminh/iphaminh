@@ -14,20 +14,22 @@
 }
 
 .blog-page-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: #111;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #292621;
   margin-bottom: 0.75rem;
 }
 
 .blog-page-subtitle {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.05rem;
-  color: #777;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.98rem;
+  color: #625e57;
   max-width: 520px;
   margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 .blog-grid {
@@ -51,9 +53,9 @@
 }
 
 .blog-card-category {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #999;
@@ -61,16 +63,16 @@
 }
 
 .blog-card-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.15rem;
-  font-weight: 700;
-  color: #111;
+  font-weight: 600;
+  color: #292621;
   line-height: 1.4;
   margin-bottom: 0.75rem;
 }
 
 .blog-card-excerpt {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
   color: #666;
   line-height: 1.65;
@@ -82,13 +84,13 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.78rem;
   color: #aaa;
 }
 
 .blog-card-read-more {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
   color: #333;
   text-decoration: underline;

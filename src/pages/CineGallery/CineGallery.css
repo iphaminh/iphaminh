@@ -94,7 +94,7 @@
   padding: 0.5rem 0.75rem;
   background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
   color: #fff;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 0.85rem;
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -205,7 +205,7 @@
 
 .film-card-title {
   display: inline-block;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.02rem;
   font-weight: 600;
   color: #23211d;
@@ -221,7 +221,7 @@
 
 .film-card-location {
   display: block;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.68rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
