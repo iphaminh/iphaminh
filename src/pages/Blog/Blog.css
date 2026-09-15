@@ -24,12 +24,14 @@
 }
 
 .blog-page-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.98rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
   color: #625e57;
-  max-width: 520px;
+  max-width: 580px;
   margin: 0 auto;
-  line-height: 1.8;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .blog-grid {
@@ -105,6 +107,11 @@
 }
 
 @media (max-width: 600px) {
+  .blog-page-subtitle {
+    font-size: 1.12rem;
+    line-height: 1.6;
+  }
+
   .blog-grid {
     grid-template-columns: 1fr;
     gap: 2rem;

@@ -23,12 +23,14 @@
 .contact-page-intro {
   max-width: 620px;
   color: #625e57;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.98rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.32rem;
+  font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.9;
+  line-height: 1.55;
   margin: 0 auto 3rem;
   text-align: center;
+  text-wrap: pretty;
   text-transform: none;
 }
 
@@ -73,7 +75,8 @@
   }
 
   .contact-page-intro {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
   }
 
   .contact-footer {
