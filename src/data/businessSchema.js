@@ -18,7 +18,7 @@ const DEFAULT_IMAGE = `${SITE_URL}/assets/seo/phaminh-wedding-cover.webp`;
 const SAME_AS = [
   'https://www.instagram.com/phaminh/',
   'https://www.facebook.com/lPhaminh',
-  'https://www.tiktok.com/@phaminh.cinematography',
+  'https://www.tiktok.com/@phaminhcinematography',
   'https://www.youtube.com/@Phaminh-Cinematography',
   'https://vimeo.com/minhpham',
   'https://www.theknot.com/marketplace/phaminh-cinematography-vacaville-ca-1087669',

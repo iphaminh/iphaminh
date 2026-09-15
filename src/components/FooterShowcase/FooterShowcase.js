@@ -57,7 +57,7 @@ const FooterShowcase = () => {
             Instagram
           </a>
           <a
-            href="https://www.tiktok.com/@phaminh.cinematography"
+            href="https://www.tiktok.com/@phaminhcinematography"
             target="_blank"
             rel="noreferrer"
             aria-label="TikTok"
@@ -67,7 +67,7 @@ const FooterShowcase = () => {
             TikTok
           </a>
           <a
-            href="https://www.youtube.com/@phaminh"
+            href="https://www.youtube.com/@Phaminh-Cinematography"
             target="_blank"
             rel="noreferrer"
             aria-label="YouTube"
