@@ -47,6 +47,11 @@
   aspect-ratio: 1 / 1;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  /* the faint disc a running prop leaves on camera */
+  background: radial-gradient(ellipse at center, rgba(52, 48, 44, 0.26) 0 46%, rgba(52, 48, 44, 0) 64%);
+  background-size: 100% 13%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .drone-banner-prop::before,
@@ -56,11 +61,11 @@
   left: 0;
   right: 0;
   top: 50%;
-  height: 7.5%;
-  margin-top: -3.75%;
+  height: 6%;
+  margin-top: -3%;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(38, 35, 32, 0.25), #26231f 10%, #26231f 45%, rgba(38, 35, 32, 0.5) 50%, #26231f 55%, #26231f 90%, rgba(38, 35, 32, 0.25));
-  filter: blur(0.4px);
+  background: linear-gradient(90deg, rgba(70, 64, 58, 0.15), rgba(70, 64, 58, 0.85) 14%, rgba(70, 64, 58, 0.85) 44%, rgba(70, 64, 58, 0.4) 50%, rgba(70, 64, 58, 0.85) 56%, rgba(70, 64, 58, 0.85) 86%, rgba(70, 64, 58, 0.15));
+  filter: blur(0.9px);
   transform-origin: 50% 50%;
   animation: drone-banner-spin var(--period, 0.32s) linear infinite;
   animation-delay: var(--stagger, 0s);

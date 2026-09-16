@@ -20,9 +20,9 @@ const DRONE_SRC = '/assets/images/contact-drone.webp';
 // opacity). Each gets two blade pairs sweeping the projected ellipse of an
 // edge-on disc over the photo's own motion-blur streak (see the CSS).
 const PROPS = [
-  { x: 182, y: 34, d: 335, o: 0.8 },  // front left
-  { x: 636, y: 60, d: 342, o: 0.75 }, // front right
-  { x: 255, y: 106, d: 200, o: 0.5 }, // rear left, behind the arm
+  { x: 182, y: 34, d: 335, o: 0.6 },  // front left
+  { x: 636, y: 60, d: 342, o: 0.55 }, // front right
+  { x: 255, y: 106, d: 200, o: 0.45 }, // rear left, behind the arm
   { x: 750, y: 98, d: 110, o: 0.3 }, // rear right, mostly hidden
 ];
 
