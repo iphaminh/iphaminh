@@ -17,14 +17,13 @@ const SKY_SRC = '/assets/images/contact-drone-sky.webp';
 const DRONE_SRC = '/assets/images/contact-drone.webp';
 
 // Visible propeller hubs in the drone layer's own pixel space (x, y, diameter,
-// apparent thickness as a fraction of the diameter, opacity). Each gets a
-// two-blade bar spinning inside a squashed circle, which reads as the edge-on
-// blur of a running prop over the photo's own motion-blur streak.
+// opacity). Each gets two blade pairs sweeping the projected ellipse of an
+// edge-on disc over the photo's own motion-blur streak (see the CSS).
 const PROPS = [
-  { x: 182, y: 34, d: 335, squash: 0.078, o: 0.55 },  // front left
-  { x: 636, y: 60, d: 342, squash: 0.07, o: 0.5 },    // front right
-  { x: 255, y: 106, d: 200, squash: 0.06, o: 0.4 },   // rear left, behind the arm
-  { x: 750, y: 98, d: 110, squash: 0.06, o: 0.3 },    // rear right, mostly hidden
+  { x: 182, y: 34, d: 335, o: 0.8 },  // front left
+  { x: 636, y: 60, d: 342, o: 0.75 }, // front right
+  { x: 255, y: 106, d: 200, o: 0.5 }, // rear left, behind the arm
+  { x: 750, y: 98, d: 110, o: 0.3 }, // rear right, mostly hidden
 ];
 
 const LIFT = 0.8;    // fraction of the banner height the drone climbs while the banner scrolls away
@@ -146,8 +145,7 @@ const DroneBanner = () => {
                 top: `${(p.y / DRONE.h) * 100}%`,
                 width: `${(p.d / DRONE.w) * 100}%`,
                 opacity: p.o,
-                '--squash': p.squash,
-                animationDelay: `${-i * 0.023}s`,
+                '--stagger': `${-i * 0.09}s`,
               }}
             />
           ))}
