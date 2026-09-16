@@ -26,11 +26,39 @@
   pointer-events: none;
 }
 
+.drone-banner-body {
+  position: relative;
+  animation: drone-banner-hover 4.4s ease-in-out infinite;
+}
+
 .drone-banner-drone img {
   display: block;
   width: 100%;
   height: auto;
-  animation: drone-banner-hover 4.4s ease-in-out infinite;
+}
+
+/* A spinning two-blade bar inside a circle squashed to the edge-on angle of
+   the photo. Multiply-blended over the prop's own motion-blur streak, it reads
+   as a running propeller. 12 revolutions a second strobes at screen rate. */
+.drone-banner-prop {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%) scaleY(var(--squash, 0.08));
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.drone-banner-prop::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 46%;
+  height: 8%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent 0 2%, #211f1c 2% 47%, transparent 47% 53%, #211f1c 53% 98%, transparent 98%);
+  animation: drone-banner-spin 0.085s linear infinite;
+  animation-delay: inherit;
 }
 
 @keyframes drone-banner-hover {
@@ -38,6 +66,11 @@
   50% { transform: translateY(-4px) rotate(-0.6deg); }
 }
 
+@keyframes drone-banner-spin {
+  to { transform: rotate(360deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .drone-banner-drone img { animation: none; }
+  .drone-banner-body { animation: none; }
+  .drone-banner-prop { display: none; }
 }
