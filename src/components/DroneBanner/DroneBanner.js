@@ -8,9 +8,8 @@ import React, { useEffect, useRef } from 'react';
 import './DroneBanner.css';
 
 // Natural size of contact-drone-sky.webp and the box the drone layer was cut
-// from, in the same pixel space. The drone is positioned with the same cover
-// math the browser uses for object-fit, so it sits exactly over the filled
-// patch at rest on every screen size.
+// from, in the same pixel space. The cover scale of the sky sets the drone's
+// base size; ANCHOR below decides where it hovers.
 const SKY = { w: 2400, h: 1600 };
 const DRONE = { x: 789, y: 633, w: 827, h: 202 };
 const SKY_SRC = '/assets/images/contact-drone-sky.webp';
@@ -23,8 +22,13 @@ const PROPS = [
   { x: 182, y: 34, d: 335, o: 0.6 },  // front left
   { x: 636, y: 60, d: 342, o: 0.55 }, // front right
   { x: 255, y: 106, d: 200, o: 0.45 }, // rear left, behind the arm
-  { x: 750, y: 98, d: 110, o: 0.3 }, // rear right, mostly hidden
 ];
+
+// Where the drone sits at rest, as fractions of the banner (rule of thirds:
+// right third, upper third), and how large it renders relative to the photo's
+// own cover scale. Phones keep it near full size so it still reads.
+const ANCHOR = { x: 0.66, y: 0.38 };
+const sizeFactor = (cw) => (cw >= 1100 ? 0.58 : cw <= 600 ? 0.95 : 0.95 - ((cw - 600) / 500) * 0.37);
 
 const LIFT = 0.8;    // fraction of the banner height the drone climbs while the banner scrolls away
 const DRIFT = 0.06;   // fraction of the banner width it drifts to the right meanwhile
@@ -44,16 +48,16 @@ const DroneBanner = () => {
     const drone = droneRef.current;
     if (!root || !sky || !drone) return undefined;
 
-    // offsetWidth/Height/Top ignore CSS transforms, so this stays correct mid-animation.
+    // offsetWidth/Height ignore CSS transforms, so this stays correct mid-animation.
     const place = () => {
-      const sw = sky.offsetWidth;
-      const sh = sky.offsetHeight;
-      const s = Math.max(sw / SKY.w, sh / SKY.h);
-      const ox = (sw - SKY.w * s) / 2;
-      const oy = sky.offsetTop + (sh - SKY.h * s) / 2;
-      drone.style.left = `${ox + DRONE.x * s}px`;
-      drone.style.top = `${oy + DRONE.y * s}px`;
-      drone.style.width = `${DRONE.w * s}px`;
+      const cw = root.clientWidth;
+      const ch = root.clientHeight;
+      const s = Math.max(sky.offsetWidth / SKY.w, sky.offsetHeight / SKY.h) * sizeFactor(cw);
+      const w = DRONE.w * s;
+      const h = DRONE.h * s;
+      drone.style.width = `${w}px`;
+      drone.style.left = `${cw * ANCHOR.x - w / 2}px`;
+      drone.style.top = `${ch * ANCHOR.y - h / 2}px`;
     };
     place();
     const ro = typeof ResizeObserver === 'function' ? new ResizeObserver(place) : null;
@@ -128,6 +132,7 @@ const DroneBanner = () => {
       />
       <div className="drone-banner-drone" ref={droneRef}>
         <div className="drone-banner-body">
+          <div className="drone-banner-pose">
           <img
             src={DRONE_SRC}
             alt="Minh's drone hovering over a golden field at sunset"
@@ -149,6 +154,7 @@ const DroneBanner = () => {
               }}
             />
           ))}
+          </div>
         </div>
       </div>
     </div>

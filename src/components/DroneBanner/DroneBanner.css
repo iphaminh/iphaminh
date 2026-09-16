@@ -27,8 +27,14 @@
 }
 
 .drone-banner-body {
-  position: relative;
   animation: drone-banner-hover 4.4s ease-in-out infinite;
+}
+
+/* Turned a little to the left and banked, so it is not head-on to the visitor. */
+.drone-banner-pose {
+  position: relative;
+  transform: perspective(900px) rotateY(-16deg) rotate(-5deg);
+  transform-origin: 50% 55%;
 }
 
 .drone-banner-drone img {
