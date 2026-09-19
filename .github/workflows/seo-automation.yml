@@ -24,6 +24,12 @@ on:
         required: false
         type: boolean
         default: false
+      fix_mislabeled:
+        description: 'Correct mislabeled Vimeo/YouTube listings from weddingFacts.json'
+        required: false
+        type: choice
+        options: ['no', 'dry-run', 'apply']
+        default: 'no'
 
 # Never let two runs overlap (e.g. a slow bulk run colliding with the next cron)
 concurrency:
@@ -214,6 +220,40 @@ jobs:
             git push
           fi
 
+  # ── Manual: correct listings the old prompts mislabeled ─────────────────────
+  # The bulk Vimeo job can never fix these: vimeo-seo.js skips any title with
+  # " | " and every mislabeled title has one. Dry-run prints the diff and writes
+  # nothing; apply updates Vimeo and YouTube from src/data/weddingFacts.json.
+  fix-mislabeled:
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.fix_mislabeled != 'no' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install script dependencies
+        run: cd scripts && npm install
+
+      - name: Correct mislabeled listings
+        env:
+          VIMEO_ACCESS_TOKEN: ${{ secrets.VIMEO_ACCESS_TOKEN }}
+          VIMEO_USER_ID: ${{ secrets.VIMEO_USER_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          if [ "${{ github.event.inputs.fix_mislabeled }}" = "apply" ]; then
+            node scripts/fix-mislabeled.js --apply
+          else
+            node scripts/fix-mislabeled.js
+          fi
+
   # ── Alert on any failure ────────────────────────────────────────────────────
   # A red Action notifies nobody by default. The 2026-07-29 token expiry ran
   # 10 days unnoticed because of that. This opens (or pings) a single assigned
@@ -224,7 +264,7 @@ jobs:
     # its 403 on label creation is what broke the alert's first real firing.
     permissions:
       issues: write
-    needs: [single-video-seo, bulk-seo-refresh, youtube-sync]
+    needs: [single-video-seo, bulk-seo-refresh, youtube-sync, fix-mislabeled]
     if: always() && contains(needs.*.result, 'failure')
     runs-on: ubuntu-latest
     steps:
@@ -243,6 +283,7 @@ jobs:
               'single-video-seo': ${{ toJSON(needs['single-video-seo'].result) }},
               'bulk-seo-refresh': ${{ toJSON(needs['bulk-seo-refresh'].result) }},
               'youtube-sync':     ${{ toJSON(needs['youtube-sync'].result) }},
+              'fix-mislabeled':   ${{ toJSON(needs['fix-mislabeled'].result) }},
             };
             const failed = Object.entries(results)
               .filter(([, r]) => r === 'failure')

@@ -26,6 +26,7 @@ const { URL } = require("url");
 const os = require("os");
 const { execFile } = require("child_process");
 const { logVideoToNotion } = require("./notion-log");
+const { factsBlock, tagCandidates } = require("./wedding-facts");
 
 const VIMEO_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
 const VIMEO_USER_ID = process.env.VIMEO_USER_ID;
@@ -375,77 +376,97 @@ function formatDuration(seconds) {
 
 async function generateYouTubeSEO(vimeoTitle, vimeoDescription, durationSeconds) {
   const durationStr = formatDuration(durationSeconds);
-  const prompt = `You are a YouTube SEO specialist optimizing for YouTube's 2026 discovery algorithm.
-Client: Phaminh Cinematography — a luxury wedding videography studio owned by Minh Pham.
 
-BRAND CONTEXT
-Based in: Vacaville, CA (Solano County — between Napa Valley and Sacramento).
-Service areas: Napa Valley · Vacaville & Suisun Valley · Sacramento · Sonoma · San Francisco Bay Area · Silicon Valley · Marin · Bentonville AR · Fayetteville AR · Rogers AR · Northwest Arkansas · Little Rock · Hot Springs AR.
-Website: https://www.phaminh.com
-YouTube: https://www.youtube.com/@Phaminh-Cinematography
-Instagram: https://www.instagram.com/phaminh/
-Contact: phaminh@outlook.com · (870) 270-8837
-Positioning: Cinematic, story-first wedding films. Warm, timeless, calm-on-the-wedding-day approach.
+  // Cited venue/city/state/vendors from Minh's own Facebook and Instagram
+  // captions. null means we have no source for this wedding — the prompt then
+  // forbids naming any place at all rather than letting the model guess, which
+  // is how Arkansas weddings ended up titled "San Francisco, CA".
+  const known = factsBlock(vimeoTitle);
+  const vendorTags = tagCandidates(vimeoTitle);
+
+  const placeRules = known
+    ? `CONFIRMED FACTS — these are from Minh's own social captions. Use them exactly.
+${known}
+
+- The venue and the city above are the ONLY place names you may use. Do not add a
+  region, metro area or second city that is not written above.
+- Credit every vendor listed, by name, in a short "Vendor team" block. These
+  names are how other vendors and their followers find this film.`
+    : `NO CONFIRMED LOCATION for this wedding. You therefore must NOT name any city,
+county, state, region or venue anywhere in the title, description or tags.
+Write about the day itself — the light, the moments, the feeling — and leave
+placement out entirely. A vague-but-true title beats a specific-but-wrong one.
+Do not write "Bay Area", "San Francisco", "Arkansas" or any other place.`;
+
+  const yearRule = /\b(20\d\d)\b/.test(vimeoTitle)
+    ? `If you use a year, it must be the one already in the source title. Never change it.`
+    : `Do NOT put a year in the title. The wedding's real year is unknown and last
+year's wedding labelled with this year is the kind of mistake couples notice.`;
+
+  const chapterRule = durationStr
+    ? `6. The film runs ${durationStr}. Add 3 or 4 chapter timestamps that fit inside that
+   runtime, first at 00:00, named for what actually happens. Skip chapters if under 2:00.`
+    : "6. Duration unknown, so no timestamps. Do not invent them.";
+
+  const vendorTagRule = vendorTags.length
+    ? `- START with these confirmed venue and vendor names, the highest-value tags here
+  because they are what vendor audiences search: ${vendorTags.slice(0, 8).join(", ")}`
+    : "- No confirmed venue or vendor names, so use none.";
+
+  const prompt = `You are writing the YouTube listing for a wedding film by Phaminh Cinematography.
+Minh Pham films a small number of weddings a year, documentary at heart, cinematic in craft.
+Website https://www.phaminh.com · phaminh@outlook.com · (870) 270-8837
 
 SOURCE VIDEO (from Vimeo)
 Title: ${vimeoTitle}
-Description: ${vimeoDescription || "(no description)"}
+Description: ${vimeoDescription || "(none)"}
 
-YOUR TASK
-Produce a complete YouTube SEO package tuned for 2026's algorithm. Return ONLY the exact format below — no preamble, no closing summary.
+${placeRules}
+
+HOW TO WRITE
+Write the way Minh talks about a wedding to another person: warm, specific, first person,
+plain sentences. Never use these phrases — they are worn out from previous auto-generated
+descriptions: "nothing short of", "two souls", "written in the stars", "breathtaking",
+"a testament to love", "magical". No emoji section banners. No horizontal rules. No
+"drop a comment below". No hashtag block. Say something only this wedding could claim.
 
 ===== YT_TITLE =====
-Rules for the title (60-70 chars ideal, hard cap 100):
-- Front-load the primary keyword in the first 40 characters (YouTube weights early words heavily).
-- If a VENUE is named in the source, lead with it: "[Venue] Wedding Film | [Couple] | [City, ST]" — venue-name searches are the highest-intent, lowest-competition queries in this vertical.
-- Otherwise use: "[Couple/Venue] | [Location] Wedding Videographer" or "[Emotional hook] | [Location] Wedding Film 2026".
-- The title MUST contain the " | " separator (pipe with spaces) — the sync pipeline uses its presence as the processed-video marker; a title without it gets reprocessed forever.
-- Include the year "2026" when it fits — it drives freshness rankings.
-- Prefer natural, human phrasing over keyword stuffing (YouTube's 2026 update penalizes clickbait).
-- Avoid ALL CAPS and excessive emojis (one max, and only if it fits the brand).
+- 60 to 70 characters ideal.
+- If a venue is confirmed above, lead with it: venue searches are the highest-intent,
+  lowest-competition query in wedding video.
+- Then the couple's first names, then the confirmed city and state if any.
+- MUST contain " | " (pipe with spaces). The sync pipeline uses it as the processed marker.
+- ${yearRule}
+- No ALL CAPS, no clickbait, at most one emoji and usually none.
 
 ===== YT_DESCRIPTION =====
-Rules for the description (target 400-600 words):
-- **First 125 characters are critical** — they appear as the search snippet AND above-the-fold on watch pages. Lead with 1 emotional sentence that includes the primary keyword + location.
-- **Line 2 (still above the fold on mobile):** a deep link to the MATCHING location page on the site, chosen from: https://www.phaminh.com/wedding-videographer/northwest-arkansas (or /hot-springs, /eureka-springs, /little-rock, /napa-valley, /vacaville-suisun-valley, /sacramento, /sonoma-healdsburg, /san-francisco — pick whichever matches the wedding's region; NEVER just the homepage).
-- **Line 3:** the concrete "who + where + what" — couple, venue if named, city and county in prose (venue + city + county names are what search and AI engines extract).
-- Include a horizontal separator like "━━━━━━━━━━" between sections so the description scans well.
-- **Sections in this order:**
-  1. Emotional hook (2-3 sentences, keyword-rich).
-  2. About the wedding — vendors and venue named from the source description if any.
-  3. About Phaminh Cinematography — ALWAYS include this exact entity line, then 1-2 sentences on style: "Wedding videographer based in Vacaville, CA — serving Napa Valley, Sonoma, the SF Bay Area, Sacramento & Northwest Arkansas." 
-  4. "📩 BOOKING & INQUIRIES" — website + email + phone.
-  5. "🎬 WATCH MORE" — 2-3 line breaks with placeholder like "→ Wedding films: https://www.phaminh.com/cine"
-  6. "🔗 FOLLOW" — Instagram + YouTube subscribe reminder.
-  7. Timestamps section labeled "⏱ TIMESTAMPS" — ${durationStr
-    ? `the video is exactly ${durationStr} long. Include 3-4 chapters that fit INSIDE that runtime (first must be 00:00; last chapter must start well before ${durationStr}). Name them for the wedding arc — Ceremony / Vows / First Dance / Toasts (or Getting Ready / Portraits where the film starts there); these become Google Key Moments automatically. If the video is under 2:00, SKIP the timestamps section entirely — chapters on teasers feel broken.`
-    : `video duration unknown — SKIP the timestamps section entirely rather than inventing times.`}
-  8. Community engagement question ("💬 What's your favorite wedding tradition? Let me know in the comments.") — YouTube's 2026 algorithm heavily weights comment engagement.
-  9. Final line: 3-5 relevant hashtags (see hashtag rules below).
+120 to 220 words. Short paragraphs. Structure:
+1. Two or three sentences on one real thing about this day, drawn from the source
+   description. Put the couple's names and the confirmed venue in the first sentence.
+2. One sentence on how Minh works, in his voice.
+3. A "Vendor team" list, one per line, "Role: Name" — only the vendors confirmed above.
+   Skip this block entirely when no vendors are confirmed.
+4. Booking line: website, email, phone.
+5. One link to the matching city page when the location is confirmed, chosen from
+   /wedding-videographer/{northwest-arkansas, hot-springs, eureka-springs, little-rock,
+   napa-valley, vacaville-suisun-valley, sacramento, sonoma-healdsburg, san-francisco}.
+   If the confirmed location matches none of these, link https://www.phaminh.com/cine instead.
+   Never link the bare homepage.
+${chapterRule}
 
 ===== YT_TAGS =====
-Return exactly 20 comma-separated tags optimized for 2026 YouTube:
-- 1-3 broad category tags (wedding videographer, wedding film, cinematic wedding)
-- 5-7 location-specific long-tail tags ("bay area wedding videographer", "northwest arkansas wedding film", "napa valley wedding")
-- 3-5 venue or style tags if hinted by source (e.g., "outdoor wedding", "vineyard wedding", "elopement film")
-- 2-3 aspirational/searcher-intent phrases ("best wedding videographer 2026", "how to hire a wedding videographer")
-- 2-3 brand tags ("phaminh cinematography", "minh pham videographer")
-Keep every tag under 30 characters. All lowercase. No hashtag "#" prefix (tags are separate from hashtags).
+Exactly 20 comma-separated tags, lowercase, each under 30 characters:
+${vendorTagRule}
+- Then the confirmed city and state as tags, if confirmed.
+- Then style and category tags: wedding videographer, wedding film, cinematic wedding.
+- Then two brand tags: phaminh cinematography, minh pham.
+- No "#" prefixes. No place name that is not confirmed above.
 
-===== HASHTAGS (embedded in description, not tags) =====
-End the description with exactly 5 hashtags on one line. Prioritize:
-- 1 primary location hashtag (#BayAreaWeddingVideographer, #ArkansasWeddingFilm, etc.)
-- 1 style hashtag (#CinematicWeddingFilm)
-- 1 secondary location hashtag if the wedding spans regions
-- 1 brand hashtag (#PhaminhCinematography)
-- 1 year/trending hashtag (#WeddingFilm2026 or #Wedding2026)
-Note: YouTube shows the first 3 hashtags above the title. Choose those 3 to be the highest-search-volume.
-
-FORMAT — return exactly this, and nothing else:
+FORMAT — return exactly this and nothing else:
 
 YT_TITLE: <title>
 
-YT_DESCRIPTION: <description with all sections above, real line breaks — no HTML>
+YT_DESCRIPTION: <description, real line breaks, no HTML>
 
 YT_TAGS: <tag1>, <tag2>, ..., <tag20>`;
 
@@ -822,3 +843,7 @@ if (require.main === module) {
     process.exit(1);
   });
 }
+
+// Exported so scripts/fix-mislabeled.js can reuse the same generator and
+// auth instead of duplicating them.
+module.exports = { generateYouTubeSEO, getYouTubeAccessToken, fetchAllVimeoVideos, vimeo, httpsRequestJson, coupleKeyFromTitle };

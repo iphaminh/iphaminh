@@ -1,6 +1,7 @@
 require("dotenv").config();
 const https = require("https");
 const { logVideoToNotion } = require("./notion-log");
+const { factsBlock, tagCandidates } = require("./wedding-facts");
 
 const VIMEO_TOKEN = process.env.VIMEO_ACCESS_TOKEN;
 const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
@@ -103,25 +104,66 @@ async function generateSEO(video) {
   const description = video.description || "";
   const tags = (video.tags || []).map((t) => t.name).join(", ");
 
-  const prompt = `You are an expert wedding videography SEO specialist for Phaminh Cinematography, a luxury wedding film company owned by Minh Pham.
+  // Cited venue/city/state/vendors from Minh's own Facebook and Instagram
+  // captions (src/data/weddingFacts.json). null means no source exists, and the
+  // prompt then bans place names outright. The old prompt told the model to work
+  // "Bay Area" into every description, which is how Arkansas weddings ended up
+  // described as California ones here and then titled San Francisco on YouTube.
+  const known = factsBlock(title);
+  const vendorTags = tagCandidates(title);
 
-Based in: Vacaville, California (Solano County — between Napa Valley and Sacramento).
-Service areas: Napa Valley, Vacaville & Suisun Valley, Sacramento, Sonoma, San Francisco Bay Area, Bentonville Arkansas, Northwest Arkansas, Hot Springs Arkansas.
-Website: https://www.phaminh.com
-YouTube: https://www.youtube.com/@Phaminh-Cinematography
+  const placeRules = known
+    ? `CONFIRMED FACTS — from Minh's own social captions. Use them exactly.
+${known}
 
-Current video info:
+- The venue and city above are the ONLY place names allowed. Do not add a region,
+  metro area, second city or state that is not written above.
+- Name the venue in the first two sentences, and credit every vendor by name.`
+    : `NO CONFIRMED LOCATION for this wedding. Do NOT name any city, county, state,
+region or venue in the title, description or tags. Write about the day itself and
+leave placement out. Never write "Bay Area", "Northern California", "Arkansas" or
+any other place name. A true general title beats a false specific one.`;
+
+  const vendorTagRule = vendorTags.length
+    ? `Start with the confirmed venue and vendor names, which are the tags other
+vendors and their clients actually search: ${vendorTags.slice(0, 8).join(", ")}.`
+    : `No confirmed venue or vendor names exist for this film, so use none.`;
+
+  const prompt = `You are writing the Vimeo listing for a wedding film by Phaminh Cinematography.
+Minh Pham films a small number of weddings a year, documentary at heart, cinematic in craft.
+Website https://www.phaminh.com · phaminh@outlook.com · (870) 270-8837
+
+CURRENT VIDEO
 Title: ${title}
-Description: ${description}
-Tags: ${tags}
+Description: ${description || "(none)"}
+Existing tags: ${tags || "(none)"}
 
-Generate a complete SEO package. Return ONLY this exact format with no extra text:
+${placeRules}
 
-SEO_TITLE: [compelling 60-char max title with location and keywords. If a VENUE is named in the source info, lead with the venue name — venue searches are the highest-intent queries. MUST contain the " | " separator (pipe with spaces): its presence marks the video as processed, so a title without it would be reprocessed on every run]
+HOW TO WRITE
+Write like Minh describing the day to a person, not like a brochure. Warm, specific,
+first person, plain sentences. These phrases are banned because previous auto-generated
+descriptions wore them out: "nothing short of", "two souls", "written in the stars",
+"breathtaking", "a testament to love", "magical", "unforgettable". Every sentence should
+be one only this wedding could claim.
 
-SEO_DESCRIPTION: [700+ word description with: emotional opening paragraph, film details, vendor credits if mentioned, the venue name (when known) in the first paragraph, location keywords, luxury wedding phrases, Bay Area AND Arkansas SEO phrases, call to action with website URL, hashtags at the end]
+Return ONLY this format, nothing else:
 
-VIMEO_TAGS: [20 comma-separated tags: mix of location, style, vendor names if known, wedding keywords]`;
+SEO_TITLE: [55-65 chars. Lead with the confirmed venue when there is one, then the
+couple's first names, then the confirmed city and state. MUST contain " | " (pipe with
+spaces) — the pipeline uses it as the processed marker. No year unless the source title
+already has one, and then keep that same year.]
+
+SEO_DESCRIPTION: [200-300 words, short paragraphs. Open with two or three sentences on
+one real thing about this day, naming the couple and the confirmed venue. Then one
+sentence on how Minh works. Then a "Vendor team" list, one "Role: Name" per line, only
+the confirmed vendors — skip the block entirely if none are confirmed. Close with the
+website, email and phone. No hashtag block, no emoji banners, no "comment below".]
+
+VIMEO_TAGS: [20 comma-separated tags, lowercase, each under 30 characters. ${vendorTagRule}
+Then the confirmed city and state if confirmed, then style tags (wedding videographer,
+wedding film, cinematic wedding), then phaminh cinematography and minh pham. No place
+name that is not confirmed above.]`;
 
   console.log(`Generating SEO for: ${title}`);
   const response = await claudeRequest(prompt);
@@ -227,3 +269,7 @@ if (require.main === module) {
     process.exit(1);
   });
 }
+
+// Exported so scripts/fix-mislabeled.js can reuse the same generator and
+// API client instead of duplicating them.
+module.exports = { generateSEO, parseSEO, vimeoRequest, updateVimeoVideo, getAllVideos };
