@@ -1,0 +1,374 @@
+{
+  "_about": "Ground truth for wedding films, cited from Minh's own Facebook (Phaminh page) and Instagram (@phaminh) captions via Windsor.ai, 2026-09-19. Nothing reads this file yet; it is the intended truth source for the Vimeo/YouTube SEO generators. Dates are caption post dates unless a wedding date is stated.",
+  "confirmed": [
+    {
+      "couple": "Kyle & Hayley Miller",
+      "venue": "Legacy Acres",
+      "city": "Conway",
+      "state": "AR",
+      "posted": "2024-11-20",
+      "vendors": {
+        "photo": "Allie Atkisson Imaging",
+        "florals": "Curly Willow Designs",
+        "dress": "Low's Bridal",
+        "cake": "Curiosity's Corner",
+        "hair": "Bre Smith",
+        "makeup": "Kelsey Dingler",
+        "caterer": "Pasta Grill",
+        "dj": "DJ Jellybean"
+      },
+      "sources": [
+        "Facebook video 2024-11-20 and 2024-11-24",
+        "https://www.instagram.com/reel/DCmgXXPpqFQ/"
+      ],
+      "youtube_titles": [
+        "Bay Area Wedding Film | Kyle & Hayley | Phaminh Cinematography 2026"
+      ],
+      "site_pages": [
+        "/cine/kyle-hayley-bay-area-wedding-film"
+      ],
+      "status": "MISLABELED as Bay Area on YouTube and on the live site"
+    },
+    {
+      "couple": "Victoria & Tyler",
+      "venue": "The Venue at Oakdale",
+      "city": null,
+      "state": "AR",
+      "posted": "2025-11-20",
+      "vendors": {
+        "photo": "Legend & Lace Studios",
+        "florals": "Tanarah Luxe",
+        "planner": "Weddings by SB",
+        "makeup": "Crazy 4 Makeup",
+        "caterer": "Catering Arkansas",
+        "dj": "636 Entertainment",
+        "cake": "Community Bakery",
+        "bar": "Events On The Rocks"
+      },
+      "sources": [
+        "Facebook video 2025-11-20"
+      ],
+      "youtube_titles": [
+        "Bay Area Wedding Film | Victoria & Tyler | Phaminh Cinematography 2026",
+        "Victoria & Tyler | California Wedding Film | Napa Valley 2026"
+      ],
+      "site_pages": [
+        "/cine/victoria-tyler-california-wedding-film"
+      ],
+      "status": "MISLABELED as Bay Area and as Napa Valley on YouTube (two uploads) and as California on the live site"
+    },
+    {
+      "couple": "Rasel & Jacob",
+      "venue": "Mildred B. Cooper Memorial Chapel (ceremony) + Peel Compton Museum (reception)",
+      "city": "Bella Vista / Bentonville",
+      "state": "AR",
+      "posted": "2025-10-05",
+      "vendors": {
+        "hmua": "Boun Vang",
+        "photo": "Farrah Nichole Photography",
+        "dj": "Brock Entertainment",
+        "cake": "Shelby Lynn's Cake Shoppe",
+        "florist": "Samantha's Garden",
+        "photobooth": "LMK Photos",
+        "coordinator": "Rose Sanchez"
+      },
+      "sources": [
+        "Facebook video 2025-10-05"
+      ],
+      "youtube_titles": [
+        "Bay Area Wedding Film | Rasel & Jacob | San Francisco, CA 2026"
+      ],
+      "status": "MISLABELED as San Francisco on YouTube"
+    },
+    {
+      "couple": "Danielle & Jake",
+      "venue": "The Bluff",
+      "city": null,
+      "state": "AR",
+      "posted": "2025-08-21",
+      "vendors": {
+        "photo": "Gracie Patterson Photo",
+        "planner": "Sweet Like Honey Details",
+        "caterer": "BHIVE Catering",
+        "bar": "Sage and Sundries",
+        "band": "Yongi Live",
+        "florist": "Vase and Vine",
+        "dessert": "Delicioso Bakery",
+        "hmua": "Sana Hafeez"
+      },
+      "sources": [
+        "Facebook video 2025-08-21"
+      ],
+      "youtube_titles": [
+        "Hot Springs Arkansas Wedding Film | Danielle + Jake 2026",
+        "Bay Area Wedding Film | Danielle & Jake | San Francisco, CA 2026"
+      ],
+      "status": "Duplicate upload; the San Francisco copy is MISLABELED. Confirm whether The Bluff is the Hot Springs venue."
+    },
+    {
+      "couple": "Darby & Tyler",
+      "venue": "The Grandeur House",
+      "city": null,
+      "state": "AR",
+      "posted": "2025-11-27",
+      "vendors": {
+        "planner": "Kaitie Gill Weddings",
+        "photo": "Claire Alberius",
+        "hmua": "The Beauty Bandit"
+      },
+      "sources": [
+        "Facebook video 2025-11-27"
+      ],
+      "youtube_titles": [
+        "Northwest Arkansas Wedding Film | Darby + Tyler 2026"
+      ],
+      "status": "State correct; confirm region (title says Northwest Arkansas)"
+    },
+    {
+      "couple": "Cassie & Colton",
+      "venue": "The Barn at Greers Ferry Lake",
+      "city": "Greers Ferry area",
+      "state": "AR",
+      "posted": "2025-10-22",
+      "vendors": {
+        "photo": "@photossbyj_",
+        "planner": "@weddingsbysb_",
+        "dress": "Low's Bridal",
+        "rentals": "A Team Party Rentals"
+      },
+      "sources": [
+        "Facebook video 2025-10-22"
+      ],
+      "youtube_titles": [
+        "Arkansas Wedding Film | Cassie & Colton | Northwest Arkansas 2026"
+      ],
+      "status": "State correct; Greers Ferry Lake is north-central Arkansas, title says Northwest"
+    },
+    {
+      "couple": "Morgan & Parker",
+      "venue": "Cold Springs Events (from the original upload title)",
+      "city": null,
+      "state": "AR",
+      "posted": "2024-05-27",
+      "sources": [
+        "https://www.instagram.com/reel/C7efQj0sRe_/ (Arkansas hashtags)"
+      ],
+      "youtube_titles": [
+        "UNFORGETTABLE MOMENTS | Morgan & Parker's DREAM WEDDING | Cold Springs Events",
+        "NWA Cinematic Wedding Film | Morgan & Parker | Bentonville, AR 2026"
+      ],
+      "status": "Duplicate upload; Arkansas confirmed"
+    },
+    {
+      "couple": "Brooke & Dylan",
+      "venue": null,
+      "city": null,
+      "state": "GA?",
+      "posted": "2024-01-31",
+      "sources": [
+        "https://www.instagram.com/reel/C2xc8_vL8xF/ (Georgia hashtags only)"
+      ],
+      "youtube_titles": [
+        "Arkansas Wedding Film | Brooke & Dillon | Phaminh Cinematography 2026"
+      ],
+      "status": "YouTube says Arkansas; Instagram hashtags say Georgia. Confirm."
+    },
+    {
+      "couple": "Iseulle & Tim",
+      "venue": "Fairlane Station",
+      "city": "Springdale",
+      "state": "AR",
+      "sources": [
+        "Fairlane Station is in Springdale (Bailee & Andrew post tags @fairlanestation)"
+      ],
+      "youtube_titles": [
+        "Fairlane Station Wedding Film | Iseulle & Tim | Bentonville, AR 2026"
+      ],
+      "status": "Venue right; title city should be Springdale, not Bentonville"
+    }
+  ],
+  "on_social_not_on_youtube": [
+    {
+      "couple": "Jaclyn & Jose",
+      "venue": "Anthony Chapel, Garvan Woodland Gardens",
+      "city": "Hot Springs",
+      "state": "AR",
+      "posted": "2024-12-13",
+      "vendors": {
+        "photo": "LC Photography",
+        "dress": "For Love Bridal",
+        "hmua": "Lavonne Beauty",
+        "caterer": "Hot Springs Catering Company",
+        "coordinator": "Kelly Aubuchon, Capture the Moments Images and Events"
+      },
+      "sources": [
+        "Facebook video 2024-12-13",
+        "https://www.instagram.com/reel/DDh7mvRJ7bD/"
+      ],
+      "note": "May be the unnamed YouTube upload 'Intimate Chapel Wedding at Anthony Chapel'"
+    },
+    {
+      "couple": "Kalea & Jared",
+      "venue": "Anthony Chapel, Garvan Woodland Gardens",
+      "city": "Hot Springs",
+      "state": "AR",
+      "posted": "2025-05-24",
+      "vendors": {
+        "photo": "Kurt Stephan",
+        "florals": "Tipton and Hurst",
+        "dress": "David's Bridal",
+        "cake": "Harps",
+        "hair": "Whiplash Beauty",
+        "caterer": "Vibrant Occasions Catering",
+        "dj": "Central Arkansas Entertainment"
+      },
+      "sources": [
+        "Facebook video 2025-05-24"
+      ]
+    },
+    {
+      "couple": "Bailee & Andrew",
+      "venue": "Fairlane Station",
+      "city": "Springdale",
+      "state": "AR",
+      "posted": "2025-02-02",
+      "vendors": {
+        "photo": "AnnaKate Sharp / Ali Kamran Films",
+        "florals": "Kelly Darr",
+        "dress": "Always & Forever",
+        "cake": "Shelby Lynn's Cake Shop",
+        "hair": "Lauren Fisher",
+        "makeup": "Rylee Bagwell",
+        "caterer": "El Chefe Mexican Cuisine",
+        "dj": "Tommy Bagwell",
+        "coordinator": "Kelly Darr"
+      },
+      "sources": [
+        "Facebook video 2025-02-02"
+      ],
+      "note": "Bailee is Emma's sister; Minh filmed Emma's wedding earlier"
+    },
+    {
+      "couple": "(unnamed)",
+      "venue": "Horsehead Lake Lodge & Event Center",
+      "state": "AR",
+      "posted": "2025-06-15",
+      "vendors": {
+        "photo": "Evan Hopman Photography",
+        "arch": "Brown's Flowers",
+        "bouquets": "Haley's Floral Studio (Ohio)",
+        "dress": "La Jeune Mariee Bridal Collection / Watters",
+        "cake": "Rick's Bakery",
+        "hair": "Skeeter Westbrook",
+        "makeup": "Olivia Higgins",
+        "caterer": "Mountain Top Catering",
+        "dj": "Eastside Soundworks"
+      },
+      "sources": [
+        "Facebook video 2025-06-15"
+      ]
+    },
+    {
+      "couple": "Lilly & Brendan",
+      "venue": "Private residence",
+      "state": "AR",
+      "posted": "2025-10-30",
+      "sources": [
+        "Facebook video 2025-10-30"
+      ]
+    },
+    {
+      "couple": "Hannah & Evan",
+      "venue": "Marlsgate Plantation",
+      "city": "Scott",
+      "state": "AR",
+      "wedding_date": "2026-05-09",
+      "sources": [
+        "Facebook video 2026-05-18"
+      ],
+      "note": "Full-day coverage with drone"
+    },
+    {
+      "couple": "Christina & Noah",
+      "venue": "White River Landing",
+      "state": "AR",
+      "posted": "2026-06-18",
+      "vendors": {
+        "photo": "Shiela Photography",
+        "dress": "Victoria's Shop",
+        "cake": "Rick's Bakery",
+        "makeup": "Beth's Mobile Makeup Unit",
+        "caterer": "Olive Garden"
+      },
+      "sources": [
+        "Facebook video 2026-06-18"
+      ]
+    },
+    {
+      "couple": "Maddy & Peyton",
+      "venue": "Legacy Acres",
+      "city": "Conway",
+      "state": "AR",
+      "posted": "2023-09-15",
+      "vendors": {
+        "planner": "Caroline Ply Events"
+      },
+      "sources": [
+        "https://www.instagram.com/reel/CxN_Jr0A9zC/"
+      ],
+      "note": "Possibly the YouTube upload 'Arkansas Wedding Film 2026 | Madison's Luxury Cinematic Story'"
+    },
+    {
+      "couple": "Hannah & Drew",
+      "venue": "Sunset Lodge at Rusty Tractor Vineyards",
+      "state": "AR",
+      "posted": "2021-08-15",
+      "vendors": {
+        "photo": "We The Blackwells",
+        "florals": "Tipton Hurst",
+        "dress": "Stella York, The Bridal Cottage",
+        "cake": "PattiCakes Bakery",
+        "hair": "Tisha Ybarra, Bloom Salon",
+        "makeup": "Bekah Joyner",
+        "caterer": "Whole Hog Cafe",
+        "dj": "Suspense Entertainment",
+        "coordinator": "Bella Baxter Special Events"
+      },
+      "sources": [
+        "https://www.instagram.com/p/CSmxdr3HlYU/"
+      ]
+    },
+    {
+      "couple": "Trang & Johnson",
+      "venue": "Villa Woodbine",
+      "city": "Miami",
+      "state": "FL",
+      "posted": "2021-02-01",
+      "vendors": {
+        "photo": "Stephanie Parsley",
+        "florals": "Sugar Collections",
+        "dress": "Pronovias",
+        "hmua": "Sissi Chan",
+        "caterer": "Bill Hansen Catering",
+        "cake": "Edda's Cake Designs"
+      },
+      "sources": [
+        "https://www.instagram.com/p/CKvIyQpj-j8/"
+      ]
+    }
+  ],
+  "unverified_bay_area_labels": {
+    "note": "No Facebook or Instagram caption found. The 'Bay Area' label came from the Vimeo SEO script, which was told to include Bay Area keywords, and the YouTube script then upgraded it to 'San Francisco, CA'. Minh must confirm each.",
+    "couples": [
+      "Emma & Hadar (3 YouTube uploads + site page /cine/emma-hadar-bay-area-wedding-film)",
+      "Duy & Vy (site page /cine/duy-vy-bay-area-wedding-film)",
+      "Jenny & Corey",
+      "Kevin & Brittney",
+      "Shawna & An",
+      "Lani & Doug",
+      "Allison & James",
+      "Zach & Meredith (titled 'Bay Area & Arkansas')",
+      "Linda & Linh (2 uploads, 'Vietnamese Wedding in California')"
+    ]
+  }
+}
